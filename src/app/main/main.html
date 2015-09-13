@@ -34,6 +34,7 @@
       <div class="row">
           <button ng-click="changeBackground()">Change background</button>
           <button ng-click="main.addText()"> Add text</button>
+          <img id="preview_image" name='preview_image' ng-src="{{preview_image}}" width="100" height="100" />
       </div>
 
       <div class="row">
@@ -54,6 +55,7 @@
       <div class="page-nav-panel">
         <button ng-click="main.previousPage()">PrePage</button>
         <button ng-click="main.nextPage()">Next Page</button>
+        <button ng-click="main.nextSaveToImage()">Save As Image</button>
       </div>
       </div>
 

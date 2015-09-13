@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, $scope) {
+  function MainController($timeout, webDevTec, toastr, $scope,$document) {
     var vm = this;
     vm.classAnimation = '';
     vm.creationDate = 1442106873263;
@@ -195,6 +195,17 @@
       //
       //vm.left_canvas.renderAll();
       //vm.right_canvas.renderAll();
+    };
+
+    vm.nextSaveToImage = function() {
+
+      $scope.preview_image = vm.left_canvas.toDataURL();
+      //var preview_image = $document.find('#preview_image');
+      //var preview_image =  $document.find('preview_image');  /// $('#preview_image');
+      var preview_image = $(event.target).find('#preview_image');
+      preview_image = $("#preview_image");
+      preview_image.src = image;
+      preview_image.attr('src', image);
     };
 
     vm.clickMe = function clickMe(){
