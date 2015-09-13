@@ -1,0 +1,22 @@
+<!--<ul class="nav nav-sidebar">-->
+  <!--<li class="active"><a href="#">Overview</a></li>-->
+  <!--<li><a href="#">Reports</a></li>-->
+  <!--<li><a href="#">Analytics</a></li>-->
+  <!--<li><a href="#">Export</a></li>-->
+
+<!--</ul>-->
+
+<button ng-click="main.addText()"> Add text </button>
+
+<div ng-controller="MainController">
+  <accordion close-others="oneAtATime">
+    <accordion-group heading="{{group.title}}" ng-repeat="group in groups" is-open="isopen" ng-click="isopen=!isopen">
+      <div class="left_panel">
+        <image class="carton_image"
+               ng-repeat="img in group.images"
+               src="{{img}}"
+               ng-click="main.addImage(img)"
+          ></image>
+      </div>
+    </accordion-group>
+</div>

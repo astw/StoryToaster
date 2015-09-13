@@ -1,0 +1,63 @@
+<div ng-include="'app/components/navbar/navbar.html'"></div>
+
+<div class="container-fluid">
+
+  <div class="row row-offcanvas row-offcanvas-left">
+
+    <div class="col-sm-2 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+      <div page-design-sidebar ng-controller="MainController"/>
+      <!--<div ng-include="'app/main/page-design-sidebar.html'"></div>-->
+    </div>
+
+    <div class="col-sm-10 col-md-10 main">
+
+      <!--toggle sidebar button-->
+      <!--<p class="visible-xs">-->
+      <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">
+        <i class="glyphicon glyphicon-chevron-left"></i>ddddd
+      </button>
+      <!--</p>-->
+
+      <h1 class="page-header">
+        Dashboard
+        <!--<p class="lead">  </p>-->
+        <div class="page-browser">
+
+        </div>
+      </h1>
+
+      <!--<div class="row placeholders">-->
+      <!--</div>-->
+
+      <h2 class="sub-header">Section title</h2>
+
+      <div class="row">
+          <button ng-click="changeBackground()">Change background</button>
+          <button ng-click="main.addText()"> Add text</button>
+      </div>
+
+      <div class="row">
+        <div class="page-design-panel">
+          <div class="page-big" ng-class="{active:main.leftActive}">
+            <canvas class="page-canvas" ng-click="main.selectLeft()" id="left_canvas" width="549px"
+                    height="389px"></canvas>
+          </div>
+
+          <div class="page-big" ng-class="{active:main.rightActive}">
+            <canvas class="page-canvas" ng-click="main.selectRight()" id="right_canvas" width="549px"
+                    height="389px"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+      <div class="page-nav-panel">
+        <button ng-click="main.previousPage()">PrePage</button>
+        <button ng-click="main.nextPage()">Next Page</button>
+      </div>
+      </div>
+
+    </div>
+    <!--/row-->
+  </div>
+</div><!--/.container-->
