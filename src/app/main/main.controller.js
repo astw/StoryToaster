@@ -10,12 +10,30 @@
     var vm = this;
     vm.classAnimation = '';
     vm.creationDate = 1442106873263;
+     vm.pages = [];
+    var totalPages = 16;
+    for(var i=0; i< totalPages; i++){
+      var page ={left:{},right:{}};
+      page.pageNumber = i;
 
-    vm.pages =[];
+      page.left.sheetNumber = (i) * 2 + 1 ;
+      page.left.data =i;
+      page.left.active = false;
 
+      page.right.sheetNumber = (i)*2 + 2;
+      page.right.data = i + 1;
+      page.right.active = false;
+
+      vm.pages.push(page);
+    };
+
+    vm.currentPage = vm.pages[0];
+    vm.currentPage.left.active = true;
 
     vm. left_canvas = new fabric.Canvas('left_canvas');
     vm. right_canvas = new fabric.Canvas('right_canvas');
+
+    var currentPageNum = 0;
 
     $scope.groups = [
       {
@@ -79,19 +97,27 @@
 
     ];
 
-    var leftActive = false;
     vm.selectLeft = function(page){
-      vm.leftActive = true;
-      vm.rightActive =false;
-      leftActive = true;
+      vm.pages.forEach(function(page){
+        if(page === vm.currentPage){
+          page.left.active = true;
+          page.right.active = false;
+        }
+        else {
+          page.left.active = page.right.active = false;
+        }
+      });
     };
-
-    var rightActive = false;
     vm.selectRight = function(){
-      vm.leftActive = false;
-      vm.rightActive =true;
-      leftActive = false;
-      rightActive = true;
+      vm.pages.forEach(function(page){
+         if(page === vm.currentPage){
+           page.left.active = false;
+           page.right.active = true;
+         }
+        else {
+           page.left.active = page.right.active = false;
+         }
+      });
     };
 
     vm.addImage = function(imageUrl){
@@ -118,6 +144,23 @@
         vm.left_canvas.add(txtBox);
       else
         vm.right_canvas.add(txtBox);
+    };
+
+    vm.previewClick = function(page,which) {
+      currentPageNum = page.pageNumber;
+
+      vm.currentPage = page;
+
+      for (var i = 0; i < vm.pages.length; i++) {
+        vm.pages[i].left.active = false;
+        vm.pages[i].right.active = false;
+      }
+      if(which === 'left'){
+        page.left.active = true;
+      }
+      else {
+        page.right.active = true; 
+      }
     };
 
     vm.nextPage = function(){

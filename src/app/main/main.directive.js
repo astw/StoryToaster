@@ -9,6 +9,11 @@ app.directive('pageDesignSidebar', function(){
 });
 
 
+app.directive('pageSheet', function(){
+  return {
+    templateUrl:'app/main/page-sheet.html'
+  };
+});
 
 
 //
