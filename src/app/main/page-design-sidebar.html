@@ -10,7 +10,8 @@
 
 <div ng-controller="MainController">
   <accordion close-others="oneAtATime">
-    <accordion-group heading="{{group.title}}" ng-repeat="group in groups" is-open="isopen" ng-click="isopen=!isopen">
+    <!--<accordion-group heading="{{group.title}}" ng-repeat="group in groups" is-open="isopen" ng-click="isopen=!isopen" >-->
+    <accordion-group heading="{{group.title}}" ng-repeat="group in groups" is-open="isopen" >
       <div class="left_panel">
         <image class="carton_image"
                ng-repeat="img in group.images"

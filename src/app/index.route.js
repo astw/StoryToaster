@@ -5,7 +5,7 @@
     .module('storyToaster')
     .config(routeConfig);
 
-  function routeConfig($routeProvider) {
+  function routeConfig($routeProvider,$locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'app/main/main.html',
@@ -15,6 +15,9 @@
       .otherwise({
         redirectTo: '/'
       });
+
+    $locationProvider.html5Mode(true);
   }
+
 
 })();

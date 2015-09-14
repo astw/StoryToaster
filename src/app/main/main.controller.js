@@ -121,14 +121,15 @@
     };
 
     vm.addImage = function(imageUrl){
-      imageUrl = "http://localhost:3000" + imageUrl;
+      imageUrl = "http://192.168.0.14:3000" + imageUrl;
       fabric.Image.fromURL(imageUrl, function(img) {
-        console.log(vm.left_canvas == true);
+
         if(vm.currentPage.left.active == true)
            vm.left_canvas.add(img);
         else
            vm.right_canvas.add(img);
-      });
+
+      },{ crossOrigin: 'Anonymous' });
     };
 
     vm.addText = function(){
@@ -168,18 +169,49 @@
     };
 
     vm.nextPage = function(){
-      backCurrentDesignData();
-      vm.left_canvas.clear();
-      vm.right_canvas.clear();
+      var idx = vm.currentPage.pageNumber;
+
+      if(idx < totalPages -1) {
+        var toPage = vm.pages[idx + 1];
+        changePageTo(toPage);
+      }
     };
 
     vm.previousPage = function(currentIndex){
+
+      var idx = vm.currentPage.pageNumber;
+
+      if(idx > 0) {
+        var toPage = vm.pages[idx - 1];
+        changePageTo(toPage);
+      }
+    };
+
+    var changePageTo = function(toPage){
       backCurrentDesignData();
+
+      vm.left_canvas.clear();
+      vm.right_canvas.clear();
+
+      var page = vm.currentPage;
+      page.left.active = false;
+      page.right.active = false;
+
+      vm.currentPage = toPage;
+      vm.currentPage.left.active = true;
+      restoreToCurrentDesignData();
+    };
+
+    var clearActive = function(){
+       vm.pages.forEach(function(p){
+         p.left.active = p.right.active = false;
+       })
     };
 
     var backCurrentDesignData = function(){
       vm.currentPage.left.imageData = JSON.stringify(vm.left_canvas);//   vm.left_canvas.toDataURL();
       vm.currentPage.right.imageData =JSON.stringify(vm.right_canvas) ;// vm.right_canvas.toDataURL();
+      generatePreviewImage();
     };
 
     var restoreToCurrentDesignData = function(){
@@ -192,8 +224,13 @@
       vm.right_canvas.loadFromJSON(rightData,vm.right_canvas.renderAll.bind(vm.right_canvas),function(){});
     };
 
-    vm.nextSaveToImage = function() {
+    var generatePreviewImage = function(){
+      vm.currentPage.right.previewImage = vm.right_canvas.toDataURL();
+      vm.currentPage.left.previewImage = vm.left_canvas.toDataURL();
+    };
 
+    vm.nextSaveToImage = function() {
+      $scope.preview_image = vm.left_canvas.toDataURL();
       //var preview_image = $document.find('#preview_image');
       //var preview_image =  $document.find('preview_image');  /// $('#preview_image');
       var preview_image = $(event.target).find('#preview_image');
