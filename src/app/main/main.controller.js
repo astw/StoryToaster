@@ -6,11 +6,12 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, $scope,$document) {
+  function MainController($timeout, webDevTec, toastr, $scope,$document,bookRepository) {
     var vm = this;
     vm.classAnimation = '';
     vm.creationDate = 1442106873263;
-     vm.pages = [];
+    vm.pages = [];
+    vm.book ={};
     var totalPages = 16;
     for(var i=0; i< totalPages; i++){
       var page ={left:{},right:{}};
@@ -229,6 +230,49 @@
       vm.currentPage.left.previewImage = vm.left_canvas.toDataURL();
     };
 
+
+    vm.book = {
+      title:"this is created on frontend",
+      desc:"this is my designed book",
+      author:3,
+      data:JSON.stringify(vm.pages)
+    }
+
+    vm.saveToServe = function() {
+
+      //remove the preview image to reduce size;
+      for(var i=0;i < vm.pages.length; i++){
+        var page = vm.pages[i];
+        delete page.left.previewImage;
+        delete page.right.previewImage;
+      }
+
+      vm.book.data = JSON.stringify(vm.pages)
+
+      if (!vm.book.id) {
+        // this is a new book
+        // upload to create a new
+
+        bookRepository.createOneBook(vm.book).then(function (res) {
+            vm.book = res.data;
+          },
+          function (err) {
+            console.log(err);
+          })
+      }
+      else {
+        // this is an existing book,
+        // upload to update
+        vm.book.title = "this is changed title" + Date.now().toString();
+        bookRepository.updateBook(vm.book).then(
+          function (res) {
+            vm.book = res.data;
+          },
+          function (err) {
+            console.log(err);
+          })
+      }
+    };
     vm.nextSaveToImage = function() {
       $scope.preview_image = vm.left_canvas.toDataURL();
       //var preview_image = $document.find('#preview_image');
