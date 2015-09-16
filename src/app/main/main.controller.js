@@ -184,6 +184,13 @@
 
     vm.nextPage = function(){
       var leftPageNumber = vm.left_canvas.page.pageNumber;
+      if((pagesInDesignView == 1 && leftPageNumber == (totalPages -1))==true)
+        // last one
+        return ;
+
+      if((pagesInDesignView == 2 && leftPageNumber == (totalPages -2)) == true);
+        return ;
+
       var fromIndex = 0;
       var toIndex = 0;
       if (pagesInDesignView == 2) {
@@ -207,6 +214,8 @@
     vm.previousPage = function(currentIndex) {
 
       var leftPageNumber = vm.left_canvas.page.pageNumber;
+      if(leftPageNumber == 0) return;
+
       var fromIndex =0;
       var toIndex =0;
       if (pagesInDesignView == 2) {
@@ -222,6 +231,7 @@
 
       if (fromIndex < 0)
         fromIndex = 0;
+
 
       var toPages =  vm.pages.slice(fromIndex, toIndex + 1);
       changePageTo(toPages)
