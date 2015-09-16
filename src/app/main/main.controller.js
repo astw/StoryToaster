@@ -263,7 +263,7 @@
         vm.left_canvas.loadFromJSON(leftData,vm.left_canvas.renderAll.bind(vm.left_canvas),function(){});
 
       if(pagesInDesignView == 2 ) {
-        var rightData = vm.right_canvas.imageData;
+        var rightData = vm.right_canvas.page.imageData;
         if(rightData)
           vm.right_canvas.loadFromJSON(rightData,vm.right_canvas.renderAll.bind(vm.right_canvas),function(){})
       }
