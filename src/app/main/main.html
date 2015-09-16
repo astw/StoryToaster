@@ -35,9 +35,9 @@
 
         <div class="col-lg-1">
           <div class="page-control-right">
-          <button class="btn-xs"> new page</button>
-          <button class="btn-xs"> copy page</button>
-          <button class="btn-xs">delete page</button>
+          <button class="btn-xs" ng-click="main.newPage()"> new page</button>
+          <button class="btn-xs" ng-click="main.copyPage()"> copy page</button>
+          <button class="btn-xs" ng-click="main.deletePage()">delete page</button>
         </div>
         </div>
         </div>
@@ -57,17 +57,18 @@
           <button ng-click="main.previousPage()">PrePage</button>
           <button ng-click="main.nextPage()">Next Page</button>
           <button ng-click="main.saveToServe()">Save To Server</button>
+          <button ng-click="main.deleteObject()">Delete objects</button>
         </div>
       </div>
 
       <div class="row">
         <div class="page-design-panel">
-          <div class="page-big" ng-class="{active:main.currentPage.left.active}">
+          <div class="page-big" ng-class="{active:main.left_canvas.active}">
             <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.selectLeft()" id="left_canvas" width="549px"
                     height="389px"></canvas>
           </div>
 
-          <div class="page-big" ng-class="{active:main.currentPage.right.active}">
+          <div class="page-big" ng-class="{active:main.right_canvas.active}">
             <canvas class="page-canvas" crossOrigin="Anonymous"  ng-click="main.selectRight()" id="right_canvas" width="549px"
                     height="389px"></canvas>
           </div>

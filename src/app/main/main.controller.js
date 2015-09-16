@@ -6,34 +6,66 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, $scope,$document,bookRepository) {
+  function MainController($timeout, webDevTec, toastr, $scope,$document,bookRepository, config) {
     var vm = this;
     vm.classAnimation = '';
     vm.creationDate = 1442106873263;
     vm.pages = [];
     vm.book ={};
+
+    vm.book = {
+      title:"this is created on frontend",
+      desc:"this is my designed book",
+      author:3,
+      data:JSON.stringify(vm.pages)
+    };
+
     var totalPages = 16;
+    var pagesInDesignView = 2;   // how many pages in the design view
     for(var i=0; i< totalPages; i++){
-      var page ={left:{},right:{}};
+      var page ={};
       page.pageNumber = i;
 
-      page.left.sheetNumber = (i) * 2 + 1 ;
-      page.left.data =i;
-      page.left.active = false;
-
-      page.right.sheetNumber = (i)*2 + 2;
-      page.right.data = i + 1;
-      page.right.active = false;
+      page.data =i;
+      page.active = false;
 
       vm.pages.push(page);
     };
 
     vm.currentPage = vm.pages[0];
-    vm.currentPage.left.active = true;
+    vm.currentPage.active = true;
 
     vm. left_canvas = new fabric.Canvas('left_canvas');
     vm. right_canvas = new fabric.Canvas('right_canvas');
+    vm.left_canvas.active = true;
+    vm.left_canvas.page = vm.pages[0];
 
+    if(pagesInDesignView == 2){
+      vm.right_canvas.page = vm.pages[1];
+    };
+
+
+    var currentCanvas = vm.left_canvas;
+
+    var hookEvents = function(){
+      vm.left_canvas.on('mouse:down',function(options){
+        vm.left_canvas.active = true;
+        vm.right_canvas.active = false;
+        currentCanvas = vm.left_canvas;
+      });
+
+      vm.right_canvas.on('mouse:down',function(options){
+        vm.right_canvas.active =true;
+        vm.left_canvas.active =false;
+        currentCanvas = vm.right_canvas;
+      });
+
+      vm.left_canvas.on('selection:cleared',function(options){
+        console.log('de-selected');
+      });
+    };
+
+    hookEvents();
     var currentPageNum = 0;
 
     $scope.groups = [
@@ -98,38 +130,23 @@
 
     ];
 
-    vm.selectLeft = function(page){
-      vm.pages.forEach(function(page){
-        if(page === vm.currentPage){
-          page.left.active = true;
-          page.right.active = false;
-        }
-        else {
-          page.left.active = page.right.active = false;
-        }
-      });
+    vm.selectLeft = function(page) {
+      clearActive();
+      currentCanvas = vm.left_canvas;
+      vm.left_canvas.active = true;
     };
-    vm.selectRight = function(){
-      vm.pages.forEach(function(page){
-         if(page === vm.currentPage){
-           page.left.active = false;
-           page.right.active = true;
-         }
-        else {
-           page.left.active = page.right.active = false;
-         }
-      });
+
+    vm.selectRight = function(page){
+      clearActive();
+      currentCanvas = vm.right_canvas;
+      vm.right_canvas.active = true;
     };
 
     vm.addImage = function(imageUrl){
       imageUrl = "http://192.168.0.14:3000" + imageUrl;
       fabric.Image.fromURL(imageUrl, function(img) {
-
-        if(vm.currentPage.left.active == true)
-           vm.left_canvas.add(img);
-        else
-           vm.right_canvas.add(img);
-
+        currentCanvas.add(img);
+        currentCanvas.page.previewImage = currentCanvas.toDataURL();
       },{ crossOrigin: 'Anonymous' });
     };
 
@@ -142,12 +159,8 @@
         width: 120,
         height: 60
       });
-      if(vm.leftActive == true)
-        vm.left_canvas.add(txtBox);
-      else
-        vm.right_canvas.add(txtBox);
+      currentCanvas.add(txtBox);
     };
-
     vm.previewClick = function(page,which) {
        if(vm.currentPage != page) {
         backCurrentDesignData();
@@ -157,85 +170,143 @@
         restoreToCurrentDesignData()
       }
 
-      for (var i = 0; i < vm.pages.length; i++) {
-        vm.pages[i].left.active = false;
-        vm.pages[i].right.active = false;
-      }
+      clearActive();
+
       if (which === 'left') {
-        page.left.active = true;
+        currentCanvas = vm.left_canvas;
       }
       else {
-        page.right.active = true;
+        currentCanvas = vm.right_canvas;
       }
+
+      currentCanvas.active = true;
     };
 
     vm.nextPage = function(){
-      var idx = vm.currentPage.pageNumber;
-
-      if(idx < totalPages -1) {
-        var toPage = vm.pages[idx + 1];
-        changePageTo(toPage);
+      var leftPageNumber = vm.left_canvas.page.pageNumber;
+      var fromIndex = 0;
+      var toIndex = 0;
+      if (pagesInDesignView == 2) {
+        fromIndex = leftPageNumber + 2;
+         toIndex = leftPageNumber + 3;
       }
+      else{
+        fromIndex = toIndex =  leftPageNumber + 1;
+      }
+
+      if (fromIndex >= totalPages -1)
+        fromIndex = totalPages -1;
+
+      if (toIndex >= totalPages -1)
+        toIndex = totalPages -1;
+
+      var toPages = vm.pages.slice(fromIndex, toIndex + 1);;
+        changePageTo(toPages)
     };
 
-    vm.previousPage = function(currentIndex){
+    vm.previousPage = function(currentIndex) {
 
-      var idx = vm.currentPage.pageNumber;
-
-      if(idx > 0) {
-        var toPage = vm.pages[idx - 1];
-        changePageTo(toPage);
+      var leftPageNumber = vm.left_canvas.page.pageNumber;
+      var fromIndex =0;
+      var toIndex =0;
+      if (pagesInDesignView == 2) {
+          fromIndex = leftPageNumber -2;
+          toIndex = leftPageNumber -1;
       }
+      else{
+        fromIndex = toIndex =  leftPageNumber -1
+      }
+
+      if (toIndex < 0)
+        toIndex = 0;
+
+      if (fromIndex < 0)
+        fromIndex = 0;
+
+      var toPages =  vm.pages.slice(fromIndex, toIndex + 1);
+      changePageTo(toPages)
     };
 
-    var changePageTo = function(toPage){
+    var changePageTo = function(toPages){
       backCurrentDesignData();
 
       vm.left_canvas.clear();
       vm.right_canvas.clear();
+      vm.right_canvas.page = null;
+      vm.left_canvas.page = toPages[0];
+      if(pagesInDesignView == 2){
+        vm.right_canvas.page = toPages[1];
+      };
 
-      var page = vm.currentPage;
-      page.left.active = false;
-      page.right.active = false;
-
-      vm.currentPage = toPage;
-      vm.currentPage.left.active = true;
       restoreToCurrentDesignData();
     };
 
     var clearActive = function(){
        vm.pages.forEach(function(p){
-         p.left.active = p.right.active = false;
+         p.active = false;
        })
     };
 
     var backCurrentDesignData = function(){
-      vm.currentPage.left.imageData = JSON.stringify(vm.left_canvas);//   vm.left_canvas.toDataURL();
-      vm.currentPage.right.imageData =JSON.stringify(vm.right_canvas) ;// vm.right_canvas.toDataURL();
+
+      vm.left_canvas.page.imageData = JSON.stringify(vm.left_canvas);//   vm.left_canvas.toDataURL();
+      if(pagesInDesignView == 2){
+        vm.right_canvas.page.imageData = JSON.stringify(vm.right_canvas) ;// vm.right_canvas.toDataURL();
+      }
+
       generatePreviewImage();
     };
 
     var restoreToCurrentDesignData = function(){
-      var leftData = vm.currentPage.left.imageData;
-      var rightData =vm.currentPage.right.imageData;
-
+      var leftData = vm.left_canvas.page.imageData;
       if(leftData)
-      vm.left_canvas.loadFromJSON(leftData,vm.left_canvas.renderAll.bind(vm.left_canvas),function(){});
-      if(rightData)
-      vm.right_canvas.loadFromJSON(rightData,vm.right_canvas.renderAll.bind(vm.right_canvas),function(){});
+        vm.left_canvas.loadFromJSON(leftData,vm.left_canvas.renderAll.bind(vm.left_canvas),function(){});
+
+      if(pagesInDesignView == 2 ) {
+        var rightData = vm.right_canvas.imageData;
+        if(rightData)
+          vm.right_canvas.loadFromJSON(rightData,vm.right_canvas.renderAll.bind(vm.right_canvas),function(){})
+      }
     };
 
     var generatePreviewImage = function(){
-      vm.currentPage.right.previewImage = vm.right_canvas.toDataURL();
-      vm.currentPage.left.previewImage = vm.left_canvas.toDataURL();
+      vm.left_canvas.page.previewImage = vm.left_canvas.toDataURL();
+      if(pagesInDesignView == 2){
+        vm.right_canvas.page.previewImage = vm.right_canvas.toDataURL();
+      }
     };
 
+    vm.deleteObject = function(){
+      if(vm.currentPage.left.active){
+        var obj = vm.left_canvas.getActiveObject();
+        vm.left_canvas.remove(obj);
+        vm.currentPage.left.previewImage = vm.left_canvas.toDataURL();
+      }
+      else{
+        var obj = vm.right_canvas.getActiveObject();
+        vm.right_canvas.remove(obj);
+        vm.currentPage.right.previewImage = vm.right_canvas.toDataURL();
+      }
+    };
 
-    vm.book = {
-      title:"this is created on frontend",
-      desc:"this is my designed book",
-      author:3,
-      data:JSON.stringify(vm.pages)
+    vm.newPage = function(){
+
+      var page ={left:{},right:{}};
+      page.pageNumber = vm.currentPage.pageNumber + 1;
+
+      page.left.sheetNumber = (page.pageNumber) * 2 + 1 ;
+      page.left.data =i;
+      page.left.active = false;
+
+
+    };
+
+    vm.copyPage = function(){
+       var newPage = vm.currentPage.left
+    };
+
+    vm.deletePage = function(){
+
     }
 
     vm.saveToServe = function() {
@@ -283,8 +354,6 @@
       preview_image.attr('src', image);
     };
 
-    vm.clickMe = function clickMe(){
-      alert('click me');
-    }
+    var currentObj = {};
   }
 })();

@@ -17,7 +17,7 @@ angular.module('storyToaster')
       var dfd = $q.defer();
       self.promise = dfd.promise;
       self.promise.status = 'pending';
-      $http.get(API_URL + 'books', {headers: headers})
+      $http.get(API_URL + '/books', {headers: headers})
         .success(function (data, status) {
           console.log(data);
           dfd.resolve(data);
@@ -28,7 +28,7 @@ angular.module('storyToaster')
     };
 
     this.createOneBook = function(book){
-      var url = API_URL + "books";
+      var url = API_URL + "/books";
       var headers = {
         clientkey: 'this is the client key'
       };
@@ -44,7 +44,7 @@ angular.module('storyToaster')
     };
 
     this.updateBook = function (book) {
-      var url = API_URL + "books/" + book.id;
+      var url = API_URL + "/books/" + book.id;
       var headers = {
         clientkey: 'this is the client key'
       };

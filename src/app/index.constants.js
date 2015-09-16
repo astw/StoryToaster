@@ -10,7 +10,7 @@
       authTokenName: 'auth-token',
       apiKeyName: 'clientkey',
       apiKeyValue: 'test key',
-      apiRootPath: 'http://localhost:1337/'
+      apiRootPath: 'http://localhost:1337'
       //apiRootPath: 'http://qacons2jsweb1.absolute.com/v1/'
     });
 })();
