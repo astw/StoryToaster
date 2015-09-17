@@ -1,23 +1,21 @@
 <div class="page-sheet">
-
  <table style="{margin-left:auto; margin-right:auto;}">
+
    <tr>
-     <td><b>{{page.left.sheetNumber}}</b></td>
-     <td>
-       <div class="page-preview" ng-click="main.previewClick(page,'left')" ng-class="{active:page.left.active}" >
-         <img  ng-src="{{page.left.previewImage}}"  width='80' height="60"  />
+     <td ng-show="$even">
+       <div class="even-page-preview" ng-click="main.previewClick(page,'right')" ng-class="{active:page.active}" >
+         <img  ng-src="{{page.previewImage}}"  width='80' height="60"   />
        </div>
      </td>
-     <td>
-       <div class="page-preview" ng-click="main.previewClick(page,'right')" ng-class="{active:page.right.active}" >
-         <img  ng-src="{{page.right.previewImage}}"  width='80' height="60"   />
+     <td ng-show="$odd">
+       <div class="odd-page-preview" ng-click="main.previewClick(page,'left')" ng-class="{active:page.active}" >
+         <img  ng-src="{{page.previewImage}}"  width='80' height="60"  />
        </div>
      </td>
-     <td><b>{{page.right.sheetNumber}}</b></td>
+   </tr>
+   <tr>
+     <td ng-show="$even"><b>{{page.pageNumber}} </b></td>
+     <td ng-show="$odd"><b>{{page.pageNumber}} </b></td>
    </tr>
  </table>
-
-  <!--<div class="page-preview"></div>-->
-  <!--<div class="page-preview"></div>-->
-  <!--<div>2 / 3</div>-->
 </div>

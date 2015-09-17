@@ -9,13 +9,30 @@ app.directive('pageDesignSidebar', function(){
 });
 
 
+
 app.directive('pageSheet', function(){
   return {
     templateUrl:'app/main/page-sheet.html'
   };
 });
 
+app.directive('previewFrontCover', function(){
+  return {
+    templateUrl:'app/main/preview-front-cover.html'
+  };
+});
 
+app.directive('previewDedicatedPage', function(){
+  return {
+    templateUrl:'app/main/preview-dedicated-page.html'
+  };
+});
+
+app.directive('previewBackCover', function(){
+  return {
+    templateUrl:'app/main/preview-back-cover.html'
+  };
+});
 //
 //
 //(function() {
