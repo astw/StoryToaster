@@ -1,0 +1,33 @@
+<div class="page-preview-panel">
+  <div class="row">
+    <div class="col-lg-1">
+      <div class="page-control-right">
+        <button class="btn-xs"> new page</button>
+        <button class="btn-xs"> copy page</button>
+        <button class="btn-xs">delete page</button>
+      </div>
+    </div>
+
+    <div class="col-lg-10">
+      <div class="page-control-center">
+        <div class="page-preview-scroll-panel">
+          <div class="list-inline">
+            <div preview-front-cover />
+            <div preview-dedicated-page />
+            <div  class="DocumentItem" ng-repeat="page in main.pages">
+              <div page-sheet></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-1">
+      <div class="page-control-right">
+        <button class="btn-xs" ng-click="main.newPage()"> new page</button>
+        <button class="btn-xs" ng-click="main.copyPage()"> copy page</button>
+        <button class="btn-xs" ng-click="main.deletePage()">delete page</button>
+      </div>
+    </div>
+  </div>
+</div>

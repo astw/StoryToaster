@@ -9,46 +9,12 @@
     <div class="col-sm-10 col-md-10 main">
       <!--toggle sidebar button-->
       <!--<p class="visible-xs">-->
+
       <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">
         <i class="glyphicon glyphicon-chevron-left"></i>
       </button>
 
-      <div class="page-preview-panel">
-        <div class="row">
-        <div class="col-lg-1">
-          <div class="page-control-right">
-            <button class="btn-xs"> new page</button>
-            <button class="btn-xs"> copy page</button>
-            <button class="btn-xs">delete page</button>
-          </div>
-        </div>
-
-        <div class="col-lg-10">
-          <div class="page-control-center">
-            <div class="page-control-center-panel">
-
-              <!--<div preview-single-page page="{{vm.book.backCover}}" />-->
-
-              <div preview-front-cover />
-              <div preview-dedicated-page />
-              <div ng-repeat="page in main.pages">
-               <div page-sheet></div>
-             </div>
-             <div preview-back-cover />
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-1">
-          <div class="page-control-right">
-          <button class="btn-xs" ng-click="main.newPage()"> new page</button>
-          <button class="btn-xs" ng-click="main.copyPage()"> copy page</button>
-          <button class="btn-xs" ng-click="main.deletePage()">delete page</button>
-        </div>
-        </div>
-        </div>
-      </div>
+      <div preview-scroll-panel />
 
       <h1 class="page-header">
         <p class="lead"></p>
