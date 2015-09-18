@@ -33,6 +33,16 @@ app.directive('previewBackCover', function(){
     templateUrl:'app/main/preview-back-cover.html'
   };
 });
+
+app.directive('previewSinglePage',function(){
+  return {
+   restirct:'E',
+    scope:{
+      pageInfo:'=page'
+    }
+  }
+});
+
 //
 //
 //(function() {

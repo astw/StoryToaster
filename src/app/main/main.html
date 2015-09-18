@@ -26,12 +26,16 @@
         <div class="col-lg-10">
           <div class="page-control-center">
             <div class="page-control-center-panel">
+
+              <!--<div preview-single-page page="{{vm.book.backCover}}" />-->
+
               <div preview-front-cover />
               <div preview-dedicated-page />
               <div ng-repeat="page in main.pages">
                <div page-sheet></div>
              </div>
              <div preview-back-cover />
+
             </div>
           </div>
         </div>
