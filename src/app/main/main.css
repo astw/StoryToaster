@@ -121,8 +121,8 @@ footer {
   float: left;
   text-align: center;
   margin-top: 8px;
-  margin-left: 10px;
-  margin-right:10px;
+  margin-left: 0px;
+  margin-right:0px;
   align-content: center;
   height: 100px;
   background-color: #becfd5;
@@ -135,6 +135,30 @@ footer {
   height: 60px;
   border-radius:8px;
   border:2px solid #8ac007 ;
+  background-color: #FFFFFF;
+}
+
+.even-page-preview {
+  float: left;
+  margin: 0px;
+  margin-left: 10px;
+  margin-right: -5px;
+  width: 80px;
+  height: 60px;
+  border-radius:8px;
+  border:3px solid #8ac007 ;
+  background-color: #FFFFFF;
+  padding: 0px;
+}
+
+.odd-page-preview {
+  float: left;
+  margin: 0px;
+  margin-right: 5px;
+  width: 80px;
+  height: 60px;
+  border-radius:8px;
+  border:3px solid #8ac007 ;
   background-color: #FFFFFF;
 }
 

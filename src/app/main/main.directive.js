@@ -2,27 +2,43 @@
 
 var app = angular.module('storyToaster');
 
-app.directive('pageDesignSidebar', function(){
+app.directive('pageDesignSidebar', function () {
   return {
-    templateUrl:'app/main/page-design-sidebar.html'
+    templateUrl: 'app/main/page-design-sidebar.html'
   };
 });
 
-
-app.directive('pageSheet', function(){
+app.directive('pageSheet', function () {
   return {
-    templateUrl:'app/main/page-sheet.html'
+    templateUrl: 'app/main/page-sheet.html'
   };
 });
 
-app.directive('previewScrollPanel',function(){
-    return {
-      templateUrl:'app/main/page-design-preview-scroll-panel.html'
-    }
-});
-app.directive('previewScrollPanel2',function(){
+app.directive('previewScrollPanel', function () {
   return {
-    templateUrl:'app/main/page-design-preview-scroll-panel2.html'
+    templateUrl: 'app/main/page-design-preview-scroll-panel.html'
+  }
+});
+app.directive('previewScrollPanel2', function () {
+  return {
+    templateUrl: 'app/main/page-design-preview-scroll-panel2.html'
+  }
+});
+app.directive('previewFrontCover', function () {
+  return {
+    templateUrl: 'app/main/preview-front-cover.html'
+  };
+});
+
+app.directive('previewDedicatedPage', function () {
+  return {
+    templateUrl: 'app/main/preview-dedicated-page.html'
+  };
+});
+
+app.directive('previewBackCover', function () {
+  return {
+    templateUrl: 'app/main/preview-back-cover.html'
   }
 });
 //
