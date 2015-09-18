@@ -17,4 +17,6 @@
 }
 .list-inline {
   white-space:nowrap;
+  margin-left:20px;
+  height:100px;
 }

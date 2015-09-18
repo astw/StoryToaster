@@ -58,7 +58,6 @@
     }
     ;
 
-
     var currentCanvas = vm.left_canvas;
 
     var hookEvents = function () {
