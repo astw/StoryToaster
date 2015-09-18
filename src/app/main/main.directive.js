@@ -15,7 +15,16 @@ app.directive('pageSheet', function(){
   };
 });
 
-
+app.directive('previewScrollPanel',function(){
+    return {
+      templateUrl:'app/main/page-design-preview-scroll-panel.html'
+    }
+});
+app.directive('previewScrollPanel2',function(){
+  return {
+    templateUrl:'app/main/page-design-preview-scroll-panel2.html'
+  }
+});
 //
 //
 //(function() {

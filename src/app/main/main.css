@@ -76,12 +76,22 @@ footer {
   margin-top: 0;
 }
 
- /* --- below is the css for design photo */
+
 .page-preview-panel {
   float: left;
   width: 100%;
   height: 100px;
   margin: 0px;
+  background-color: #becfd5;
+}
+
+.page-preview-scroll-panel
+{
+  overflow-x:scroll;
+  overflow-y:hidden;
+  height:100px;
+  width:100%;
+  padding: 0 0px;
   background-color: #becfd5;
 }
 
@@ -100,12 +110,8 @@ footer {
   background-color: #becfd5;
 }
 
-.page-control-center-panel {
-  width: 4000px;
-  height:100%;
-}
-
 .page-control-right {
+  margin: 0px;
   height: 100px;
   width: 100px;
   background-color: #f9f200;
