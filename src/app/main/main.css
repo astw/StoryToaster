@@ -118,7 +118,7 @@ footer {
   margin-left: 10px;
   margin-right:10px;
   align-content: center;
-  //height: 100px;
+  height: 100px;
   background-color: #becfd5;
 }
 
@@ -128,7 +128,7 @@ footer {
   width: 80px;
   height: 60px;
   border-radius:8px;
-  border:3px solid #8ac007 ;
+  border:2px solid #8ac007 ;
   background-color: #FFFFFF;
 }
 

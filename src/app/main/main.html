@@ -13,6 +13,16 @@
         <i class="glyphicon glyphicon-chevron-left"></i>
       </button>
 
+      <div class="row">
+        <div class="DocumentList">
+          <ul class="list-inline">
+            <li class="DocumentItem" ng-repeat="page in main.pages">
+              <page-sheet />
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <div class="page-preview-panel">
         <div class="row">
         <div class="col-lg-1">
