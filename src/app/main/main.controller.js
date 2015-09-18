@@ -6,12 +6,14 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, $scope, $document, bookRepository, config, imageService) {
+  function MainController($timeout, webDevTec, toastr, $scope, $document, bookRepository, config, imageService, PhotoBook) {
     var vm = this;
     vm.classAnimation = '';
     vm.creationDate = 1442106873263;
     vm.pages = [];
     vm.book = {};
+
+    vm.PhotoBook = new PhotoBook();
 
     vm.book = {
       title: "this is created on frontend",
@@ -79,20 +81,23 @@
     };
 
     hookEvents();
-    var currentPageNum = 0;
 
     $scope.groups = imageService.getImages();
 
-    vm.selectLeft = function (page) {
+    vm.selectLeft = function (page,index) {
       clearActive();
       currentCanvas = vm.left_canvas;
       vm.left_canvas.active = true;
+      vm.left_canvas.page.active = true;
+      vm.PhotoBook.setPageActive(page);
     };
 
-    vm.selectRight = function (page) {
+    vm.selectRight = function (page,index) {
       clearActive();
       currentCanvas = vm.right_canvas;
       vm.right_canvas.active = true;
+      vm.right_canvas.page.active = true;
+      vm.PhotoBook.setPageActive(page);
     };
 
     vm.addImage = function (imageUrl) {

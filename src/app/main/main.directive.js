@@ -4,41 +4,41 @@ var app = angular.module('storyToaster');
 
 app.directive('pageDesignSidebar', function () {
   return {
-    templateUrl: 'app/main/page-design-sidebar.html'
+    templateUrl: 'app/main/template/page-design-sidebar.html'
   };
 });
 
 app.directive('pageSheet', function () {
   return {
-    templateUrl: 'app/main/page-sheet.html'
+    templateUrl: 'app/main/template/page-sheet.html'
   };
 });
 
 app.directive('previewScrollPanel', function () {
   return {
-    templateUrl: 'app/main/page-design-preview-scroll-panel.html'
+    templateUrl: 'app/main/template/page-design-preview-scroll-panel.html'
   }
 });
 app.directive('previewScrollPanel2', function () {
   return {
-    templateUrl: 'app/main/page-design-preview-scroll-panel2.html'
+    templateUrl: 'app/main/template/page-design-preview-scroll-panel2.html'
   }
 });
 app.directive('previewFrontCover', function () {
   return {
-    templateUrl: 'app/main/preview-front-cover.html'
+    templateUrl: 'app/main/template/preview-front-cover.html'
   };
 });
 
 app.directive('previewDedicatedPage', function () {
   return {
-    templateUrl: 'app/main/preview-dedicated-page.html'
+    templateUrl: 'app/main/template/preview-dedicated-page.html'
   };
 });
 
 app.directive('previewBackCover', function () {
   return {
-    templateUrl: 'app/main/preview-back-cover.html'
+    templateUrl: 'app/main/template/preview-back-cover.html'
   }
 });
 
