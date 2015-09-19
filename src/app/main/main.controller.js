@@ -14,51 +14,21 @@
     vm.book = {};
 
     vm.PhotoBook = new PhotoBook();
+    var totalPages = vm.PhotoBook.totalPage;
+    var pagesInDesignView = 2;   // how many pages in the design
 
-    vm.book = {
-      title: "this is created on frontend",
-      desc: "this is my designed book",
-      frontCover:{
-        imageData:{},
-        previewImage:{}
-      },
-      backCover:{
-        imageData:{},
-        previewImage:{}
-      },
-      dedicatedPage:{
-        imageData:{},
-        previewImage:{}
-      },
-      author: 3,
-      data: JSON.stringify(vm.pages)
-    };
-
-    var totalPages = 16;
-    var pagesInDesignView = 2;   // how many pages in the design view
-    for (var i = 0; i < totalPages; i++) {
-      var page = {};
-      page.pageNumber = i;
-
-      page.data = i;
-      page.active = false;
-
-      vm.pages.push(page);
-    }
-    ;
-
-    vm.currentPage = vm.pages[0];
+    vm.currentPage = vm.PhotoBook.pages[0];
     vm.currentPage.active = true;
 
     vm.left_canvas = new fabric.Canvas('left_canvas');
     vm.right_canvas = new fabric.Canvas('right_canvas');
     vm.left_canvas.active = true;
-    vm.left_canvas.page = vm.pages[0];
+
+    vm.left_canvas.page = vm.PhotoBook.pages[0];
 
     if (pagesInDesignView == 2) {
-      vm.right_canvas.page = vm.pages[1];
-    }
-    ;
+      vm.right_canvas.page = vm.PhotoBook.pages[1];
+    };
 
     var currentCanvas = vm.left_canvas;
 
@@ -84,20 +54,14 @@
 
     $scope.groups = imageService.getImages();
 
-    vm.selectLeft = function (page,index) {
-      clearActive();
+    vm.selectLeft = function () {
       currentCanvas = vm.left_canvas;
-      vm.left_canvas.active = true;
-      vm.left_canvas.page.active = true;
-      vm.PhotoBook.setPageActive(page);
+      vm.PhotoBook.setPageActive(vm.left_canvas.page);
     };
 
-    vm.selectRight = function (page,index) {
-      clearActive();
+    vm.selectRight = function () {
       currentCanvas = vm.right_canvas;
-      vm.right_canvas.active = true;
-      vm.right_canvas.page.active = true;
-      vm.PhotoBook.setPageActive(page);
+      vm.PhotoBook.setPageActive(vm.right_canvas.page);
     };
 
     vm.addImage = function (imageUrl) {
@@ -119,7 +83,9 @@
       });
       currentCanvas.add(txtBox);
     };
-    vm.previewClick = function (page, which) {
+    vm.previewClick = function (page,which) {
+      vm.PhotoBook.setPageActive(page);
+
       if (vm.currentPage != page) {
         backCurrentDesignData();
         vm.currentPage = page;
@@ -128,20 +94,19 @@
         restoreToCurrentDesignData()
       }
 
-      clearActive();
-
+      page.active = true;
       if (which === 'left') {
         currentCanvas = vm.left_canvas;
       }
       else {
         currentCanvas = vm.right_canvas;
       }
-
-      currentCanvas.active = true;
+      currentCanvas.page = page;
     };
 
     vm.nextPage = function () {
-      var leftPageNumber = vm.left_canvas.page.pageNumber;
+
+      var leftPageNumber =  vm.PhotoBook.pages.indexOf(vm.left_canvas.page);
       if ((pagesInDesignView == 1 && leftPageNumber == (totalPages - 1)) == true)
       // last one
         return;
@@ -164,15 +129,15 @@
 
       if (toIndex >= totalPages - 1)
         toIndex = totalPages - 1;
-
-      var toPages = vm.pages.slice(fromIndex, toIndex + 1);
+      currentCanvas.page.active = false;
+      var toPages = vm.PhotoBook.pages.slice(fromIndex, toIndex + 1);
       ;
       changePageTo(toPages)
     };
 
     vm.previousPage = function (currentIndex) {
 
-      var leftPageNumber = vm.left_canvas.page.pageNumber;
+      var leftPageNumber = vm.PhotoBook.pages.indexOf(vm.left_canvas.page);
       if (leftPageNumber == 0) return;
 
       var fromIndex = 0;
@@ -191,8 +156,9 @@
       if (fromIndex < 0)
         fromIndex = 0;
 
+      currentCanvas.page.active = false;
 
-      var toPages = vm.pages.slice(fromIndex, toIndex + 1);
+      var toPages = vm.PhotoBook.pages.slice(fromIndex, toIndex + 1);
       changePageTo(toPages)
     };
 
@@ -203,18 +169,13 @@
       vm.right_canvas.clear();
       vm.right_canvas.page = null;
       vm.left_canvas.page = toPages[0];
+      vm.left_canvas.page.active = true;
       if (pagesInDesignView == 2) {
         vm.right_canvas.page = toPages[1];
       }
       ;
-
+      currentCanvas = vm.left_canvas;
       restoreToCurrentDesignData();
-    };
-
-    var clearActive = function () {
-      vm.pages.forEach(function (p) {
-        p.active = false;
-      })
     };
 
     var backCurrentDesignData = function () {
@@ -233,7 +194,7 @@
         vm.left_canvas.loadFromJSON(leftData, vm.left_canvas.renderAll.bind(vm.left_canvas), function () {
         });
 
-      if (pagesInDesignView == 2) {
+      if (pagesInDesignView == 2 && vm.right_canvas.page) {
         var rightData = vm.right_canvas.page.imageData;
         if (rightData)
           vm.right_canvas.loadFromJSON(rightData, vm.right_canvas.renderAll.bind(vm.right_canvas), function () {
@@ -262,24 +223,44 @@
     };
 
     vm.newPage = function () {
-
-      var page = {left: {}, right: {}};
-      page.pageNumber = vm.currentPage.pageNumber + 1;
-
-      page.left.sheetNumber = (page.pageNumber) * 2 + 1;
-      page.left.data = i;
-      page.left.active = false;
-
-
+      vm.PhotoBook.createPage();
     };
 
     vm.copyPage = function () {
-      var newPage = vm.currentPage.left
+      backCurrentDesignData();
+      vm.currentPage.active = false;
+      var newPage = vm.PhotoBook.copyPage(vm.currentPage);
+      newPage.active = true;
+      vm.currentPage = newPage;
+
+      if(currentCanvas == vm.left_canvas){
+        vm.right_canvas.page = newPage;
+        if(pagesInDesignView == 2){
+          currentCanvas = vm.right_canvas;
+        }
+      }
+      else{
+        vm.left_canvas.page = newPage;
+        vm.right_canvas.page = null;
+        vm.right_canvas.clear();
+        var nextPage = vm.PhotoBook.getNextPage(newPage);
+        vm.right_canvas.page = nextPage;
+        currentCanvas = vm.left_canvas;
+      }
+
+      restoreToCurrentDesignData();
     };
 
     vm.deletePage = function () {
-
-    }
+      backCurrentDesignData();
+      var next = vm.PhotoBook.getNextPage(vm.currentPage);
+      vm.left_canvas.clear();
+      vm.right_canvas.clear();
+      vm.left_canvas.page = next;
+      vm.right_canvas.page = vm.PhotoBook.getNextPage(next);
+      vm.PhotoBook.deletePage(vm.currentPage);
+      restoreToCurrentDesignData();
+    };
 
     vm.saveToServe = function () {
 
