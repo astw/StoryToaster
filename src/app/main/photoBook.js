@@ -29,9 +29,10 @@ angular.module('storyToaster')
 
       this.data= {};
 
-      this.createPage = function(){
-         this.pages.push(new Page());
-         this.pages.push(new Page());
+      this.createPage = function() {
+        var page = new Page();
+        this.pages.push(page);
+        return page;
       };
 
       this.copyPage = function(page){
@@ -58,6 +59,7 @@ angular.module('storyToaster')
       };
 
       this.getNextPage = function(page){
+        if(!page) return null;
         var index = this.pages.indexOf(page);
         if(index == this.pages.length -1){
           return null;

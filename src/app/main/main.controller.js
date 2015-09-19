@@ -179,9 +179,9 @@
     };
 
     var backCurrentDesignData = function () {
-
-      vm.left_canvas.page.imageData = JSON.stringify(vm.left_canvas);
-      if (pagesInDesignView == 2) {
+      if(vm.left_canvas.page)
+        vm.left_canvas.page.imageData = JSON.stringify(vm.left_canvas);
+      if (pagesInDesignView == 2 && vm.right_canvas.page) {
         vm.right_canvas.page.imageData = JSON.stringify(vm.right_canvas);
       }
 
@@ -189,11 +189,12 @@
     };
 
     var restoreToCurrentDesignData = function () {
-      var leftData = vm.left_canvas.page.imageData;
-      if (leftData)
-        vm.left_canvas.loadFromJSON(leftData, vm.left_canvas.renderAll.bind(vm.left_canvas), function () {
-        });
-
+      if(vm.left_canvas.page) {
+        var leftData = vm.left_canvas.page.imageData;
+        if (leftData)
+          vm.left_canvas.loadFromJSON(leftData, vm.left_canvas.renderAll.bind(vm.left_canvas), function () {
+          });
+      }
       if (pagesInDesignView == 2 && vm.right_canvas.page) {
         var rightData = vm.right_canvas.page.imageData;
         if (rightData)
@@ -203,8 +204,9 @@
     };
 
     var generatePreviewImage = function () {
+      if(vm.left_canvas.page)
       vm.left_canvas.page.previewImage = vm.left_canvas.toDataURL();
-      if (pagesInDesignView == 2) {
+      if (pagesInDesignView == 2 && vm.right_canvas.page) {
         vm.right_canvas.page.previewImage = vm.right_canvas.toDataURL();
       }
     };
@@ -223,7 +225,15 @@
     };
 
     vm.newPage = function () {
-      vm.PhotoBook.createPage();
+      var page = vm.PhotoBook.createPage();
+      if(vm.PhotoBook.pages.length == 1){
+        vm.left_canvas.page = page;
+        vm.currentPage = page;
+        page.active =  true;
+      }
+      else{
+        vm.right_canvas.page = page;
+      }
     };
 
     vm.copyPage = function () {
@@ -260,6 +270,10 @@
       vm.right_canvas.page = vm.PhotoBook.getNextPage(next);
       vm.PhotoBook.deletePage(vm.currentPage);
       restoreToCurrentDesignData();
+      vm.currentPage = next;
+      if(currentCanvas.page)
+        currentCanvas.page.active = true;
+
     };
 
     vm.saveToServe = function () {
