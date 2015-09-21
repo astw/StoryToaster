@@ -10,8 +10,6 @@
     var vm = this;
     vm.classAnimation = '';
     vm.creationDate = 1442106873263;
-    vm.pages = [];
-    vm.book = {};
 
     vm.PhotoBook = new PhotoBook();
     var totalPages = vm.PhotoBook.totalPage;
@@ -24,30 +22,24 @@
     vm.right_canvas = new fabric.Canvas('right_canvas');
     vm.left_canvas.active = true;
 
-    vm.left_canvas.page = vm.PhotoBook.pages[0];
-
-    if (pagesInDesignView == 2) {
-      vm.right_canvas.page = vm.PhotoBook.pages[1];
-    };
-
     var currentCanvas = vm.left_canvas;
 
     var hookEvents = function () {
-      vm.left_canvas.on('mouse:down', function (options) {
-        vm.left_canvas.active = true;
-        vm.right_canvas.active = false;
-        currentCanvas = vm.left_canvas;
-      });
-
-      vm.right_canvas.on('mouse:down', function (options) {
-        vm.right_canvas.active = true;
-        vm.left_canvas.active = false;
-        currentCanvas = vm.right_canvas;
-      });
-
-      vm.left_canvas.on('selection:cleared', function (options) {
-        console.log('de-selected');
-      });
+      //vm.left_canvas.on('mouse:down', function (options) {
+      //  vm.left_canvas.active = true;
+      //  vm.right_canvas.active = false;
+      //  currentCanvas = vm.left_canvas;
+      //});
+      //
+      //vm.right_canvas.on('mouse:down', function (options) {
+      //  vm.right_canvas.active = true;
+      //  vm.left_canvas.active = false;
+      //  currentCanvas = vm.right_canvas;
+      //});
+      //
+      //vm.left_canvas.on('selection:cleared', function (options) {
+      //  console.log('de-selected');
+      //});
     };
 
     hookEvents();
@@ -56,24 +48,31 @@
 
     vm.selectLeft = function () {
       currentCanvas = vm.left_canvas;
-      vm.PhotoBook.setPageActive(vm.left_canvas.page);
+      vm.PhotoBook.setPageActive(vm.PhotoBook.leftDesignPage);
     };
 
     vm.selectRight = function () {
       currentCanvas = vm.right_canvas;
-      vm.PhotoBook.setPageActive(vm.right_canvas.page);
+      vm.PhotoBook.setPageActive(vm.PhotoBook.rightDesignPage);
     };
 
     vm.addImage = function (imageUrl) {
+      if(vm.PhotoBook.pages.length < 1) return ;
+      if(vm.PhotoBook.leftDesignPage && vm.PhotoBook.leftDesignPage.active)
+         currentCanvas = vm.left_canvas;
+      else if(vm.PhotoBook.rightDesignPage){
+        currentCanvas = vm.right_canvas;
+      }
+
       imageUrl = "http://localhost:3000" + imageUrl;
       fabric.Image.fromURL(imageUrl, function (img) {
         currentCanvas.add(img);
-        currentCanvas.page.previewImage = currentCanvas.toDataURL();
+        //currentCanvas.page.previewImage = currentCanvas.toDataURL();
+        backCurrentDesignData();
       }, {crossOrigin: 'Anonymous'});
     };
 
     vm.addText = function () {
-
       var txtBox = new fabric.IText("IText", {
         fontSize: 18,
         //fontFamily: 'Arial',
@@ -85,118 +84,52 @@
     };
     vm.previewClick = function (page,which) {
       vm.PhotoBook.setPageActive(page);
-
-      if (vm.currentPage != page) {
-        backCurrentDesignData();
-        vm.currentPage = page;
-        vm.left_canvas.clear();
-        vm.right_canvas.clear();
-        restoreToCurrentDesignData()
-      }
-
-      page.active = true;
       if (which === 'left') {
         currentCanvas = vm.left_canvas;
+        vm.PhotoBook.leftDesignPage = page;
+        vm.PhotoBook.rightDesignPage = vm.PhotoBook.getNextPage(page);
       }
-      else {
+      else if(which == 'right') {
         currentCanvas = vm.right_canvas;
+        vm.PhotoBook.rightDesignPage = page;
       }
-      currentCanvas.page = page;
+      restoreToCurrentDesignData();
     };
 
     vm.nextPage = function () {
+      vm.left_canvas.clear();
+      vm.right_canvas.clear();
+      vm.PhotoBook.MoveToNextPage();
 
-      var leftPageNumber =  vm.PhotoBook.pages.indexOf(vm.left_canvas.page);
-      if ((pagesInDesignView == 1 && leftPageNumber == (totalPages - 1)) == true)
-      // last one
-        return;
-
-      if ((pagesInDesignView == 2) && (leftPageNumber == (totalPages - 2)))
-        return;
-
-      var fromIndex = 0;
-      var toIndex = 0;
-      if (pagesInDesignView == 2) {
-        fromIndex = leftPageNumber + 2;
-        toIndex = leftPageNumber + 3;
-      }
-      else {
-        fromIndex = toIndex = leftPageNumber + 1;
-      }
-
-      if (fromIndex >= totalPages - 1)
-        fromIndex = totalPages - 1;
-
-      if (toIndex >= totalPages - 1)
-        toIndex = totalPages - 1;
-      currentCanvas.page.active = false;
-      var toPages = vm.PhotoBook.pages.slice(fromIndex, toIndex + 1);
-      ;
-      changePageTo(toPages)
+      restoreToCurrentDesignData();
     };
 
     vm.previousPage = function (currentIndex) {
-
-      var leftPageNumber = vm.PhotoBook.pages.indexOf(vm.left_canvas.page);
-      if (leftPageNumber == 0) return;
-
-      var fromIndex = 0;
-      var toIndex = 0;
-      if (pagesInDesignView == 2) {
-        fromIndex = leftPageNumber - 2;
-        toIndex = leftPageNumber - 1;
-      }
-      else {
-        fromIndex = toIndex = leftPageNumber - 1
-      }
-
-      if (toIndex < 0)
-        toIndex = 0;
-
-      if (fromIndex < 0)
-        fromIndex = 0;
-
-      currentCanvas.page.active = false;
-
-      var toPages = vm.PhotoBook.pages.slice(fromIndex, toIndex + 1);
-      changePageTo(toPages)
-    };
-
-    var changePageTo = function (toPages) {
-      backCurrentDesignData();
-
-      vm.left_canvas.clear();
-      vm.right_canvas.clear();
-      vm.right_canvas.page = null;
-      vm.left_canvas.page = toPages[0];
-      vm.left_canvas.page.active = true;
-      if (pagesInDesignView == 2) {
-        vm.right_canvas.page = toPages[1];
-      }
-      ;
-      currentCanvas = vm.left_canvas;
+      vm.PhotoBook.MoveToPreviousPage();
       restoreToCurrentDesignData();
     };
 
     var backCurrentDesignData = function () {
-      if(vm.left_canvas.page)
-        vm.left_canvas.page.imageData = JSON.stringify(vm.left_canvas);
-      if (pagesInDesignView == 2 && vm.right_canvas.page) {
-        vm.right_canvas.page.imageData = JSON.stringify(vm.right_canvas);
+      vm.PhotoBook.leftDesignPage.imageData = JSON.stringify(vm.left_canvas);
+      if (pagesInDesignView == 2 && vm.PhotoBook.rightDesignPage) {
+        vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);
       }
-
       generatePreviewImage();
     };
 
     var restoreToCurrentDesignData = function () {
-      if(vm.left_canvas.page) {
-        var leftData = vm.left_canvas.page.imageData;
+      vm.left_canvas.clear();
+      vm.right_canvas.clear();
+
+      if(vm.PhotoBook.leftDesignPage) {
+        var leftData = vm.PhotoBook.leftDesignPage.imageData;
         if (leftData)
           vm.left_canvas.loadFromJSON(leftData, vm.left_canvas.renderAll.bind(vm.left_canvas), function () {
           });
       }
-      if (pagesInDesignView == 2 && vm.right_canvas.page) {
-        var rightData = vm.right_canvas.page.imageData;
+
+      if (pagesInDesignView == 2 && vm.PhotoBook.rightDesignPage) {
+        var rightData = vm.PhotoBook.rightDesignPage.imageData;
         if (rightData)
           vm.right_canvas.loadFromJSON(rightData, vm.right_canvas.renderAll.bind(vm.right_canvas), function () {
           })
@@ -204,10 +137,9 @@
     };
 
     var generatePreviewImage = function () {
-      if(vm.left_canvas.page)
-      vm.left_canvas.page.previewImage = vm.left_canvas.toDataURL();
-      if (pagesInDesignView == 2 && vm.right_canvas.page) {
-        vm.right_canvas.page.previewImage = vm.right_canvas.toDataURL();
+      vm.PhotoBook.leftDesignPage.previewImage = vm.left_canvas.toDataURL();
+      if (pagesInDesignView == 2 && vm.PhotoBook.rightDesignPage) {
+        vm.PhotoBook.rightDesignPage.previewImage = vm.right_canvas.toDataURL();
       }
     };
 
@@ -225,55 +157,21 @@
     };
 
     vm.newPage = function () {
-      var page = vm.PhotoBook.createPage();
-      if(vm.PhotoBook.pages.length == 1){
-        vm.left_canvas.page = page;
-        vm.currentPage = page;
-        page.active =  true;
-      }
-      else{
-        vm.right_canvas.page = page;
-      }
+      vm.PhotoBook.createPage();
     };
 
     vm.copyPage = function () {
       backCurrentDesignData();
-      vm.currentPage.active = false;
-      var newPage = vm.PhotoBook.copyPage(vm.currentPage);
-      newPage.active = true;
-      vm.currentPage = newPage;
 
-      if(currentCanvas == vm.left_canvas){
-        vm.right_canvas.page = newPage;
-        if(pagesInDesignView == 2){
-          currentCanvas = vm.right_canvas;
-        }
-      }
-      else{
-        vm.left_canvas.page = newPage;
-        vm.right_canvas.page = null;
-        vm.right_canvas.clear();
-        var nextPage = vm.PhotoBook.getNextPage(newPage);
-        vm.right_canvas.page = nextPage;
-        currentCanvas = vm.left_canvas;
-      }
-
+      vm.PhotoBook.copyPage(vm.currentPage);
       restoreToCurrentDesignData();
     };
 
     vm.deletePage = function () {
-      backCurrentDesignData();
-      var next = vm.PhotoBook.getNextPage(vm.currentPage);
-      vm.left_canvas.clear();
-      vm.right_canvas.clear();
-      vm.left_canvas.page = next;
-      vm.right_canvas.page = vm.PhotoBook.getNextPage(next);
+       vm.left_canvas.clear();
+      vm.right_canvas.clear()
       vm.PhotoBook.deletePage(vm.currentPage);
       restoreToCurrentDesignData();
-      vm.currentPage = next;
-      if(currentCanvas.page)
-        currentCanvas.page.active = true;
-
     };
 
     vm.saveToServe = function () {
@@ -321,6 +219,15 @@
       preview_image.attr('src', image);
     };
 
-    var currentObj = {};
+    $scope.safeApply = function (fn) {
+      var phase = this.$root.$$phase;
+      if (phase == '$apply' || phase == '$digest') {
+        if (fn && (typeof(fn) === 'function')) {
+          fn();
+        }
+      } else {
+        this.$apply(fn);
+      }
+    };
   }
 })();

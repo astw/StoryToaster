@@ -14,10 +14,13 @@ angular.module('storyToaster')
       this.desc = "this is my designed book";
       this.author = 3;
 
+      this.pagesInDesign = 2 ;   // how manage pages in design by default
+
       this.totalPage = TOTAL_PAGE;
       this.pages = [];
       this.frontCover = new Page();
       this.dedicatedPage = new Page();
+
       this.backCover = new Page();
 
       for (var i = 0; i < this.totalPage; i++) {
@@ -27,32 +30,66 @@ angular.module('storyToaster')
       }
       ;
 
+      this.leftDesignPage = this.pages[0];
+      this.leftDesignPage.active = true;
+      this.rightDesignPage = this.pages[1];
+
       this.data= {};
 
       this.createPage = function() {
         var page = new Page();
         this.pages.push(page);
+        if(this.pages.length == 1){
+          page.active = true;
+          this.leftDesignPage = this.pages[0]
+        }
+        else{
+          if(this.pagesInDesign == 2 && this.pages.length == 2 ){
+            this.rightDesignPage = this.pages[1];
+          }
+        }
         return page;
       };
 
       this.copyPage = function(page){
+        if(this.leftDesignPage && this.leftDesignPage.active)
+        page = this.leftDesignPage;
+        else if(this.rightDesignPage && this.rightDesignPage.active){
+          page = this.rightDesignPage;
+        }
+
         var p = new Page();
+        p.active = true;
         p.imageData = page.imageData;
         p.previewImage = page.previewImage;
         var index = this.pages.indexOf(page);
-        if(index == this.pages.length -1){
+        if(index == (this.pages.length -1)){
           this.pages.push(p);
         }
         else{
           this.pages.splice(index +1, 0,p);
         }
+
+        if(this.pagesInDesign == 2){
+          if(this.leftDesignPage.active == true){
+            this.leftDesignPage.active = false;
+            this.rightDesignPage = p;
+          }
+          else {
+            // the current page is on the right
+            this.leftDesignPage = page;
+            this.rightDesignPage = p;
+          }
+        }
+        this.setPageActive(p);
+
         return this.pages[index + 1];
       };
 
       this.getPageByIndex = function(index){
-        if(index < 0) index = 0;
-        if(index > this.pages.length -1){
-           index = this.pages.length -1;
+        if(index < 0) null
+        if(index > (this.pages.length -1)){
+           return null;
         }
 
         return this.pages[index];
@@ -61,7 +98,7 @@ angular.module('storyToaster')
       this.getNextPage = function(page){
         if(!page) return null;
         var index = this.pages.indexOf(page);
-        if(index == this.pages.length -1){
+        if(index == (this.pages.length -1)){
           return null;
         }
         return this.pages[index + 1];
@@ -75,9 +112,100 @@ angular.module('storyToaster')
         return this.pages[index -1];
       };
 
+      /// delete page in design view
       this.deletePage = function(page){
+        //var page = this.leftDesignPage.active ? this.leftDesignPage : this.rightDesignPage;
+
+        if(this.leftDesignPage && this.leftDesignPage.active){
+          page = this.leftDesignPage;
+        }
+        else if(this.rightDesignPage && this.rightDesignPage.active){
+          page = this.rightDesignPage;
+        }
+
+        if(!page) return;
+        var nextPage = this.getNextPage(page);
+        if(!nextPage)
+        // set the previous one to be active
+        nextPage = this.getPreviousPage(page);
+
+        if(this.pagesInDesign ==1){
+          this.leftDesignPage = nextPage;
+        }
+        else if(this.pagesInDesign ==2 ) {
+          if (this.leftDesignPage && this.leftDesignPage.active == true) {
+            this.leftDesignPage = nextPage;
+            this.rightDesignPage = this.getNextPage(nextPage);
+          }
+          else if(this.rightDesignPage && this.rightDesignPage.active == true){
+               this.rightDesignPage = nextPage;
+          }
+          if(this.pages.indexOf(page) == (this.pages.length -1)){
+            this.rightDesignPage = null;
+          } 
+        }
+
+        if(nextPage)
+          nextPage.active = true;
+
         var index = this.pages.indexOf(page);
         this.pages.splice(index,1);
+
+        var len = this.pages.length;
+        if(len == 0) {
+          this.leftDesignPage = null;
+          this.rightDesignPage = null;
+        };
+
+
+        //this.MoveToPreviousPage();
+      };
+
+      this.MoveToPreviousPage = function(){
+        var left = this.leftDesignPage && this.leftDesignPage.active;
+
+        var index = this.pages.indexOf(this.leftDesignPage);
+
+        // left page is the first page
+        if(index == 0){
+          return;
+        }
+
+        if(this.pagesInDesign == 2 && index == 1){
+          return;
+        }
+
+        this.leftDesignPage = this.getPageByIndex(index - 2);
+        this.rightDesignPage = this.getPageByIndex(index - 1);
+
+        if(left == true){
+          this.setPageActive(this.leftDesignPage);
+        }
+        else
+          this.setPageActive(this.rightDesignPage);
+      };
+
+      this.MoveToNextPage = function(){
+        var left = this.leftDesignPage && this.leftDesignPage.active;
+        var index = this.pages.indexOf(this.leftDesignPage);
+
+        // left page is the last page
+        if(index == (this.pages.length -1)){
+          return;
+        }
+
+        if(this.pagesInDesign == 2 && index == (this.pages.length -2)){
+             return;
+        }
+
+        this.leftDesignPage = this.getPageByIndex(index + 2);
+        this.rightDesignPage = this.getPageByIndex(index + 3);
+
+        if(left == true && this.leftDesignPage || !this.rightDesignPage){
+          this.setPageActive(this.leftDesignPage);
+        }
+        else if(this.rightDesignPage)
+          this.setPageActive(this.rightDesignPage);
       };
 
       this.setPageActive = function(page) {
