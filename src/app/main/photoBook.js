@@ -1,5 +1,5 @@
 angular.module('storyToaster')
-.factory('PhotoBook',function() {
+.factory('PhotoBook',function(bookRepository) {
 
     var TOTAL_PAGE = 4;
 
@@ -9,11 +9,9 @@ angular.module('storyToaster')
     };
 
     var PhotoBook = function () {
-
       this.title = "this is created on frontend";
       this.desc = "this is my designed book";
       this.author = 3;
-
       this.pagesInDesign = 2 ;   // how manage pages in design by default
 
       this.totalPage = TOTAL_PAGE;
@@ -142,7 +140,7 @@ angular.module('storyToaster')
           }
           if(this.pages.indexOf(page) == (this.pages.length -1)){
             this.rightDesignPage = null;
-          } 
+          }
         }
 
         if(nextPage)
@@ -156,8 +154,6 @@ angular.module('storyToaster')
           this.leftDesignPage = null;
           this.rightDesignPage = null;
         };
-
-
         //this.MoveToPreviousPage();
       };
 
@@ -216,6 +212,50 @@ angular.module('storyToaster')
            else
              p.active = false
          }
+      };
+
+      this.saveToServer = function(){
+
+        var dataString = JSON.stringify(this);
+
+        var obj = JSON.parse(dataString);
+        obj.pages.forEach(function(page){
+           delete page.previewImage;
+        });
+
+        delete obj.frontCover.previewImage;
+        delete obj.dedicatedPage.previewImage;
+        delete obj.backCover.previewImage;
+        delete obj.leftDesignPage;
+        delete obj.rightDesignPage;
+
+        obj.data = JSON.stringify(obj);
+
+        if (!this.id) {
+          // this is a new book
+          // upload to create a new
+
+          bookRepository.createOneBook(obj).then(function (res) {
+              this.id = res.data.id;
+              console.log('------ save good');
+              console.log(res.data);
+            },
+            function (err) {
+              console.log(err);
+            })
+        }
+        else {
+          // this is an existing book,
+          // upload to update
+          this.title = "this is changed title" + Date.now().toString();
+          bookRepository.updateBook(obj).then(
+            function (res) {
+               console.log(' update book good' + res.data.title);
+            },
+            function (err) {
+              console.log(err);
+            })
+        }
       }
     };
 
