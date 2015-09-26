@@ -18826,10 +18826,35 @@ body.tray-rescale .tray-right:hover {
 .sidebar-menu > li > a {
   padding: 0;
   line-height: 37px;
-  height: 37px;
+  /*height: 37px;*/
   overflow: hidden;
   border:1px solid lightgrey
 }
+
+.accordion-heading {
+  margin-left:20px;
+  background-color:#ffffff
+  font-weight:500;
+  font-size:16px;
+}
+
+.accordion-heading > .sidebar-title {
+  color: #000000
+}
+
+.accordion-toggle :hover {
+  background-color: #ffa80c
+}
+
+.sidebar-menu > li > a >  .accordion-heading > img{
+  width:30px;
+  height:30px;
+  margin:2px;
+  margin-top: 2px;
+  margin-bottom: 4px;
+  border:0px solid #737373;
+}
+
 /* Sidebar-Menu Top Level - Icon */
 .sidebar-menu > li > a > span:nth-child(1) {
   float: left;
@@ -18857,6 +18882,7 @@ body.tray-rescale .tray-right:hover {
   padding: .1em .6em .3em;
 }
 /* Sidebar-Menu Top Level - Caret */
+.accordion-heading > span.caret,
 .sidebar-menu li > a > span.caret {
   position: absolute;
   top: 45%;
@@ -18866,6 +18892,7 @@ body.tray-rescale .tray-right:hover {
   border-left: 5px solid transparent;
 }
 /* Open Menu Item Caret - we simply flip the carets border */
+.sidebar-menu li > a.menu-open >.accordion-heading > span.caret,
 .sidebar-menu li > a.menu-open > span.caret {
   border-top: 0;
   border-bottom: 5px solid;

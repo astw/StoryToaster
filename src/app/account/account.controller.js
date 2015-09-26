@@ -6,12 +6,12 @@
     .controller('AccountController', AccountController);
 
   /** @ngInject */
-  function AccountController( $scope, $document, config) {
+  function AccountController( $scope,$location, $document, config) {
     var vm = this;
 
 
     vm.login = function(){
-      alert('login method');
+      $location.url('/account/my');
     };
 
     $scope.register = function(){

@@ -76,3 +76,8 @@ footer {
   margin-top: 0;
 }
 
+.sidebar-menu-image {
+  width:40px;
+  height:40px;
+  border:1px solid #021a40;
+}
