@@ -1,0 +1,20 @@
+<a class="accordion-toggle" href="#" ng-click="vm.toggleSodebarMenu()">
+  <span class="fa fa-diamond"></span>
+  <span class="sidebar-title">{{group.title}}</span>
+  <span class="caret"></span>
+</a>
+<ul class="nav sub-nav" >
+  <li>
+    <div class="left_panel">
+      <image class="carton_image"
+             ng-repeat="img in group.images"
+             src="{{img}}"
+             ng-click="main.addImage(img)"
+        ></image>
+    </div>
+  </li>
+  <li>
+    <a href="widgets_tile.html">
+      <span class="fa fa-cube"></span> Tile Widgets</a>
+  </li>
+</ul>

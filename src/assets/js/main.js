@@ -66,7 +66,7 @@ var Core = function(options) {
          // After animation has occured we toggle the menu.
          // Upon the menu reopening the classes will be toggled
          // again, effectively restoring the menus state prior
-         // to being hidden 
+         // to being hidden
          if (!Body.hasClass('mobile-view')) {
             setTimeout(function() {
                Body.toggleClass('sb-l-m sb-l-o');
@@ -111,7 +111,7 @@ var Core = function(options) {
       };
 
       // Most CSS menu animations are set to 300ms. After this time
-      // we trigger a single global window resize to help catch any 3rd 
+      // we trigger a single global window resize to help catch any 3rd
       // party plugins which need the event to resize their given elements
       var triggerResize = function() {
          setTimeout(function() {
@@ -142,7 +142,7 @@ var Core = function(options) {
       // 2. LEFT USER MENU TOGGLE
       //
 
-      // Author Widget selector 
+      // Author Widget selector
       var authorWidget = $('#sidebar_left .author-widget');
 
       // Toggle open the user menu
@@ -205,7 +205,7 @@ var Core = function(options) {
       if (pageFooterBtn.length) {
         pageFooterBtn.smoothScroll({offset: -55});
       }
-      
+
    }
 
    // jQuery Helper Functions
@@ -228,7 +228,7 @@ var Core = function(options) {
       function msieversion() {
            var ua = window.navigator.userAgent;
            var msie = ua.indexOf("MSIE ");
-           if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) { 
+           if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
               var ieVersion = parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)));
               if (ieVersion === 9) {$('body').addClass('no-js ie' + ieVersion);}
               return ieVersion;
@@ -265,7 +265,7 @@ var Core = function(options) {
          var delayAnimation = 'fadeIn';
 
          // if the data attribute has more than 1 value
-         // it's an array, reset defaults 
+         // it's an array, reset defaults
          if (delayTime.length > 1 && delayTime.length < 3) {
             delayTime = This.data('animate')[0];
             delayAnimation = This.data('animate')[1];
@@ -288,7 +288,7 @@ var Core = function(options) {
          var offsetVal = '35%';
 
          // if the data attribute has more than 1 value
-         // it's an array, reset defaults 
+         // it's an array, reset defaults
          if (Animation.length > 1 && Animation.length < 3) {
             Animation = This.data('animate')[0];
             offsetVal = This.data('animate')[1];
@@ -326,7 +326,7 @@ var Core = function(options) {
          // Open search bar and add closing icon if one isn't found
          This.addClass('search-open');
          if (!searchRemove.length) {
-            This.append('<div class="search-remove"></div>'); 
+            This.append('<div class="search-remove"></div>');
          }
 
          // Fadein remove btn and focus search input on animation complete
@@ -377,7 +377,7 @@ var Core = function(options) {
          else { SiblingGroup.removeClass('open'); }
 
       });
-     
+
       // Sliding Topbar Metro Menu
       var menu = $('#topbar-dropmenu');
       var items = menu.find('.metro-tile');
@@ -418,7 +418,7 @@ var Core = function(options) {
 
    // Tray related Functions
    var runTrays = function() {
-   
+
       // Match height of tray with the height of body
       var trayMatch = $('.tray[data-tray-height="match"]');
       if (trayMatch.length) {
@@ -461,7 +461,7 @@ var Core = function(options) {
           setTimeout(function() {
             navAnimate.find('li').each(function(i, e) {
               var Timer = setTimeout(function() {
-                $(e).addClass('animated animated-short ' + Animation);        
+                $(e).addClass('animated animated-short ' + Animation);
               }, 50 * i);
             });
           }, 500);
@@ -490,7 +490,7 @@ var Core = function(options) {
    // Form related Functions
    var runFormElements = function() {
 
-      // Init Bootstrap tooltips, if present 
+      // Init Bootstrap tooltips, if present
       var Tooltips = $("[data-toggle=tooltip]");
       if (Tooltips.length) {
          if (Tooltips.parents('#sidebar_left')) {
@@ -503,7 +503,7 @@ var Core = function(options) {
          }
       }
 
-      // Init Bootstrap Popovers, if present 
+      // Init Bootstrap Popovers, if present
       var Popovers = $("[data-toggle=popover]");
       if (Popovers.length) {
           Popovers.popover();
@@ -544,7 +544,7 @@ var Core = function(options) {
 
       // If a panel element has the ".panel-scroller" class we init
       // custom fixed height content scroller. An optional delay data attr
-      // may be set. This is useful when you expect the panels height to 
+      // may be set. This is useful when you expect the panels height to
       // change due to a plugin or other dynamic modification.
       var panelScroller = $('.panel-scroller');
       if (panelScroller.length) {
@@ -556,10 +556,10 @@ var Core = function(options) {
            // Check if scroller bar margin is required
            if (This.hasClass('scroller-thick')) { Margin = 0; }
 
-           // Check if scroller bar is in a dropdown, if so 
+           // Check if scroller bar is in a dropdown, if so
            // we initilize scroller after dropdown is visible
            var DropMenuParent = This.parents('.dropdown-menu');
-           if (DropMenuParent.length) { 
+           if (DropMenuParent.length) {
                DropMenuParent.prev('.dropdown-toggle').on('click', function() {
                   setTimeout(function() {
                      This.scroller();
@@ -574,7 +574,7 @@ var Core = function(options) {
                 This.scroller({ trackMargin: Margin, });
                $('#content').scrollLock('on', 'div');
              }, Delay);
-           } 
+           }
            else {
              This.scroller({ trackMargin: Margin, });
              $('#content').scrollLock('on', 'div');
@@ -597,7 +597,7 @@ var Core = function(options) {
             offset: Offset
           });
 
-        }); 
+        });
       }
 
    }
@@ -606,7 +606,7 @@ var Core = function(options) {
 
          // Set Default Options
          var defaults = {
-            sbl: "sb-l-o", // sidebar left open onload 
+            sbl: "sb-l-o", // sidebar left open onload
             sbr: "sb-r-c", // sidebar right closed onload
 
             collapse: "sb-l-m", // sidebar left collapse style
@@ -631,7 +631,7 @@ var Core = function(options) {
    }
 }();
 
-// Global Library of Theme colors for Javascript plug and play use  
+// Global Library of Theme colors for Javascript plug and play use
 var bgPrimary = '#4a89dc',
    bgPrimaryL = '#5d9cec',
    bgPrimaryLr = '#83aee7',

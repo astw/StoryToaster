@@ -183,16 +183,17 @@
 }
 
 .left_panel {
-  height: 450px;
+  height: 100%;
+  width:110%;
   overflow-y:auto;
   background-color: #ffffff;
-  width:110%;
+  width:100%;
 }
 .carton_image {
   float:left;
-  width: 70px;
-  height: 70px;
-  margin: 10px;
+  width: 80px;
+  height: 80px;
+  margin-left: 30px;
 }
 
 .carton_image:hover{

@@ -51,6 +51,20 @@ app.directive('previewSinglePage',function(){
   }
 });
 
+
+
+
+app.directive('leftSidebarImage',function(){
+  return {
+    restirct:'E',
+
+    scope:{
+      group: '='
+    },
+    templateUrl:'app/components/sidebar/imageSections.html'
+  }
+});
+
 //
 //
 //(function() {
