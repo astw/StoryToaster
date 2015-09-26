@@ -1,12 +1,40 @@
-
-<div ng-include="'app/components/navbar/navbar-2.html'"></div>
-
+<div id="main">
+<!--<div ng-include="'app/components/navbar/navbar-2.html'"></div>-->
 <!--<div ng-include="'app/components/navbar/navbar.html'"></div>-->
+<!--<div ng-include="'app/components/sidebar/leftSidebar.html'" />-->
 
+<!--<div ng-include="'app/main/template/leftSidebar.html'" />-->
 
-  <div ng-include="'app/components/sidebar/leftSidebar.html'" />
+  <header nav-bar2 class="navbar navbar-fixed-top navbar-shadow">
+  </header>
+  <!-- Start: Sidebar -->
+  <aside id="sidebar_left" side-bar-left class="affix sidebar-light">
+  </aside>
 
-  <!--<div ng-include="'app/main/template/leftSidebar.html'" />-->
+  <!-- Start: Content-Wrapper -->
+  <section id="content_wrapper">
+    <!-- Begin: Content -->
+    <section id="content" class="table-layout animated fadeIn">
+      this is the content wrapper
+    </section>
+    <!-- End: Content -->
+    <!-- Begin: Page Footer -->
+    <footer id="content-footer" class="affix">
+      <div class="row">
+        <div class="col-md-6">
+          <span class="footer-legal">© 2015 AdminDesigns</span>
+        </div>
+        <div class="col-md-6 text-right">
+          <span class="footer-meta">60GB of <b>350GB</b> Free</span>
+          <a href="#content" class="footer-return-top">
+            <span class="fa fa-arrow-up"></span>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <!-- End: Page Footer -->
 
-  <!--<div ng-include="'app/components/content/contentWrapper.html'" />-->
+  </section>
+  <!-- End: Content-Wrapper -->
 
+</div>

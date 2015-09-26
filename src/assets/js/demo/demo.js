@@ -11,15 +11,16 @@ var Demo = function() {
   var runDemoForms = function() {
 
     // Prevents directory response when submitting a demo form
-    $('.admin-form').on('submit', function(e) {
-
-      if ($('body.timeline-page').length || $('body.admin-validation-page').length) {
-        return;
-      }
-      e.preventDefault;
-      alert('Your form has submitted!');
-      return false;
-    });
+    //$('.admin-form').on('submit', function(e) {
+    //
+    //  if ($('body.timeline-page').length || $('body.admin-validation-page').length) {
+    //    return;
+    //  }
+    //  e.preventDefault;
+    //
+    //  alert('Your form has submitted!');
+    //  return false;
+    //});
 
     // give file-upload preview onclick functionality
     var fileUpload = $('.fileupload-preview');
@@ -108,7 +109,7 @@ var Demo = function() {
           });
         }, 250);
 
-        // Highlight code text on click     
+        // Highlight code text on click
         $('.btn-clipboard').on('click', function() {
           var selection = $(this).parents('.modal-dialog').find('pre');
           selection.selectText();
@@ -486,7 +487,7 @@ var Demo = function() {
       if (screenCheck) {
         if ($.fullscreen.isFullScreen()) {
           $.fullscreen.exit();
-        } 
+        }
         else {
           selector.fullscreen({
             overflow: 'auto'

@@ -52,8 +52,6 @@ app.directive('previewSinglePage',function(){
 });
 
 
-
-
 app.directive('leftSidebarImage',function(){
   return {
     restirct:'E',
@@ -64,6 +62,32 @@ app.directive('leftSidebarImage',function(){
     templateUrl:'app/components/sidebar/imageSections.html'
   }
 });
+
+app.directive('navBar', function () {
+  return {
+    templateUrl: 'app/components/navbar/navbar.html'
+
+  }
+});
+
+app.directive('navBar2', function () {
+  return {
+    templateUrl: 'app/components/navbar/navbar-2.html'
+  }
+});
+
+app.directive('navBar3', function () {
+  return {
+    templateUrl: 'app/components/navbar/navbar-3.html'
+  }
+});
+
+app.directive('sideBarLeft', function () {
+  return {
+    templateUrl: 'app/components/sidebar/leftSidebar.html'
+  }
+});
+
 
 //
 //
