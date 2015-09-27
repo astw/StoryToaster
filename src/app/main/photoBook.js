@@ -1,7 +1,7 @@
 angular.module('storyToaster')
 .factory('PhotoBook',function(bookRepository) {
 
-    var TOTAL_PAGE = 4;
+    var TOTAL_PAGE = 14;
 
     var Page = function () {
       this.imageData = null;
