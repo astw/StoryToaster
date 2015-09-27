@@ -2,7 +2,7 @@
   <header nav-bar2 class="navbar navbar-fixed-top navbar-shadow">
   </header>
 
-   <!-- Start: Sidebar -->
+  <!-- Start: Sidebar -->
   <aside id="sidebar_left" side-bar-left class="affix sidebar-light">
   </aside>
 
@@ -11,7 +11,7 @@
     <!-- Start: Topbar-Dropdown -->
     <div id="topbar-dropmenu" class="alt">
       <div class="topbar-menu row">
-        <div preview-scroll-panel />
+        <div preview-scroll-panel/>
       </div>
     </div>
     <!-- End: Topbar-Dropdown -->
@@ -59,21 +59,11 @@
     <section id="content" class="table-layout animated fadeIn">
 
       <div class="tray tray-left">
-      <!--<h2 class="sub-header">Photo Design </h2>-->
+        <!--<h2 class="sub-header">Photo Design </h2>-->
 
-      <div class="row">
-        <!--<div page-design />-->
-        <div class="page-design-panel" resize >
-          <div class="page-big" ng-class="{active:main.PhotoBook.leftDesignPage.active}">
-            <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.selectLeft()" id="left_canvas" ></canvas>
-          </div>
-
-          <div class="page-big" ng-class="{active:main.PhotoBook.rightDesignPage.active}">
-            <canvas class="page-canvas" crossOrigin="Anonymous"  ng-click="main.selectRight()" id="right_canvas" width="549px"
-                    height="389px"></canvas>
-          </div>
+        <div class="row">
+          <div class="page-design-panel" page-design />
         </div>
-      </div>
       </div>
 
     </section>

@@ -160,7 +160,7 @@
   left: 0px;
   top:10px;
   height: 420px;
-  background-color: #55FFDF;
+  background-color: transparent;
   float:left
 }
 
@@ -171,15 +171,18 @@
   height: 400px;
   background-color: #FFFFDF;
   border:solid;
-  border-width: 6px;
-  border-color: #becfd5;
-  margin-left: 0px;
+  border-width: 8px;
+  border-color: #c9dbe1;
+  margin: 0px;
+  padding: 0px;
 }
 .active {
   border-color: #E76E34;
 }
 
 .page-canvas {
+
+  border-color: #0000ff;
   /*width: 550px;*/
   /*height: 400px;*/
 }

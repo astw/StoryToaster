@@ -26,27 +26,13 @@
 
     $timeout(function(){
 
-
-
     });
     $scope.$on('$viewContentLoaded', function(document){
-      var w  = ($(window).width() - 250 - 30) /2 -10 ;
-      console.log(w);
-      var wid = '{width:' + w + '}';
-      $('.page-big').width(w);
 
-      $('.page-canvas').attr('width',w);
-      //$('.page-canvas').attr('height',h);
-
-    //  var left = $('#left_canvas');
-    //  left.setAttribute('width',w);
     });
 
     angular.element(document).ready(function(){
       //  Core.init();
-
-      document.getElementById('left_canvas').setAttribute('width',500);
-
     });
     var hookEvents = function () {
       //vm.left_canvas.on('mouse:down', function (options) {
@@ -88,7 +74,7 @@
         currentCanvas = vm.right_canvas;
       }
 
-      imageUrl = "http://localhost:3000" + imageUrl;
+      imageUrl = "http://192.168.0.14:3000" + imageUrl;
       fabric.Image.fromURL(imageUrl, function (img) {
         currentCanvas.add(img);
         //currentCanvas.page.previewImage = currentCanvas.toDataURL();

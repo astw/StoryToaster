@@ -151,10 +151,11 @@ app.directive('pageDesign',function($window){
      link : function(scope, elem, attrs) {
       scope.onResize = function() {
         var w = ($(window).width() - 250 - 30) / 2 - 10;
+        h = w / 1.375;
         //$(elem).width(w);
         $('.page-big').width(w);
+        $('.page-big').height(h);
       };
-
       scope.onResize();
 
       angular.element($window).bind('resize', function() {
@@ -163,7 +164,6 @@ app.directive('pageDesign',function($window){
     }
   }
 });
-
 
 //
 //app.directive('pageDesign', function ($window) {
