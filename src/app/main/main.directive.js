@@ -132,7 +132,6 @@ app.directive('sideBarLeft', function () {
   }
 });
 
-
 app.directive('pageDesign',function($window){
   var w = ($(window).width() - 250 - 30) / 2 - 10;
   var h = w / 1.375;
@@ -150,7 +149,7 @@ app.directive('pageDesign',function($window){
 
      link : function(scope, elem, attrs) {
       scope.onResize = function() {
-        var w = ($(window).width() - 250 - 30) / 2 - 10;
+        var w = ($(window).width() - 250 - 30) / 2 - 20;
         h = w / 1.375;
         //$(elem).width(w);
         $('.page-big').width(w);
@@ -165,90 +164,70 @@ app.directive('pageDesign',function($window){
   }
 });
 
-//
-//app.directive('pageDesign', function ($window) {
-//
-//  return {
-//    templateUrl: 'app/main/template/page-design.html',
-//    link : function(scope, elem, attrs) {
-//      scope.onResize = function() {
-//        var w = ($(window).width() - 250 - 30) / 2 - 10;
-//        //$(elem).width(w);
-//        $('.page-big').width(w);
+
+//app.directive('resize',function($window) {
+//  return function (scope, element) {
+//    var w = angular.element($window);
+//    scope.getWindowDimensions = function () {
+//      return {
+//        'h': w.height(),
+//        'w': w.width()
 //      };
+//    };
 //
-//      scope.onResize();
+//    scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
+//      scope.windowHeight = newValue.h;
+//      scope.windowWidth = newValue.w;
 //
-//      angular.element($window).bind('resize', function() {
-//        scope.onResize();
-//      })
-//    }
+//      var w = ($(window).width() - 250 - 30) / 2 - 510;
+//      var h = w /1.375  ;
+//      $('.page-big').width(w);
+//      $('.page-big').height(h);
+//      //$('.page-canvas').width(w - 100);
+//      //$('.page-canvas').height(h);
+//
+//      $('element').width(w);
+//    }, true);
+//
+//    w.bind('resize', function () {
+//      console.log('resize ');
+//      scope.$apply();
+//    });
 //  }
-//});
-
-app.directive('resize',function($window) {
-  return function (scope, element) {
-    var w = angular.element($window);
-    scope.getWindowDimensions = function () {
-      return {
-        'h': w.height(),
-        'w': w.width()
-      };
-    };
-
-    scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
-      scope.windowHeight = newValue.h;
-      scope.windowWidth = newValue.w;
-
-      var w = ($(window).width() - 250 - 30) / 2 - 10;
-      var h = w /1.375  ;
-      $('.page-big').width(w);
-      $('.page-big').height(h);
-      //$('.page-canvas').width(w - 100);
-      //$('.page-canvas').height(h);
-
-      $('element').width(w);
-    }, true);
-
-    w.bind('resize', function () {
-      console.log('resize ');
-      scope.$apply();
-    });
-  }
-})
-
-
-app.directive('resizeCanvas',function($window) {
-  return function (scope, element) {
-    var w = angular.element($window);
-    scope.getWindowDimensions = function () {
-      return {
-        'h': w.height(),
-        'w': w.width()
-      };
-    };
-
-    scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
-      scope.windowHeight = newValue.h;
-      scope.windowWidth = newValue.w;
-
-      var w = ($(window).width() - 250 - 30) / 2 - 10;
-      var h = w /1.375  ;
-      //$('.page-canvas').width(w - 100);
-      //$('.page-canvas').height(h);
-      //
-      //$('.page-canvas').attr('width',w);
-      //$('.page-canvas').attr('height',h);
-
-
-    }, true);
-
-    w.bind('resize', function () {
-      console.log('resize ');
-      scope.$apply();
-    });
-  }
-})
+//})
+//
+//
+//app.directive('resizeCanvas',function($window) {
+//  return function (scope, element) {
+//    var w = angular.element($window);
+//    scope.getWindowDimensions = function () {
+//      return {
+//        'h': w.height(),
+//        'w': w.width()
+//      };
+//    };
+//
+//    scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
+//      scope.windowHeight = newValue.h;
+//      scope.windowWidth = newValue.w;
+//
+//      var w = ($(window).width() - 250 - 30) / 2 - 10;
+//      var h = w /1.375  ;
+//      //$('.page-canvas').width(w - 100);
+//      //$('.page-canvas').height(h);
+//      //
+//      //$('.page-canvas').attr('width',w);
+//      //$('.page-canvas').attr('height',h);
+//
+//
+//    }, true);
+//
+//    w.bind('resize', function () {
+//      console.log('resize ');
+//      scope.$apply();
+//    });
+//  }
+//})
 
 
 
