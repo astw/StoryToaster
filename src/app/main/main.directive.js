@@ -132,11 +132,23 @@ app.directive('sideBarLeft', function () {
   }
 });
 
-app.directive('pageDesign', function ($window) {
+
+app.directive('pageDesign',function($window){
+  var w = ($(window).width() - 250 - 30) / 2 - 10;
+  var h = w / 1.375;
 
   return {
-    templateUrl: 'app/main/template/page-design.html',
-    link : function(scope, elem, attrs) {
+    template: '<div class="page-design-panel" resize> ' +
+    ' <div class="page-big" ng-class="{active:main.PhotoBook.leftDesignPage.active}"> ' +
+    ' <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.selectLeft()" id="left_canvas" width="'+ w  + 'px" ' +
+    ' height="'+ h +'px"></canvas> ' +
+    ' </div> ' +
+    ' <div class="page-big" ng-class="{active:main.PhotoBook.rightDesignPage.active}"> ' +
+    ' <canvas class="page-canvas" crossOrigin="Anonymous"  ng-click="main.selectRight()" id="right_canvas" width="'+ w  + 'px" ' +
+    ' height="'+ h +'px"></canvas> ' +
+    '</div>  </div>',
+
+     link : function(scope, elem, attrs) {
       scope.onResize = function() {
         var w = ($(window).width() - 250 - 30) / 2 - 10;
         //$(elem).width(w);
@@ -151,6 +163,28 @@ app.directive('pageDesign', function ($window) {
     }
   }
 });
+
+
+//
+//app.directive('pageDesign', function ($window) {
+//
+//  return {
+//    templateUrl: 'app/main/template/page-design.html',
+//    link : function(scope, elem, attrs) {
+//      scope.onResize = function() {
+//        var w = ($(window).width() - 250 - 30) / 2 - 10;
+//        //$(elem).width(w);
+//        $('.page-big').width(w);
+//      };
+//
+//      scope.onResize();
+//
+//      angular.element($window).bind('resize', function() {
+//        scope.onResize();
+//      })
+//    }
+//  }
+//});
 
 app.directive('resize',function($window) {
   return function (scope, element) {

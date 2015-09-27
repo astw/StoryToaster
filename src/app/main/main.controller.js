@@ -45,15 +45,7 @@
     angular.element(document).ready(function(){
       //  Core.init();
 
-      console.log($(window).width()) ;
-      console.log($(window).height());
-      var left = $('#left_canvas');
-      var ct = left.get(0).getContext('2d');
-      var container = $(left).parent;
-      left.attr('width',500);
-     // left.attr('width',$(container).width());
-
-
+      document.getElementById('left_canvas').setAttribute('width',500);
 
     });
     var hookEvents = function () {
