@@ -8,23 +8,37 @@
 
   <!-- Start: Content-Wrapper -->
   <section id="content_wrapper">
+    <!-- Start: Topbar-Dropdown -->
+    <div id="topbar-dropmenu" class="alt">
+      <div class="topbar-menu row">
+        <div preview-scroll-panel />
+      </div>
+    </div>
+    <!-- End: Topbar-Dropdown -->
+
+
     <!-- Begin: Content -->
     <section id="content" class="table-layout animated fadeIn">
 
-      <!--<div class="page-preview-panel">-->
-        <!--<div preview-scroll-panel />-->
-      <!--</div>-->
+      <h2 class="sub-header">Photo Design </h2>
 
+      <div class="row">
+        <div class="page-design-panel">
+          <div class="page-big" ng-class="{active:main.PhotoBook.leftDesignPage.active}">
+            <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.selectLeft()" id="left_canvas" width="549px"
+                    height="389px"></canvas>
+          </div>
 
-      <!-- Start: Topbar-Dropdown -->
-      <div id="topbar-dropmenu" class="alt">
-        <div class="topbar-menu row">
-          <div preview-scroll-panel />
+          <div class="page-big" ng-class="{active:main.PhotoBook.rightDesignPage.active}">
+            <canvas class="page-canvas" crossOrigin="Anonymous"  ng-click="main.selectRight()" id="right_canvas" width="549px"
+                    height="389px"></canvas>
+          </div>
         </div>
       </div>
-      <!-- End: Topbar-Dropdown -->
 
     </section>
+
+
     <!-- End: Content -->
     <!-- Begin: Page Footer -->
     <footer id="content-footer" class="affix">
