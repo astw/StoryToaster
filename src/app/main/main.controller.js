@@ -25,50 +25,43 @@
     var currentCanvas = vm.left_canvas;
 
     $timeout(function(){
-      alert('dom read');
     });
     $scope.$on('$viewContentLoaded', function(){
-      alert('content loaded');
-    });
-    vm.toggleSodebarMenu = function(){
-      alert('ddd');
-      //// Any menu item with the accordion class is a dropdown submenu. Thus we prevent default actions
-      //e.preventDefault();
-      //
-      //// Any menu item with the accordion class is a dropdown submenu. Thus we prevent default actions
-      //if ($('body').hasClass('sb-l-m') && !$(this).parents('ul.sub-nav').length) { return; }
-      //
-      //// Any menu item with the accordion class is a dropdown submenu. Thus we prevent default actions
-      //if (!$(this).parents('ul.sub-nav').length) {
-      //  $('a.accordion-toggle.menu-open').next('ul').slideUp('fast', 'swing', function() {
-      //    $(this).attr('style', '').prev().removeClass('menu-open');
-      //  });
-      //}
-      //// Any menu item with the accordion class is a dropdown submenu. Thus we prevent default actions
-      //else {
-      //  var activeMenu = $(this).next('ul.sub-nav');
-      //  var siblingMenu = $(this).parent().siblings('li').children('a.accordion-toggle.menu-open').next('ul.sub-nav')
-      //
-      //  activeMenu.slideUp('fast', 'swing', function() {
-      //    $(this).attr('style', '').prev().removeClass('menu-open');
-      //  });
-      //  siblingMenu.slideUp('fast', 'swing', function() {
-      //    $(this).attr('style', '').prev().removeClass('menu-open');
-      //  });
-      //}
-      //
-      //// Now we expand targeted menu item, add the ".open-menu" class
-      //// and remove any left over inline jQuery animation styles
-      //if (!$(this).hasClass('menu-open')) {
-      //  $(this).next('ul').slideToggle('fast', 'swing', function() {
-      //    $(this).attr('style', '').prev().toggleClass('menu-open');
-      //  });
-      //}
 
-    };
+      // Sliding Topbar Metro Menu
+      var menu = $('#topbar-dropmenu');
+      var items = menu.find('.metro-tile');
+      var metroBG = $('.metro-modal');
+
+      // Toggle menu and active class on icon click
+      $('.topbar-menu-toggle').on('click', function () {
+
+        // If dropmenu is using alternate style we don't show modal
+        if (menu.hasClass('alt')) {
+          // Toggle menu and active class on icon click
+          menu.slideToggle(230).toggleClass('topbar-menu-open');
+          metroBG.fadeIn();
+        }
+        else {
+          menu.slideToggle(230).toggleClass('topbar-menu-open');
+          $(items).addClass('animated animated-short fadeInDown').css('opacity', 1);
+
+          // Create Modal for hover effect
+          if (!metroBG.length) {
+            metroBG = $('<div class="metro-modal"></div>').appendTo('body');
+          }
+          setTimeout(function () {
+            metroBG.fadeIn();
+          }, 380);
+        }
+
+      });
+
+    });
 
     angular.element(document).ready(function(){
         Core.init();
+
     });
     var hookEvents = function () {
       //vm.left_canvas.on('mouse:down', function (options) {
