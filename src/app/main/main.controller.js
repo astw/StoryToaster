@@ -25,37 +25,12 @@
     var currentCanvas = vm.left_canvas;
 
     $timeout(function(){
+
+
+
     });
     $scope.$on('$viewContentLoaded', function(){
 
-      // Sliding Topbar Metro Menu
-      var menu = $('#topbar-dropmenu');
-      var items = menu.find('.metro-tile');
-      var metroBG = $('.metro-modal');
-
-      // Toggle menu and active class on icon click
-      $('.topbar-menu-toggle').on('click', function () {
-
-        // If dropmenu is using alternate style we don't show modal
-        if (menu.hasClass('alt')) {
-          // Toggle menu and active class on icon click
-          menu.slideToggle(230).toggleClass('topbar-menu-open');
-          metroBG.fadeIn();
-        }
-        else {
-          menu.slideToggle(230).toggleClass('topbar-menu-open');
-          $(items).addClass('animated animated-short fadeInDown').css('opacity', 1);
-
-          // Create Modal for hover effect
-          if (!metroBG.length) {
-            metroBG = $('<div class="metro-modal"></div>').appendTo('body');
-          }
-          setTimeout(function () {
-            metroBG.fadeIn();
-          }, 380);
-        }
-
-      });
 
     });
 
