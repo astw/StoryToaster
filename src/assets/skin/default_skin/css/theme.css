@@ -19891,6 +19891,34 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
 #topbar.alt .breadcrumb {
   font-size: 14px;
 }
+
+/*#design-preview-panel {*/
+  /*z-index: 9999;*/
+  /*overflow: hidden;*/
+  /*display: none;*/
+  /*position: relative;*/
+  /*padding: 17px 20px 10px;*/
+  /*height: 100px;*/
+  /*width: 100%;*/
+  /*background: url("../../../img/patterns/topbar-bg.jpg") repeat -60px top;*/
+  /*-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4) inset;*/
+  /*box-shadow: 0 0 4px rgba(0, 0, 0, 0.4) inset;*/
+/*}*/
+
+.preview_panel {
+  opacity: 0;
+  display: block;
+  color: #FFF;
+  height: 100px;
+  position: relative;
+  padding: 15px 5px 0;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-transition: background 0.2s ease;
+  transition: background 0.2s ease;
+}
 /*===============================================
    C. Topbar Dropmenu
 ================================================= */
@@ -19915,6 +19943,7 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
   left: 0;
   background: rgba(0, 0, 0, 0.4);
 }
+
 .topbar-menu .metro-tile {
   opacity: 0;
   display: block;

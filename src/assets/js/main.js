@@ -386,6 +386,7 @@ var Core = function(options) {
       // Toggle menu and active class on icon click
       $('.topbar-menu-toggle').on('click', function() {
 
+        alert('sss');
          // If dropmenu is using alternate style we don't show modal
          if (menu.hasClass('alt')) {
             // Toggle menu and active class on icon click

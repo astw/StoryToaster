@@ -24,6 +24,12 @@
 
     var currentCanvas = vm.left_canvas;
 
+    $timeout(function(){
+      alert('dom read');
+    });
+    $scope.$on('$viewContentLoaded', function(){
+      alert('content loaded');
+    });
     vm.toggleSodebarMenu = function(){
       alert('ddd');
       //// Any menu item with the accordion class is a dropdown submenu. Thus we prevent default actions
