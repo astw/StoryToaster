@@ -132,6 +132,92 @@ app.directive('sideBarLeft', function () {
   }
 });
 
+app.directive('pageDesign', function ($window) {
+
+  return {
+    templateUrl: 'app/main/template/page-design.html',
+    link : function(scope, elem, attrs) {
+      scope.onResize = function() {
+        var w = ($(window).width() - 250 - 30) / 2 - 10;
+        //$(elem).width(w);
+        $('.page-big').width(w);
+      };
+
+      scope.onResize();
+
+      angular.element($window).bind('resize', function() {
+        scope.onResize();
+      })
+    }
+  }
+});
+
+app.directive('resize',function($window) {
+  return function (scope, element) {
+    var w = angular.element($window);
+    scope.getWindowDimensions = function () {
+      return {
+        'h': w.height(),
+        'w': w.width()
+      };
+    };
+
+    scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
+      scope.windowHeight = newValue.h;
+      scope.windowWidth = newValue.w;
+
+      var w = ($(window).width() - 250 - 30) / 2 - 10;
+      var h = w /1.375  ;
+      $('.page-big').width(w);
+      $('.page-big').height(h);
+      //$('.page-canvas').width(w - 100);
+      //$('.page-canvas').height(h);
+
+      $('element').width(w);
+    }, true);
+
+    w.bind('resize', function () {
+      console.log('resize ');
+      scope.$apply();
+    });
+  }
+})
+
+
+app.directive('resizeCanvas',function($window) {
+  return function (scope, element) {
+    var w = angular.element($window);
+    scope.getWindowDimensions = function () {
+      return {
+        'h': w.height(),
+        'w': w.width()
+      };
+    };
+
+    scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
+      scope.windowHeight = newValue.h;
+      scope.windowWidth = newValue.w;
+
+      var w = ($(window).width() - 250 - 30) / 2 - 10;
+      var h = w /1.375  ;
+      //$('.page-canvas').width(w - 100);
+      //$('.page-canvas').height(h);
+      //
+      //$('.page-canvas').attr('width',w);
+      //$('.page-canvas').attr('height',h);
+
+
+    }, true);
+
+    w.bind('resize', function () {
+      console.log('resize ');
+      scope.$apply();
+    });
+  }
+})
+
+
+
 
 //
 //

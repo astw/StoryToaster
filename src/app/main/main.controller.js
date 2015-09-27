@@ -29,13 +29,31 @@
 
 
     });
-    $scope.$on('$viewContentLoaded', function(){
+    $scope.$on('$viewContentLoaded', function(document){
+      var w  = ($(window).width() - 250 - 30) /2 -10 ;
+      console.log(w);
+      var wid = '{width:' + w + '}';
+      $('.page-big').width(w);
 
+      $('.page-canvas').attr('width',w);
+      //$('.page-canvas').attr('height',h);
 
+    //  var left = $('#left_canvas');
+    //  left.setAttribute('width',w);
     });
 
     angular.element(document).ready(function(){
-        Core.init();
+      //  Core.init();
+
+      console.log($(window).width()) ;
+      console.log($(window).height());
+      var left = $('#left_canvas');
+      var ct = left.get(0).getContext('2d');
+      var container = $(left).parent;
+      left.attr('width',500);
+     // left.attr('width',$(container).width());
+
+
 
     });
     var hookEvents = function () {

@@ -157,8 +157,8 @@
 
 .page-design-panel {
   position:relative;
-  left: 60px;
-  top:20px;
+  left: 0px;
+  top:10px;
   height: 420px;
   background-color: #55FFDF;
   float:left
@@ -167,21 +167,21 @@
 .page-big {
   position: relative;
   float: left;
-  width: 560px;
+  width: 610px;
   height: 400px;
   background-color: #FFFFDF;
   border:solid;
   border-width: 6px;
   border-color: #becfd5;
-  margin: 10px;
+  margin-left: 0px;
 }
 .active {
   border-color: #E76E34;
 }
 
 .page-canvas {
-  width: 550px;
-  height: 400px;
+  /*width: 550px;*/
+  /*height: 400px;*/
 }
 
 .left_panel {
