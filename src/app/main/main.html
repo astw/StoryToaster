@@ -17,57 +17,51 @@
     <!-- End: Topbar-Dropdown -->
 
     <!-- Start: Topbar -->
-    <header id="topbar" class="alt">
+    <header id="topbar" class="ph10">
       <div class="topbar-left">
-        <ol class="breadcrumb">
-          <li class="crumb-active">
-            <a href="dashboard.html">Dashboard</a>
+        <ul class="nav nav-list nav-list-topbar pull-left">
+          <li>
+            <button type="button" class="btn btn-rounded btn-warning btn-block">新建</button>
           </li>
-          <li class="crumb-icon">
-            <a href="dashboard.html">
-              <span class="glyphicon glyphicon-home"></span>
-            </a>
+          <li class="active">
+            <button type="button" class="btn btn-rounded btn-warning btn-block">复制</button>
           </li>
-          <li class="crumb-link">
-            <a href="index.html">Home</a>
+          <li>
+            <button type="button" class="btn btn-rounded btn-warning btn-block">删除</button>
           </li>
-          <li class="crumb-trail">Dashboard</li>
-        </ol>
+          <li>
+            <button type="button" class="btn btn-rounded btn-system btn-block">双页</button>
+          </li>
+          <li>
+            <button type="button" class="btn btn-rounded btn-system btn-block">单页</button>
+          </li>
+        </ul>
       </div>
-      <div class="topbar-right">
-        <div class="ib topbar-dropdown">
-          <label for="topbar-multiple" class="control-label pr10 fs11 text-muted">Reporting Period</label>
-          <select id="topbar-multiple" class="hidden">
-            <optgroup label="Filter By:">
-              <option value="1-1">Last 30 Days</option>
-              <option value="1-2" selected="selected">Last 60 Days</option>
-              <option value="1-3">Last Year</option>
-            </optgroup>
-          </select>
+      <div class="topbar-right hidden-xs hidden-sm">
+         <button type="button" class="btn ladda-button btn-warning" data-style="zoom-in">
+          <span class="ladda-label">保 存</span>
+          <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>
+        </button>
+        <button type="button" class="btn ladda-button btn-warning" data-style="zoom-in">
+          <span class="ladda-label">完 成</span>
+          <span class="ladda-spinner"></span><div class="ladda-progress" style="width: 0px;"></div>
+        </button>
         </div>
-        <div class="ml15 ib va-m" id="toggle_sidemenu_r">
-          <a href="#" class="pl5">
-            <i class="fa fa-sign-in fs22 text-primary"></i>
-            <span class="badge badge-danger badge-hero">3</span>
-          </a>
-        </div>
-      </div>
     </header>
     <!-- End: Topbar -->
 
     <!-- Begin: Content -->
     <section id="content" class="table-layout animated fadeIn">
-
-      <div class="tray tray-left">
-        <!--<h2 class="sub-header">Photo Design </h2>-->
-
-        <div class="row">
+      <div class="tray tray-center">
+         <div class="row">
           <div class="page-design-panel" page-design />
         </div>
+        <div class="row">
+          <butt>this is a button</butt>
+        </div>
+
       </div>
-
     </section>
-
 
     <!-- End: Content -->
     <!-- Begin: Page Footer -->
@@ -87,5 +81,34 @@
     <!-- End: Page Footer -->
   </section>
   <!-- End: Content-Wrapper -->
+
+  <!-- Ladda Loading Button JS -->
+  <script src="vendor/plugins/ladda/ladda.min.js"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function() {
+
+      // Init Ladda Plugin on buttons
+      Ladda.bind('.ladda-button', {
+        timeout: 2000
+      });
+
+      // Bind progress buttons and simulate loading progress. Note: Button still requires ".ladda-button" class.
+      Ladda.bind('.progress-button', {
+        callback: function(instance) {
+          var progress = 0;
+          var interval = setInterval(function() {
+            progress = Math.min(progress + Math.random() * 0.1, 1);
+            instance.setProgress(progress);
+
+            if (progress === 1) {
+              instance.stop();
+              clearInterval(interval);
+            }
+          }, 200);
+        }
+      });
+
+    });
+  </script>
 
 </div>

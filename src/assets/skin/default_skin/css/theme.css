@@ -20030,6 +20030,11 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
 #topbar .nav.nav-list-topbar {
   margin: -10px 15px;
 }
+
+#topbar .nav.nav-list-topbar li button{
+   margin:15px;
+}
+
 #topbar .nav.nav-list-topbar li a {
   padding: 16px 14px 12px;
 }

@@ -133,7 +133,7 @@ app.directive('sideBarLeft', function () {
 });
 
 app.directive('pageDesign',function($window){
-  var w = ($(window).width() - 250 - 30) / 2 - 10;
+  var w = ($(window).width() - 250 - 30) / 2 - 20;
   var h = w / 1.375;
 
   return {
