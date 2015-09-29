@@ -30,10 +30,10 @@
             <button type="button" class="btn btn-rounded btn-warning btn-block" ng-click="main.deleteObject()">删除</button>
           </li>
           <li>
-            <button type="button" class="btn btn-rounded btn-system btn-block">双页</button>
+            <button type="button" class="btn btn-rounded btn-system btn-block" ng-click="main.doublePage()">双页</button>
           </li>
           <li>
-            <button type="button" class="btn btn-rounded btn-system btn-block">单页</button>
+            <button type="button" class="btn btn-rounded btn-system btn-block" ng-click="main.singlePage()">单页</button>
           </li>
 
           <li>
@@ -64,12 +64,11 @@
     <section id="content" class="table-layout animated fadeIn">
       <div class="tray tray-center">
          <div class="row">
-          <div class="page-design-panel" page-design />
-        </div>
-        <div class="row">
-          <butt>this is a button</butt>
-        </div>
+          <!--<div class="page-design-panel" page-design />-->
+           <div ng-if= "main.doublePagesInDesign == true" class="page-design-panel"  double-design-page />
+           <div ng-if= "main.doublePagesInDesign == false" class="page-design-panel"  left-design-page />
 
+         </div>
       </div>
     </section>
 

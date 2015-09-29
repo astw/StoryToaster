@@ -14,6 +14,7 @@
     vm.PhotoBook = new PhotoBook();
     var totalPages = vm.PhotoBook.totalPage;
     var pagesInDesignView = 2;   // how many pages in the design
+    vm.doublePagesInDesign = true;
 
     vm.currentPage = vm.PhotoBook.pages[0];
     vm.currentPage.active = true;
@@ -119,9 +120,21 @@
       restoreToCurrentDesignData();
     };
 
+    vm.singlePage = function(){
+      vm.doublePagesInDesign = false;
+      vm.left_canvas = new fabric.Canvas('left_canvas');
+      vm.right_canvas = new fabric.Canvas('right_canvas');
+    };
+
+    vm.doublePage = function(){
+       vm.doublePagesInDesign = true;
+      vm.left_canvas = new fabric.Canvas('left_canvas');
+      vm.right_canvas = new fabric.Canvas('right_canvas');
+    };
+
     var backCurrentDesignData = function () {
       vm.PhotoBook.leftDesignPage.imageData = JSON.stringify(vm.left_canvas);
-      if (pagesInDesignView == 2 && vm.PhotoBook.rightDesignPage) {
+      if (vm.doublePagesInDesign && vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);
       }
       generatePreviewImage();
@@ -138,7 +151,7 @@
           });
       }
 
-      if (pagesInDesignView == 2 && vm.PhotoBook.rightDesignPage) {
+      if (vm.doublePagesInDesign && vm.PhotoBook.rightDesignPage) {
         var rightData = vm.PhotoBook.rightDesignPage.imageData;
         if (rightData)
           vm.right_canvas.loadFromJSON(rightData, vm.right_canvas.renderAll.bind(vm.right_canvas), function () {
@@ -148,7 +161,7 @@
 
     var generatePreviewImage = function () {
       vm.PhotoBook.leftDesignPage.previewImage = vm.left_canvas.toDataURL();
-      if (pagesInDesignView == 2 && vm.PhotoBook.rightDesignPage) {
+      if (vm.doublePagesInDesign && vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.previewImage = vm.right_canvas.toDataURL();
       }
     };

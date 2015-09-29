@@ -93,7 +93,9 @@
   border:3px solid #c9dbe1 ;
   background-color: #FFFFFF;
 }
-
+.page-preview.active{
+  background-color: #F5B025;
+}
 .page-number-left{
   float:left;
   font-size: small;
