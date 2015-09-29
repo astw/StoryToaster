@@ -175,15 +175,15 @@ app.directive('doubleDesignPage',function($window){
   var h = w / 1.375;
 
   var leftCanvas = '<div class="page-design-panel" resize> ' +
-    ' <div class="page-big" ng-class="{active:main.PhotoBook.leftDesignPage.active}"> ' +
-    ' <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.selectLeft()" id="left_canvas" width="'+ w  + 'px" ' +
+    ' <div class="page-big" ng-click="main.selectLeft()" ng-class="{active:main.PhotoBook.leftDesignPage.active}"> ' +
+    ' <canvas class="page-canvas" crossOrigin="Anonymous" id="left_canvas" width="'+ w  + 'px" ' +
     ' height="'+ h +'px"></canvas> ';
 
   var canvasTemplate = leftCanvas;
 
   var rightCanvs = ' </div> ' +
-      ' <div class="page-big" ng-class="{active:main.PhotoBook.rightDesignPage.active}"> ' +
-      ' <canvas class="page-canvas" crossOrigin="Anonymous"  ng-click="main.selectRight()" id="right_canvas" width="'+ w  + 'px" ' +
+      ' <div class="page-big" ng-click="main.selectRight()" ng-class="{active:main.PhotoBook.rightDesignPage.active}"> ' +
+      ' <canvas class="page-canvas" crossOrigin="Anonymous"   id="right_canvas" width="'+ w  + 'px" ' +
       ' height="'+ h +'px"></canvas> ' +
       '</div>  </div>';
 
@@ -197,7 +197,12 @@ app.directive('doubleDesignPage',function($window){
         h = w / 1.375;
         //$(elem).width(w);
         $('.page-big').width(w);
-        $('.page-big').height(h);
+        $('.page-big').height(h);    
+
+        scope.main.left_canvas = new fabric.Canvas('left_canvas');
+        scope.main.right_canvas = new fabric.Canvas('right_canvas');
+        scope.main.currentCanvas = scope.main.left_canvas;
+
       };
       scope.onResize();
 

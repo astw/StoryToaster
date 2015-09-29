@@ -19,9 +19,9 @@
     vm.currentPage = vm.PhotoBook.pages[0];
     vm.currentPage.active = true;
 
-    vm.left_canvas = new fabric.Canvas('left_canvas');
-    vm.right_canvas = new fabric.Canvas('right_canvas');
-    vm.left_canvas.active = true;
+    // vm.left_canvas = new fabric.Canvas('left_canvas');
+    // vm.right_canvas = new fabric.Canvas('right_canvas');
+    // vm.left_canvas.active = true;
 
     var currentCanvas = vm.left_canvas;
 
@@ -34,6 +34,10 @@
 
     angular.element(document).ready(function(){
       //  Core.init();
+
+      // vm.left_canvas = new fabric.Canvas('left_canvas');
+      // vm.right_canvas = new fabric.Canvas('right_canvas');
+
     });
     var hookEvents = function () {
       //vm.left_canvas.on('mouse:down', function (options) {
@@ -75,7 +79,7 @@
         currentCanvas = vm.right_canvas;
       }
 
-      imageUrl = "http://192.168.0.14:3000" + imageUrl;
+      imageUrl = "http://localhost:3000" + imageUrl;
       fabric.Image.fromURL(imageUrl, function (img) {
         currentCanvas.add(img);
         //currentCanvas.page.previewImage = currentCanvas.toDataURL();
@@ -122,14 +126,16 @@
 
     vm.singlePage = function(){
       vm.doublePagesInDesign = false;
-      vm.left_canvas = new fabric.Canvas('left_canvas');
-      vm.right_canvas = new fabric.Canvas('right_canvas');
+      // vm.left_canvas = new fabric.Canvas('left_canvas');
+      // vm.right_canvas = new fabric.Canvas('right_canvas');
+      $scope.safeApply();
     };
 
     vm.doublePage = function(){
        vm.doublePagesInDesign = true;
-      vm.left_canvas = new fabric.Canvas('left_canvas');
-      vm.right_canvas = new fabric.Canvas('right_canvas');
+      // vm.left_canvas = new fabric.Canvas('left_canvas');
+      // vm.right_canvas = new fabric.Canvas('right_canvas');
+      $scope.safeApply();
     };
 
     var backCurrentDesignData = function () {
