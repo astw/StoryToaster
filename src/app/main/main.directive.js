@@ -202,6 +202,7 @@ app.directive('doubleDesignPage',function($window){
         scope.main.left_canvas = new fabric.Canvas('left_canvas');
         scope.main.right_canvas = new fabric.Canvas('right_canvas');
         scope.main.currentCanvas = scope.main.left_canvas;
+        scope.main.restoreToCurrentDesignData();
 
       };
       scope.onResize();
