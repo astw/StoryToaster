@@ -108,7 +108,7 @@
         currentCanvas = vm.right_canvas;
         vm.PhotoBook.rightDesignPage = page;
       }
-      restoreToCurrentDesignData();
+      vm.restoreToCurrentDesignData();
     };
 
     vm.nextPage = function () {
@@ -116,26 +116,32 @@
       vm.right_canvas.clear();
       vm.PhotoBook.MoveToNextPage();
 
-      restoreToCurrentDesignData();
+      vm.restoreToCurrentDesignData();
     };
 
     vm.previousPage = function (currentIndex) {
       vm.PhotoBook.MoveToPreviousPage();
-      restoreToCurrentDesignData();
+      vm.restoreToCurrentDesignData();
     };
 
     vm.singlePage = function(){
       vm.doublePagesInDesign = false;
-      // vm.left_canvas = new fabric.Canvas('left_canvas');
-      // vm.right_canvas = new fabric.Canvas('right_canvas');
-      $scope.safeApply();
+     //
+     // var leftCanvas =
+     //   ' <div class="page-big" id="leftPage" ng-class="{active:main.PhotoBook.leftDesignPage.active}"> ' +
+     //   ' <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.selectLeft()" id="left_canvas" width="'+ w  + 'px" ' +
+     //   ' height="'+ h +'px"></canvas> ';
+
+      //var leftDesignPage = $('#leftPage');
+      //var designPagePanel = $('#pageDesignPanel');
+      //var pageBigs = $('.page-big');
+      //designPagePanel.remove('.page-big');
+      //$scope.safeApply();
     };
 
     vm.doublePage = function(){
        vm.doublePagesInDesign = true;
-      // vm.left_canvas = new fabric.Canvas('left_canvas');
-      // vm.right_canvas = new fabric.Canvas('right_canvas');
-      $scope.safeApply();
+       $scope.safeApply();
     };
 
     var backCurrentDesignData = function () {
@@ -146,7 +152,7 @@
       generatePreviewImage();
     };
 
-    var restoreToCurrentDesignData = function () {
+    vm.restoreToCurrentDesignData = function () {
       vm.left_canvas.clear();
       vm.right_canvas.clear();
 
@@ -193,14 +199,14 @@
       backCurrentDesignData();
 
       vm.PhotoBook.copyPage(vm.currentPage);
-      restoreToCurrentDesignData();
+      vm.restoreToCurrentDesignData();
     };
 
     vm.deletePage = function () {
        vm.left_canvas.clear();
       vm.right_canvas.clear()
       vm.PhotoBook.deletePage(vm.currentPage);
-      restoreToCurrentDesignData();
+      vm.restoreToCurrentDesignData();
     };
 
     vm.saveToServe = function () {

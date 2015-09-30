@@ -136,7 +136,7 @@ app.directive('pageDesign',function($window){
   var w = ($(window).width() - 250 - 30) / 2 - 20;
   var h = w / 1.375;
 
-  var leftCanvas = '<div class="page-design-panel" resize> ' +
+  var leftCanvas = '<div class="page-design-panel" id="pageDesignPanel" resize> ' +
     ' <div class="page-big" ng-class="{active:main.PhotoBook.leftDesignPage.active}"> ' +
     ' <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.selectLeft()" id="left_canvas" width="'+ w  + 'px" ' +
     ' height="'+ h +'px"></canvas> ';
@@ -174,15 +174,17 @@ app.directive('doubleDesignPage',function($window){
   var w = ($(window).width() - 250 - 30) / 2 - 20;
   var h = w / 1.375;
 
-  var leftCanvas = '<div class="page-design-panel" resize> ' +
+  var leftCanvas =
+    ' <div class="page-design-panel" id="pageDesignPanel" resize> ' +
     ' <div class="page-big" ng-click="main.selectLeft()" ng-class="{active:main.PhotoBook.leftDesignPage.active}"> ' +
     ' <canvas class="page-canvas" crossOrigin="Anonymous" id="left_canvas" width="'+ w  + 'px" ' +
-    ' height="'+ h +'px"></canvas> ';
+    ' height="'+ h +'px"></canvas>' +
+    ' </div> ';
 
   var canvasTemplate = leftCanvas;
 
-  var rightCanvs = ' </div> ' +
-      ' <div class="page-big" ng-click="main.selectRight()" ng-class="{active:main.PhotoBook.rightDesignPage.active}"> ' +
+  var rightCanvs =
+    ' <div class="page-big" ng-click="main.selectRight()" ng-class="{active:main.PhotoBook.rightDesignPage.active}"> ' +
       ' <canvas class="page-canvas" crossOrigin="Anonymous"   id="right_canvas" width="'+ w  + 'px" ' +
       ' height="'+ h +'px"></canvas> ' +
       '</div>  </div>';
@@ -190,26 +192,30 @@ app.directive('doubleDesignPage',function($window){
     canvasTemplate += rightCanvs;
 
     return {
-    template: canvasTemplate,
+    template: canvasTemplate
+     ,
      link : function(scope, elem, attrs) {
-      scope.onResize = function() {
+
+       console.log('doubleDesignPage created');
+
+     scope.onResize = function() {
         var w = ($(window).width() - 250 - 30) / 2 - 20;
         h = w / 1.375;
         //$(elem).width(w);
         $('.page-big').width(w);
-        $('.page-big').height(h);    
+        $('.page-big').height(h);
 
         scope.main.left_canvas = new fabric.Canvas('left_canvas');
         scope.main.right_canvas = new fabric.Canvas('right_canvas');
         scope.main.currentCanvas = scope.main.left_canvas;
-        scope.main.restoreToCurrentDesignData();
+        //scope.main.restoreToCurrentDesignData();
 
-      };
-      scope.onResize();
+     };
+     scope.onResize();
 
-      angular.element($window).bind('resize', function() {
+     angular.element($window).bind('resize', function() {
         scope.onResize();
-      })
+     })
     }
   }
 });
@@ -221,19 +227,26 @@ app.directive('leftDesignPage',function($window){
   var leftCanvas = '<div class="page-design-panel" resize> ' +
     ' <div class="page-big" ng-class="{active:main.PhotoBook.leftDesignPage.active}"> ' +
     ' <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.selectLeft()" id="left_canvas" width="'+ w  + 'px" ' +
-    ' height="'+ h +'px"></canvas> ';
+    ' height="'+ h +'px"></canvas> ' +
+    '</div>' ;
 
   var canvasTemplate = leftCanvas;
 
   return {
     template: canvasTemplate,
     link : function(scope, elem, attrs) {
+
+      console.log('leftDesignPage created');
       scope.onResize = function() {
         var w = ($(window).width() - 250 - 30) / 2 - 20;
         h = w / 1.375;
         //$(elem).width(w);
         $('.page-big').width(w);
         $('.page-big').height(h);
+
+        scope.main.left_canvas = new fabric.Canvas('left_canvas');
+        scope.main.currentCanvas = scope.main.left_canvas;
+        //scope.main.restoreToCurrentDesignData();
       };
       scope.onResize();
 
