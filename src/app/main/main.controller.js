@@ -125,23 +125,13 @@
     };
 
     vm.singlePage = function(){
+      $('#pageDesignPanel')[0].innerHTML ="";
       vm.doublePagesInDesign = false;
-     //
-     // var leftCanvas =
-     //   ' <div class="page-big" id="leftPage" ng-class="{active:main.PhotoBook.leftDesignPage.active}"> ' +
-     //   ' <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.selectLeft()" id="left_canvas" width="'+ w  + 'px" ' +
-     //   ' height="'+ h +'px"></canvas> ';
-
-      //var leftDesignPage = $('#leftPage');
-      //var designPagePanel = $('#pageDesignPanel');
-      //var pageBigs = $('.page-big');
-      //designPagePanel.remove('.page-big');
-      //$scope.safeApply();
     };
 
     vm.doublePage = function(){
+      $('#pageDesignPanel')[0].innerHTML ="";
        vm.doublePagesInDesign = true;
-       $scope.safeApply();
     };
 
     var backCurrentDesignData = function () {
@@ -153,8 +143,8 @@
     };
 
     vm.restoreToCurrentDesignData = function () {
-      vm.left_canvas.clear();
-      vm.right_canvas.clear();
+      //vm.left_canvas.clear();
+      //vm.right_canvas.clear();
 
       if(vm.PhotoBook.leftDesignPage) {
         var leftData = vm.PhotoBook.leftDesignPage.imageData;
