@@ -171,8 +171,15 @@ angular.module('storyToaster')
           return;
         }
 
-        this.leftDesignPage = this.getPageByIndex(index - 2);
-        this.rightDesignPage = this.getPageByIndex(index - 1);
+        if(this.pagesInDesign == 2) {
+          index -= 2;
+        }
+        else if(this.pagesInDesign ==1){
+          index -= 1;
+        }
+
+        this.leftDesignPage = this.getPageByIndex(index);
+        this.rightDesignPage = this.getPageByIndex(index);
 
         if(left == true){
           this.setPageActive(this.leftDesignPage);
@@ -194,8 +201,15 @@ angular.module('storyToaster')
              return;
         }
 
-        this.leftDesignPage = this.getPageByIndex(index + 2);
-        this.rightDesignPage = this.getPageByIndex(index + 3);
+        if(this.pagesInDesign == 2) {
+            index += 2;
+        }
+        else if(this.pagesInDesign ==1){
+            index += 1;
+        }
+
+        this.leftDesignPage = this.getPageByIndex(index);
+        this.rightDesignPage = this.getPageByIndex(index + 1);
 
         if(left == true && this.leftDesignPage || !this.rightDesignPage){
           this.setPageActive(this.leftDesignPage);

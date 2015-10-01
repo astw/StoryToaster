@@ -114,6 +114,7 @@
     vm.nextPage = function () {
       vm.left_canvas.clear();
       vm.right_canvas.clear();
+
       vm.PhotoBook.MoveToNextPage();
 
       vm.restoreToCurrentDesignData();
@@ -127,11 +128,13 @@
     vm.singlePage = function(){
       $('#pageDesignPanel')[0].innerHTML ="";
       vm.doublePagesInDesign = false;
+      vm.PhotoBook.pagesInDesign = 1;
     };
 
-    vm.doublePage = function(){
-      $('#pageDesignPanel')[0].innerHTML ="";
-       vm.doublePagesInDesign = true;
+    vm.doublePage = function() {
+      $('#pageDesignPanel')[0].innerHTML = "";
+      vm.doublePagesInDesign = true;
+      vm.PhotoBook.pagesInDesign = 2
     };
 
     var backCurrentDesignData = function () {
