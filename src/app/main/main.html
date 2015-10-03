@@ -30,17 +30,24 @@
             <button type="button" class="btn btn-rounded btn-warning btn-block" ng-click="main.deleteObject()">删除</button>
           </li>
           <li>
-            <button type="button" class="btn btn-rounded btn-system btn-block" ng-click="main.doublePage()">双页</button>
+            <button type="button" ng-init="main.doublePagesInDesign = true" class="btn btn-rounded btn-system btn-block"
+                    ng-hide ="doublePagesInDesign == true"
+                    ng-click="main.doublePage()">双页</button>
           </li>
           <li>
-            <button type="button" class="btn btn-rounded btn-system btn-block" ng-click="main.singlePage()">单页</button>
+            <button type="button"  ng-init="main.doublePagesInDesign = true"  class="btn btn-rounded btn-system btn-block"
+                    ng-hide ="doublePagesInDesign == false"
+                    ng-click="main.singlePage()">单页</button>
           </li>
 
           <li>
-            <button type="button" ng-click="main.previousPage()" class="btn btn-rounded btn-warning btn-block">前一页</button>
+            <button type="button" ng-click="main.previousPage()"
+                    class="btn btn-rounded btn-warning btn-block">前一页
+            </button>
           </li>
           <li class="active">
-            <button type="button" ng-click="main.nextPage()" class="btn btn-rounded btn-warning btn-block" >下一页</button>
+            <button type="button" ng-click="main.nextPage()"
+                    class="btn btn-rounded btn-warning btn-block" >下一页</button>
           </li>
 
 
@@ -65,8 +72,8 @@
       <div class="tray tray-center">
          <div class="row">
           <!-- <div class="page-design-panel" page-design /> -->
-           <div ng-if= "main.doublePagesInDesign == true" class="page-design-panel"   double-design-page />
-           <div ng-if= "main.doublePagesInDesign == false" class="page-design-panel"  left-design-page />
+           <div ng-if= "main.doublePagesInDesign == true"    double-design-page />
+           <div ng-if= "main.doublePagesInDesign == false"  left-design-page />
 
          </div>
       </div>

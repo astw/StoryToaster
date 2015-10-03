@@ -159,11 +159,12 @@
 
 .page-design-panel {
   position:relative;
-  left: 0px;
+  /*left: 0px;*/
+  margin:auto;
   top:10px;
   height: 420px;
   background-color: transparent;
-  float:left
+  /*float:left*/
 }
 
 .page-big {

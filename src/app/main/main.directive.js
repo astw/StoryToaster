@@ -132,44 +132,6 @@ app.directive('sideBarLeft', function () {
   }
 });
 
-app.directive('pageDesign',function($window){
-  var w = ($(window).width() - 250 - 30) / 2 - 20;
-  var h = w / 1.375;
-
-  var leftCanvas = '<div class="page-design-panel" id="pageDesignPanel" resize> ' +
-    ' <div class="page-big" ng-class="{active:main.PhotoBook.leftDesignPage.active}"> ' +
-    ' <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.selectLeft()" id="left_canvas" width="'+ w  + 'px" ' +
-    ' height="'+ h +'px"></canvas> ';
-
-  var canvasTemplate = leftCanvas;
-
-  var rightCanvs = ' </div> ' +
-    ' <div class="page-big" ng-class="{active:main.PhotoBook.rightDesignPage.active}"> ' +
-    ' <canvas class="page-canvas" crossOrigin="Anonymous"  ng-click="main.selectRight()" id="right_canvas" width="'+ w  + 'px" ' +
-    ' height="'+ h +'px"></canvas> ' +
-    '</div>  </div>';
-
-  canvasTemplate += rightCanvs;
-
-  return {
-    template: canvasTemplate,
-    link : function(scope, elem, attrs) {
-      scope.onResize = function() {
-        var w = ($(window).width() - 250 - 30) / 2 - 20;
-        h = w / 1.375;
-        //$(elem).width(w);
-        $('.page-big').width(w);
-        $('.page-big').height(h);
-      };
-      scope.onResize();
-
-      angular.element($window).bind('resize', function() {
-        scope.onResize();
-      })
-    }
-  }
-})
-
 app.directive('doubleDesignPage',function($window){
   var w = ($(window).width() - 250 - 30) / 2 - 20;
   var h = w / 1.375;
@@ -208,7 +170,7 @@ app.directive('doubleDesignPage',function($window){
         scope.main.left_canvas = new fabric.Canvas('left_canvas');
         scope.main.right_canvas = new fabric.Canvas('right_canvas');
         scope.main.currentCanvas = scope.main.left_canvas;
-        //scope.main.restoreToCurrentDesignData();
+        scope.main.restoreToCurrentDesignData();
 
      };
      scope.onResize();
@@ -221,7 +183,7 @@ app.directive('doubleDesignPage',function($window){
 });
 
 app.directive('leftDesignPage',function($window){
-  var w = ($(window).width() - 250 - 30)  - 20;
+  var w = ($(window).width() - 250 - 30) / 2 - 20;
   var h = w / 1.375;
 
   var leftCanvas =
@@ -238,10 +200,9 @@ app.directive('leftDesignPage',function($window){
     template: canvasTemplate,
     link : function(scope, elem, attrs) {
 
-      console.log('leftDesignPage created');
       scope.onResize = function() {
         var w = ($(window).width() - 250 - 30) / 2 - 20;
-        h = w / 1.375;
+        var h = w / 1.375;
 
         scope.main.left_canvas = new fabric.Canvas('left_canvas');
         scope.main.currentCanvas = scope.main.left_canvas;
@@ -251,36 +212,8 @@ app.directive('leftDesignPage',function($window){
 
       angular.element($window).bind('resize', function() {
         scope.onResize();
+        scope.$apply();
       })
     }
   }
 });
-
-//
-//
-//(function() {
-//  'use strict';
-//  angular
-//    .module('storyToaster')
-//    .directive('pageDesignSidebar', pageDesignSidebar);
-//
-//  /** @ngInject */
-//  function pageDesignSidebar() {
-//    var directive = {
-//      restrict: 'E',
-//      templateUrl: 'app/main/page-design-sidebar.html',
-//      scope: {
-//        creationDate: '='
-//      },
-//      controller: function($scope) {
-//
-//
-//      },
-//      controllerAs: 'vm',
-//      bindToController: false
-//    };
-//
-//    return directive;
-//  }
-//
-//})();

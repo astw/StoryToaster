@@ -15,6 +15,7 @@
     var totalPages = vm.PhotoBook.totalPage;
     var pagesInDesignView = 2;   // how many pages in the design
     vm.doublePagesInDesign = true;
+    $scope.doublePagesInDesign = true;
 
     vm.currentPage = vm.PhotoBook.pages[0];
     vm.currentPage.active = true;
@@ -126,14 +127,27 @@
     };
 
     vm.singlePage = function(){
+      if(vm.doublePagesInDesign == true)
+      {
+        vm.doublePagesInDesign = false;
+        $scope.doublePagesInDesign = false;
+      }
+      else
+        return;
+
       $('#pageDesignPanel')[0].innerHTML ="";
-      vm.doublePagesInDesign = false;
       vm.PhotoBook.pagesInDesign = 1;
     };
 
     vm.doublePage = function() {
+      if(vm.doublePagesInDesign == false){
+        vm.doublePagesInDesign = true;
+        $scope.doublePagesInDesign = true;
+      }
+      else
+       return;
+
       $('#pageDesignPanel')[0].innerHTML = "";
-      vm.doublePagesInDesign = true;
       vm.PhotoBook.pagesInDesign = 2
     };
 
