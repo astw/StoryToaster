@@ -230,6 +230,8 @@ angular.module('storyToaster')
 
       this.saveToServer = function(){
 
+        var deferred = Q.defer();
+
         var dataString = JSON.stringify(this);
 
         var obj = JSON.parse(dataString);
@@ -253,9 +255,12 @@ angular.module('storyToaster')
               this.id = res.data.id;
               console.log('------ save good');
               console.log(res.data);
+              return deferred.resolve(res.data);
             },
             function (err) {
               console.log(err);
+              return deferred.reject(err);
+
             })
         }
         else {
@@ -264,12 +269,16 @@ angular.module('storyToaster')
           this.title = "this is changed title" + Date.now().toString();
           bookRepository.updateBook(obj).then(
             function (res) {
-               console.log(' update book good' + res.data.title);
+              console.log(' update book good' + res.data.title);
+              return deferred.resolve(res.data);
             },
             function (err) {
               console.log(err);
+              return deferred.reject(err);
             })
         }
+
+        return deferred.promise;
       }
     };
 

@@ -99,6 +99,7 @@
       currentCanvas.add(txtBox);
     };
     vm.previewClick = function (page,which) {
+      backCurrentDesignData();
       vm.PhotoBook.setPageActive(page);
       if (which === 'left') {
         currentCanvas = vm.left_canvas;
@@ -109,6 +110,9 @@
         currentCanvas = vm.right_canvas;
         vm.PhotoBook.rightDesignPage = page;
       }
+      vm.left_canvas.clear();
+      vm.right_canvas.clear();
+
       vm.restoreToCurrentDesignData();
     };
 
@@ -160,8 +164,6 @@
     };
 
     vm.restoreToCurrentDesignData = function () {
-      //vm.left_canvas.clear();
-      //vm.right_canvas.clear();
 
       if(vm.PhotoBook.leftDesignPage) {
         var leftData = vm.PhotoBook.leftDesignPage.imageData;
