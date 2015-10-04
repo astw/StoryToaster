@@ -5,9 +5,9 @@
   angular
     .module('storyToaster')
     .constant('config', {
-      authTokenName:'auth-token',
+      authTokenName:'Authorization',
       apiKeyName: 'clientkey',
       apiKeyValue:'test key for local',
-      apiRootPath: 'http://localhost:1337/v1/'
+      apiRootPath: 'http://localhost:1337/'
     });
 })();

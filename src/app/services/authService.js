@@ -77,7 +77,7 @@ angular.module('storyToaster')
     this.login = function (email, password) {
       var dfd = $q.defer();
 
-      var url = API_URL + "login";
+      var url = API_URL + "auth/login";
       var message = {email: email, password: password};
       $http.post(url,
         message,
