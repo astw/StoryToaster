@@ -24,7 +24,8 @@
       })
       .when('/account/register',{
         templateUrl:'app/account/register.html',
-        controller:'AccountController'
+        controller:'AccountController',
+        controllerAs:'account'
       })
       .otherwise({
         redirectTo: '/home'

@@ -82,10 +82,12 @@ app.directive('navBar2', function ($timeout) {
 });
 
 
-app.directive('loggedUserPanel', function ($timeout) {
+app.directive( 'loggedUserPanel', function ($timeout) {
 
   return {
     templateUrl: 'app/components/navbar/loggedUserPanel.html',
+    controller:'AccountController',
+    controllerAs:'account',
     link : function(scope, element, attrs) {
       if (attrs) { scope.$eval(attrs.afterRender) }
        scope.$emit('onAfterRender');

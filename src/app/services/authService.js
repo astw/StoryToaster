@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('storyToaster')
-.service('auth',function($http,$window,$q, $location,authToken, $cookieStore,relayService) {
+.service('authService',function($http,$window,$q, $location,authToken, $cookieStore,relayService) {
 
     var API_URL = 'http://localhost:1337/auth/';
     var clientkey = "this is the client key";

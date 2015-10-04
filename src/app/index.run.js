@@ -1,14 +1,61 @@
+
 (function() {
   'use strict';
 
-  angular
-    .module('storyToaster')
-    .run(runBlock);
+  angular.module('storyToaster').run(runBlock);
 
   /** @ngInject */
-  function runBlock($log) {
+  function runBlock($log, $rootScope, $http, $location, config, authService, relayService) {
+
+    $http.defaults.headers.common[config.apiKeyName] = config.apiKeyValue;
+    $http.defaults.headers.common[config.authTokenName] =  authService.getAuthToken();
+
+    //incase refresh, make sure we are auth'd
+    $rootScope.app.isAuthenticated = authService.isAuthenticated();
+    $rootScope.app.userName = authService.getUserName();
+
+
+    // get env
+    $http.get(config.apiRootPath + 'env').then(function (res) {
+      $rootScope.env = res.data.env;
+    }, function (res) {
+      console.log(res);
+    });
+
+    $rootScope.$on('$routeChangeStart', function(event,next,current){
+        //check the auth cookie
+        var logged = authService.isAuthenticated();
+        if( ! logged &&  next && next.secure) {
+          event.preventDefault();
+
+          if($location.search())
+            relayService.putKeyValue('searchCondition', $location.search());
+
+          $rootScope.currentPath = $location.path();
+
+          $log.debug('get auth token from cookie');
+          $log.debug(current);
+          $log.debug(next);
+
+          $rootScope.$evalAsync(function(){
+            $location.path("/account/login");
+          })
+        }
+      }
+    );
+
+    $rootScope.$on("$routeChangeSuccess", function(event, current, previous){
+      $location.search(relayService.getKeyValue('searchCondition'))
+    });
+
+    //// Asynchronously fetch the locales at the startup.
+    //localeService.getLocales();
+    //
+    //// Asynchronously fetch the users at the startup.
+    //userService.getUsers();
 
     $log.debug('runBlock end');
   }
+
 
 })();
