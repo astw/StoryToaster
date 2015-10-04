@@ -81,7 +81,6 @@ app.directive('navBar2', function ($timeout) {
   }
 });
 
-
 app.directive( 'loggedUserPanel', function ($timeout) {
 
   return {
@@ -217,5 +216,11 @@ app.directive('leftDesignPage',function($window){
         scope.$apply();
       })
     }
+  }
+});
+
+app.directive('topBarCommand',function($window){
+  return {
+    templateUrl: 'app/main/template/topCommandBar.html'
   }
 });

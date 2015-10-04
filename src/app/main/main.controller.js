@@ -156,6 +156,7 @@
     };
 
     var backCurrentDesignData = function () {
+      if(!vm.PhotoBook || !vm.PhotoBook || !vm.PhotoBook.leftDesignPage) return ;
       vm.PhotoBook.leftDesignPage.imageData = JSON.stringify(vm.left_canvas);
       if (vm.doublePagesInDesign && vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);
