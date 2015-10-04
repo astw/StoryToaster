@@ -1,27 +1,49 @@
 'use strict'
 
 angular.module('storyToaster')
-.service('authService',function($http,$window,$q, $location,authToken, $cookieStore,relayService) {
+.service('authService',function($http,$window,$q, $location, $cookieStore,relayService,authToken, config) {
 
-    var API_URL = 'http://localhost:1337/auth/';
-    var clientkey = "this is the client key";
     var cookieKey = "storyToaster";
+    var API_URL = config.apiRootPath;
+    var clientKey = config.apiKeyValue;
+
+    this.getAuthToken = function () {
+      return authToken.getToken();
+    };
+
+    this.getUserName = function () {
+      return relayService.getKeyValue('userName');
+    };
+
+    this.logout = function () {
+      authToken.removeToken();
+      relayService.clearKeyValue('userName');
+    };
+
+    this.isAuthenticated = function () {
+      var token = authToken.getToken();
+      if (token) {
+        return true;
+      }
+      else
+        return false;
+    };
 
     function authSuccessful(data) {
       authToken.setToken(data.token);
-      $cookieStore.put(cookieKey,data.user);
+      $cookieStore.put(cookieKey, data.user);
     }
 
     var headers =
     {
-      clientkey: clientkey
+      clientkey: clientKey
     };
 
-    this.register = function(email,userName,password,password2){
+    this.register = function (email, userName, password, password2) {
       var dfd = $q.defer();
 
       var url = API_URL + "register";
-      var message = {email: email,userName:userName, password: password, password2:password2};
+      var message = {email: email, userName: userName, password: password, password2: password2};
       $http.post(url,
         message,
         {headers: headers}
@@ -32,21 +54,21 @@ angular.module('storyToaster')
 
           dfd.resolve(res);
         },
-      function(err){
-        dfd.reject(err);
-      });
+        function (err) {
+          dfd.reject(err);
+        });
 
       return dfd.promise;
     };
 
-    this.checkEmailExistance = function(email){
+    this.checkEmailExistance = function (email) {
       var dfd = $q.defer();
 
       var url = API_URL + "checkemail/" + email;
       $http.get(url,
         {headers: headers}
       ).then(function (res) {
-           dfd.resolve(res);
+          dfd.resolve(res);
         });
 
       return dfd.promise;
@@ -84,7 +106,7 @@ angular.module('storyToaster')
     this.isAuthenticated = function () {
       return !!authToken.getToken();
     };
-    this.sessionToken = function(){
+    this.sessionToken = function () {
       return authToken.getToken();
     }
   });

@@ -4,12 +4,10 @@
 
   angular
     .module('storyToaster')
-    .constant('malarkey', malarkey)
-    .constant('moment', moment)
     .constant('config', {
-      authTokenName: 'auth-token',
+      authTokenName:'auth-token',
       apiKeyName: 'clientkey',
-      apiKeyValue: 'test key',
-      apiRootPath: 'http://localhost:1337'
+      apiKeyValue:'test key for local',
+      apiRootPath: 'http://localhost:1337/v1/'
     });
 })();

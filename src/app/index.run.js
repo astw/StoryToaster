@@ -11,8 +11,8 @@
     $http.defaults.headers.common[config.authTokenName] =  authService.getAuthToken();
 
     //incase refresh, make sure we are auth'd
-    $rootScope.app.isAuthenticated = authService.isAuthenticated();
-    $rootScope.app.userName = authService.getUserName();
+    //$rootScope.app.isAuthenticated = authService.isAuthenticated();
+    //$rootScope.app.userName = authService.getUserName();
 
 
     // get env
