@@ -224,3 +224,10 @@ app.directive('topBarCommand',function($window){
     templateUrl: 'app/main/template/topCommandBar.html'
   }
 });
+
+
+app.directive('fronCoverDesign',function($window){
+  return {
+    templateUrl: 'app/main/template/front-cover-design.html'
+  }
+});
