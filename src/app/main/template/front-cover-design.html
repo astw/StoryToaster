@@ -1,20 +1,30 @@
-<div class="page-design-panel" resize>
-  <div class="page-big" ng-class="{active:main.PhotoBook.frontCover.active}">
+<div class="page-design-panel container" resize>
+  <div class="page-big col-md-6" ng-class="{active:main.PhotoBook.frontCover.active}">
     <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.frontCoverClick()" id="left_canvas" width="549px"
             height="389px"></canvas>
   </div>
 
-  <div class="page-big">
-    <div class="contianer">
-       Title
-    </div>
-    <input ng-model="title" placeholder="enter text here">
+  <div class="page-big front-cover-big-attribute col-md-4">
+    <br/>
+    <b>书标题</b>
+    <input ng-model="title" type="text" id="title" class="form-control" placeholder="输入书标题">
 
     <br/>
-    Attribution
-    <input ng-model="attribution" placeholder="end text here" >
+    <b>下标题</b>
+    <input ng-model="attribute" type="text" id="attribute" class="form-control" placeholder="输入书下标题">
+
     <br/>
-    Cover Page <select > </select>
+    封面图片选自：
+    <select class="form-control" >
+     <option ng-repeat="page in main.PhotoBook.pages"
+             style="background-image:{{page.previewImage}};"> {{$index}} </option>
+    </select>
+
+    <br/>
+
+    <br/>
+
+    <br/>
 
   </div>
 </div>

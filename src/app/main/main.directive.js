@@ -225,9 +225,11 @@ app.directive('topBarCommand',function($window){
   }
 });
 
-
 app.directive('fronCoverDesign',function($window){
   return {
     templateUrl: 'app/main/template/front-cover-design.html'
   }
 });
+
+
+
