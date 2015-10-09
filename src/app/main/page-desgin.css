@@ -179,9 +179,10 @@
 }
 
 .front-cover-big-attribute {
-  margin-left: 20px;
+  margin: 20px;
   border-radius:10px;
   height:300px;
+  width:400px;
 }
 .active {
   border-color: #F5B025;
