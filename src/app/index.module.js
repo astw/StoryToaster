@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('storyToaster', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
+    .module('storyToaster', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize','ui.select',
       'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ui.bootstrap', 'toastr']);
 
 })();
