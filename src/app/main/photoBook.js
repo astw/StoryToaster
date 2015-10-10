@@ -34,6 +34,10 @@ angular.module('storyToaster')
 
       this.data= {};
 
+      this.index = function(page){
+        return this.pages.indexOf(page) + 1;
+      }
+
       this.createPage = function() {
         var page = new Page();
         this.pages.push(page);
