@@ -16,11 +16,10 @@
   height:80px;
 }
 .list-inline {
-  white-space:nowrap;
-  margin-left:20px;
-  height:100px;
+  white-space: nowrap;
+  margin-left: 20px;
+  height: 100px;
 }
-
 
 .page-preview-panel {
   float: left;
@@ -167,7 +166,7 @@
   /*float:left*/
 }
 
-.page-big {
+.page-big  {
   position: relative;
   float: left;
 
@@ -178,11 +177,39 @@
   margin-right: 2px;
 }
 
-.front-cover-big-attribute {
+.front-cover-left  {
+  position: relative;
+  float: left;
+
+  background-color: #FFFFDF;
+  border:solid;
+  border-width: 8px;
+  border-color: #c9dbe1;
+  margin-right: 2px;
+}
+
+.front-cover-left > canvas {
+  margin: auto;
+  border:1px solid red;
+  width:60% ;
+  height : 60%;
+
+}
+
+
+.front-cover-right {
   margin: 20px;
   border-radius:10px;
   height:300px;
+  width:450px;
+  background-color: transparent;
 }
+
+.front-cover-right > .cover-panel  {
+  margin: auto;
+  width:80%;
+}
+
 .active {
   border-color: #F5B025;
 }

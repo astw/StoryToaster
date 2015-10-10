@@ -1,36 +1,10 @@
 <div class="page-design-panel container">
-  <div class="page-big col-md-6" ng-class="{active:main.PhotoBook.frontCover.active}">
-    <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.frontCoverClick()" id="left_canvas" width="549px"
+  <div class="front-cover-left col-md-6" ng-class="{active:main.PhotoBook.frontCover.active}">
+    <canvas crossOrigin="Anonymous" ng-click="main.frontCoverClick()" id="left_canvas" width="549px"
             height="389px"></canvas>
   </div>
 
-  <div class="col-lg-4 page-big front-cover-big-attribute">
-    <div class="container">
-      <div class="col-lg-3">
-        <br/>
-        <b>书标题</b>
-        <input ng-model="title" type="text" id="title" class="form-control" placeholder="输入书标题">
-        <br/>
-        <b>下标题</b>
-        <input ng-model="attribute" type="text" id="attribute" class="form-control" placeholder="输入书下标题">
-        <br/>
-        封面图片选自：
-        <ui-select ng-model="page.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;">
-          <ui-select-match placeholder="选择一个封面图片">{{$select.selected.name}}</ui-select-match>
-          <ui-select-choices repeat="page in main.PhotoBook.pages">
-            <img ng-src="{{page.previewImage}}" width='40' height="40" border="1"/>
-            <span style="color:red"> 第 {{$index}} 页 </span>
-          </ui-select-choices>
-        </ui-select>
-
-
-        <select class="form-control">
-          <option ng-repeat="page in main.PhotoBook.pages"
-                  style="background-image:{{page.previewImage}};"> {{$index}}
-          </option>
-        </select>
-        <br/>
-      </div>
-    </div>
+  <div class="page-big front-cover-right">
+    <cover-design-right></cover-design-right>
   </div>
 </div>

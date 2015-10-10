@@ -225,11 +225,43 @@ app.directive('topBarCommand',function($window){
   }
 });
 
-app.directive('fronCoverDesign',function($window){
+app.directive('coverDesignRight',function(){
   return {
-    templateUrl: 'app/main/template/front-cover-design.html'
+    templateUrl:'app/main/template/cover-design-right.html'
   }
 });
 
 
+app.directive('frontCoverDesign',function($window){
+  //return {
+  //  templateUrl: 'app/main/template/front-cover-design.html'
+  //}
+
+  var w = ($(window).width() - 250 - 30) / 2 - 20;
+  var h = w / 1.375;
+
+  var canW = w /2 ;
+  var canH = h /2 ;
+
+  var leftCanvas =
+    '<div class="front-cover-left col-md-6" ng-class="{active:main.PhotoBook.frontCover.active}">' +
+    + ' > ' +
+    ' <canvas id="frontCover-canvas" crossOrigin="Anonymous" width="'+ canW  + 'px" ' +
+    ' height="'+ canH +'px"></canvas>' +
+    ' </div>';
+
+  var frontCover_right ="" +
+
+    ' <div class="page-big front-cover-right">' +
+    '  <cover-design></cover-design>' +
+    '  </div>';
+
+
+  var canvasTemplate = leftCanvas + frontCover_right;
+
+  return {
+    template: canvasTemplate
+  }
+
+});
 
