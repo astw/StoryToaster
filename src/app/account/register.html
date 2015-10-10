@@ -43,12 +43,12 @@
         <!-- Registration Panel/Form -->
         <div class="panel mt40">
 
-          <form id="contact">
+          <form id="contact" ng-submit="vm.register()" method="post">
             <div class="panel-body bg-light p25 pb15">
 
               <div class="section">
                 <label for="username" class="field prepend-icon">
-                  <input type="username" name="email" ng-model="username" id="username" class="gui-input" placeholder="姓 名">
+                  <input type="username" name="email" ng-model="account.username" id="username" class="gui-input" placeholder="姓 名">
                   <label for="username" class="field-icon">
                     <i class="fa fa-user"></i>
                   </label>
@@ -57,7 +57,7 @@
 
               <div class="section">
                 <label for="email" class="field prepend-icon">
-                  <input type="email" name="email" id="email"  ng-model="email" class="gui-input" placeholder="Email address">
+                  <input type="email" name="email" id="email"  ng-model="account.email" class="gui-input" placeholder="Email address">
                   <label for="email" class="field-icon">
                     <i class="fa fa-envelope"></i>
                   </label>
@@ -69,7 +69,7 @@
 
               <div class="section">
                 <label for="password" class="field prepend-icon">
-                  <input type="password" name="password" id="password" ng-model="password" class="gui-input" placeholder="输入密码">
+                  <input type="password" name="password" id="password" ng-model="account.password" class="gui-input" placeholder="输入密码">
                   <label for="password" class="field-icon">
                     <i class="fa fa-unlock-alt"></i>
                   </label>
@@ -79,7 +79,7 @@
 
               <div class="section">
                 <label for="confirmPassword" class="field prepend-icon">
-                  <input type="password" name="confirmPassword" id="confirmPassword" ng-data="password2" class="gui-input" placeholder="再输入一次密码">
+                  <input type="password" name="confirmPassword" id="confirmPassword" ng-model="account.password2" class="gui-input" placeholder="再输入一次密码">
                   <label for="confirmPassword" class="field-icon">
                     <i class="fa fa-lock"></i>
                   </label>
@@ -90,7 +90,7 @@
             </div>
 
             <div class="panel-footer clearfix">
-              <button ng-click="register()" class="button btn-primary mr10 pull-right">注册新用户 </button>
+              <button ng-click="account.register()" class="button btn-primary mr10 pull-right">注册新用户 </button>
 
               <label class="option block mt6">
                 <input type="checkbox" name="terms">

@@ -42,7 +42,7 @@ angular.module('storyToaster')
     this.register = function (email, userName, password, password2) {
       var dfd = $q.defer();
 
-      var url = API_URL + "register";
+      var url = API_URL + "auth/register";
       var message = {email: email, userName: userName, password: password, password2: password2};
       $http.post(url,
         message,

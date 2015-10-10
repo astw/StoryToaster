@@ -14,7 +14,24 @@
       console.log(vm.username);
       console.log(vm.email);
       console.log(vm.password);
-      console.log(vm.password1);
+      console.log(vm.password2);
+
+
+      authService.register(vm.email, vm.username,vm.password,vm.password2)
+        .then(
+        function(res){
+          // success
+
+          alert('register ok');
+        },
+        function(err){
+          alert('register error');
+
+        })
+        .catch(function(err){
+          alert(err);
+        })
+
     }
 
     vm.login = function() {
@@ -45,7 +62,6 @@
     };
 
     vm.logout = function() {
-      alert('logout');
       authService.logout();
       vm.username = "";
       vm.user = "";
