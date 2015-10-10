@@ -25,12 +25,22 @@
     <!-- Begin: Content -->
     <section id="content" class="table-layout animated fadeIn">
       <div class="tray tray-center">
-         <div class="row">
+         <div class="row" ng-show="main.contentPageMode == true">
           <!-- <div class="page-design-panel" page-design /> -->
            <div ng-if= "main.doublePagesInDesign == true"    double-design-page />
            <div ng-if= "main.doublePagesInDesign == false"  left-design-page />
 
          </div>
+        <div class="row" ng-show="main.frontCoverMode == true">
+            <div fron-cover-design />
+        </div>
+        <div class="row" ng-show="main.dedicatePageMode == true">
+            this is the dedicated page
+        </div>
+        <div class="row" ng-show="main.backCoverMode == true">
+            this is the back cover design page;
+        </div>
+
       </div>
     </section>
 

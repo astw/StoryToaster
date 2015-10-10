@@ -1,7 +1,7 @@
 angular.module('storyToaster')
 .factory('PhotoBook',function(bookRepository, authService, $q) {
 
-    var TOTAL_PAGE = 17;
+    var TOTAL_PAGE = 25;
 
     var Page = function () {
       this.imageData = null;
@@ -216,6 +216,34 @@ angular.module('storyToaster')
         }
         else if(this.rightDesignPage)
           this.setPageActive(this.rightDesignPage);
+      };
+
+
+      this.setBackCoverActive = function(){
+        this.dedicatedPage.active = true;
+        this.frontCover.active = false;
+        this.backCover.active = false;
+        this.pages.forEach(function(p){
+          p.active = false;
+        })
+      };
+
+      this.setDedicatedPageActive = function(){
+        this.dedicatedPage.active = true;
+        this.frontCover.active = false;
+        this.backCover.active = false;
+        this.pages.forEach(function(p){
+          p.active = false;
+        })
+      };
+
+      this.setFrontCoverActive = function(){
+        this.dedicatedPage.active = false;
+        this.frontCover.active = true;
+        this.backCover.active = false;
+        this.pages.forEach(function(p){
+          p.active = false;
+        })
       };
 
       this.setPageActive = function(page) {

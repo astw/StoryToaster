@@ -17,6 +17,8 @@
     vm.doublePagesInDesign = true;
     $scope.doublePagesInDesign = true;
 
+    vm.contentPageMode = true;
+
     vm.currentPage = vm.PhotoBook.pages[0];
     vm.currentPage.active = true;
 
@@ -60,6 +62,18 @@
 
     hookEvents();
 
+    $scope.colours = [{
+      name: "Red",
+      hex: "#F21B1B"
+    }, {
+      name: "Blue",
+      hex: "#1B66F2"
+    }, {
+      name: "Green",
+      hex: "#07BA16"
+    }];
+
+
     $scope.groups = imageService.getImages();
 
     vm.selectLeft = function () {
@@ -98,7 +112,43 @@
       });
       currentCanvas.add(txtBox);
     };
+
+    vm.frontCoverClick = function(){
+      vm.contentPageMode = false;
+      vm.dedicatePageMode = false;
+      vm.frontCoverMode = true;
+      vm.backCoverMode = false;
+
+      backCurrentDesignData();
+      vm.PhotoBook.setFrontCoverActive();
+    };
+
+    vm.dedicatedPageClick = function(){
+      vm.contentPageMode = false;
+      vm.dedicatePageMode = true;
+      vm.frontCoverMode = false;
+      vm.backCoverMode = false;
+
+      backCurrentDesignData();
+      vm.PhotoBook.setDedicatedPageActive();
+    };
+
+    vm.backCoverClick = function(){
+      vm.contentPageMode = false;
+      vm.dedicatePageMode = false;
+      vm.frontCoverMode = false;
+      vm.backCoverMode = true;
+
+      backCurrentDesignData();
+      vm.PhotoBook.setBackCoverActive();
+    };
+
     vm.previewClick = function (page,which) {
+      vm.contentPageMode = true;
+      vm.dedicatePageMode = false;
+      vm.frontCoverMode = false;
+      vm.backCoverMode = false;
+
       backCurrentDesignData();
       vm.PhotoBook.setPageActive(page);
       if (which === 'left') {

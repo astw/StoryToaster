@@ -170,11 +170,18 @@
 .page-big {
   position: relative;
   float: left;
+
   background-color: #FFFFDF;
   border:solid;
   border-width: 8px;
   border-color: #c9dbe1;
   margin-right: 2px;
+}
+
+.front-cover-big-attribute {
+  margin: 20px;
+  border-radius:10px;
+  height:300px;
 }
 .active {
   border-color: #F5B025;

@@ -2,8 +2,8 @@
   <table style="{margin-left:auto; margin-right:auto;}">
     <tr>
       <td>
-        <div class="cover-preview" ng-click="main.previewClick(page,'frontCover')" ng-class="{active:page.active}" >
-          <img  ng-src="{{page.previewImage}}"  width='80' height="60"  />
+        <div class="cover-preview" ng-click="main.backCoverClick()" ng-class="{active:main.PhotoBook.backCover.active}" >
+          <img class="cover-image"  ng-src="{{page.previewImage}}"  width='75' height="55" border="0"  />
         </div>
       </td>
     </tr>
