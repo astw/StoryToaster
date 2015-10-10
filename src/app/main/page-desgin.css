@@ -181,22 +181,56 @@
 .front-cover-left  {
   position: relative;
   float:left;
-  margin:0 auto;
+  /*margin-left: auto;*/
+  /*margin-right:auto;*/
   background-color: #42a0ff;
   border:solid;
   border-width: 8px;
   border-color: #c9dbe1;
+  text-align: center;
+  /*align-content: center;*/
+  /*vertical-align: middle;*/
+}
+
+.title-panel {
+  text-align: center;
+  font-size: larger;
+  height: 80px;
+  line-height: 80px;
+  background-color: transparent;
+}
+
+.title-panel > span{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.author-panel {
+  margin-top:10px;
+  text-align: center;
+  vertical-align: baseline;
+  height: 85px;
+  line-height: 100%;
+  color: red;
+}
+
+ .author-panel > span{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 
 .front-cover-left > canvas {
-  pistion:absolute;
-  top:50%;
-  left:50%;
-  margin:100px 0 0 150px;
+  /*pistion:absolute;*/
+  /*top:50%;*/
+  /*left:50%;*/
+  /*margin:100px 0 0 150px;*/
   /*border:1px solid red;*/
   background: white;
+  position: relative;
+  height:100%;
 }
-
 .front-cover-right {
   float:left;
   margin: 20px;

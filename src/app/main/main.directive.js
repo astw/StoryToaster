@@ -233,32 +233,14 @@ app.directive('coverDesignRight',function(){
 
 
 app.directive('frontCoverDesign',function($window){
-  //return {
-  //  templateUrl: 'app/main/template/front-cover-design.html'
-  //}
 
   var w = ($(window).width() - 250 - 30) / 2 - 20
   var h = w / 1.375;
   console.log('front cover design');
   console.log(w);
 
-  var canW = w /2 ;
-  var canH = h /2 ;
-  //
-  //var tmp =
-  //'<div class="page-design-panel container"> '+
-  //'  <div class="front-cover-left col-md-6" width=' + w +  'px height=' + 500 +  'px ng-class="{active:main.PhotoBook.frontCover.active}"> '  +
-  //'  <canvas crossOrigin="Anonymous" ng-click="main.frontCoverClick()" id="left_canvas" width="'+canW +'"'+
-  //'height="'+ canH+ '"></canvas>'+
-  //'  </div>'+
-  //
-  // ' <div class="front-cover-right">'+
-  // ' <div cover-design-right class="cover-panel"  />'+
-  // ' </div>'+
-  // ' </div>';
-  //
-  //
-  //var canvasTemplate = tmp;
+  var canW = w *0.65 ;
+  var canH = h *0.65 ;
 
   return {
     templateUrl: 'app/main/template/front-cover-design.html',
@@ -267,7 +249,6 @@ app.directive('frontCoverDesign',function($window){
        $(".front-cover-left").css('width',w +"px");
        $(".front-cover-left>canvas").css('width',canW +"px");
        $(".front-cover-left>canvas").css('height',canH +"px");
-
      }
 }
 });
