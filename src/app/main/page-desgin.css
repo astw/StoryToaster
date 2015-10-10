@@ -158,6 +158,7 @@
 
 .page-design-panel {
   position:relative;
+
   /*left: 0px;*/
   margin:auto;
   top:10px;
@@ -179,30 +180,35 @@
 
 .front-cover-left  {
   position: relative;
-  float: left;
+  float:left;
+  margin:0 auto;
+  background-color: #42a0ff;
+  border:solid;
+  border-width: 8px;
+  border-color: #c9dbe1;
+}
 
+.front-cover-left > canvas {
+  pistion:absolute;
+  top:50%;
+  left:50%;
+  margin:100px 0 0 150px;
+  /*border:1px solid red;*/
+  background: white;
+}
+
+.front-cover-right {
+  float:left;
+  margin: 20px;
+  height:300px;
+  width:450px;
+  position: relative;
+  float: left;
   background-color: #FFFFDF;
   border:solid;
   border-width: 8px;
   border-color: #c9dbe1;
-  margin-right: 2px;
-}
-
-.front-cover-left > canvas {
-  margin: auto;
-  border:1px solid red;
-  width:60% ;
-  height : 60%;
-
-}
-
-
-.front-cover-right {
-  margin: 20px;
   border-radius:10px;
-  height:300px;
-  width:450px;
-  background-color: transparent;
 }
 
 .front-cover-right > .cover-panel  {

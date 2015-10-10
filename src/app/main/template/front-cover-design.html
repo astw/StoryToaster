@@ -1,10 +1,10 @@
-<div class="page-design-panel container">
-  <div class="front-cover-left col-md-6" ng-class="{active:main.PhotoBook.frontCover.active}">
-    <canvas crossOrigin="Anonymous" ng-click="main.frontCoverClick()" id="left_canvas" width="549px"
+<div class="page-design-panel">
+  <div class="front-cover-left" ng-class="{active:main.PhotoBook.frontCover.active}">
+    <canvas class="page-canvas" crossOrigin="Anonymous" ng-click="main.frontCoverClick()" id="left_canvas" width="549px"
             height="389px"></canvas>
   </div>
 
-  <div class="page-big front-cover-right">
-    <cover-design-right></cover-design-right>
+  <div class="front-cover-right">
+   <div cover-design-right class="cover-panel"  />
   </div>
 </div>

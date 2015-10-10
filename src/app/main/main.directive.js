@@ -237,31 +237,37 @@ app.directive('frontCoverDesign',function($window){
   //  templateUrl: 'app/main/template/front-cover-design.html'
   //}
 
-  var w = ($(window).width() - 250 - 30) / 2 - 20;
+  var w = ($(window).width() - 250 - 30) / 2 - 20
   var h = w / 1.375;
+  console.log('front cover design');
+  console.log(w);
 
   var canW = w /2 ;
   var canH = h /2 ;
-
-  var leftCanvas =
-    '<div class="front-cover-left col-md-6" ng-class="{active:main.PhotoBook.frontCover.active}">' +
-    + ' > ' +
-    ' <canvas id="frontCover-canvas" crossOrigin="Anonymous" width="'+ canW  + 'px" ' +
-    ' height="'+ canH +'px"></canvas>' +
-    ' </div>';
-
-  var frontCover_right ="" +
-
-    ' <div class="page-big front-cover-right">' +
-    '  <cover-design></cover-design>' +
-    '  </div>';
-
-
-  var canvasTemplate = leftCanvas + frontCover_right;
+  //
+  //var tmp =
+  //'<div class="page-design-panel container"> '+
+  //'  <div class="front-cover-left col-md-6" width=' + w +  'px height=' + 500 +  'px ng-class="{active:main.PhotoBook.frontCover.active}"> '  +
+  //'  <canvas crossOrigin="Anonymous" ng-click="main.frontCoverClick()" id="left_canvas" width="'+canW +'"'+
+  //'height="'+ canH+ '"></canvas>'+
+  //'  </div>'+
+  //
+  // ' <div class="front-cover-right">'+
+  // ' <div cover-design-right class="cover-panel"  />'+
+  // ' </div>'+
+  // ' </div>';
+  //
+  //
+  //var canvasTemplate = tmp;
 
   return {
-    template: canvasTemplate
-  }
+    templateUrl: 'app/main/template/front-cover-design.html',
+     link : function(scope, elem, attrs) {
+       $(".front-cover-left").css('height',h +"px");
+       $(".front-cover-left").css('width',w +"px");
+       $(".front-cover-left>canvas").css('width',canW +"px");
+       $(".front-cover-left>canvas").css('height',canH +"px");
 
+     }
+}
 });
-
