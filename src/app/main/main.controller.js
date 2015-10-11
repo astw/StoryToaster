@@ -79,6 +79,7 @@
     vm.coverImageSelected = function (item, model){
       console.log(item);
       console.log(model);
+      vm.PhotoBook.frontCoverImageIndex = item.index;
     };
 
     vm.selectLeft = function () {
