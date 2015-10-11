@@ -1,19 +1,18 @@
 <div class="page-design-panel">
   <div class="front-cover-left" ng-class="{active:main.PhotoBook.frontCover.active}">
     <div class="title-panel">
-      this is my books
+      {{main.PhotoBook.title}}
     </div>
-    <canvas  crossOrigin="Anonymous" ng-click="main.frontCoverClick()" id="left_canvas" width="549px"
-            height="389px"></canvas>
+    <img ng-src="{{main.page.selected.previewImage}}">
 
     <div class="author-panel">
       <span>
-      By Shuhao Wang
+         {{main.PhotoBook.attribute}}
         </span>
     </div>
   </div>
 
   <div class="front-cover-right">
-   <div cover-design-right class="cover-panel"  />
+    <div cover-design-right class="cover-panel"/>
   </div>
 </div>

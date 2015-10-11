@@ -11,6 +11,7 @@ angular.module('storyToaster')
     var PhotoBook = function () {
       this.title = "this is created on frontend";
       this.desc = "this is my designed book";
+      this.attribute = "By author";
       this.author = 3;
       this.pagesInDesign = 2 ;   // how manage pages in design by default
 
@@ -36,7 +37,7 @@ angular.module('storyToaster')
 
       this.index = function(page){
         return this.pages.indexOf(page) + 1;
-      }
+      };
 
       this.createPage = function() {
         var page = new Page();
@@ -286,8 +287,6 @@ angular.module('storyToaster')
 
           bookRepository.createOneBook(obj).then(function (res) {
               this.id = res.data.id;
-              console.log('------ save good');
-              console.log(res.data);
               return deferred.resolve(res.data);
             },
             function (err) {

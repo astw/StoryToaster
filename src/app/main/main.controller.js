@@ -76,6 +76,11 @@
 
     $scope.groups = imageService.getImages();
 
+    vm.coverImageSelected = function (item, model){
+      console.log(item);
+      console.log(model);
+    };
+
     vm.selectLeft = function () {
       currentCanvas = vm.left_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.leftDesignPage);

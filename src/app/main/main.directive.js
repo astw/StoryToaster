@@ -247,8 +247,8 @@ app.directive('frontCoverDesign',function($window){
      link : function(scope, elem, attrs) {
        $(".front-cover-left").css('height',h +"px");
        $(".front-cover-left").css('width',w +"px");
-       $(".front-cover-left>canvas").css('width',canW +"px");
-       $(".front-cover-left>canvas").css('height',canH +"px");
+       $(".front-cover-left>img").css('width',canW +"px");
+       $(".front-cover-left>img").css('height',canH +"px");
      }
 }
 });
