@@ -82,6 +82,10 @@
       vm.PhotoBook.frontCoverImageIndex = item.index;
     };
 
+    vm.backCoverImageSelected = function(item,model){
+      vm.PhotoBook.backCoverImageIndex = item.index;
+    };
+
     vm.selectLeft = function () {
       currentCanvas = vm.left_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.leftDesignPage);

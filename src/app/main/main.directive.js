@@ -231,7 +231,6 @@ app.directive('coverDesignRight',function(){
   }
 });
 
-
 app.directive('frontCoverDesign',function($window){
 
   var w = ($(window).width() - 250 - 30) / 2 - 20
@@ -252,3 +251,31 @@ app.directive('frontCoverDesign',function($window){
      }
 }
 });
+
+app.directive('backCoverDesign',function($window){
+
+  var w = ($(window).width() - 250 - 30) / 2 - 20
+  var h = w / 1.375;
+  console.log('front cover design');
+  console.log(w);
+
+  var canW = w *0.6 ;
+  var canH = h *0.6 ;
+
+  return {
+    templateUrl: 'app/main/template/back-cover-design.html',
+    link : function(scope, elem, attrs) {
+      $(".front-cover-left").css('height',h +"px");
+      $(".front-cover-left").css('width',w +"px");
+      $(".front-cover-left>img").css('width',canW +"px");
+      $(".front-cover-left>img").css('height',canH +"px");
+    }
+  }
+});
+
+app.directive('backCoverDesignRight', function () {
+  return {
+    templateUrl: 'app/main/template/back-cover-design-right.html'
+  };
+});
+
