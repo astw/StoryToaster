@@ -16,6 +16,10 @@
     //$rootScope.app.userName = authService.getUserName();
 
      $rootScope.$on('$routeChangeStart', function(event,next,current){
+
+    //     $location.$$url = $location.$$url.replace('%2F','/');
+         $location.$$absUrl =$location.$$absUrl.replace('%2F','/');
+
         //check the auth cookie
         var logged = authService.isAuthenticated();
         if( ! logged &&  next && next.secure) {
@@ -38,6 +42,9 @@
     );
 
     $rootScope.$on("$routeChangeSuccess", function(event, current, previous){
+      //$location.$$url = $location.$$url.replace('%2F','/');
+     $location.$$absUrl =$location.$$absUrl.replace('%2F','/');
+
       // $location.search(relayService.getKeyValue('searchCondition'))
     });
 

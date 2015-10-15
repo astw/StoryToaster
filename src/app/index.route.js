@@ -5,7 +5,7 @@
     .module('storyToaster')
     .config(routeConfig);
 
-  function routeConfig($routeProvider,$locationProvider) {
+  function routeConfig( $routeProvider,$locationProvider) {
     $routeProvider
       .when('/home', {
         templateUrl: 'app/home/home.html',
@@ -22,11 +22,16 @@
         controller: 'BookController',
         controllerAs: 'book'
       })
-      .when('/account/flipbook', {
-        templateUrl: 'app/flipbook/index.html',
-        controller: 'FlipBookController',
-        controllerAs: 'fbook'
+      .when('/account/mybooks#features/3', {
+        templateUrl: 'app/books/mybooks.html',
+        controller: 'BookController',
+        controllerAs: 'book'
       })
+      //.when('/account/flipbook', {
+      //  templateUrl: 'app/flipbook/index.html',
+      //  controller: 'FlipBookController',
+      //  controllerAs: 'fbook'
+      //})
       .when('/account/login',{
         templateUrl:'app/account/login.html',
         controller:'AccountController',
