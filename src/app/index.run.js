@@ -10,14 +10,11 @@
     $http.defaults.headers.common[config.apiKeyName] = config.apiKeyValue;
     $http.defaults.headers.common[config.authTokenName] = "Bear " +  authService.getAuthToken();
 
-
     //incase refresh, make sure we are auth'd
     //$rootScope.app.isAuthenticated = authService.isAuthenticated();
     //$rootScope.app.userName = authService.getUserName();
 
      $rootScope.$on('$routeChangeStart', function(event,next,current){
-
-    //     $location.$$url = $location.$$url.replace('%2F','/');
 
          //if($location.$$absUrl.indexOf('#features%2F') > -1) {
          //  //event.preventDefault();
