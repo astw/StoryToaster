@@ -18,7 +18,11 @@
      $rootScope.$on('$routeChangeStart', function(event,next,current){
 
     //     $location.$$url = $location.$$url.replace('%2F','/');
-         $location.$$absUrl =$location.$$absUrl.replace('%2F','/');
+
+         //if($location.$$absUrl.indexOf('#features%2F') > -1) {
+         //  //event.preventDefault();
+         //  $location.$$absUrl =$location.$$absUrl.replace('%2F','/');
+         //};
 
         //check the auth cookie
         var logged = authService.isAuthenticated();
@@ -42,8 +46,11 @@
     );
 
     $rootScope.$on("$routeChangeSuccess", function(event, current, previous){
-      //$location.$$url = $location.$$url.replace('%2F','/');
-     $location.$$absUrl =$location.$$absUrl.replace('%2F','/');
+
+      //if($location.$$absUrl.indexOf('#features%2F') > -1) {
+      //  event.preventDefault();
+      //  $location.$$absUrl =$location.$$absUrl.replace('%2F','/');
+      //};
 
       // $location.search(relayService.getKeyValue('searchCondition'))
     });

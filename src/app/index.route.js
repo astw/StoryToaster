@@ -17,22 +17,18 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
-      //.when('/account/mybooks', {
-      //  templateUrl: 'app/books/mybooks.html',
-      //  controller: 'BookController',
-      //  controllerAs: 'book'
-      //})
-      .when('/account/mybooks#features/3', {
+      .when('/account/mybooks', {
         templateUrl: 'app/books/mybooks.html',
         controller: 'BookController',
         controllerAs: 'book'
       })
-      //.when('/account/flipbook', {
-      //  templateUrl: 'app/flipbook/index.html',
-      //  controller: 'FlipBookController',
-      //  controllerAs: 'fbook'
-      //})
-      .when('/account/login',{
+      .when('/account/mybooks', {
+        templateUrl: 'app/books/mybooks.html',
+        controller: 'BookController',
+        controllerAs: 'book',
+        reloadOnSearch:false
+      })
+     .when('/account/login',{
         templateUrl:'app/account/login.html',
         controller:'AccountController',
         controllerAs:'account'
