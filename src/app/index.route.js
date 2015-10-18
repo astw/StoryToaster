@@ -18,16 +18,16 @@
         controllerAs: 'main'
       })
       .when('/account/mybooks', {
-        templateUrl: 'app/books/mybooks.html',
-        controller: 'BookController',
-        controllerAs: 'book'
+        templateUrl: 'app/main/books.html',
+        controller: 'MainController',
+        controllerAs: 'main'
       })
-      .when('/account/mybooks', {
-        templateUrl: 'app/books/mybooks.html',
-        controller: 'BookController',
-        controllerAs: 'book',
-        reloadOnSearch:false
-      })
+      //.when('/account/mybooks', {
+      //  templateUrl: 'app/books/mybooks.html',
+      //  controller: 'BookController',
+      //  controllerAs: 'book',
+      //  reloadOnSearch:false
+      //})
      .when('/account/login',{
         templateUrl:'app/account/login.html',
         controller:'AccountController',

@@ -4,10 +4,11 @@
 'use strict';
 
 angular.module('storyToaster')
-  .service('bookRepository', function ($http, $q, $cookieStore, config) {
+  .service('bookRepository', function ($http, $q, $cookieStore, config, authService) {
 
     var self = this;
     var API_URL = config.apiRootPath;
+    var currentUser = authService.currentUser();
 
     this.getBooks = function () {
 
@@ -21,6 +22,26 @@ angular.module('storyToaster')
         }).error(function (data, status) {
           dfd.reject(status);
         });
+      return self.promise;
+    };
+
+    this.getUserBooks = function() {
+      var dfd = $q.defer();
+      self.promise = dfd.promise;
+      var userId = currentUser ? currentUser.id : -1;
+
+      $http.get(API_URL + 'users/' + userId + '/books').then(function (res) {
+          var books = []
+          if (res.data)
+            return dfd.resolve(books.concat(res.data));
+          return dfd.resolve(books);
+        },
+        function (err) {
+          return dfd.resolve([]);
+        }).catch(function (err) {
+          return dfd.resolve([]);
+        });
+
       return self.promise;
     };
 

@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr, $scope, $document, config, imageService, PhotoBook) {
+  function MainController($timeout, toastr, $scope, $document, config, imageService, PhotoBook, bookRepository) {
     var vm = this;
     vm.classAnimation = '';
     vm.creationDate = 1442106873263;
@@ -21,6 +21,11 @@
 
     vm.currentPage = vm.PhotoBook.pages[0];
     vm.currentPage.active = true;
+
+    bookRepository.getUserBooks().then(function(books){
+      vm.mybooks = books;
+      console.log(books);
+    });
 
     // vm.left_canvas = new fabric.Canvas('left_canvas');
     // vm.right_canvas = new fabric.Canvas('right_canvas');

@@ -2,6 +2,7 @@ angular.module('storyToaster')
 .factory('PhotoBook',function(bookRepository, authService, $q) {
 
     var TOTAL_PAGE = 25;
+    var currentUser = authService.currentUser();
 
     var Page = function () {
       this.imageData = null;
@@ -262,9 +263,7 @@ angular.module('storyToaster')
       };
 
       this.saveToServer = function(){
-
         var deferred = $q.defer();
-        var currentUser = authService.currentUser();
         var dataString = JSON.stringify(this);
         this.author = currentUser ? currentUser.id : -1;
 

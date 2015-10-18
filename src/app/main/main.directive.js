@@ -97,6 +97,7 @@ app.directive( 'loggedUserPanel', function ($timeout) {
 
       // Toggle menu and active class on icon click
       $('.topbar-menu-toggle').on('click', function () {
+        if(!menu || menu.length < 1) return;
         // If dropmenu is using alternate style we don't show modal
         if (menu.hasClass('alt')) {
           // Toggle menu and active class on icon click
