@@ -25,7 +25,14 @@
 
         <!-- dashboard tiles -->
         <div class="row">
-          <book-tile ng-repeat="b in main.mybooks" book=b/>
+          <!--ng-click="main.readBook(b);"-->
+          <div ng-repeat="b in main.mybooks" >
+            <book-tile book=b />
+          </div>
+        </div>
+
+        <div id='book-preview-panel' class="book-preview-panel">
+            this is the book preview
         </div>
          <!-- Admin-panels -->
       <div class="admin-panels fade-onload">

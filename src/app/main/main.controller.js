@@ -81,6 +81,16 @@
 
     $scope.groups = imageService.getImages();
 
+    vm.readBook = function(book){
+      console.log('read book');
+      console.log(book);
+
+
+
+
+
+    };
+
     vm.coverImageSelected = function (item, model){
       console.log(item);
       console.log(model);

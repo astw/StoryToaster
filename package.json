@@ -2,7 +2,8 @@
   "name": "storyToaster",
   "version": "0.0.0",
   "dependencies": {
-    "bower": "^1.5.3"
+    "bower": "^1.5.3",
+    "hover.css": "^2.0.2"
   },
   "scripts": {
     "test": "gulp test"
