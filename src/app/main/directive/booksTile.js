@@ -5,10 +5,10 @@
     .module('storyToaster')
     .directive('bookTile', bookTile);
 
-  bookTile.$inject = [];
+  bookTile.$inject = ['$location'];
 
   /* @ngInject */
-  function bookTile() {
+  function bookTile($location) {
     var directive = {
       //bindToController: true,
       link: link,
@@ -30,30 +30,31 @@
 
       /////
       element.bind('click', function () {
-
         console.log('click in link');
-        var metroBG = $('.metro-modal');
 
-        // Create Modal for hover effect
-        if (!metroBG.length) {
-          metroBG = $('<div class="metro-modal"></div>').appendTo('body');
-        }
-
-        // element.addClass('animated animated-short fadeInDown').css('opacity', 1);
+        $location.path('/account/mybooks/read');
+        scope.$apply();
 
 
-        setTimeout(function () {
-          metroBG.fadeIn();
-        }, 380);
-
-        // If modal is clicked close menu
-        $('body').on('click', '.metro-modal', function () {
-          metroBG.fadeOut('fast');
-          setTimeout(function () {
-
-          }, 250);
-        });
-
+        //var metroBG = $('.metro-modal');
+        //
+        //// Create Modal for hover effect
+        //if (!metroBG.length) {
+        //  metroBG = $('<div class="metro-modal"></div>').appendTo('body');
+        //}
+        // setTimeout(function () {
+        //  metroBG.fadeIn();
+        //}, 380);
+        //
+        //$('#book-preview-panel').show();
+        //
+        //// If modal is clicked close menu
+        //$('body').on('click', '.metro-modal', function () {
+        //  metroBG.fadeOut('fast');
+        //  $('#book-preview-panel').hide();
+        //  setTimeout(function () {
+        //  }, 250);
+        //});
       });
       //----
     }

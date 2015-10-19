@@ -21,6 +21,13 @@
         templateUrl: 'app/main/books.html',
         controller: 'MainController',
         controllerAs: 'main'
+      }
+      )
+      .when('/account/mybooks/read', {
+        templateUrl: 'app/books/readbook.html',
+        controller: 'MainController',
+        controllerAs: 'main',
+          reloadOnSearch:false
       })
       //.when('/account/mybooks', {
       //  templateUrl: 'app/books/mybooks.html',
