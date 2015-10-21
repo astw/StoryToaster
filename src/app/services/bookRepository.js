@@ -70,5 +70,52 @@ angular.module('storyToaster')
 
       return dfd.promise;
     };
+
+    this.saveToServer = function(book){
+      var deferred = $q.defer();
+      var dataString = JSON.stringify(book);
+      this.author = currentUser ? currentUser.id : -1;
+
+      var obj = angular.fromJson(dataString);
+      obj.pages.forEach(function(page){
+        delete page.previewImage;
+      });
+
+      delete obj.frontCover.previewImage;
+      delete obj.dedicatedPage.previewImage;
+      delete obj.backCover.previewImage;
+      delete obj.leftDesignPage;
+      delete obj.rightDesignPage;
+
+      obj.data = JSON.stringify(obj);
+      if (!book.id || book.id < 0) {
+        // this is a new book
+        // upload to create a new
+        this.createOneBook(obj).then(function (res) {
+            book.id  = res.data.id;
+            return deferred.resolve(res.data);
+          },
+          function (err) {
+            console.log(err);
+            return deferred.reject(err);
+
+          })
+      }
+      else {
+        // this is an existing book,
+        // upload to update
+        this.updateBook(obj).then(
+          function (res) {
+            console.log(' update book good' + res.data.title);
+            return deferred.resolve(res.data);
+          },
+          function (err) {
+            console.log(err);
+            return deferred.reject(err);
+          })
+      }
+      return deferred.promise;
+    };
+
   });
 

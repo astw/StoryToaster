@@ -84,11 +84,6 @@
     vm.readBook = function(book){
       console.log('read book');
       console.log(book);
-
-
-
-
-
     };
 
     vm.coverImageSelected = function (item, model){
@@ -264,16 +259,19 @@
     };
 
     vm.deleteObject = function () {
-      if (vm.currentPage.left.active) {
-        var obj = vm.left_canvas.getActiveObject();
-        vm.left_canvas.remove(obj);
-        vm.currentPage.left.previewImage = vm.left_canvas.toDataURL();
-      }
-      else {
-        var obj = vm.right_canvas.getActiveObject();
-        vm.right_canvas.remove(obj);
-        vm.currentPage.right.previewImage = vm.right_canvas.toDataURL();
-      }
+      //if(vm.PhotoBook.leftDesignPage.active)
+          vm.PhotoBook.deletePage(vm.PhotoBook.leftDesignPage);
+
+      //if (vm.currentPage.active) {
+      //  var obj = vm.left_canvas.getActiveObject();
+      //  vm.left_canvas.remove(obj);
+      //  vm.currentPage.previewImage = vm.left_canvas.toDataURL();
+      //}
+      //else {
+      //  var obj = vm.right_canvas.getActiveObject();
+      //  vm.right_canvas.remove(obj);
+      //  vm.currentPage.previewImage = vm.right_canvas.toDataURL();
+      //}
     };
 
     vm.newPage = function () {
@@ -295,7 +293,7 @@
     };
 
     vm.saveToServe = function () {
-      vm.PhotoBook.saveToServer();
+      bookRepository.saveToServer(this.PhotoBook);
     };
 
     vm.nextSaveToImage = function () {

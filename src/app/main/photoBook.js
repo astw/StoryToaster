@@ -3,6 +3,7 @@ angular.module('storyToaster')
 
     var TOTAL_PAGE = 25;
     var currentUser = authService.currentUser();
+    var bookId = -1;
 
     var Page = function () {
       this.imageData = null;
@@ -43,6 +44,7 @@ angular.module('storyToaster')
       this.createPage = function() {
         var page = new Page();
         this.pages.push(page);
+        this.totalPage = this.pages.length;
         if(this.pages.length == 1){
           page.active = true;
           this.leftDesignPage = this.pages[0]
@@ -154,6 +156,8 @@ angular.module('storyToaster')
 
         var index = this.pages.indexOf(page);
         this.pages.splice(index,1);
+
+        this.totalPage = this.pages.length;
 
         var len = this.pages.length;
         if(len == 0) {
@@ -279,13 +283,12 @@ angular.module('storyToaster')
         delete obj.rightDesignPage;
 
         obj.data = JSON.stringify(obj);
-
-        if (!this.id) {
+        if (!this.id || this.id < 0) {
           // this is a new book
           // upload to create a new
 
           bookRepository.createOneBook(obj).then(function (res) {
-              this.id = res.data.id;
+              bookId  = res.data.id;
               return deferred.resolve(res.data);
             },
             function (err) {
