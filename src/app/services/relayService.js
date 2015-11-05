@@ -21,6 +21,10 @@ angular.module('storyToaster')
     };
 
     var getKeyValue = function(key){
+      var obj = storage.getItem(key);
+      if(!obj || obj ==='undefined')
+         return null;
+
       return JSON.parse(storage.getItem(key));
     };
 

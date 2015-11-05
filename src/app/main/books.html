@@ -1,3 +1,6 @@
+
+<script type="text/javascript" src="./js/wow_book.js"></script>
+
 <div id="main">
   <header nav-bar2 class="navbar navbar-fixed-top navbar-shadow">
   </header>
@@ -22,12 +25,12 @@
     <section id="content" class="alt top-menu-open">
       <!-- begin: .tray-center -->
       <div class="tray tray-center">
-
+b
         <!-- dashboard tiles -->
         <div class="row">
           <!--ng-click="main.readBook(b);"-->
           <div ng-repeat="b in main.mybooks" >
-            <book-tile book=b />
+            <book-tile book=b  ng-click="main.clickBook(b)"  />
           </div>
         </div>
        <!-- Admin-panels -->
@@ -822,11 +825,8 @@
 
           </div>
           <!-- end: .col-md-4-->
-
-
         </div>
         <!-- end: .row -->
-
       </div>
 
 </div>

@@ -86,7 +86,7 @@ nav {
 }
 nav a {
   display: block;
-  height: 46px;
+  height: 44px;
   width: 48px;
   padding: 0;
   background: #000000 no-repeat;
@@ -218,7 +218,8 @@ nav a {
   list-style: none;
 }
 #cover {
-  background: #ffffff url("../images/cover.jpg") no-repeat;
+  /*background: #ffffff url("../images/cover.jpg") no-repeat;*/
+  background: #aaccc8;
   background-size: 100% 100%;
 }
 .feature {

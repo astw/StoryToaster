@@ -5,10 +5,10 @@
     .module('storyToaster')
     .directive('bookTile', bookTile);
 
-  bookTile.$inject = ['$location'];
+  bookTile.$inject = ['$location','$window','relayService'];
 
   /* @ngInject */
-  function bookTile($location) {
+  function bookTile($location,$window,relayService) {
     var directive = {
       //bindToController: true,
       link: link,
@@ -32,8 +32,10 @@
       element.bind('click', function () {
         console.log('click in link');
 
-        $location.path('/account/mybooks/read');
-        scope.$apply();
+        //$location.path('/account/mybooks/read');
+        //scope.$apply();
+        //relayService.putKeyValue('_selectedBook_',book);
+        $window.location.assign('/account/mybooks/read');
 
 
         //var metroBG = $('.metro-modal');
