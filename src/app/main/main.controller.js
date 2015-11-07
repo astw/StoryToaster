@@ -24,7 +24,7 @@
 
     $scope.test = 'this is a test ';
 
-    vm.selectedBook = relayService.getKeyValue('_selectedBook_');
+    vm.selectedBook = JSON.parse(relayService.getKeyValue('_selectedBook_').data);
 
     bookRepository.getUserBooks().then(function(books){
       vm.mybooks = books;

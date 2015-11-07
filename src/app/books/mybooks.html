@@ -32,6 +32,7 @@
 
   {{main.selectedBook.title}}
 
+<div id="container">
 
   <nav>
     <ul>
@@ -63,26 +64,9 @@
           this is cover
       </div>
 
-       <div class='feature pagefx hardpage' ng-repeat="p in main.selectedBook.pages">
-         <a> {{main.selectedBook.title}}  </a>
-        </div>
-
-      <div class='feature pagefx hardpage'>
-        <p class='subtitle'>page flipping effect</p>
-        <h1>Hardpage</h1>
-        <p>This effect turns the page like a hardcover.</p>
-        <p> Nice for a book cover, but you can make any page in the book like that.
-        </p>
-        <br/><br/>
-        <h1>Basic</h1>
-        <p>Like the softpage effect, but without the 'diagonal twist'.</p>
-        <p>Since it doesn't use css transformations, it's used in page with flash or as fallback on old browsers.</p>
-      </div>
-
-      <!--<div class='responsive feature'>-->
-        <!--<p>If you need more control on how to resize the book, you can use the javascript API to change the book's size.-->
-        <!--</p>-->
-      <!--</div>-->
+       <div class='responsive feature pagefx' ng-repeat="p in book.pages">
+         <a> {{ book.title}}  </a>
+        </div> 
 
       <div class='last_cover'>
         <img src="images/cover_last.png" width="100%" height="100%" />
@@ -109,75 +93,6 @@
 <script type="text/javascript" src="./js/wow_book.js"></script>
 
 <script type="text/javascript"  >
-
-  $(document).ready(function() {
-//    $('#features').wowBook({
-//      height : 375
-//      ,width  : 1032
-//      ,centeredWhenClosed : true
-//      ,hardcovers : true
-//      ,turnPageDuration : 1000
-//      ,numberedPages : [1,-2]
-//      ,controls : {
-//        zoomIn    : '#zoomin',
-//        zoomOut   : '#zoomout',
-//        next      : '#next',
-//        back      : '#back',
-//        first     : '#first',
-//        last      : '#last',
-//        slideShow : '#slideshow',
-//        flipSound : '#flipsound',
-//        thumbnails : '#thumbs',
-//        fullscreen : '#fullscreen'
-//      }
-//      ,scaleToFit: "#container"
-//      ,thumbnailsPosition : 'bottom'
-//      ,onFullscreenError : function(){
-//        var msg="Fullscreen failed.";
-//        if (self!=top) msg="The frame is blocking full screen mode. Click on 'remove frame' button above and try to go full screen again."
-//        alert(msg);
-//      }
-//    }).css({'display':'none', 'margin':'auto'}).fadeIn(1000);
-
-    $("#cover").click(function(){
-      $.wowBook("#features").advance();
-    });
-
-    var book = $.wowBook("#features");
-
-    function rebuildThumbnails(){
-      book.destroyThumbnails()
-      book.showThumbnails()
-      $("#thumbs_holder").css("marginTop", -$("#thumbs_holder").height()/2)
-    }
-    $("#thumbs_position button").on("click", function(){
-      var position = $(this).text().toLowerCase()
-      if ($(this).data("customized")) {
-        position = "top"
-        book.opts.thumbnailsParent = "#thumbs_holder";
-      } else {
-        book.opts.thumbnailsParent = "body";
-      }
-      book.opts.thumbnailsPosition = position
-      rebuildThumbnails();
-    })
-    $("#thumb_automatic").click(function(){
-      book.opts.thumbnailsSprite = null
-      book.opts.thumbnailWidth = null
-      rebuildThumbnails();
-    })
-    $("#thumb_sprite").click(function(){
-      book.opts.thumbnailsSprite = "images/thumbs.jpg"
-      book.opts.thumbnailWidth = 136
-      rebuildThumbnails();
-    })
-    $("#thumbs_size button").click(function(){
-      var factor = 0.02*( $(this).index() ? -1 : 1 );
-      book.opts.thumbnailScale = book.opts.thumbnailScale + factor;
-      rebuildThumbnails();
-    })
-
-  });
 
 </script>
 
