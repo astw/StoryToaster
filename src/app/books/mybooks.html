@@ -23,7 +23,8 @@
   <!-- CSS : implied media="all" -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/wow_book.css" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="css/preview.css"><!-- Uncomment if you are specifically targeting less enabled mobile browsers
+  <link rel="stylesheet" type="text/css" href="css/preview.css">
+  <!-- Uncomment if you are specifically targeting less enabled mobile browsers
 	<link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
 
   <link href='//fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
@@ -57,24 +58,25 @@
   </nav>
 
   <div id="main">
-
      <div id='features'>
-
       <div id='cover'>
           this is cover
       </div>
 
-       <div class='responsive feature pagefx' ng-repeat="p in book.pages">
-         <a> {{ book.title}}  </a>
-        </div> 
+       <div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">
+          <page data="page" />
+        </div>
+
+       <div class='responsive feature pagefx'  >
+          this is another page
+       </div>
 
       <div class='last_cover'>
         <img src="images/cover_last.png" width="100%" height="100%" />
       </div>
-
     </div> <!-- features -->
-
   </div>
+
   <div id='thumbs_holder'>
   </div>
   <footer>
@@ -84,18 +86,82 @@
 
 
 <!-- Javascript at the bottom for fast page loading -->
-
 <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
-<script src="./js/jquery-1.9.1.min.js">
-
-</script>
+<script src="./js/jquery-1.9.1.min.js"></script>
 
 <script type="text/javascript" src="./js/wow_book.js"></script>
 
-<script type="text/javascript"  >
 
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#features').wowBook({
+      height : 500
+      ,width  :1032
+      ,centeredWhenClosed : true
+      ,hardcovers : true
+      ,turnPageDuration : 1000
+      ,numberedPages : [1,-2]
+      ,controls : {
+        zoomIn    : '#zoomin',
+        zoomOut   : '#zoomout',
+        next      : '#next',
+        back      : '#back',
+        first     : '#first',
+        last      : '#last',
+        slideShow : '#slideshow',
+        flipSound : '#flipsound',
+        thumbnails : '#thumbs',
+        fullscreen : '#fullscreen'
+      }
+      ,scaleToFit: "#container"
+      ,thumbnailsPosition : 'bottom'
+      ,onFullscreenError : function(){
+        var msg="Fullscreen failed.";
+        if (self!=top) msg="The frame is blocking full screen mode. Click on 'remove frame' button above and try to go full screen again."
+        alert(msg);
+      }
+    }).css({'display':'none', 'margin':'auto'}).fadeIn(1000);
+
+    $("#cover").click(function(){
+      $.wowBook("#features").advance();
+    });
+
+    var book = $.wowBook("#features");
+
+    function rebuildThumbnails(){
+      book.destroyThumbnails()
+      book.showThumbnails()
+      $("#thumbs_holder").css("marginTop", -$("#thumbs_holder").height()/2)
+    }
+    $("#thumbs_position button").on("click", function(){
+      var position = $(this).text().toLowerCase()
+      if ($(this).data("customized")) {
+        position = "top"
+        book.opts.thumbnailsParent = "#thumbs_holder";
+      } else {
+        book.opts.thumbnailsParent = "body";
+      }
+      book.opts.thumbnailsPosition = position
+      rebuildThumbnails();
+    })
+    $("#thumb_automatic").click(function(){
+      book.opts.thumbnailsSprite = null
+      book.opts.thumbnailWidth = null
+      rebuildThumbnails();
+    })
+    $("#thumb_sprite").click(function(){
+      book.opts.thumbnailsSprite = "images/thumbs.jpg"
+      book.opts.thumbnailWidth = 136
+      rebuildThumbnails();
+    })
+    $("#thumbs_size button").click(function(){
+      var factor = 0.02*( $(this).index() ? -1 : 1 );
+      book.opts.thumbnailScale = book.opts.thumbnailScale + factor;
+      rebuildThumbnails();
+    })
+
+  });
 </script>
-
 <!-- scripts concatenated and minified via ant build script-->
 <script src="js/plugins.js"></script>
 <script src="js/script.js"></script>

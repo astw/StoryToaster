@@ -51,7 +51,6 @@ app.directive('previewSinglePage',function(){
   }
 });
 
-
 app.directive('leftSidebarImage',function(){
   return {
     restirct:'E',
@@ -156,32 +155,32 @@ app.directive('doubleDesignPage',function($window){
     canvasTemplate += rightCanvs;
 
     return {
-    template: canvasTemplate
-     ,
-     link : function(scope, elem, attrs) {
+      template: canvasTemplate
+      ,
+      link: function (scope, elem, attrs) {
 
-       console.log('doubleDesignPage created');
+        console.log('doubleDesignPage created');
 
-     scope.onResize = function() {
-        var w = ($(window).width() - 250 - 30) / 2 - 20;
-        h = w / 1.375;
-        //$(elem).width(w);
-        $('.page-big').width(w);
-        $('.page-big').height(h);
+        scope.onResize = function () {
+          var w = ($(window).width() - 250 - 30) / 2 - 20;
+          h = w / 1.375;
+          //$(elem).width(w);
+          $('.page-big').width(w);
+          $('.page-big').height(h);
 
-        scope.main.left_canvas = new fabric.Canvas('left_canvas');
-        scope.main.right_canvas = new fabric.Canvas('right_canvas');
-        scope.main.currentCanvas = scope.main.left_canvas;
-        scope.main.restoreToCurrentDesignData();
+          scope.main.left_canvas = new fabric.Canvas('left_canvas');
+          scope.main.right_canvas = new fabric.Canvas('right_canvas');
+          scope.main.currentCanvas = scope.main.left_canvas;
+          scope.main.restoreToCurrentDesignData();
 
-     };
-     scope.onResize();
-
-     angular.element($window).bind('resize', function() {
+        };
         scope.onResize();
-     })
+
+        angular.element($window).bind('resize', function () {
+          scope.onResize();
+        })
+      }
     }
-  }
 });
 
 app.directive('leftDesignPage',function($window){
