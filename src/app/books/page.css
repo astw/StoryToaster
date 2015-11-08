@@ -1,11 +1,13 @@
-.canvas_page_read {
-  /*background-color:red;*/
-  height: 500px;
-  width: 516px;
+.canvas_page_read{
 
+  height: 100%;
+  width: 1516px;
 }
 
 .page {
   border:1px solid yellow;
   border-color: yellow;
+
+  height: 470px;
+  width: 516px;
 }

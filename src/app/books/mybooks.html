@@ -63,9 +63,19 @@
           this is cover
       </div>
 
+       <!--<div class='responsive feature pagefx' >-->
+          <!--<page data="bookvm.book.pages[0]" />-->
+        <!--</div>-->
+
+
+       <!--<div class='responsive feature pagefx' >-->
+         <!--ddddd  <page data="bookvm.book.pages[1]" />-->
+       <!--</div>-->
+
        <div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">
-          <page data="page" />
-        </div>
+         <page data="page" />
+       </div>
+
 
        <div class='responsive feature pagefx'  >
           this is another page
@@ -96,7 +106,7 @@
   $(document).ready(function() {
     $('#features').wowBook({
       height : 500
-      ,width  :1032
+      ,width  :1100
       ,centeredWhenClosed : true
       ,hardcovers : true
       ,turnPageDuration : 1000

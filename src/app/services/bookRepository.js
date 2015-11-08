@@ -59,7 +59,7 @@ angular.module('storyToaster')
     };
 
     this.updateBook = function (book) {
-      var url = API_URL + "/books/" + book.id;
+      var url = API_URL + "books/" + book.id;
 
       var dfd = $q.defer();
       $http.put(url,book)
