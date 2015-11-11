@@ -31,10 +31,6 @@
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <script src="js/modernizr-1.6.min.js"></script>
 
-  {{main.selectedBook.title}}
-
-<div id="container">
-
   <nav>
     <ul>
       <li>
@@ -63,19 +59,9 @@
           this is cover
       </div>
 
-       <!--<div class='responsive feature pagefx' >-->
-          <!--<page data="bookvm.book.pages[0]" />-->
-        <!--</div>-->
-
-
-       <!--<div class='responsive feature pagefx' >-->
-         <!--ddddd  <page data="bookvm.book.pages[1]" />-->
-       <!--</div>-->
-
        <div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">
          <page data="page" />
        </div>
-
 
        <div class='responsive feature pagefx'  >
           this is another page
@@ -92,15 +78,12 @@
   <footer>
       more stuff here
   </footer>
-</div> <!--! end of #container -->
-
 
 <!-- Javascript at the bottom for fast page loading -->
 <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
 <script src="./js/jquery-1.9.1.min.js"></script>
 
 <script type="text/javascript" src="./js/wow_book.js"></script>
-
 
 <script type="text/javascript">
   $(document).ready(function() {
