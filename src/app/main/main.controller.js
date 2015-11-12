@@ -26,12 +26,8 @@
 
     $scope.test = 'this is a test ';
 
-    vm.selectedBook = JSON.parse(relayService.getKeyValue('_selectedBook_').data);
-
-    bookRepository.getUserBooks().then(function(books){
-      vm.mybooks = books;
-      console.log(books);
-    });
+    var temp = relayService.getKeyValue('_selectedBook_') && relayService.getKeyValue('_selectedBook_').data;
+    vm.selectedBook = temp ? JSON.parse(relayService.getKeyValue('_selectedBook_').data) : null;
 
     var currentCanvas = vm.left_canvas;
 
@@ -77,6 +73,7 @@
     };
 
     hookEvents();
+
 
     vm.clickBook = function(book){
       relayService.putKeyValue('_selectedBook_',book);
@@ -275,17 +272,6 @@
     vm.deleteObject = function () {
       //if(vm.PhotoBook.leftDesignPage.active)
           vm.PhotoBook.deletePage(vm.PhotoBook.leftDesignPage);
-
-      //if (vm.currentPage.active) {
-      //  var obj = vm.left_canvas.getActiveObject();
-      //  vm.left_canvas.remove(obj);
-      //  vm.currentPage.previewImage = vm.left_canvas.toDataURL();
-      //}
-      //else {
-      //  var obj = vm.right_canvas.getActiveObject();
-      //  vm.right_canvas.remove(obj);
-      //  vm.currentPage.previewImage = vm.right_canvas.toDataURL();
-      //}
     };
 
     vm.newPage = function () {

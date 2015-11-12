@@ -1,28 +1,26 @@
-<div class="book-panel-small hvr-border-fade" >
-    <div class="book-body-small text-center br-a br-grey">
-      <br/>
-      <h4 class="fs20 mt6 mbn">{{book.title}}</h4>
-      <h6 class="text-system">{{book.desc}}</h6>
-    </div>
-    <div class="book-footer-small text-center p10">
+<div class="book-panel-small"
+     ng-click="$parent.bookCtrl.clickBook(book)"
+     ng-mouseenter="$parent.bookCtrl.hoverOnBook(book)"
+     ng-mouseleave="$parent.bookCtrl.hoverOnBook(book)"
+  >
+  <div class="book-body-small text-center  br-grey" ng-click="$parent.bookCtrl.clickBook(book)">
+    <br/>
+    <h4 class="fs20 mt6 mbn">{{book.title}}</h4>
+    <h6 class="text-system">{{book.desc}}</h6>
+  </div>
+  <div class="book-footer-small text-center p10 ">
                   <span class="fs11">
-                    <i class="fa pr5"></i>{{book.pages}} pages
-                    <b>/{{book.comments ? book.comments.length : 0}} comments</b>
+                    <i class="fa pr5"></i>{{book.pages}} <span class="glyphicon glyphicon-file"></span>
+                    <b>/{{book.comments ? book.comments.length : 0}} <span
+                      class="glyphicon glyphicon-comment"></span></b>
                   </span>
-    </div>
-</div>
 
-<!--<div class="col-sm-3 col-xl-3" >-->
-  <!--<div class="panel panel-tile text-center br-a br-grey">-->
-    <!--<div class="panel-body">-->
-      <!--<h4 class="fs15 mt6 mbn">{{book.title}}</h4>-->
-      <!--<h6 class="text-system">{{book.desc}}</h6>-->
-    <!--</div>-->
-    <!--<div class="panel-footer br-t p12">-->
-                  <!--<span class="fs11">-->
-                    <!--<i class="fa pr5"></i>{{book.pages}} pages-->
-                    <!--<b>/{{book.comments ? book.comments.length : 0}} comments</b>-->
-                  <!--</span>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
+    <div class="btn btn-primary btn-xs space-5px pull-right" ng-click="$parent.bookCtrl.shareBook(book)"
+         ng-show="book.hover">分享
+    </div>
+    <div class="btn btn-primary btn-xs space-5px pull-right"
+         ng-click="$parent.bookCtrl.deleteBook(book,index, $event)"
+         data-effect="mfp-zoomIn" ng-show="book.hover">删除
+    </div>
+  </div>
+</div>

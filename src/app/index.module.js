@@ -3,6 +3,7 @@
 
   angular
     .module('storyToaster', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize','ui.select',
-      'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ui.bootstrap', 'toastr']);
+      'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'ui.bootstrap', 'toastr','oitozero.ngSweetAlert'
+  ]);
 
 })();

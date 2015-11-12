@@ -25,12 +25,10 @@
     <section id="content" class="alt top-menu-open">
       <!-- begin: .tray-center -->
       <div class="tray tray-center">
-b
         <!-- dashboard tiles -->
         <div class="row">
-          <!--ng-click="main.readBook(b);"-->
-          <div ng-repeat="b in main.mybooks" >
-            <book-tile book=b  ng-click="main.clickBook(b)"  />
+          <div ng-repeat="b in bookCtrl.mybooks" >
+            <book-tile book=b index= $index  />
           </div>
         </div>
        <!-- Admin-panels -->

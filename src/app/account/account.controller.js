@@ -16,12 +16,10 @@
       console.log(vm.password);
       console.log(vm.password2);
 
-
       authService.register(vm.email, vm.username,vm.password,vm.password2)
         .then(
         function(res){
           // success
-
           alert('register ok');
         },
         function(err){

@@ -117,5 +117,18 @@ angular.module('storyToaster')
       return deferred.promise;
     };
 
+    this.deleteBook = function(book){
+      var url = API_URL + "books/" + book.id;
+
+      var dfd = $q.defer();
+      $http.delete(url)
+        .then(function(res){
+          console.log(res);
+          dfd.resolve(res);
+        });
+
+      return dfd.promise;
+    }
+
   });
 
