@@ -33,6 +33,7 @@
 
     vm.createBook = function(){
       console.log('inside book ctrl, create book');
+      $window.location.assign('/account/my');
     };
 
     vm.deleteBook = function(book,index,event) {
