@@ -18,7 +18,7 @@
         controllerAs: 'main'
       })
       .when('/account/mybooks', {
-        templateUrl: 'app/main/books.html',
+        templateUrl: 'app/books/books.html',
         controller: 'BookController',
         controllerAs: 'bookCtrl'
       }

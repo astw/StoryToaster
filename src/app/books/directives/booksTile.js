@@ -19,7 +19,7 @@
         'book': '=',
         'index':'='
       },
-      templateUrl: 'app/main/template/book-tile.html'
+      templateUrl: 'app/books/templates/book-tile.html'
     };
     return directive;
 

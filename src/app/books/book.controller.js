@@ -31,15 +31,8 @@
        $window.location.assign('/account/mybooks/read');
     };
 
-   $scope.safeApply = function (fn) {
-      var phase = this.$root.$$phase;
-      if (phase == '$apply' || phase == '$digest') {
-        if (fn && (typeof(fn) === 'function')) {
-          fn();
-        }
-      } else {
-        this.$apply(fn);
-      }
+    vm.createBook = function(){
+      console.log('inside book ctrl, create book');
     };
 
     vm.deleteBook = function(book,index,event) {

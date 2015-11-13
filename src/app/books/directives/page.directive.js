@@ -13,7 +13,7 @@
   /* @ngInject */
   function page() {
     var directive = {
-      templateUrl: 'app/books/page.html',
+      templateUrl: 'app/books/templates/page.html',
       bindToController: true,
       controller: 'PageController',
       controllerAs: 'vm',
