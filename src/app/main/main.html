@@ -1,4 +1,4 @@
-<div id="main">
+<div id="main" class="wrapper">
   <header nav-bar2 class="navbar navbar-fixed-top navbar-shadow">
   </header>
 
@@ -11,38 +11,72 @@
     <!-- Start: Topbar-Dropdown -->
     <div id="topbar-dropmenu" class="alt">
       <div class="topbar-menu row">
-        <div preview-scroll-panel/>
+        <!--<div preview-scroll-panel/>-->
       </div>
     </div>
     <!-- End: Topbar-Dropdown -->
 
     <!-- Start: Topbar -->
     <header id="topbar" class="ph10">
-      <div top-bar-command />
+      <div preview-scroll-panel/>
+      <!--<div top-bar-command />-->
     </header>
     <!-- End: Topbar -->
 
     <!-- Begin: Content -->
-    <section id="content" class="table-layout animated fadeIn">
+    <div id="content" >
+    <div>
       <div class="tray tray-center">
+        <div class="panel" id="bigPagePanel">
          <div class="row" ng-show="main.contentPageMode == true">
           <!-- <div class="page-design-panel" page-design /> -->
-           <div ng-if= "main.doublePagesInDesign == true"    double-design-page />
-           <div ng-if= "main.doublePagesInDesign == false"  left-design-page />
-
-         </div>
-        <div class="row" ng-show="main.frontCoverMode == true">
-            <div front-cover-design />
-        </div>
-        <div class="row" ng-show="main.dedicatePageMode == true">
-            this is the dedicated page
-        </div>
-        <div class="row" ng-show="main.backCoverMode == true">
-            <div back-cover-design />
-        </div>
-
+          <div ng-if= "main.doublePagesInDesign == true"    double-design-page />
+          <div ng-if= "main.doublePagesInDesign == false"  left-design-page />
+          </div>
+          <div class="row" ng-show="main.frontCoverMode == true">
+          <div front-cover-design />
+          </div>
+          <div class="row" ng-show="main.dedicatePageMode == true">
+             this is the dedicated page
+          </div>
+          <div class="row" ng-show="main.backCoverMode == true">
+          <div back-cover-design />
+          </div>
+          <div class="row" />
+          <div class="row">
+           </div>
+          </div>
+          <!--<div class="panel">-->
+             <div top-bar-command />
+          <!--</div>-->
       </div>
-    </section>
+    </div>
+    </div>
+
+    <!--<section id="content" class="table-layout animated fadeIn">-->
+      <!--<div class="tray tray-center">-->
+        <!--<div class="container">-->
+          <!--<div class="row" ng-show="main.contentPageMode == true">-->
+            <!--&lt;!&ndash; <div class="page-design-panel" page-design /> &ndash;&gt;-->
+            <!--<div ng-if= "main.doublePagesInDesign == true"    double-design-page />-->
+            <!--<div ng-if= "main.doublePagesInDesign == false"  left-design-page />-->
+          <!--</div>-->
+          <!--<div class="row" ng-show="main.frontCoverMode == true">-->
+            <!--<div front-cover-design />-->
+          <!--</div>-->
+          <!--<div class="row" ng-show="main.dedicatePageMode == true">-->
+            <!--this is the dedicated page-->
+          <!--</div>-->
+          <!--<div class="row" ng-show="main.backCoverMode == true">-->
+            <!--<div back-cover-design />-->
+          <!--</div>-->
+          <!--<div class="row" />-->
+          <!--<div class="row">-->
+             <!--<div top-bar-command /> -->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</section>-->
 
     <!-- End: Content -->
     <!-- Begin: Page Footer -->

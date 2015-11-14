@@ -134,7 +134,10 @@ app.directive('sideBarLeft', function () {
 });
 
 app.directive('doubleDesignPage',function($window){
-  var w = ($(window).width() - 250 - 30) / 2 - 20;
+  var t = ($('#bigPagePanel')).width();
+
+  var w =  (t - 20) /2      ;//($(window).width() - 250 - 30) / 2 - 20;
+  //var w = ($(window).width() - 250 - 30) / 2 - 20;
   var h = w / 1.375;
 
   var leftCanvas =
@@ -162,7 +165,10 @@ app.directive('doubleDesignPage',function($window){
         console.log('doubleDesignPage created');
 
         scope.onResize = function () {
-          var w = ($(window).width() - 250 - 30) / 2 - 20;
+
+          var t = ($('#bigPagePanel')).width();
+
+          var w =  (t - 40) /2      ;//($(window).width() - 250 - 30) / 2 - 20;
           h = w / 1.375;
           //$(elem).width(w);
           $('.page-big').width(w);
