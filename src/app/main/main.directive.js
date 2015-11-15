@@ -282,7 +282,7 @@ app.directive('backCoverDesign',function($window){
 
 app.directive('backCoverDesignRight', function () {
   return {
-    templateUrl: 'app/main/template/back-cover-design-right.html'
+    templateUrl: 'app/main/template/back-cover-design-right-bak.html'
   };
 });
 

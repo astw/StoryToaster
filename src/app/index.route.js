@@ -5,7 +5,7 @@
     .module('storyToaster')
     .config(routeConfig);
 
-  function routeConfig($routeProvider,$locationProvider) {
+  function routeConfig($routeProvider,$locationProvider,minicolorsProvider) {
     $routeProvider
       .when('/home', {
         templateUrl: 'app/home/home.html',
@@ -50,6 +50,11 @@
       });
 
     $locationProvider.html5Mode(true);
+    angular.extend(minicolorsProvider.defaults, {
+      control: 'hue',
+      position: 'bottom left',
+      theme: 'bootstrap'
+    });
   }
 
 })();

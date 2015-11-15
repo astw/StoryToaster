@@ -2,7 +2,7 @@
 //
 //app.directive('backCoverDesignRight', function () {
 //  return {
-//    templateUrl: 'app/main/template/back-cover-design-right.html'
+//    templateUrl: 'app/main/template/back-cover-design-right-bak.html'
 //  };
 //});
 
@@ -22,7 +22,7 @@
 //      bindToController: true,
 //      controller: ControllerName,
 //      controllerAs: 'vm',
-//      templateUrl:'app/main/template/back-cover-design-right.html',
+//      templateUrl:'app/main/template/back-cover-design-right-bak.html',
 //      link: link,
 //      restrict: 'A',
 //      scope: {}

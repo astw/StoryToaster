@@ -1,34 +1,35 @@
+
 <br/>
 <b>书标题</b>
 <input ng-model="main.PhotoBook.title" type="text" id="title" class="form-control" placeholder="输入书标题">
-<button ng-click="main.changeTitleFont()"> 字体  </button>
-<button colorpicker type="button"
+
+<div minicolors="brightnesssettings"
         colorpicker-position="top"
-        ng-model="main.PhotoBook.titleColor"
-        ng-click="main.changeBackgroundColor()"
-  > 颜色 </button>
+        ng-model="main.PhotoBook.titleColor">
+</div>
 
 <br/>
-<b>下标题</b>
+<br/>
+<b>下标题</b> <button ng-click="main.changeAuthorFont()"> 字体  </button>
 <input ng-model="main.PhotoBook.attribute" type="text" id="attribute" class="form-control" placeholder="输入书下标题">
-<button ng-click="main.changeAuthorFont()"> 字体  </button>
-<button colorpicker type="button"
-        colorpicker-position="top"
-        ng-model="main.PhotoBook.attributeColor"
-  > 颜色 </button>
+
+<div minicolors="brightnesssettings"
+     colorpicker-position="top"
+     ng-model="main.PhotoBook.attributeColor" />
+
 
 <br/>
-
 <br/>
+
 <button colorpicker type="button"
-        colorpicker-position="top"
-        ng-model="main.PhotoBook.backgroundColor"
-  > 背景颜色 </button>
+colorpicker-position="top"
+ng-model="main.PhotoBook.backgroundColor"> 背景颜色 </button>
+
 <br/>
 
 封面图片选自：
 <!--<select class="form-control">-->
-  <!--<option ng-repeat="page in main.PhotoBook.pages" style="background-image:{{page.previewImage}};"> {{$index}}</option>-->
+<!--<option ng-repeat="page in main.PhotoBook.pages" style="background-image:{{page.previewImage}};"> {{$index}}</option>-->
 </select>
 
 <ui-select ng-model="main.frontCover"
@@ -37,14 +38,12 @@
            class="form-control"
            ng-disabled="disabled"
            style="min-width: 300px;">
-       <ui-select-match placeholder="选择一个封面图片">第 {{$select.selected.index  + 1}} 页 </ui-select-match>
-       <ui-select-choices repeat="page in main.PhotoBook.pages">
-         <img ng-src="{{page.previewImage}}" width='40' height="40" border="1"/>
-         <span style="color:blue"> 第 {{$index + 1}} 页 </span>
-       </ui-select-choices>
+  <ui-select-match placeholder="选择一个封面图片">第 {{$select.selected.index  + 1}} 页 </ui-select-match>
+  <ui-select-choices repeat="page in main.PhotoBook.pages">
+    <img ng-src="{{page.previewImage}}" width='40' height="40" border="1"/>
+    <span style="color:blue"> 第 {{$index + 1}} 页 </span>
+  </ui-select-choices>
 </ui-select>
-
-
 <br/>
 <br/>
 <br/>
