@@ -74,7 +74,6 @@
 
     hookEvents();
 
-
     vm.clickBook = function(book){
       relayService.putKeyValue('_selectedBook_',book);
       vm.selectedBook = book;
@@ -98,7 +97,8 @@
     };
 
     vm.changeBackgroundColor = function(){
-      console.log('in main controller change book back color')
+      console.log('in main controller change book back color');
+      console.log(vm.PhotoBook.backgroundColor);
     };
 
     $scope.colours = [{
@@ -220,9 +220,7 @@
     vm.nextPage = function () {
       vm.left_canvas.clear();
       vm.right_canvas.clear();
-
       vm.PhotoBook.MoveToNextPage();
-
       vm.restoreToCurrentDesignData();
     };
 

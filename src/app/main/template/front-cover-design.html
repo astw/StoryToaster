@@ -1,12 +1,12 @@
 <div class="page-design-panel">
-  <div class="front-cover-left">
-    <div class="title-panel">
+  <div class="front-cover-left" ng-style="{'background-color':main.PhotoBook.backgroundColor}">
+    <div class="title-panel" ng-style="{'color':main.PhotoBook.titleColor}">
       {{main.PhotoBook.title}}
     </div>
 
      <img ng-src="{{main.frontCover.previewImage}}">
 
-    <div class="author-panel">
+    <div class="author-panel" ng-style="{'color':main.PhotoBook.attributeColor}">
       <span>
          {{main.PhotoBook.attribute}}
         </span>

@@ -152,6 +152,7 @@
   border-radius:8px;
   border:3px solid #c9dbe1 ;
   background-color: #FFFFFF;
+  /*background-color: #2f64ff;*/
 }
 
 .page-control-left, .page-control-right > button {
@@ -260,7 +261,7 @@
   width:450px;
   position: relative;
   float: left;
-  background-color: #FFFFDF;
+  background-color: ghostwhite;
   border:solid;
   border-width: 8px;
   border-color: #c9dbe1;

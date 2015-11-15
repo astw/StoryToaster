@@ -250,6 +250,7 @@ app.directive('frontCoverDesign',function($window){
   return {
     templateUrl: 'app/main/template/front-cover-design.html',
      link : function(scope, elem, attrs) {
+       console.log(scope.PhotoBook);
        $(".front-cover-left").css('height',h +"px");
        $(".front-cover-left").css('width',w +"px");
        $(".front-cover-left>img").css('width',canW +"px");

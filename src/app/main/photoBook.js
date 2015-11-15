@@ -12,16 +12,21 @@ angular.module('storyToaster')
 
     var PhotoBook = function () {
       this.title = "this is created on frontend";
+      this.titleColor = '#ffffff';
+
       this.desc = "this is my designed book";
       this.attribute = "By author";
+      this.attributeColor = '#ffffff';
+
       this.author = 3;
       this.pagesInDesign = 2 ;   // how manage pages in design by default
 
       this.totalPage = TOTAL_PAGE;
+      this.backgroundColor = '#2f64ff';
+
       this.pages = [];
       this.frontCover = new Page();
       this.dedicatedPage = new Page();
-
       this.backCover = new Page();
 
       for (var i = 0; i < this.totalPage; i++) {
@@ -29,7 +34,6 @@ angular.module('storyToaster')
         p.index = i;
         this.pages.push(p);
       }
-      ;
 
       this.leftDesignPage = this.pages[0];
       this.leftDesignPage.active = true;
@@ -294,7 +298,6 @@ angular.module('storyToaster')
             function (err) {
               console.log(err);
               return deferred.reject(err);
-
             })
         }
         else {
