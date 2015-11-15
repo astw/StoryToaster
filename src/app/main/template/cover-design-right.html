@@ -1,10 +1,25 @@
 <br/>
 <b>书标题</b>
 <input ng-model="main.PhotoBook.title" type="text" id="title" class="form-control" placeholder="输入书标题">
+<button ng-click="main.changeTitleFont()"> 字体  </button>
+<button ng-click="main.changeTitleColor()"> Color  </button>
+
 <br/>
 <b>下标题</b>
 <input ng-model="main.PhotoBook.attribute" type="text" id="attribute" class="form-control" placeholder="输入书下标题">
-<br/> 封面图片选自：
+<button ng-click="main.changeAuthorFont()"> 字体  </button>
+<button ng-click="main.changeAuthorFont()"> Color  </button>
+<color-picker ng-model="myColor"></color-picker>
+
+<br/>
+
+<br/>
+<button ng-click="main.changeAuthorFont()"> background color  </button>
+
+<br/>
+
+
+封面图片选自：
 <!--<select class="form-control">-->
   <!--<option ng-repeat="page in main.PhotoBook.pages" style="background-image:{{page.previewImage}};"> {{$index}}</option>-->
 </select>

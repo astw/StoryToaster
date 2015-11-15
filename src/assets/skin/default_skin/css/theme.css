@@ -19831,8 +19831,8 @@ manipulation using an html class aswell */
   z-index: 2;
   position: relative;
   width: 100%;
-  min-height: 51px;
-  padding: 10px 21px;
+  /*min-height: 51px;*/
+  padding: 5px 1px;
   background: #fafafa;
   border-bottom: 1px solid #e0e0e0;
 }
@@ -20081,13 +20081,18 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 44px;
+  height: 64px;
   padding: 12px 15px;
   background-color: #f8f8f8;
   border-top: 1px solid #DDD;
   -webkit-transition: margin 0.2s ease;
   transition: margin 0.2s ease;
 }
+
+#content-footer .footer-right {
+  float:right
+}
+
 #content-footer b {
   color: #888;
 }

@@ -4,12 +4,12 @@
       <td ng-if="$even"><div class="page-number"> {{$index + 1}} </div> </td>
       <td ng-if="$even">
         <div class="page-preview" ng-click="main.previewClick(page,'left')" ng-class="{active:page.active}">
-          <img ng-src="{{page.previewImage}}"   width='75' height="55" border="0" />
+          <img class="cover-image"  ng-src="{{page.previewImage}}"   width='75' height="55" border="0" />
         </div>
       </td>
       <td ng-if="$odd">
         <div class="page-preview" ng-click="main.previewClick(page, 'right')" ng-class="{active:page.active}">
-          <img ng-src="{{page.previewImage}}" width='75' height="55" border="0"/>
+          <img class="cover-image" ng-src="{{page.previewImage}}" width='75' height="55" border="0"/>
         </div>
       </td>
       <td ng-if="$odd"><div class="page-number"> {{$index + 1}} </div></td>

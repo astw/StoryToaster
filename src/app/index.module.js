@@ -15,7 +15,8 @@
       'ui.bootstrap',
       'toastr',
       'oitozero.ngSweetAlert',
-      'ngBusy'
+      'ngBusy',
+      'color.picker'
     ]);
 
 })();

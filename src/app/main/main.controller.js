@@ -79,7 +79,27 @@
       relayService.putKeyValue('_selectedBook_',book);
       vm.selectedBook = book;
       console.log('click on book');
-    }
+    };
+
+    vm.changeTitleFont = function(){
+      console.log('in main controller  change title font ');
+    };
+
+    vm.changeTitleColor = function(){
+      console.log('in main controller change title color')
+    };
+
+    vm.changeAuthorFont = function(){
+      console.log('in main controller  change author font ');
+    };
+
+    vm.changeAuthorColor = function(){
+      console.log('in main controller change author color')
+    };
+
+    vm.changeBackgroundColor = function(){
+      console.log('in main controller change book back color')
+    };
 
     $scope.colours = [{
       name: "Red",

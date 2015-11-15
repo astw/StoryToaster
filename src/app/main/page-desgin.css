@@ -5,26 +5,30 @@
   height:90px;
   width:100%;
   padding: 0 0px;
-  background-color: #becfd5;
+  background-color: #00acee;
 }
 
 .DocumentItem
 {
   display: inline-block;
   margin-right: 5px;
+  margin-top:0px;
   padding:0;
-  height:80px;
+  background-color: transparent;
+  height:70px;
 }
 .list-inline {
   white-space: nowrap;
   margin-left: 20px;
-  height: 90px;
+  margin-top:-5px;
+  /*height: 90px;*/
+  background-color: transparent;
 }
 
 .page-preview-panel {
   float: left;
   width: 100%;
-  height: 105px;
+  height: 75px;
   margin: 0px;
   /*background-color: #becfd5;*/
   background-color:transparent;
@@ -34,12 +38,12 @@
 {
   overflow-x:scroll;
   overflow-y:hidden;
-  height:98px;
+  /*height:88px;*/
   width:98%;
   margin:auto;
   padding: 0 0px;
   border-radius:8px;
-  background-color: #ffffff;
+  background-color: transparent;
 }
 
 .page-control-left {
@@ -52,7 +56,7 @@
 .page-control-center {
   overflow-x: scroll;
   width: 101%;
-  height: 100px;
+  height: 80px;
   overflow-x:auto;
   background-color: #ffffff;
 }
@@ -68,12 +72,12 @@
   float: left;
   left:10px;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-left: 0px;
   margin-right:0px;
   align-content: center;
-  height: 100px;
-  background-color: #FFFFFF;
+  /*height: 70px;*/
+  background-color: transparent;
 }
 
 .page-sheet> .even {
@@ -88,7 +92,7 @@
   float: left;
   margin: 1px;
   width: 80px;
-  height: 60px;
+  /*height: 60px;*/
   border-radius:8px;
   border:2px solid #c9dbe1 ;
   background-color: #FFFFFF;
@@ -232,14 +236,15 @@
 .front-cover-right {
   float:left;
   margin: 20px;
-  height:300px;
+  margin-top:10px;
+  height:350px;
   width:450px;
   position: relative;
   float: left;
-  background-color: #FFFFDF;
+  background-color: ghostwhite;
   border:solid;
   border-width: 8px;
-  border-color: #c9dbe1;
+  border-color: #c8dae0;
   border-radius:10px;
 }
 
@@ -314,4 +319,5 @@
 
 #bigPagePanel{
   background: transparent;
+  margin:5px;
 }
