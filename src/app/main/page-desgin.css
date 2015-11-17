@@ -197,7 +197,8 @@
 
 .title-panel {
   text-align: center;
-  font-size: larger;
+  font-size: xx-large;
+  font-weight: 600;
   height: 80px;
   line-height: 80px;
   background-color: transparent;
@@ -210,12 +211,11 @@
 }
 
 .author-panel {
-  margin-top:10px;
   text-align: center;
-  vertical-align: baseline;
-  height: 85px;
-  line-height: 100%;
-  color: red;
+  margin-top:10px;
+  font-size: large;
+  font-weight: 700;
+  height: 80px;
 }
 
  .author-panel > span{

@@ -84,6 +84,14 @@
       control: 'brightness'
     };
 
+
+// JS
+    $scope.optionsColumn = {
+      columns: 4,
+      roundCorners: true,
+      size:40
+    }
+
     vm.clickBook = function(book){
       relayService.putKeyValue('_selectedBook_',book);
       vm.selectedBook = book;

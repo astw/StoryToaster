@@ -18,7 +18,8 @@
       'ngBusy',
       'colorpicker.module',
       'minicolors',
-      'angularSpectrumColorpicker'
+      'angularSpectrumColorpicker',
+      'ngjsColorPicker'
     ]);
 
 })();
