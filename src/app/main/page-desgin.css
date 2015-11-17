@@ -195,6 +195,9 @@
   /*vertical-align: middle;*/
 }
 
+.color-picker {
+}
+
 .title-panel {
   text-align: center;
   font-size: xx-large;
@@ -209,6 +212,7 @@
   vertical-align: middle;
   line-height: normal;
 }
+
 
 .author-panel {
   text-align: center;
@@ -237,7 +241,7 @@
 .front-cover-right {
   float:left;
   margin: 20px;
-  margin-top:10px;
+  margin-top:0px;
   height:350px;
   width:450px;
   position: relative;
@@ -256,20 +260,18 @@
 
 .back-cover-right {
   float:left;
-  margin: 20px;
+  /*margin: 20px;*/
   height:150px;
   width:450px;
   position: relative;
-  float: left;
   background-color: ghostwhite;
   border:solid;
   border-width: 8px;
   border-color: #c9dbe1;
   border-radius:10px;
 }
-.back-cover-right > .cover-panel{
-  margin: auto;
-  width:80%;
+.input-height {
+  height: 10px;
 }
 
 .back-cover-up {
