@@ -1,0 +1,16 @@
+<div class="page-design-panel">
+  <div class="front-cover-left" >
+    <canvas id="dedicatePageCanvas" class="page-canvas" crossOrigin="Anonymous"
+            ng-style= " {'background-color' : '#ffffff', selected:false}"  />
+  </div>
+  <div class="front-cover-right">
+    <div class="dedicateDiv">
+    <br/>
+    <!--this is the dedeicate design page-->
+    <label for="textareaEdit"><b>题词</b></label>
+    <br/>
+    <textarea id="textareaEdit" ng-model="textareaValue"></textarea>
+    <span class="valueItems"><strong>Value:</strong> {{textareaValue}}</span>
+  </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@ angular.module('storyToaster')
 
     var Page = function () {
       this.imageData = null;
-      this.previewImage = null;
+      this.previewImage = "/assets/images/blank-small.gif";
     };
 
     var PhotoBook = function () {

@@ -3,11 +3,11 @@
 
   angular
     .module('storyToaster')
-    .directive('frontCoverDesign', frontCoverDesign);
+    .directive('dedicateDesign', dedicateDesign);
 
 
   /* @ngInject */
-  function frontCoverDesign() {
+  function dedicateDesign() {
 
     var page;
     var canvas;
@@ -20,15 +20,12 @@
       link: link,
       restrict: 'AE',
       //template: template,
-      templateUrl: 'app/main/template/front-cover-design.html'
+      templateUrl: 'app/main/template/dedicate-design.html'
     };
     return directive;
 
     function link(scope, elem, attrs) {
-      page = scope.main.PhotoBook.frontCover;
-
-      $(".front-cover-left").css('height', h + "px");
-      $(".front-cover-left").css('width', w + "px");
+      page = scope.main.PhotoBook.dedicatedPage;
 
       var picture = {};
       picture.width = w * 0.6;
@@ -40,17 +37,17 @@
       var canvasHeight = h -14;
 
       canvas = new fabric.Canvas(
-        'frontCoverCanvas',
+        'dedicatePageCanvas',
         {
           selection: false,
-          backgroundColor: scope.main.PhotoBook.backgroundColor
+          backgroundColor: '#ffffff'
         }
       );
 
       canvas.setWidth(canvasWidth);
       canvas.setHeight(canvasHeight);
 
-      scope.main.frontCoverCanvas = canvas;
+      scope.main.dedicatePageCanvas = canvas;
 
       //set title and attribute
       var title = addBookTitle(scope);
@@ -168,7 +165,7 @@
         },
 
         function (newValue, oldValue) {
-          canvas.backgroundColor =text = newValue;
+          canvas.backgroundColor = newValue;
           canvas.renderAll();
 
           fireChangeEvent(scope);
@@ -220,27 +217,7 @@
           canvas.renderAll();
 
           fireChangeEvent(scope);
-        });
-
-      scope.$watch(
-        function () {
-          return scope.main.PhotoBook.frontCoverImageIndex;
-        },
-
-        function (newValue) {
-
-          if (newValue >= 0) {
-            if(canvas.item(2))
-            canvas.item(2).remove();
-
-            canvas.setWidth(canvasWidth);
-            canvas.setHeight(canvasHeight);
-
-            picture.url = scope.main.PhotoBook.pages[newValue].previewImage;
-            addPicture(scope, picture, canvasWidth, canvasHeight);
-          }
-        }
-      )
+        })
     }
   }
 

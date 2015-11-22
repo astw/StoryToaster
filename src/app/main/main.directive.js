@@ -143,16 +143,16 @@ app.directive('doubleDesignPage',function($window){
   var leftCanvas =
     ' <div class="page-design-panel" id="pageDesignPanel" resize> ' +
     ' <div class="page-big" ng-click="main.selectLeft()" ng-class="{active:main.PhotoBook.leftDesignPage.active}"> ' +
-    ' <canvas class="page-canvas" crossOrigin="Anonymous" id="left_canvas" width="'+ w  + 'px" ' +
-    ' height="'+ h +'px"></canvas>' +
+    ' <canvas class="page-canvas" crossOrigin="Anonymous" id="left_canvas" width="'+ (w -9)  + 'px" ' +
+    ' height="'+ (h-9) +'px"></canvas>' +
     ' </div> ';
 
   var canvasTemplate = leftCanvas;
 
   var rightCanvs =
     ' <div class="page-big" ng-click="main.selectRight()" ng-class="{active:main.PhotoBook.rightDesignPage.active}"> ' +
-      ' <canvas class="page-canvas" crossOrigin="Anonymous"   id="right_canvas" width="'+ w  + 'px" ' +
-      ' height="'+ h +'px"></canvas> ' +
+      ' <canvas class="page-canvas" crossOrigin="Anonymous"   id="right_canvas" width="'+ (w -9)  + 'px" ' +
+      ' height="'+ (h -9) +'px"></canvas> ' +
       '</div>  </div>';
 
     canvasTemplate += rightCanvs;
@@ -174,8 +174,8 @@ app.directive('doubleDesignPage',function($window){
           $('.page-big').width(w);
           $('.page-big').height(h);
 
-          scope.main.left_canvas = new fabric.Canvas('left_canvas');
-          scope.main.right_canvas = new fabric.Canvas('right_canvas');
+          scope.main.left_canvas = new fabric.Canvas('left_canvas',{select:false,backgroundColor:'#ffffff'});
+          scope.main.right_canvas = new fabric.Canvas('right_canvas',{select:false,backgroundColor:'#ffffff'});
           scope.main.currentCanvas = scope.main.left_canvas;
           scope.main.restoreToCurrentDesignData();
 
@@ -197,8 +197,8 @@ app.directive('leftDesignPage',function($window){
     ' <div class="page-design-panel" id="pageDesignPanel" resize> ' +
     ' <div class="page-big" ng-click="main.selectLeft()" ng-class="{active:main.PhotoBook.leftDesignPage.active}" '
     + ' > ' +
-    ' <canvas class="page-canvas" crossOrigin="Anonymous" id="left_canvas" width="'+ w  + 'px" ' +
-    ' height="'+ h +'px"></canvas>' +
+    ' <canvas class="page-canvas" crossOrigin="Anonymous" id="left_canvas" width="'+ (w - 9)  + 'px" ' +
+    ' height="'+ (h -9) +'px"></canvas>' +
     ' </div> </div>';
 
   var canvasTemplate = leftCanvas;
@@ -211,7 +211,7 @@ app.directive('leftDesignPage',function($window){
         var w = ($(window).width() - 250 - 30) / 2 - 20;
         var h = w / 1.375;
 
-        scope.main.left_canvas = new fabric.Canvas('left_canvas');
+        scope.main.left_canvas = new fabric.Canvas('left_canvas',{select:false,backgroundColor:'#ffffff'});
         scope.main.currentCanvas = scope.main.left_canvas;
         scope.main.restoreToCurrentDesignData();
       };
