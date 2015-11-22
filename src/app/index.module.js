@@ -19,7 +19,8 @@
       'colorpicker.module',
       'minicolors',
       'angularSpectrumColorpicker',
-      'ngjsColorPicker'
+      'ngjsColorPicker',
+      'mgcrea.ngStrap'
     ]);
 
 })();

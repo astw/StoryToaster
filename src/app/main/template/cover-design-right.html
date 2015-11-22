@@ -34,16 +34,14 @@ ng-model="main.PhotoBook.backgroundColor"> 背景颜色 </button>
 <br/>
 <br/><br/>
 封面图片选自：
-<!--<select class="form-control">-->
-<!--<option ng-repeat="page in main.PhotoBook.pages" style="background-image:{{page.previewImage}};"> {{$index}}</option>-->
-</select>
 
 <ui-select ng-model="main.frontCover"
            on-select="main.coverImageSelected($item, $model)"
            theme="select2"
            class="form-control"
+           search-enabled="false"
            ng-disabled="disabled"
-           style="min-width: 300px;">
+           style="min-width: 300px; background: transparent;border:0px;margin:0px">
   <ui-select-match placeholder="选择一个封面图片">第 {{$select.selected.index  + 1}} 页 </ui-select-match>
   <ui-select-choices repeat="page in main.PhotoBook.pages">
     <img ng-src="{{page.previewImage}}" width='40' height="40" border="1"/>
