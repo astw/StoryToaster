@@ -1,17 +1,28 @@
 <div class="page-design-panel">
-  <div class="front-cover-left" ng-style="{'background-color':main.PhotoBook.backgroundColor}">
-    <div class="title-panel" ng-style="{'color':main.PhotoBook.titleColor}">
-      {{main.PhotoBook.title}}
+  <div class="front-cover-left" >
+     <canvas id="frontCoverCanvas" class="page-canvas" crossOrigin="Anonymous"
+      ng-style= " {'background-color' : main.PhotoBook.backgroundColor}"  />
     </div>
-
-     <img ng-src="{{main.frontCover.previewImage}}">
-
-    <div class="author-panel" ng-style="{'color':main.PhotoBook.attributeColor}">
-      {{main.PhotoBook.attribute}}
-    </div>
-  </div>
-
   <div class="front-cover-right">
     <div cover-design-right class="cover-panel"/>
+    </div>
   </div>
-</div>
+
+
+<!--<div class="page-design-panel">-->
+  <!--<div class="front-cover-left" ng-style="{'background-color':main.PhotoBook.backgroundColor}">-->
+    <!--<div class="title-panel" ng-style="{'color':main.PhotoBook.titleColor}">-->
+      <!--{{main.PhotoBook.title}}-->
+    <!--</div>-->
+
+     <!--<img ng-src="{{main.frontCover.previewImage}}">-->
+
+    <!--<div class="author-panel" ng-style="{'color':main.PhotoBook.attributeColor}">-->
+      <!--{{main.PhotoBook.attribute}}-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="front-cover-right">-->
+    <!--<div cover-design-right class="cover-panel"/>-->
+  <!--</div>-->
+<!--</div>-->

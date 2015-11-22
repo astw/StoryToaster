@@ -278,6 +278,10 @@
       if (vm.doublePagesInDesign && vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);
       }
+
+      if(vm.frontCoverCanvas)
+      vm.PhotoBook.frontCover.imageData = JSON.stringify(vm.frontCoverCanvas);
+
       generatePreviewImage();
     };
 
@@ -296,6 +300,7 @@
           vm.right_canvas.loadFromJSON(rightData, vm.right_canvas.renderAll.bind(vm.right_canvas), function () {
           })
       }
+
     };
 
     var generatePreviewImage = function () {
@@ -303,6 +308,9 @@
       if (vm.doublePagesInDesign && vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.previewImage = vm.right_canvas.toDataURL();
       }
+
+      if(vm.frontCoverCanvas)
+      vm.PhotoBook.frontCover.previewImage = vm.frontCoverCanvas.toDataURL();
     };
 
     vm.deleteObject = function () {

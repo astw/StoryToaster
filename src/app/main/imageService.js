@@ -31,6 +31,7 @@
             title: '故事场景',
             content: '故事场景',
             images:[
+              "/assets/images/callout/Blue_background.jpg",
               "/assets/images/1.gif",
               "/assets/images/128px-Speech_balloon.svg.png",
               "/assets/images/2.gif",
