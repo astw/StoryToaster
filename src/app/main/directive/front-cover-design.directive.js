@@ -9,6 +9,9 @@
   /* @ngInject */
   function frontCoverDesign() {
 
+    var page;
+    var canvas;
+
     var t = ($('#bigPagePanel')).width();
     var w = (t - 20) / 2;
     var h = w / 1.375;
@@ -22,6 +25,7 @@
     return directive;
 
     function link(scope, elem, attrs) {
+      page = scope.main.PhotoBook.frontCover;
 
       $(".front-cover-left").css('height', h + "px");
       $(".front-cover-left").css('width', w + "px");
@@ -35,29 +39,28 @@
       var canvasWidth = w -14;
       var canvasHeight = h -14;
 
-      var canvas = new fabric.Canvas('frontCoverCanvas', {selection: false});
+      canvas = new fabric.Canvas('frontCoverCanvas', {selection: false});
       canvas.setWidth(canvasWidth);
       canvas.setHeight(canvasHeight);
 
       scope.main.frontCoverCanvas = canvas;
 
       //set title and attribute
-      var title = addBookTitle(canvas);
-      var attribute = addAttribute(canvas, picture);
-
-
-      var imageUrl = "http://localhost:3000/assets/images/1.gif";
+      var title = addBookTitle(scope);
+      var attribute = addAttribute(scope, picture);
+      picture.url = "http://localhost:3000/assets/images/blank.jpg";
 
       //set image
-      addPicture(canvas, imageUrl, picture);
+      addPicture(scope, picture);
 
       //set monitor
-      addMonitors(scope,canvas,title, attribute, picture,canvasWidth, canvasHeight);
+      addMonitors(scope, title, attribute, picture,canvasWidth, canvasHeight);
+      fireChangeEvent(scope);
 
       scope.$emit('onAfterRender');
     }
 
-    function addAttribute(canvas, picture) {
+    function addAttribute(scope, picture) {
 
       var top = picture.y + picture.height + 20;
 
@@ -82,10 +85,12 @@
       attribute.centerH();
       attribute.bringToFront();
 
+      fireChangeEvent(scope);
+
       return attribute;
     }
 
-    function addBookTitle(canvas) {
+    function addBookTitle(scope) {
 
       var title = new fabric.Text('this is a book', {
         fontSize: 30,
@@ -103,14 +108,17 @@
 
       canvas.add(title);
       title.centerH();
+
+      fireChangeEvent(scope);
+
       return title;
     }
 
-    function addPicture(canvas, imageUrl, picture, canvasWidth, canvasHeight) {
+    function addPicture(scope, picture, canvasWidth, canvasHeight) {
 
-      if (!imageUrl) return;
+      if (!picture.url) return;
 
-      fabric.Image.fromURL(imageUrl, function (img) {
+      fabric.Image.fromURL(picture.url, function (img) {
 
         canvas.add(img.set({
           left: picture.x,
@@ -136,10 +144,16 @@
         canvas.item(2).selectable = false;
         img.bringToFront();
 
+        fireChangeEvent(scope);
+
       }, {crossOrigin: 'Anonymous'});
     }
 
-    function addMonitors(scope, canvas, title, attribute, picture,canvasWidth, canvasHeight) {
+    function fireChangeEvent(scope){
+      scope.$emit('pageChanged',{canvas:canvas,page:page});
+    }
+
+    function addMonitors(scope, title, attribute, picture,canvasWidth, canvasHeight) {
 
       scope.$watch(
         function () {
@@ -149,6 +163,8 @@
         function (newValue, oldValue) {
           title.text = newValue;
           canvas.renderAll();
+
+          fireChangeEvent(scope);
         });
 
       scope.$watch(
@@ -159,6 +175,8 @@
         function (newValue, oldValue) {
           title.setColor(newValue);
           canvas.renderAll();
+
+          fireChangeEvent(scope);
         });
 
       scope.$watch(
@@ -169,6 +187,8 @@
         function (newValue, oldValue) {
           attribute.text = newValue;
           canvas.renderAll();
+
+          fireChangeEvent(scope);
         });
 
       scope.$watch(
@@ -179,6 +199,8 @@
         function (newValue, oldValue) {
           attribute.setColor(newValue);
           canvas.renderAll();
+
+          fireChangeEvent(scope);
         });
 
       scope.$watch(
@@ -188,20 +210,20 @@
 
         function (newValue) {
 
-          if (newValue) {
+          if (newValue >= 0) {
+            if(canvas.item(2))
             canvas.item(2).remove();
 
             canvas.setWidth(canvasWidth);
             canvas.setHeight(canvasHeight);
 
-            var imageData = scope.main.PhotoBook.pages[newValue].previewImage;
-            addPicture(canvas, imageData, picture, canvasWidth, canvasHeight);
+            picture.url = scope.main.PhotoBook.pages[newValue].previewImage;
+            addPicture(scope, picture, canvasWidth, canvasHeight);
           }
         }
       )
     }
   }
-
 
 })();
 

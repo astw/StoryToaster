@@ -33,6 +33,15 @@
 
     $scope.$on('$viewContentLoaded', documentReady );
 
+    $scope.$on('pageChanged',function(event, args){
+      if(!args || !args.canvas) return;
+
+      args.page.imageData = JSON.stringify(args.canvas);
+      args.page.previewImage = args.canvas.toDataURL();
+
+
+    });
+
     angular.element(document).ready(documentReady);
 
     vm.addImageTest = function() {
@@ -132,22 +141,6 @@
 
     $scope.colour = "";
 
-    $scope.selectedIcon = '';
-    $scope.selectedIcons = ['Globe', 'Heart'];
-    $scope.icons = [
-      {value: 'Gear', label: '<i class="fa fa-gear"></i> Gear'},
-      {value: 'Globe', label: '<i class="fa fa-globe"></i> Globe'},
-      {value: 'Heart', label: '<i class="fa fa-heart"></i> Heart'},
-      {value: 'Camera', label: '<i class="fa fa-camera"></i> Camera'}
-    ];
-
-    $scope.selectedMonth = 0;
-    $scope.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-
-
-
-
     $scope.groups = imageService.getImages();
 
     vm.readBook = function(book){
@@ -156,12 +149,12 @@
     };
 
     vm.coverImageSelected = function (item, model){
-      console.log(item);
+      if(item)
        vm.PhotoBook.frontCoverImageIndex = item.index;
     };
 
     vm.backCoverImageSelected = function(item,model){
-      console.log(item);
+      if(item)
       vm.PhotoBook.backCoverImageIndex = item.index;
     };
 

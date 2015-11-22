@@ -2,10 +2,18 @@
   <div class="front-cover-left"
        ng-class="{active:main.PhotoBook.backCover.active}"
        ng-style="{'background-color':main.PhotoBook.backgroundColor}">
+    <div class="back-cover-up">
 
-    <canvas id="frontCoverCanvasRight" class="page-canvas" crossOrigin="Anonymous"
-            ng-style= " {'background-color' : main.PhotoBook.backgroundColor}"  />
+    </div>
+    <img ng-src="{{main.backCover.previewImage}}">
+
+    <div class="author-panel">
+      <span>
+          <img src="assets/images/logo-cloud.png" />
+        </span>
+    </div>
   </div>
+
   <div class="back-cover-right">
     <div back-cover-design-right class="cover-panel"/>
   </div>

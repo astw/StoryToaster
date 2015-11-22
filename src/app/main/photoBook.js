@@ -20,6 +20,7 @@ angular.module('storyToaster')
 
       this.author = 3;
       this.pagesInDesign = 2 ;   // how manage pages in design by default
+      this.frontCoverImageIndex = -1;
 
       this.totalPage = TOTAL_PAGE;
       this.backgroundColor = '#2f64ff';

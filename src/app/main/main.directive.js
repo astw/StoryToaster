@@ -272,7 +272,7 @@ app.directive('backCoverDesign',function($window){
   var canH = h *0.6 ;
 
   return {
-    templateUrl: 'app/main/template/back-cover-design.html',
+    templateUrl: 'app/main/template/back-cover-design.bak.html',
     link : function(scope, elem, attrs) {
       $(".front-cover-left").css('height',h +"px");
       $(".front-cover-left").css('width',w +"px");
