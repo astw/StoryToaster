@@ -18,6 +18,10 @@ angular.module('storyToaster')
       this.attribute = "By author";
       this.attributeColor = '#ffffff';
 
+      this.dedication="输入题记"
+      this.dedicationColor ="#F5B025";
+      this.dedicationFont ='';
+
       this.author = 3;
       this.pagesInDesign = 2 ;   // how manage pages in design by default
       this.frontCoverImageIndex = -1;

@@ -28,13 +28,13 @@
       page = scope.main.PhotoBook.dedicatedPage;
 
       var picture = {};
-      picture.width = w * 0.6;
-      picture.height = h * 0.6;
-      picture.x = (w - picture.width ) / 2;
-      picture.y = (h - picture.height) / 2;
+      picture.width = 100;
+      picture.height = 60;
 
-      var canvasWidth = w -14;
-      var canvasHeight = h -14;
+      picture.y = h - 140;
+
+      var canvasWidth = w - 14;
+      var canvasHeight = h - 14;
 
       canvas = new fabric.Canvas(
         'dedicatePageCanvas',
@@ -49,16 +49,17 @@
 
       scope.main.dedicatePageCanvas = canvas;
 
-      //set title and attribute
-      var title = addBookTitle(scope);
+      var dedication = addBookDedication(scope);
+
       var attribute = addAttribute(scope, picture);
-      picture.url = "http://localhost:3000/assets/images/blank.jpg";
+
+      picture.url = "http://localhost:3000/assets/images/logo-cloud.png";
 
       //set image
       addPicture(scope, picture);
 
       //set monitor
-      addMonitors(scope, title, attribute, picture,canvasWidth, canvasHeight);
+      addMonitors(scope, dedication, attribute, picture, canvasWidth, canvasHeight);
       fireChangeEvent(scope);
 
       scope.$emit('onAfterRender');
@@ -69,10 +70,12 @@
       var top = picture.y + picture.height + 20;
 
       console.log(top);
-      var attribute = new fabric.Text('By author', {
-        fontSize: 20,
-        fontFamily: 'Comic Sans',
-        fontWeight: 'bold',
+      var attribute = new fabric.Text('The book was created and published on StoryToaster，' +
+        '\r\n 故事大王网络公司版权所有©' +
+        '\r\n www.storytoaster.com', {
+        fontSize: 14,
+        fontFamily: 'Arial Narrow',
+        fontWeight: '70',
         lockRotation: true,
         lockMovement: true,
         selection: false,
@@ -80,26 +83,27 @@
         hasBorders: false,
         cornersize: 0,
         originX: 'center',
-        top: top,
-        left: 0
-
+        top: h - 180 + 80,
+        left: 0,
+        textAlign:'center'
       });
 
       canvas.add(attribute);
       attribute.centerH();
       attribute.bringToFront();
+      attribute.setColor('#999999');
 
       fireChangeEvent(scope);
 
       return attribute;
     }
 
-    function addBookTitle(scope) {
+    function addBookDedication(scope) {
 
-      var title = new fabric.Text('this is a book', {
-        fontSize: 30,
+      var dedication = new fabric.Text('输入题记', {
+        fontSize: 14,
         fontFamily: 'Comic Sans',
-        fontWeight: 'bold',
+        fontWeight: '400',
         lockRotation: true,
         lockMovement: true,
         selection: false,
@@ -107,15 +111,17 @@
         hasBorders: false,
         cornersize: 0,
         originX: 'center',
-        top: 30
+        top: 60,
+        textAlign:'center',
+        color:'#cccccc'
       });
 
-      canvas.add(title);
-      title.centerH();
+      canvas.add(dedication);
+      dedication.centerH();
 
       fireChangeEvent(scope);
 
-      return title;
+      return dedication;
     }
 
     function addPicture(scope, picture, canvasWidth, canvasHeight) {
@@ -125,8 +131,8 @@
       fabric.Image.fromURL(picture.url, function (img) {
 
         canvas.add(img.set({
-          left: picture.x,
-          top: picture.y,
+
+          top: h - 160,
           width: picture.width,
           height: picture.height,
 
@@ -146,6 +152,7 @@
 
         canvas.setActiveObject(canvas.item(2));
         canvas.item(2).selectable = false;
+        img.centerH();
         img.bringToFront();
 
         fireChangeEvent(scope);
@@ -153,19 +160,19 @@
       }, {crossOrigin: 'Anonymous'});
     }
 
-    function fireChangeEvent(scope){
-      scope.$emit('pageChanged',{canvas:canvas,page:page});
+    function fireChangeEvent(scope) {
+      scope.$emit('pageChanged', {canvas: canvas, page: page});
     }
 
-    function addMonitors(scope, title, attribute, picture,canvasWidth, canvasHeight) {
+    function addMonitors(scope, dedication, attribute, picture, canvasWidth, canvasHeight) {
 
       scope.$watch(
         function () {
-          return scope.main.PhotoBook.backgroundColor;
+          return scope.main.PhotoBook.dedicationText;
         },
 
         function (newValue, oldValue) {
-          canvas.backgroundColor = newValue;
+          dedication.text = newValue;
           canvas.renderAll();
 
           fireChangeEvent(scope);
@@ -173,51 +180,15 @@
 
       scope.$watch(
         function () {
-          return scope.main.PhotoBook.title;
+          return scope.main.PhotoBook.dedicationColor;
         },
 
         function (newValue, oldValue) {
-          title.text = newValue;
+          dedication.setColor(newValue);
           canvas.renderAll();
 
           fireChangeEvent(scope);
         });
-
-      scope.$watch(
-        function () {
-          return scope.main.PhotoBook.titleColor;
-        },
-
-        function (newValue, oldValue) {
-          title.setColor(newValue);
-          canvas.renderAll();
-
-          fireChangeEvent(scope);
-        });
-
-      scope.$watch(
-        function () {
-          return scope.main.PhotoBook.attribute;
-        },
-
-        function (newValue, oldValue) {
-          attribute.text = newValue;
-          canvas.renderAll();
-
-          fireChangeEvent(scope);
-        });
-
-      scope.$watch(
-        function () {
-          return scope.main.PhotoBook.attributeColor;
-        },
-
-        function (newValue, oldValue) {
-          attribute.setColor(newValue);
-          canvas.renderAll();
-
-          fireChangeEvent(scope);
-        })
     }
   }
 

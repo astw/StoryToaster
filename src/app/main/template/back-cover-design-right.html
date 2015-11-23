@@ -1,12 +1,13 @@
 <br/>
 
+<dedicateDiv>
 <br/> 封面图片选自：
 <ui-select ng-model="main.backCover"
            on-select="main.backCoverImageSelected($item, $model)"
            theme="select2"
            class="form-control"
            ng-disabled="disabled"
-           style="min-width: 300px;">
+           style="min-width: 300px; background: transparent;border:0px;margin:0px">
   <ui-select-match placeholder="选择一个封面图片">第 {{$select.selected.index  + 1}} 页 </ui-select-match>
   <ui-select-choices repeat="page in main.PhotoBook.pages">
     <img ng-src="{{page.previewImage}}" width='40' height="40" border="1"/>
@@ -14,6 +15,7 @@
   </ui-select-choices>
 </ui-select>
 
+</dedicateDiv>
 
 <br/>
 <br/>

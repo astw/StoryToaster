@@ -268,7 +268,8 @@
 
 .back-cover-right {
   float:left;
-  /*margin: 20px;*/
+  margin-left: 20px;
+  margin-right: 20px;
   height:150px;
   width:450px;
   position: relative;
@@ -342,4 +343,5 @@ textarea
   margin: auto;
   padding: 5px;
   vertical-align: middle;
+  resize: none;
 }

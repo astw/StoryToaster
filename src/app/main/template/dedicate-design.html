@@ -7,10 +7,17 @@
     <div class="dedicateDiv">
     <br/>
     <!--this is the dedeicate design page-->
-    <label for="textareaEdit"><b>题词</b></label>
+    <label for="dedication"><b>题词</b></label>
     <br/>
-    <textarea id="textareaEdit" ng-model="textareaValue"></textarea>
-    <span class="valueItems"><strong>Value:</strong> {{textareaValue}}</span>
+    <textarea id="dedication" ng-model="main.PhotoBook.dedication"></textarea>
+
+
+      <div class="color-picker" minicolors="brightnesssettings"
+           colorpicker-position="top"
+           ng-model="main.PhotoBook.dedicationColor">
+      </div>
+
+    </div>
   </div>
-  </div>
+
 </div>
