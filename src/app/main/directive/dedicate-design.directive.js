@@ -168,7 +168,7 @@
 
       scope.$watch(
         function () {
-          return scope.main.PhotoBook.dedicationText;
+          return scope.main.PhotoBook.dedication;
         },
 
         function (newValue, oldValue) {

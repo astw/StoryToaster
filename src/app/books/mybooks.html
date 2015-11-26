@@ -56,19 +56,19 @@
   <div id="main">
      <div id='features'>
       <div id='cover'>
-          this is cover
+           <page data="bookvm.book.frontCover" />
       </div>
-
+       <div class='responsive feature pagefx'>
+         <page data="bookvm.book.dedicatedPage" />
+       </div>
+       <div class='responsive feature pagefx'>
+         <page data="bookvm.book.dedicatedPage" />
+       </div>
        <div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">
          <page data="page" />
        </div>
-
-       <div class='responsive feature pagefx'  >
-          this is another page
-       </div>
-
       <div class='last_cover'>
-        <img src="images/cover_last.png" width="100%" height="100%" />
+        <page data="bookvm.book.backCover" />
       </div>
     </div> <!-- features -->
   </div>
