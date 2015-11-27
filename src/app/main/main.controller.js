@@ -104,6 +104,7 @@
     vm.clickBook = function(book){
       relayService.putKeyValue('_selectedBook_',book);
       vm.selectedBook = book;
+      console.log(vm.selectedBook);
       console.log('click on book');
     };
 

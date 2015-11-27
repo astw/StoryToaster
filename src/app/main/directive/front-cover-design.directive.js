@@ -168,7 +168,7 @@
         },
 
         function (newValue, oldValue) {
-          canvas.backgroundColor =text = newValue;
+          canvas.backgroundColor = newValue;
           canvas.renderAll();
 
           fireChangeEvent(scope);

@@ -31,9 +31,19 @@ angular.module('storyToaster')
       var userId = currentUser ? currentUser.id : -1;
 
       $http.get(API_URL + 'users/' + userId + '/books').then(function (res) {
-          var books = []
-          if (res.data)
-            return dfd.resolve(books.concat(res.data));
+          var books = [];
+          if (res.data) {
+            var books = books.concat(res.data);
+            books.forEach(function(book) {
+              var data = angular.fromJson(book.data);
+
+              book.frontCover = data.frontCover;
+              book.dedicatedPage = data.dedicatedPage;
+              book.backCover = data.backCover;
+            });
+
+            return dfd.resolve(books);
+          }
           return dfd.resolve(books);
         },
         function (err) {
