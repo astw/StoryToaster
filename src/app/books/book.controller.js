@@ -28,7 +28,7 @@
     vm.clickBook = function(book){
       console.log('book controller clickbook');
        relayService.putKeyValue('_selectedBook_',book);
-       $window.location.assign('/account/mybooks/read');
+       $window.location.assign('/account/mybooks/readbook');
       console.log(book);
     };
 

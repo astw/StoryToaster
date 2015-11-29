@@ -18,19 +18,19 @@
         controllerAs: 'main'
       })
       .when('/account/mybooks', {
-        templateUrl: 'app/books/books.html',
+        templateUrl: 'app/books/my-book-list.html',
         controller: 'BookController',
         controllerAs: 'bookCtrl'
       }
       )
-      .when('/account/mybooks/read', {
+      .when('/account/mybooks/readbook', {
         templateUrl: 'app/books/readbook.html',
         controller: 'MainController',
         controllerAs: 'main',
           reloadOnSearch:false
       })
       //.when('/account/mybooks', {
-      //  templateUrl: 'app/books/mybooks.html',
+      //  templateUrl: 'app/books/open-one-book.html',
       //  controller: 'BookController',
       //  controllerAs: 'book',
       //  reloadOnSearch:false

@@ -57,25 +57,27 @@
     <div id='features'>
 
       <div id='cover'>
-        <page data = "bookvm.book.frontCover" />
+        <page data = "bookvm.book.frontCover" i= 100 />
       </div>
 
       <div class='responsive feature pagefx'>
-          <page data="bookvm.book.dedicatedPage" />
+        <page  id= 200  />
+      </div>
+
+      <div class='responsive feature pagefx'>
+          <page data="bookvm.book.dedicatedPage"  id= 300  />
       </div>
 
       <div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">
-      <page data="page" />
+         <page data="page" id= page.index />
       </div>
 
-      <div class='responsive feature'>
-      <p>If you need more control on how to resize the book, you can use the javascript API to change the book's size.
-      </p>
+      <div ng-if=" bookvm.book.pages.length % 2 == 1 " class='responsive feature pagefx'>
+        <page  id= 200  />
       </div>
 
       <div class='last_cover'>
-        <!--<page data= "bookvm.book.backCover" >-->
-        <!--</page>-->
+        <page data = "bookvm.book.backCover" id= 400 />
       </div>
 
     </div> <!-- features -->

@@ -18,7 +18,7 @@
       scope: {
         'book': '='
       },
-      templateUrl: 'app/books/mybooks.html'
+      templateUrl: 'app/books/templates/open-one-book.html'
     };
     return directive;
 

@@ -20,7 +20,8 @@
       link: link,
       restrict: 'AE',
       scope: {
-        'data': '=data'
+        'data': '=data',
+        'id':'=id'
       }
     };
     return directive;
@@ -29,10 +30,9 @@
       var data = scope.vm.data;
 
       var canvasEle = element.find('canvas')[0];
-      var id = "canvas_" + scope.vm.data.index;
+      //var id = "canvas_" + scope.vm.data.index;
+      var id = "canvas_" + scope.vm.id ;
       canvasEle.id = id;
-
-      var image = element.find('img')[0];
 
       //set canvasEle size
       canvasEle.height = 500;
@@ -41,9 +41,6 @@
       var canvas = new fabric.Canvas(id);
       scope.vm.canvas = canvas;
       canvas.loadFromJSON(data.imageData, canvas.renderAll.bind(canvas), function () {
-
-        image.src = canvas.toDataURL();
-
       });
     }
   }
