@@ -52,30 +52,55 @@
       <li><a id='thumbs'    href="#" title='缩略图开关' >缩略图</a></li>
     </ul>
   </nav>
-
+  {{bookvm.book.pages.length}}
   <div id="main">
-     <div id='features'>
+    <div id='features'>
+
       <div id='cover'>
-           <page data="bookvm.book.backCover" />
+        <page data = "bookvm.book.frontCover" />
       </div>
-       <div class='responsive feature pagefx'>
-         <page data="bookvm.book.dedicatedPage" />
-       </div>
-       <div class='responsive feature pagefx'>
-         <page data="bookvm.book.dedicatedPage" />
-       </div>
+
+      <div class='responsive feature pagefx'>
+          <page data="bookvm.book.dedicatedPage" />
+      </div>
+
+      <div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">
+      <page data="page" />
+      </div>
+
+      <div class='responsive feature'>
+      <p>If you need more control on how to resize the book, you can use the javascript API to change the book's size.
+      </p>
+      </div>
+
+      <div class='last_cover'>
+        <!--<page data= "bookvm.book.backCover" >-->
+        <!--</page>-->
+      </div>
+
+    </div> <!-- features -->
+
+
+     <!--<div id='features'>-->
+
+       <!--<div id='cover'>-->
+           <!--<page data="bookvm.book.frontCover" /> this is the from cover-->
+      <!--</div>-->
+
        <!--<div class='responsive feature pagefx'>-->
          <!--<page data="bookvm.book.dedicatedPage" />-->
        <!--</div>-->
+  <!-- -->
 
        <!--<div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">-->
          <!--<page data="page" />-->
        <!--</div>-->
  <!-- -->
-       <div class='last_cover'>
-         <page data="bookvm.book.backCover" />adasdasdas
-       </div>
-    </div> <!-- features -->
+       <!--<div class='last_cover'>-->
+         <!--<page data="bookvm.book.backCover" />this is the back cover-->
+       <!--</div>-->
+    <!--</div> &lt;!&ndash; features &ndash;&gt;-->
+
   </div>
 
   <div id='thumbs_holder'>

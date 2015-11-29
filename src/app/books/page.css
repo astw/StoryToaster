@@ -1,5 +1,5 @@
 .canvas_page_read{
-
+  visibility: hidden;
   height: 100%;
   width: 1516px;
 }
@@ -10,4 +10,9 @@
 
   height: 470px;
   width: 516px;
+}
+
+.page > image {
+  height: 100px;
+  width: 100%;
 }
