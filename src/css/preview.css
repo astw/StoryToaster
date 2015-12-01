@@ -218,8 +218,8 @@ nav a {
   list-style: none;
 }
 #cover {
-  /*background: #ffffff url("../images/cover.jpg") no-repeat;*/
-  background: #aaccc8;
+  background: #ffffff url("../images/cover.jpg") no-repeat;
+  /*background: #aaccc8;*/
   background-size: 100% 100%;
 }
 .feature {

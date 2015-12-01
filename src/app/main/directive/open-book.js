@@ -3,12 +3,12 @@
 
   angular
     .module('storyToaster')
-    .directive('bookDisplay', bookDisplay);
+    .directive('openBook', openBook);
 
-  bookDisplay.$inject = ['$window','relayService'];
+  openBook.$inject = ['$window','relayService'];
 
   /* @ngInject */
-  function bookDisplay($window,relayService) {
+  function openBook($window,relayService) {
     var directive = {
       bindToController: true,
       controller: 'BookController',

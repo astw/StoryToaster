@@ -35,12 +35,16 @@
       canvasEle.id = id;
 
       //set canvasEle size
-      canvasEle.height = 500;
       canvasEle.width = 500;
+      canvasEle.height = canvasEle.width /1.375;
 
-      var canvas = new fabric.Canvas(id);
+      var canvas = new fabric.Canvas(
+        id,
+        {select:false,background:'red'}
+      );
       scope.vm.canvas = canvas;
-      canvas.loadFromJSON(data.imageData, canvas.renderAll.bind(canvas), function () {
+      if(data && data.imageData)
+        canvas.loadFromJSON(data.imageData, canvas.renderAll.bind(canvas), function () {
       });
     }
   }

@@ -1566,6 +1566,8 @@ window.Modernizr = function (d, l, u) {
             return a.lastIndexOf("#") == a.length - 1
         },
         zoom: function (a) {
+            console.log('in zoom', a);
+
             for (var c = 0, b = this.pages.length; c < b; c++) if (this.pages[c].data("holdedAt")) return;
             a < this.zoomMin && (a = this.zoomMin);
             a > this.zoomMax && (a = this.zoomMax);

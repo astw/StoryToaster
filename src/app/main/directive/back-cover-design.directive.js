@@ -49,7 +49,13 @@
       var canvasWidth = w -14;
       var canvasHeight = h -14;
 
-      var canvas = new fabric.Canvas('frontCoverCanvasRight', {selection: false});
+      var canvas = new fabric.Canvas(
+        'frontCoverCanvasRight',
+        {
+          selection: false,
+          backgroundColor: scope.main.PhotoBook.backgroundColor
+        }
+      );
       canvas.setWidth(canvasWidth);
       canvas.setHeight(canvasHeight);
 

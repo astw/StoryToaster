@@ -31,7 +31,7 @@
   <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
   <script src="js/modernizr-1.6.min.js"></script>
 
-  <nav>
+<nav>
     <ul>
       <li>
         <button type="button" id="btnGoBack" class="btn btn-info btn-lg">
@@ -55,9 +55,8 @@
   {{bookvm.book.pages.length}}
   <div id="main">
     <div id='features'>
-
-      <div id='cover'>
-        <page data = "bookvm.book.frontCover" i= 100 />
+      <div id="cover" class='last_cover hardpage'>
+        <page data = "bookvm.book.frontCover" id= 100 />
       </div>
 
       <div class='responsive feature pagefx'>
@@ -72,43 +71,18 @@
          <page data="page" id= page.index />
       </div>
 
-      <div ng-if=" bookvm.book.pages.length % 2 == 1 " class='responsive feature pagefx'>
-        <page  id= 200  />
+      <div ng-if="bookvm.book.pages.length % 2 == 1" class='responsive feature pagefx'>
+        <page  id= 300  />
       </div>
 
       <div class='last_cover'>
         <page data = "bookvm.book.backCover" id= 400 />
       </div>
-
     </div> <!-- features -->
-
-
-     <!--<div id='features'>-->
-
-       <!--<div id='cover'>-->
-           <!--<page data="bookvm.book.frontCover" /> this is the from cover-->
-      <!--</div>-->
-
-       <!--<div class='responsive feature pagefx'>-->
-         <!--<page data="bookvm.book.dedicatedPage" />-->
-       <!--</div>-->
-  <!-- -->
-
-       <!--<div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">-->
-         <!--<page data="page" />-->
-       <!--</div>-->
- <!-- -->
-       <!--<div class='last_cover'>-->
-         <!--<page data="bookvm.book.backCover" />this is the back cover-->
-       <!--</div>-->
-    <!--</div> &lt;!&ndash; features &ndash;&gt;-->
-
   </div>
-
   <div id='thumbs_holder'>
   </div>
-  <footer>
-      more stuff here
+<footer>
   </footer>
 
 <!-- Javascript at the bottom for fast page loading -->
@@ -120,8 +94,8 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('#features').wowBook({
-      height : 500
-      ,width  :1100
+      width : 500*2
+      ,height  :500 /1.375
       ,centeredWhenClosed : true
       ,hardcovers : true
       ,turnPageDuration : 1000
@@ -180,11 +154,13 @@
       rebuildThumbnails();
     })
     $("#thumbs_size button").click(function(){
+      console.log('size');
       var factor = 0.02*( $(this).index() ? -1 : 1 );
       book.opts.thumbnailScale = book.opts.thumbnailScale + factor;
       rebuildThumbnails();
     })
 
+//    book.zoomIn();
   });
 </script>
 <!-- scripts concatenated and minified via ant build script-->
