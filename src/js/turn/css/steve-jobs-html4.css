@@ -1,0 +1,13 @@
+/* Steve jobs' book */
+
+.sj-book .even{
+	background-image:url(/js/turn/img/left.png);
+	background-position:right top;
+	background-repeat:repeat-y;
+}
+
+.sj-book .odd{
+	background-image:url(/js/turn/img/right.png);
+	background-position:left top;
+	background-repeat:repeat-y;
+}
