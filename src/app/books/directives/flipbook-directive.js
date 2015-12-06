@@ -14,7 +14,8 @@
 
       },
 
-      templateUrl: "app/books/templates/flipbook.html"
+      //templateUrl: "app/books/templates/flipbook.html"
+      templateUrl: "app/books/templates/steve-jobs.html"
     }
   }
 

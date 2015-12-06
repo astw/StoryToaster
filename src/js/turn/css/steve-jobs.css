@@ -2,11 +2,11 @@
 
 @font-face {
     font-family: 'MrsSaintDelafieldRegular';
-    src: url('/css/turn/css/mrssaintdelafield-regular-webfont.eot');
-    src: url('/css/turn/mrssaintdelafield-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/css/turn/mrssaintdelafield-regular-webfont.woff') format('woff'),
-         url('/css/turn/mrssaintdelafield-regular-webfont.ttf') format('truetype'),
-         url('/css/turn/mrssaintdelafield-regular-webfont.svg#MrsSaintDelafieldRegular') format('svg');
+    src: url('/js/turn/css/mrssaintdelafield-regular-webfont.eot');
+    src: url('/js/turn/css/mrssaintdelafield-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/js/turn/css/mrssaintdelafield-regular-webfont.woff') format('woff'),
+         url('/js/turn/css/mrssaintdelafield-regular-webfont.ttf') format('truetype'),
+         url('/js/turn/css/mrssaintdelafield-regular-webfont.svg#MrsSaintDelafieldRegular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -14,7 +14,7 @@
 @font-face
 {
 font-family: cellar;
-src: url('FeDPit2.ttf');
+src: url('/js/turn/css/FeDPit2.ttf');
 
 }
 

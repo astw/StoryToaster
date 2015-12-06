@@ -5,11 +5,11 @@
 <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-<script type="text/javascript" src="../../extras/jquery.min.1.7.js"></script>
-<script type="text/javascript" src="../../extras/jquery-ui-1.8.20.custom.min.js"></script>
-<script type="text/javascript" src="../../extras/jquery.mousewheel.min.js"></script>
-<script type="text/javascript" src="../../extras/modernizr.2.5.3.min.js"></script>
-<script type="text/javascript" src="../../lib/hash.js"></script>
+<script type="text/javascript" src="/js/steve-jobs/extras/jquery.min.1.7.js"></script>
+<script type="text/javascript" src="/js/steve-jobs/extras/jquery-ui-1.8.20.custom.min.js"></script>
+<script type="text/javascript" src="/js/steve-jobs/extras/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="/js/steve-jobs/extras/modernizr.2.5.3.min.js"></script>
+<script type="text/javascript" src="/js/steve-jobs/lib/hash.js"></script>
 </head>
 <body>
 
@@ -33,18 +33,18 @@
 <script type="text/javascript">
 
 function loadApp() {
-	
+
 	var flipbook = $('.sj-book');
 
 	// Check if the CSS was already loaded
-	
+
 	if (flipbook.width()==0 || flipbook.height()==0) {
 		setTimeout(loadApp, 10);
 		return;
 	}
- 
+
 	// URIs
-	
+
 	Hash.on('^page\/([0-9]*)$', {
 		yep: function(path, parts) {
 
@@ -76,7 +76,7 @@ function loadApp() {
 
 			break;
 			case next:
-				
+
 				$('.sj-book').turn('next');
 
 			break;
@@ -98,13 +98,13 @@ function loadApp() {
 		pages: 12,
 		when: {
 			turning: function(e, page, view) {
-				
+
 				var book = $(this),
 					currentPage = book.turn('page'),
 					pages = book.turn('pages');
 
 				if (currentPage>3 && currentPage<pages-3) {
-				
+
 					if (page==1) {
 						book.turn('page', 2).turn('stop').turn('page', page);
 						e.preventDefault();
@@ -127,7 +127,7 @@ function loadApp() {
 				}
 
 				updateDepth(book, page);
-				
+
 				if (page>=2)
 					$('.sj-book .p2').addClass('fixed');
 				else
@@ -139,7 +139,7 @@ function loadApp() {
 					$('.sj-book .p111').removeClass('fixed');
 
 				Hash.go('page/'+page).update();
-					
+
 			},
 
 			turned: function(e, page, view) {
@@ -151,7 +151,7 @@ function loadApp() {
 				}
 
 				updateDepth(book);
-				
+
 				$('#slider').slider('value', getViewNumber(book, page));
 
 				book.turn('center');
@@ -159,19 +159,19 @@ function loadApp() {
 			},
 
 			start: function(e, pageObj) {
-		
+
 				moveBar(true);
 
 			},
 
 			end: function(e, pageObj) {
-			
+
 				var book = $(this);
 
 				updateDepth(book);
 
 				setTimeout(function() {
-					
+
 					$('#slider').slider('value', getViewNumber(book));
 
 				}, 1);
@@ -208,9 +208,9 @@ $('#canvas').css({visibility: 'hidden'});
 
 yepnope({
 	test : Modernizr.csstransforms,
-	yep: ['../../lib/turn.min.js'],
-	nope: ['../../lib/turn.html4.min.js', 'css/jquery.ui.html4.css', 'css/steve-jobs-html4.css'],
-	both: ['js/steve-jobs.js', 'css/jquery.ui.css', 'css/steve-jobs.css'],
+	yep: ['/js/steve-jobs/lib/turn.min.js'],
+	nope: ['/js/steve-jobs/lib/turn.html4.min.js', '/js/steve-jobs/css/jquery.ui.html4.css', '/js/steve-jobs/css/steve-jobs-html4.css'],
+	both: ['js/steve-jobs.js', '/js/steve-jobs/css/jquery.ui.css', '/js/steve-jobs/css/steve-jobs.css'],
 	complete: loadApp
 });
 
