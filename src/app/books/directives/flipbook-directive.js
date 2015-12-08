@@ -11,11 +11,10 @@
     return{
       restrict: 'E',
       link: function(scope, element, attrs){
-
       },
 
-      //templateUrl: "app/books/templates/flipbook.html"
-      templateUrl: "app/books/templates/steve-jobs.html"
+      templateUrl: "app/books/templates/flipbook.html"
+      //templateUrl: "app/books/templates/steve-jobs.html"
     }
   }
 

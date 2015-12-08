@@ -13,7 +13,9 @@
     var canvas;
 
     var t = ($('#bigPagePanel')).width();
+
     var w = (t - 20) / 2;
+    w =  ($(window).width() - 280 - 30) / 2 - 20;
     var h = w / 1.375;
 
     var directive = {

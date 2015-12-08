@@ -136,7 +136,9 @@ app.directive('sideBarLeft', function () {
 app.directive('doubleDesignPage',function($window){
   var t = ($('#bigPagePanel')).width();
 
-  var w =  (t - 20) /2      ;//($(window).width() - 250 - 30) / 2 - 20;
+  var w =  (t - 20) /2      ;
+  w = ($(window).width() - 280 - 30) / 2 - 20;
+
   //var w = ($(window).width() - 250 - 30) / 2 - 20;
   var h = w / 1.375;
 
@@ -168,7 +170,8 @@ app.directive('doubleDesignPage',function($window){
 
           var t = ($('#bigPagePanel')).width();
 
-          var w =  (t - 40) /2      ;//($(window).width() - 250 - 30) / 2 - 20;
+          var w =  (t - 40) /2      ;
+          w =  ($(window).width() - 280 - 30) / 2 - 20;
           h = w / 1.375;
           //$(elem).width(w);
           $('.page-big').width(w);
