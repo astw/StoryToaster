@@ -23,8 +23,8 @@
     <page data="bookvm.book.dedicatedPage"  id= 300  />
   </div>
 
-  <div  ng-repeat="page in bookvm.book.pages"  >
-    <page   data="page" id= page.index />
+  <div ng-repeat="page in bookvm.book.pages"  >
+    <page data="page" id= page.index />
   </div>
 
 
@@ -41,8 +41,8 @@
     <!--<div  page  data="bookvm.book.pages[2]" id= 3 />-->
   <!--</div>-->
 
-  <div >
-    <page ng-if="bookvm.book.pages.length % 2 == 1" class='responsive feature pagefx hard'  id= 300  />
+  <div ng-if="bookvm.book.pages.length % 2 == 1">
+    <page  class='responsive feature pagefx hard'  id= 300  />
   </div>
 
   <div class="hard">PAGE8</div>
