@@ -64,8 +64,7 @@ app.directive('leftSidebarImage',function(){
 
 app.directive('navBar', function () {
   return {
-    templateUrl: 'app/components/navbar/navbar.html'
-
+    templateUrl: 'app/components/navbar/navbar.html' 
   }
 });
 

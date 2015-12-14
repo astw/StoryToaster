@@ -17,24 +17,20 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
+
       .when('/account/mybooks', {
         templateUrl: 'app/books/my-book-list.html',
         controller: 'BookController',
         controllerAs: 'bookCtrl'
-      }
-      )
+      })
+
       .when('/account/mybooks/readbook', {
         templateUrl: 'app/books/readbook.html',
         controller: 'MainController',
         controllerAs: 'main',
           reloadOnSearch:false
       })
-      //.when('/account/mybooks', {
-      //  templateUrl: 'app/books/open-one-book.html',
-      //  controller: 'BookController',
-      //  controllerAs: 'book',
-      //  reloadOnSearch:false
-      //})
+
      .when('/account/login',{
         templateUrl:'app/account/login.html',
         controller:'AccountController',

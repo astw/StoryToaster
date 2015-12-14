@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('storyToaster')
-.factory('authToken', function($window){
+.factory('authToken', function($window,config, $http){
     var storage = $window.localStorage;
     var cachedToken;
     var userToken = 'userToken';
@@ -9,6 +9,7 @@ angular.module('storyToaster')
     var authToken = {
       setToken : function(token){
         cachedToken = token;
+        $http.defaults.headers.common[config.authTokenName] = token;
         storage.setItem(userToken,token);
       },
 

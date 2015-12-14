@@ -25,7 +25,7 @@
     <!-- endbuild --><!-- Theme CSS -->
 
 
-    <!--<link rel="stylesheet" type="text/css" href="/assets/skin/default_skin/css/theme.css">-->
+    <link rel="stylesheet" type="text/css" href="/assets/skin/default_skin/css/theme.css">
     <!-- Admin Forms CSS -->
     <link rel="stylesheet" type="text/css" href="/assets/admin-tools/admin-forms/css/admin-forms.css">
     <!-- Font CSS (Via CDN) -->
@@ -33,10 +33,12 @@
   </head>
   <body >
     <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-  <div ng-view>  </div>
+    <![endif]-->
+    <!--<header nav-bar />-->
+
+    <div ng-include="'app/components/navbar/navbar.html'"></div>
+    <div ng-view>  </div>
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
