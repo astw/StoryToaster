@@ -22,11 +22,24 @@
       controllerAs: 'bookvm',
 
       link: function(scope, element, attrs){
+        var book = $('#flipbook');
+
+        //for(var i=0; i< scope.bookvm.book.pages.length; i++){
+        //  var pg = scope.bookvm.book.pages[i];
+        //  //element = $("<div />").html('<page  data="bookvm.book.pages['+ i + ']" id=' + i +'   />');
+        //  element = $("<div/>").html("loading");
+        //
+        //  $("#flipbook").turn("addPage", element, 3+i);
+        //
+        //}
+
         $('#flipbook').turn({
           width: '1000px',
           height: '460px',
-          pages: 6
+          pages: 8
         });
+
+
 
         $('#flipbook').turn('peel', 'br');
       },
