@@ -27,24 +27,12 @@
     <page data="page" id= page.index />
   </div>
 
-
-  <!--<div>-->
-    <!--<div  page  data="bookvm.book.pages[0]" id= 1 />-->
-  <!--</div>-->
-
-
-  <!--<div>-->
-    <!--<div  page  data="bookvm.book.pages[1]" id= 2 />-->
-  <!--</div>-->
-
-  <!--<div>-->
-    <!--<div  page  data="bookvm.book.pages[2]" id= 3 />-->
-  <!--</div>-->
-
   <div ng-if="bookvm.book.pages.length % 2 == 1">
     <page  class='responsive feature pagefx hard'  id= 300  />
   </div>
 
-  <div class="hard">PAGE8</div>
+  <div class="hard">
+    <page data="bookvm.book.backCover" />
+  </div>
 </div>
 

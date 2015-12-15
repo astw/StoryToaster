@@ -5,10 +5,8 @@
     .module('storyToaster')
     .directive('openBook2', openBook2);
 
-  openBook2.$inject = ['$window','relayService'];
-
   /* @ngInject */
-  function openBook2($window,relayService) {
+  function openBook2($window) {
     var directive = {
       bindToController: true,
       controller: 'BookController',

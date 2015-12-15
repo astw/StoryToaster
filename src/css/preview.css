@@ -89,7 +89,7 @@ nav a {
   height: 44px;
   width: 48px;
   padding: 0;
-  background: #000000 no-repeat;
+  /*background: #000000 no-repeat;*/
   background-position: 8px 7px;
   text-indent: 100%;
   white-space: nowrap;

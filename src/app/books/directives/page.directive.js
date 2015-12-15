@@ -35,7 +35,7 @@
       canvasEle.id = id;
 
       //set canvasEle size
-      canvasEle.width = 500;
+      canvasEle.width = 520;
       canvasEle.height = canvasEle.width /1.375;
 
       var canvas = new fabric.Canvas(

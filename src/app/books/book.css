@@ -40,3 +40,12 @@
   height : 500px;
   width  : 800px;
 }
+
+#booknav{
+  top:90px
+}
+
+#main{
+  position: relative;
+  top: 60px;
+}
