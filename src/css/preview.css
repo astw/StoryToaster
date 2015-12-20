@@ -30,7 +30,7 @@ html {
   width: 75px;
 }
 body {
-  color: black;
+  /*color: black;*/
   background: #ffffff url("../images/wood.jpg");
   background-position: 50% top;
   -webkit-box-sizing: border-box;
@@ -80,16 +80,16 @@ nav {
   left: 0;
   position: absolute;
   right: 0;
-  top: 20px;
+  top: 80px;
   z-index: 2147483647;
   zoom: 1;
 }
 nav a {
   display: block;
-  height: 44px;
+  height: 46px;
   width: 48px;
   padding: 0;
-  /*background: #000000 no-repeat;*/
+  background: #ffb42e no-repeat;
   background-position: 8px 7px;
   text-indent: 100%;
   white-space: nowrap;
@@ -219,7 +219,6 @@ nav a {
 }
 #cover {
   background: #ffffff url("../images/cover.jpg") no-repeat;
-  /*background: #aaccc8;*/
   background-size: 100% 100%;
 }
 .feature {

@@ -1,69 +1,87 @@
 
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 
-  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+<meta charset="utf-8">
+<style>
+  .js #features {
+    margin-left: -12000px; width: 100%;
+  }
+</style>
+<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+   Remove this if you use the .htaccess -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <!-- CSS : implied media="all" -->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/wow_book.css" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="css/preview.css">
+<!--  Mobile viewport optimized: j.mp/bplateviewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href='//fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
-  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
-  <script src="js/modernizr-1.6.min.js"></script>
+<!-- CSS : implied media="all" -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/wow_book.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/preview.css">
+<!-- Uncomment if you are specifically targeting less enabled mobile browsers
+  <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
 
-<nav class="nav" id="booknav">
-    <ul>
-      <li>
-        <button type="button" id="btnGoBack" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-hand-left"></span> 我的书
-        </button>
-      </li>
-    </ul>
-    <ul>
-      <li><a id='first'     href="#" title='回到第一页'   >首页</a></li>
-      <li><a id='back'      href="#" title='后退一页'  >后退</a></li>
-      <li><a id='next'      href="#" title='前进一页'>前进</a></li>
-      <li><a id='last'      href="#" title='到后封面'    >末页</a></li>
-      <li><a id='zoomin'    href="#" title='放大'           >放大</a></li>
-      <li><a id='zoomout'   href="#" title='缩小'          >缩小</a></li>
-      <li><a id='slideshow' href="#" title='自动播放'   >幻灯片</a></li>
-      <li><a id='flipsound' href="#" title='声音开关' >翻页声音</a></li>
-      <li><a id='fullscreen' href="#" title='全屏开关' >全屏</a></li>
-      <li><a id='thumbs'    href="#" title='缩略图开关' >缩略图</a></li>
-    </ul>
+<link href='//fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
+<!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+<script src="js/modernizr-1.6.min.js"></script>
+
+<nav>
+  <ul>
+    <li>
+      <button type="button" id="btnGoBack" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-hand-left"></span> 我的书
+      </button>
+    </li>
+  </ul>
+  <ul>
+    <li><a id='first'     href="#" title='回到第一页'   >首页</a></li>
+    <li><a id='back'      href="#" title='后退一页'  >后退</a></li>
+    <li><a id='next'      href="#" title='前进一页'>前进</a></li>
+    <li><a id='last'      href="#" title='到后封面'    >末页</a></li>
+    <li><a id='zoomin'    href="#" title='放大'           >放大</a></li>
+    <li><a id='zoomout'   href="#" title='缩小'          >缩小</a></li>
+    <li><a id='slideshow' href="#" title='自动播放'   >幻灯片</a></li>
+    <li><a id='flipsound' href="#" title='声音开关' >翻页声音</a></li>
+    <li><a id='fullscreen' href="#" title='全屏开关' >全屏</a></li>
+    <li><a id='thumbs'    href="#" title='缩略图开关' >缩略图</a></li>
+  </ul>
 </nav>
+{{bookvm.book.pages.length}}
+<div id="main">
+  <div id='features'>
+    <div id="cover" class='last_cover hardpage'>
+      <page data = "bookvm.book.frontCover" id= 100 />
+    </div>
 
-  {{bookvm.book.pages.length}}
-  <div id="main">
-    <div id='features'>
-      <div id="cover" class='last_cover hardpage'>
-        <page data = "bookvm.book.frontCover" id= 100 />
-      </div>
+    <div class='responsive feature pagefx'>
+      <page  id= 200  />
+    </div>
 
-      <div class='responsive feature pagefx'>
-        <page  id= 200  />
-      </div>
+    <div class='responsive feature pagefx'>
+      <page data="bookvm.book.dedicatedPage"  id= 300  />
+    </div>
 
-      <div class='responsive feature pagefx'>
-          <page data="bookvm.book.dedicatedPage"  id= 300  />
-      </div>
+    <div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">
+      <page data="page" id= page.index />
+    </div>
 
-      <div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">
-         <page data="page" id= page.index />
-      </div>
+    <div ng-if="bookvm.book.pages.length % 2 == 1" class='responsive feature pagefx'>
+      <page  id= 300  />
+    </div>
 
-      <div ng-if="bookvm.book.pages.length % 2 == 1" class='responsive feature pagefx'>
-        <page  id= 300  />
-      </div>
-
-      <div class='last_cover'>
-        <page data = "bookvm.book.backCover" id= 400 />
-      </div>
-    </div> <!-- features -->
-  </div>
-  <div id='thumbs_holder'>
-  </div>
+    <div class='last_cover'>
+      <page data = "bookvm.book.backCover" id= 400 />
+    </div>
+  </div> <!-- features -->
+</div>
+<div id='thumbs_holder'>
+</div>
 <footer>
 </footer>
 
@@ -76,8 +94,8 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('#features').wowBook({
-      width : 520*2
-      ,height  :520 /1.375
+      width : 500*2
+      ,height  :500 /1.375
       ,centeredWhenClosed : true
       ,hardcovers : true
       ,turnPageDuration : 1000
@@ -140,9 +158,9 @@
       var factor = 0.02*( $(this).index() ? -1 : 1 );
       book.opts.thumbnailScale = book.opts.thumbnailScale + factor;
       rebuildThumbnails();
-    });
+    })
 
-    book.zoomIn();
+//    book.zoomIn();
   });
 </script>
 <!-- scripts concatenated and minified via ant build script-->
@@ -150,3 +168,7 @@
 <script src="js/script.js"></script>
 <!-- end concatenated and minified scripts-->
 
+<!--[if lt IE 7 ]>
+<script src="js/dd_belatedpng.js"></script>
+<script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
+<![endif]-->
