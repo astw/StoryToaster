@@ -271,11 +271,11 @@ button {  width: auto; overflow: visible; }
 
 /* ******************************************* */
 
-nav {
+#booknav {
 
   height: 26px;
   text-align: center; }
-nav ul {
+#booknav ul {
   padding: 0;
   bborder-width: 1px;
   border-style: solid;
@@ -293,16 +293,16 @@ nav ul {
   -ms-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   -o-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04); }
-nav li {
+#booknav li {
   float: left;
   bborder-left: 1px solid #d2d2d2; }
-nav li:first-child {
+#booknav li:first-child {
   border-left: 0; }
-nav li:first-child a {
+#booknav li:first-child a {
   border-radius: 6px 0 0 6px; }
-nav li:last-child a {
+#booknav li:last-child a {
   border-radius: 0 6px 6px 0; }
-nav a {
+#booknav a {
   position: relative;
   display: block;
   padding: 0 14px;
@@ -337,7 +337,7 @@ nav a {
   box-shadow: inset 1px 1px #fafafa, inset -1px -1px #fafafa; }*/
 }
 
-nav a:hover {
+#booknav a:hover {
   color: #333;
   color: rgb(221, 221, 221); /* FIXME */
   z-index: 10;
@@ -350,7 +350,7 @@ nav a:hover {
   /box-shadow: 0 0 3px rgba(0, 0, 0, 0.3), inset 1px 1px #fafafa, inset -1px -1px #fafafa;
   */
 }
-nav li.active a, nav a:active, nav a:visited {
+#booknav li.active a, #booknav a:active, #booknav a:visited {
   color: #333;
   color: rgb(221, 221, 221);
   bbackground: #fff;

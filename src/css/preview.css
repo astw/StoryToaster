@@ -1,18 +1,4 @@
-@font-face {
-  font-family: 'BebasNeueRegular';
-  src: url('../fonts/BebasNeue-webfont.eot');
-  src: url('../fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/BebasNeue-webfont.woff') format('woff'), url('../fonts/BebasNeue-webfont.ttf') format('truetype'), url('../fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-html,
-body {
-  overflow: hidden;
-}
-body,
-html {
-  height: 100%;
-}
+
 .wowbook {
   color: #333;
 }
@@ -28,18 +14,6 @@ html {
   background-image: url('../images/page_right_background.png');
   background-position: 0 0;
   width: 75px;
-}
-body {
-  /*color: black;*/
-  background: #ffffff url("../images/wood.jpg");
-  background-position: 50% top;
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-
-  box-sizing: border-box;
 }
 a,
 a:active,
@@ -75,7 +49,7 @@ h2 {
   font-size: 24px;
   margin-bottom: 0.5em;
 }
-nav {
+#booknav {
   height: 46px;
   left: 0;
   position: absolute;
@@ -84,7 +58,8 @@ nav {
   z-index: 2147483647;
   zoom: 1;
 }
-nav a {
+
+#booknav a {
   display: block;
   height: 46px;
   width: 48px;
@@ -95,46 +70,46 @@ nav a {
   white-space: nowrap;
   overflow: hidden;
 }
-nav #zoomin {
+#booknav #zoomin {
   background-image: url(../images/icons/zoom_in.png);
 }
-nav #zoomout {
+#booknav #zoomout {
   background-image: url(../images/icons/zoom_out.png);
 }
-nav #first {
+#booknav #first {
   background-image: url(../images/icons/arrow_double_left.png);
 }
-nav #last {
+#booknav #last {
   background-image: url(../images/icons/arrow_double_right.png);
 }
-nav #next {
+#booknav #next {
   background-image: url(../images/icons/arrow_right.png);
 }
-nav #back {
+#booknav #back {
   background-image: url(../images/icons/arrow_left.png);
 }
-nav #slideshow {
+#booknav #slideshow {
   background-image: url(../images/icons/slideshow_play.png);
 }
-nav #slideshow.wowbook-disabled {
+#booknav #slideshow.wowbook-disabled {
   background-image: url(../images/icons/slideshow_pause.png);
 }
-nav #flipsound {
+#booknav #flipsound {
   background-image: url(../images/icons/sound_on.png);
 }
-nav #flipsound.wowbook-disabled {
+#booknav #flipsound.wowbook-disabled {
   background-image: url(../images/icons/sound_off.png);
 }
-nav #thumbs {
+#booknav #thumbs {
   background-image: url(../images/icons/thumbs.png);
 }
-nav #fullscreen {
+#booknav #fullscreen {
   background-image: url(../images/icons/fullscreen_on.png);
 }
-nav #fullscreen.wowbook-disabled {
+#booknav #fullscreen.wowbook-disabled {
   background-image: url(../images/icons/fullscreen_off.png);
 }
-nav a:hover {
+#booknav a:hover {
   background-color: #2C2C2C;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcfcfc), color-stop(100%, #f0f0f0));
   background-image: -webkit-linear-gradient(top, #555555, #222222);
@@ -143,9 +118,9 @@ nav a:hover {
   background-image: -o-linear-gradient(top, #555555, #222222);
   background-image: linear-gradient(top, #555555, #222222);
 }
-nav a:active,
-nav a:hover,
-nav a {
+#booknav a:active,
+#booknav a:hover,
+#booknav a {
   outline: none;
 }
 @media screen and (max-width: 568px), screen and (max-height: 380px) {
@@ -153,14 +128,14 @@ nav a {
     padding-top: 35px;
     padding-bottom: 5px;
   }
-  nav {
+  #booknav {
     margin: auto;
     top: 0px;
   }
-  nav li {
+  #booknav li {
     height: 32px;
   }
-  nav li a {
+  #booknav li a {
     background-size: 50% 50%;
     height: 32px;
     width: 32px;
