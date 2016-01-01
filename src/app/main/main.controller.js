@@ -379,7 +379,7 @@
     $timeout( documentReady );
 
     function documentReady() {
-
+      Core.init();
     }
 
   }

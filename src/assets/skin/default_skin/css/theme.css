@@ -17228,7 +17228,7 @@ body.onload-check #topbar {
 ================================================= */
 /* If header is fixed modify primary containers padding */
 .navbar.navbar-fixed-top + #sidebar_left + #content_wrapper {
-  padding-top: 60px;
+  padding-top: 0px;
 }
 /*===============================================
    Sidebar Settings
