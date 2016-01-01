@@ -1,6 +1,4 @@
-
-<link rel="stylesheet" type="text/css" href="/assets/skin/default_skin/css/theme.css">
-
+<!--<link rel="stylesheet" type="text/css" href="/assets/skin/default_skin/css/theme.css">-->
 <div id="main" class="wrapper">
   <header nav-bar2 class="navbar navbar-fixed-top navbar-shadow">
   </header>
@@ -28,29 +26,29 @@
 
     <!-- Begin: Content -->
     <div id="content" >
-    <div>
-      <div class="tray tray-center">
-        <div class="panel" id="bigPagePanel">
-         <div class="row" ng-show="main.contentPageMode">
-          <!-- <div class="page-design-panel" page-design /> -->
-          <div ng-if= "main.doublePagesInDesign == true"    double-design-page />
-          <div ng-if= "main.doublePagesInDesign == false"  left-design-page />
+      <div>
+        <div class="tray tray-center">
+          <div class="panel" id="bigPagePanel">
+            <div class="row" ng-show="main.contentPageMode">
+              <!-- <div class="page-design-panel" page-design /> -->
+              <div ng-if= "main.doublePagesInDesign == true"    double-design-page />
+              <div ng-if= "main.doublePagesInDesign == false"  left-design-page />
+            </div>
+            <div class="row" ng-show="main.frontCoverMode">
+              <div front-cover-design />
+            </div>
+            <div class="row" ng-show="main.dedicatePageMode">
+              <div dedicate-design />
+            </div>
+            <div class="row" ng-show="main.backCoverMode">
+              <div back-cover-design1 />
+            </div>
+            <div class="row" />
+            <div class="row">
+            </div>
           </div>
-          <div class="row" ng-show="main.frontCoverMode">
-          <div front-cover-design />
-          </div>
-          <div class="row" ng-show="main.dedicatePageMode">
-             <div dedicate-design />
-          </div>
-          <div class="row" ng-show="main.backCoverMode">
-          <div back-cover-design1 />
-          </div>
-          <div class="row" />
-          <div class="row">
-           </div>
-          </div>
+        </div>
       </div>
-    </div>
     </div>
 
     <!-- End: Content -->
