@@ -1,17 +1,17 @@
 <div class="topbar-left">
   <ul class="nav nav-list nav-list-topbar pull-left">
     <li>
-      <button type="button" ng-click="main.nextPage()" class="btn btn-rounded btn-warning btn-block">新建</button>
+      <button type="button" ng-click="main.newPage()" class="btn btn-rounded btn-warning btn-block">新建</button>
     </li>
     <li class="active">
-      <button type="button" class="btn btn-rounded btn-warning btn-block">复制</button>
+      <button type="button" ng-click="main.copyPage()"  class="btn btn-rounded btn-warning btn-block">复制</button>
     </li>
     <li>
-      <button type="button" class="btn btn-rounded btn-warning btn-block" ng-click="main.deleteObject()">删除</button>
+      <button type="button" class="btn btn-rounded btn-warning btn-block" ng-click="main.deletePage()">删除</button>
     </li>
     <li>
       <button type="button" ng-init="main.doublePagesInDesign = true" class="btn btn-rounded btn-system btn-block"
-              ng-hide ="doublePagesInDesign == true"
+              ng-hide ="doublePagesInDesign"
               ng-click="main.doublePage()">双页</button>
     </li>
     <li>
