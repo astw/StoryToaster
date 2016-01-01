@@ -17211,7 +17211,7 @@ body {
 #content_wrapper {
   position: relative;
   left: 0px;
-  margin-left: 250px;
+  margin-left: 220px;
 }
 /* Transitions */
 body.onload-check .navbar,
@@ -17288,7 +17288,7 @@ body.usermenu-hidden #sidebar_left.affix .user-info + .user-divider + .menu-widg
   width: auto;
   left: 0;
   right: 0;
-  margin-left: 250px;
+  margin-left: 220px;
   position: fixed;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
@@ -17302,7 +17302,7 @@ body.usermenu-hidden #sidebar_left.affix .user-info + .user-divider + .menu-widg
 }
 /* fixed state - w/ open sidebar */
 body.sb-l-o #topbar.affix {
-  margin-left: 250px;
+  margin-left: 220px;
 }
 /* fixed state - w/ minified sidebar */
 body.sb-l-m #topbar.affix {
@@ -17316,7 +17316,7 @@ body.sb-l-c #topbar.affix {
   /* fixed state - w/ open sidebar */
   body.sb-l-o #topbar.affix {
     width: 100%;
-    margin-left: 250px;
+    margin-left: 220px;
   }
   /* fixed state - w/ minified sidebar */
   body.sb-l-m #topbar.affix {
@@ -18799,7 +18799,7 @@ body.tray-rescale .tray-right:hover {
   position: absolute;
   top: 0;
   left: 0;
-  width: 250px;
+  width: 220px;
   min-height: 100%;
   padding-top: 60px;
   padding-bottom: 40px;
@@ -19741,7 +19741,7 @@ body.sb-l-m.mobile-view .nano > .nano-pane {
   overflow: hidden;
 }
 .sb-l-o #content_wrapper {
-  margin-left: 250px;
+  margin-left: 220px;
 }
 /*left sidebar closed*/
 .sb-l-c #sidebar_left {
@@ -19800,7 +19800,7 @@ manipulation using an html class aswell */
   #content_wrapper,
   .sb-l-o #content_wrapper {
     margin-left: 0;
-    left: 250px;
+    left: 220px;
   }
   /* Sidebar Left Minified */
   .sb-l-m #content_wrapper {
@@ -20131,7 +20131,7 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
 #content-footer.affix {
   z-index: 1;
   position: fixed;
-  margin-left: 250px;
+  margin-left: 220px;
 }
 /* Match Sidebar States */
 body.sb-l-c #content-footer.affix {
