@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, relayService, toastr, $scope, $document, config, imageService, PhotoBook, bookRepository) {
+  function MainController($timeout, relayService, toastr, $scope, $document, imageService, PhotoBook, bookRepository) {
     console.log('----------- in main controller ---------------');
 
     var vm = this;
@@ -38,7 +38,6 @@
 
       args.page.imageData = JSON.stringify(args.canvas);
       args.page.previewImage = args.canvas.toDataURL();
-
 
     });
 

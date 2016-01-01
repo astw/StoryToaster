@@ -24,6 +24,9 @@
   /* @ngInject */
   function backCoverDesign() {
 
+    var page;
+    var canvas;
+
     var directive = {
       templateUrl:"app/main/template/back-cover-design.html",
       link: link,
@@ -32,7 +35,7 @@
     return directive;
 
     function link(scope, elem, attrs) {
-
+      page = scope.main.PhotoBook.backCover;
       var t = ($('#bigPagePanel')).width();
       var w = (t - 20) / 2;
       var h = w / 1.375;
@@ -49,7 +52,7 @@
       var canvasWidth = w -14;
       var canvasHeight = h -14;
 
-      var canvas = new fabric.Canvas(
+      canvas = new fabric.Canvas(
         'frontCoverCanvasRight',
         {
           selection: false,
@@ -66,7 +69,6 @@
       logPic.y = picture.y + picture.height;
       logPic.url = "http://localhost:3000/assets/images/logo-cloud.png";
       addLogPicture(scope, canvas, logPic);
-
 
       picture.url = "http://localhost:3000/assets/images/blank.gif";
       //set image
@@ -150,6 +152,17 @@
 
     function addMonitors(scope, canvas, picture,canvasWidth, canvasHeight) {
 
+      scope.$watch(
+        function () {
+          return scope.main.PhotoBook.backgroundColor;
+        },
+
+        function (newValue, oldValue) {
+          canvas.backgroundColor = newValue;
+          canvas.renderAll();
+
+          scope.$emit('pageChanged',{canvas:canvas,page:page});
+        });
 
       scope.$watch(
         function () {

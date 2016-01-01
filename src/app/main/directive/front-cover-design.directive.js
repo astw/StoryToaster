@@ -71,7 +71,6 @@
 
       var top = picture.y + picture.height + 20;
 
-      console.log(top);
       var attribute = new fabric.Text('By author', {
         fontSize: 20,
         fontFamily: 'Comic Sans',
