@@ -1,33 +1,43 @@
 <link rel="stylesheet" type="text/css" href="/assets/skin/default_skin/css/theme.css">
-<script type="text/javascript" src="./js/wow_book.js"></script>
+<header nav-bar2 class="navbar navbar-fixed-top navbar-shadow"> </header>
+
+
+<div class="well well-lg">
 
 <div id="main">
-  <!--<header nav-bar2 class="navbar navbar-fixed-top navbar-shadow">-->
-  <!--</header>-->
-  <div class="well">
   <!-- Start: Content-Wrapper -->
-  <section id="content_wrapper">
-
-    <!-- Start: Topbar -->
-    <header id="topbar" class="ph10">
-      <div my-books-command-bar/>
-    </header>
-    <!-- End: Topbar -->
-
+  <!--<section id="content_wrapper">-->
     <!-- Begin: Content -->
     <section id="content" class="alt top-menu-open">
       <!-- begin: .tray-center -->
       <div class="tray tray-center">
-        <!-- dashboard tiles -->
-        <div class="row">
-          <div ng-repeat="b in bookCtrl.mybooks">
-            <book-tile book=b index=$index/>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <span class="panel-title fa fa-book"> 我的书</span>
+          </div>
+          <div class="panel-menu">
+             <button type="button" ng-click="bookCtrl.createBook()" class="btn btn-rounded btn-warning light mr10">
+              <span class="fa fa-edit pr5"></span>做本新书
+            </button>
+          </div>
+          <div class="panel-body">
+
+            <div ng-repeat="b in bookCtrl.mybooks">
+              <book-tile book=b index=$index />
+            </div>
+
           </div>
         </div>
+
+        <!-- dashboard tiles -->
+        <!--<div class="row">-->
+
+        <!--</div>-->
       </div>
       <!-- end: .tray-center -->
     </section>
-  </section>
+    </div>
+  <!--</section>-->
   <!-- End: Content-Wrapper -->
-  </div>
 </div>
