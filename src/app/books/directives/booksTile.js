@@ -5,10 +5,8 @@
     .module('storyToaster')
     .directive('bookTile', bookTile);
 
-  bookTile.$inject = ['$location','$window','relayService'];
-
   /* @ngInject */
-  function bookTile($location,$window,relayService) {
+  function bookTile($location,$window,relayService,$timeout) {
     var directive = {
       //bindToController: true,
       //controller:'BookController',
@@ -17,28 +15,41 @@
       restrict: 'AE',
       scope: {
         'book': '=',
-        'index':'='
+        'index':'=',
+        'previewData':'='
       },
       templateUrl: 'app/books/templates/book-tile.html'
     };
     return directive;
 
     function link(scope, element, attrs) {
+      var data = scope.book.frontCover;
 
-      if (attrs) {
-        scope.$eval(attrs.afterRender)
-      }
+      var canvasEle = element.find('canvas')[0];
+      //var id = "canvas_" + scope.vm.data.index;
+      var id = "canvas_" + scope.index ;
+      canvasEle.id = id;
 
-      //element.bind('click',function(){
-      //  console.log(scope.parent.bookCtrl.mybooks);
-      //  scope.parent.bookCtrl.mybooks.splice(0,1);
-      //  console.log(scope.bookCtrl.mybooks);
-      //})
-      scope.$emit('onAfterRender');
+      //set canvasEle size
+      canvasEle.width = 616 ;// 520;
+      canvasEle.height = 445; //canvasEle.width /1.375;
 
+      var canvas = new fabric.Canvas(
+        id,
+        {select:false,background:'red'}
+      );
+
+      if(data && data.imageData)
+        canvas.loadFromJSON(data.imageData, canvas.renderAll.bind(canvas), function () {
+
+          scope.book.frontCover.previewImage = canvas.toDataURL();
+        });
+
+      $timeout(function(){
+        scope.book.frontCover.previewImage = canvas.toDataURL();
+      })
     }
   }
-
 
 })();
 

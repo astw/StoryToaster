@@ -313,7 +313,6 @@
           vm.right_canvas.loadFromJSON(rightData, vm.right_canvas.renderAll.bind(vm.right_canvas), function () {
           })
       }
-
     };
 
     var generatePreviewImage = function () {
