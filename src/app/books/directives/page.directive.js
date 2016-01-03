@@ -45,7 +45,11 @@
       scope.vm.canvas = canvas;
       if(data && data.imageData)
         canvas.loadFromJSON(data.imageData, canvas.renderAll.bind(canvas), function () {
+            scope.$emit('onPageAfterRender');
       });
+      else{
+        scope.$emit('onPageAfterRender');
+      }
     }
   }
 
