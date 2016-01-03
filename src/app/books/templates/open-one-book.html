@@ -56,7 +56,7 @@
 <div id="main">
   <div id='features'>
     <div id="cover" class='last_cover hardpage'>
-      <page data = "bookvm.book.frontCover" id= 100 />
+      <page data = "book.frontCover" id= 100 />
     </div>
 
     <div class='responsive feature pagefx'>
@@ -64,19 +64,19 @@
     </div>
 
     <div class='responsive feature pagefx'>
-      <page data="bookvm.book.dedicatedPage"  id= 300  />
+      <page data="book.dedicatedPage"  id= 300  />
     </div>
 
-    <div class='responsive feature pagefx' ng-repeat="page in bookvm.book.pages">
+    <div class='responsive feature pagefx' ng-repeat="page in book.pages">
       <page data="page" id= page.index />
     </div>
 
-    <div ng-if="bookvm.book.pages.length % 2 == 1" class='responsive feature pagefx'>
+    <div ng-if="book.pages.length % 2 == 1" class='responsive feature pagefx'>
       <page  id= 300  />
     </div>
 
     <div class='last_cover'>
-      <page data = "bookvm.book.backCover" id= 400 />
+      <page data = "book.backCover" id= 400 />
     </div>
   </div> <!-- features -->
 </div>
@@ -93,8 +93,9 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    console.log('readt in javascript');
     $('#features').wowBook({
-      width : 500*2
+      width :   500*2
       ,height  :500 /1.375
       ,centeredWhenClosed : true
       ,hardcovers : true

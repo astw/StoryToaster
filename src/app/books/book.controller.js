@@ -5,9 +5,6 @@
     .module('storyToaster')
     .controller('BookController', BookController);
 
-  BookController.$inject = ['$scope','$window','$modal',
-    '$log','bookRepository','SweetAlert','relayService','imageService'];
-
   /** @ngInject */
   function BookController($scope, $window, $modal,$log,bookRepository,SweetAlert,relayService,imageService) {
     var vm = this;

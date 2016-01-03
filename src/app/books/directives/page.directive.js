@@ -15,7 +15,7 @@
     var directive = {
       templateUrl: 'app/books/templates/page.html',
       bindToController: true,
-      controller: 'PageController',
+      controller: 'ReadbookController',
       controllerAs: 'vm',
       link: link,
       restrict: 'AE',

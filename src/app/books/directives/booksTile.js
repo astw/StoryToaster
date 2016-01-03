@@ -31,8 +31,8 @@
       canvasEle.id = id;
 
       //set canvasEle size
-      canvasEle.width = 616 ;// 520;
-      canvasEle.height = 445; //canvasEle.width /1.375;
+      canvasEle.width = scope.book.frontCover.width;//  616 ;// 520;
+      canvasEle.height =scope.book.frontCover.height;// 445; //canvasEle.width /1.375;
 
       var canvas = new fabric.Canvas(
         id,

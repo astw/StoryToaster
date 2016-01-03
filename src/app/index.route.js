@@ -26,9 +26,9 @@
 
       .when('/account/mybooks/readbook', {
         templateUrl: 'app/books/readbook.html',
-        controller: 'MainController',
-        controllerAs: 'main',
-          reloadOnSearch:false
+        controller: 'ReadbookController',
+        controllerAs: 'readbookCtrl',
+        reloadOnSearch:false
       })
 
      .when('/account/login',{

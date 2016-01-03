@@ -8,9 +8,6 @@
   /* @ngInject */
   function openBook($window,relayService) {
     var directive = {
-      bindToController: true,
-      controller: 'BookController',
-      controllerAs: 'bookvm',
       link: link,
       restrict: 'AE',
       scope: {
@@ -33,7 +30,7 @@
         })
       }
 
-      scope.$emit('onAfterRender');
+      scope.$emit('onOpenBookAfterRender');
     }
   }
 })();

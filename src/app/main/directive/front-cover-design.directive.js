@@ -39,6 +39,9 @@
       var canvasWidth = w -14;
       var canvasHeight = h -14;
 
+      scope.main.PhotoBook.frontCover.width = canvasWidth;
+      scope.main.PhotoBook.frontCover.height = canvasHeight;
+
       canvas = new fabric.Canvas(
         'frontCoverCanvas',
         {
