@@ -45,6 +45,15 @@
       scope.vm.canvas = canvas;
       if(data && data.imageData)
         canvas.loadFromJSON(data.imageData, canvas.renderAll.bind(canvas), function () {
+            // make objects unmoveable
+            /* lockRotation: true,
+            lockMovement: true,
+            selection: false,
+            hasControls: false,
+            hasBorders: false,
+           */
+
+            
             scope.$emit('onPageAfterRender');
       });
       else{

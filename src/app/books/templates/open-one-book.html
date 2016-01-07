@@ -31,10 +31,11 @@
 <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
 <script src="js/modernizr-1.6.min.js"></script>
 
+<div>
 <nav id="booknav">
   <ul>
     <li>
-      <button type="button" id="btnGoBack" class="btn btn-info btn-lg">
+      <button type="button" id="btnGoBack" class="btn btn-info btn-lg ">
         <span class="glyphicon glyphicon-hand-left"></span> 我的书
       </button>
     </li>
@@ -52,6 +53,7 @@
     <li><a id='thumbs'    href="#" title='缩略图开关' >缩略图</a></li>
   </ul>
 </nav>
+</div>
 
 <div id="main">
   <div id='features'>
@@ -88,8 +90,7 @@
 <!-- Javascript at the bottom for fast page loading -->
 <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
 <script src="./js/jquery-1.9.1.min.js"></script>
-
-<script type="text/javascript" src="./js/wow_book.js"></script>
+<script type="text/javascript" src="/js/wow_book.js"></script>
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -121,8 +122,6 @@
         alert(msg);
       }
     }).css({'display':'none', 'margin':'auto'}).fadeIn(1000);
-
-
 
 //    book.zoomIn();
   });
