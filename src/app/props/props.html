@@ -1,0 +1,18 @@
+<a class="accordion-toggle" href="#">
+  <div class="accordion-heading">
+    <image src="/assets/images/IMG_2298.jpg" class="sidebar-menu-images" />
+    <span class="sidebar-title">{{group.title}}</span>
+    <span class="caret"></span>
+  </div>
+</a>
+<ul class="nav sub-nav" >
+  <li>
+    <div class="left_panel">
+      <image class="carton_image"
+             ng-repeat="img in group.images"
+             src="{{img}}"
+             ng-click="main.addImage(img)"
+        />
+    </div>
+  </li>
+</ul>
