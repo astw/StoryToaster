@@ -23,9 +23,7 @@
         <div class="tray tray-center">
           <div class="panel" id="bigPagePanel">
             <div class="row" ng-show="main.contentPageMode">
-              <!-- <div class="page-design-panel" page-design /> -->
-              <div ng-if= "main.doublePagesInDesign == true"    double-design-page />
-              <div ng-if= "main.doublePagesInDesign == false"  left-design-page />
+              <div double-design-page />
             </div>
             <div class="row" ng-show="main.frontCoverMode">
               <div front-cover-design />
