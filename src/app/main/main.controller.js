@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, relayService, toastr, $scope, $document, imageService, PhotoBook, bookRepository) {
+  function MainController($timeout, relayService, toastr, $scope, $window, $document, imageService, PhotoBook, bookRepository) {
     console.log('----------- in main controller ---------------');
 
     var vm = this;
@@ -350,6 +350,10 @@
 
     vm.saveToServe = function () {
       bookRepository.saveToServer(this.PhotoBook);
+    };
+
+    vm.finishCreateBook = function(){
+      $window.location.href ="/account/mybooks"
     };
 
     vm.nextSaveToImage = function () {
