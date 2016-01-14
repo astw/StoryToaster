@@ -1,0 +1,20 @@
+{{material.titleText}}
+<a class="accordion-toggle" href="#">
+  <div class="accordion-heading">
+    <image src="{{material.sg.titleImage}}" class="sidebar-menu-images" />
+    <span class="sidebar-title">{{material.sg.title}}</span>
+    <span class="caret"></span>
+  </div>
+</a>
+<ul class="nav sub-nav" >
+  <li>
+    <ng-transclude></ng-transclude>
+    <div class="left_panel">
+      <image class="carton_image"
+             ng-repeat="img in material.sg.images"
+             src="{{img}}"
+             ng-click="material.addImage(img)"
+        />
+    </div>
+  </li>
+</ul>

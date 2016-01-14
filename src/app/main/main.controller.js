@@ -15,9 +15,8 @@
 
     vm.PhotoBook = new PhotoBook();
     var totalPages = vm.PhotoBook.totalPage;
-    var pagesInDesignView = 2;   // how many pages in the design
-    vm.doublePagesInDesign = true;
-    $scope.doublePagesInDesign = true;
+    
+    vm.PhotoBook.pagesInDesign = 2
 
     vm.contentPageMode = true;
 
@@ -260,35 +259,11 @@
       vm.restoreToCurrentDesignData();
     };
 
-    vm.singlePage = function(){
-      if(vm.doublePagesInDesign == true)
-      {
-        vm.doublePagesInDesign = false;
-        $scope.doublePagesInDesign = false;
-      }
-      else
-        return;
-
-      $('#pageDesignPanel')[0].innerHTML ="";
-      vm.PhotoBook.pagesInDesign = 1;
-    };
-
-    vm.doublePage = function() {
-      if(vm.doublePagesInDesign == false){
-        vm.doublePagesInDesign = true;
-        $scope.doublePagesInDesign = true;
-      }
-      else
-       return;
-
-      $('#pageDesignPanel')[0].innerHTML = "";
-      vm.PhotoBook.pagesInDesign = 2
-    };
 
     var backCurrentDesignData = function () {
       if(!vm.PhotoBook || !vm.PhotoBook || !vm.PhotoBook.leftDesignPage) return ;
       vm.PhotoBook.leftDesignPage.imageData = JSON.stringify(vm.left_canvas);
-      if (vm.doublePagesInDesign && vm.PhotoBook.rightDesignPage) {
+      if (vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);
       }
 
@@ -307,7 +282,7 @@
           });
       }
 
-      if (vm.doublePagesInDesign && vm.PhotoBook.rightDesignPage) {
+      if (vm.PhotoBook.rightDesignPage) {
         var rightData = vm.PhotoBook.rightDesignPage.imageData;
         if (rightData)
           vm.right_canvas.loadFromJSON(rightData, vm.right_canvas.renderAll.bind(vm.right_canvas), function () {
@@ -317,7 +292,7 @@
 
     var generatePreviewImage = function () {
       vm.PhotoBook.leftDesignPage.previewImage = vm.left_canvas.toDataURL();
-      if (vm.doublePagesInDesign && vm.PhotoBook.rightDesignPage) {
+      if (vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.previewImage = vm.right_canvas.toDataURL();
       }
 

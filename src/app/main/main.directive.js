@@ -64,7 +64,7 @@ app.directive('leftSidebarImage',function(){
 
 app.directive('navBar', function () {
   return {
-    templateUrl: 'app/components/navbar/navbar.html' 
+    templateUrl: 'app/components/navbar/navbar.html'
   }
 });
 
@@ -189,42 +189,6 @@ app.directive('doubleDesignPage',function($window){
         })
       }
     }
-});
-
-app.directive('leftDesignPage',function($window){
-  var w = ($(window).width() - 250 - 30) / 2 - 20;
-  var h = w / 1.375;
-
-  var leftCanvas =
-    ' <div class="page-design-panel" id="pageDesignPanel" resize> ' +
-    ' <div class="page-big" ng-click="main.selectLeft()" ng-class="{active:main.PhotoBook.leftDesignPage.active}" '
-    + ' > ' +
-    ' <canvas class="page-canvas" crossOrigin="Anonymous" id="left_canvas" width="'+ (w - 9)  + 'px" ' +
-    ' height="'+ (h -9) +'px"></canvas>' +
-    ' </div> </div>';
-
-  var canvasTemplate = leftCanvas;
-
-  return {
-    template: canvasTemplate,
-    link : function(scope, elem, attrs) {
-
-      scope.onResize = function() {
-        var w = ($(window).width() - 250 - 30) / 2 - 20;
-        var h = w / 1.375;
-
-        scope.main.left_canvas = new fabric.Canvas('left_canvas',{select:false,backgroundColor:'#ffffff'});
-        scope.main.currentCanvas = scope.main.left_canvas;
-        scope.main.restoreToCurrentDesignData();
-      };
-      scope.onResize();
-
-      angular.element($window).bind('resize', function() {
-        scope.onResize();
-        scope.$apply();
-      })
-    }
-  }
 });
 
 app.directive('topBarCommand',function($window){
