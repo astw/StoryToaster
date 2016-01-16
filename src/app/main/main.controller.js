@@ -15,7 +15,7 @@
 
     vm.PhotoBook = new PhotoBook();
     var totalPages = vm.PhotoBook.totalPage;
-    
+
     vm.PhotoBook.pagesInDesign = 2
 
     vm.contentPageMode = true;
@@ -311,14 +311,13 @@
 
     vm.copyPage = function () {
       backCurrentDesignData();
-
       vm.PhotoBook.copyPage(vm.currentPage);
       vm.restoreToCurrentDesignData();
     };
 
     vm.deletePage = function () {
        vm.left_canvas.clear();
-      vm.right_canvas.clear()
+      vm.right_canvas.clear();
       vm.PhotoBook.deletePage(vm.currentPage);
       vm.restoreToCurrentDesignData();
     };
