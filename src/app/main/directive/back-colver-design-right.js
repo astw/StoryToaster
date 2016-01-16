@@ -36,3 +36,16 @@
 //})();
 
 
+(function(){
+  'use strict';
+  angular
+    .module('storyToaster')
+    .directive('backCoverDesignRight', backCoverDesignRight);
+
+  /* @ngInject */
+  function backCoverDesignRight() {
+    return {
+      templateUrl: 'app/main/template/back-cover-design-right.html'
+    }
+  }
+})();
