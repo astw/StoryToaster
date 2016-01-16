@@ -41,6 +41,11 @@
         controller:'AccountController',
         controllerAs:'account'
       })
+      .when('/test',{
+        templateUrl:'app/test/test.html',
+        controller:'TestController',
+        controllerAs:'test'
+      })
       .otherwise({
         redirectTo: '/home'
       });
