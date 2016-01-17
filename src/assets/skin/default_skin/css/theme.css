@@ -18901,8 +18901,9 @@ body.tray-rescale .tray-right:hover {
 .sidebar-menu > li > ul {
   clear: both;
   display: none;
-  width: 250px;
-  height: auto;
+  width: 220px;
+  height:320px;   /*auto; */
+  overflow-y: auto;
 }
 .sidebar-menu li > a.menu-open + ul {
   display: block;
