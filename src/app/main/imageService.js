@@ -8,8 +8,9 @@
       this.getImages = function(){
         return [
           {
-            title: '卡通图片 ',
-            content: '卡通图片',
+            title: '故事场景',
+            content: '故事场景',
+            titleImage :'/assets/images/callout/Blue_background.jpg',
             images:[
               "/assets/images/1.gif",
               "/assets/images/128px-Speech_balloon.svg.png",
@@ -28,8 +29,9 @@
             ]
           },
           {
-            title: '故事场景',
-            content: '故事场景',
+            title: '卡通图片 ',
+            content: '卡通图片',
+            titleImage :'/assets/images/1.gif',
             images:[
               "/assets/images/callout/Blue_background.jpg",
               "/assets/images/1.gif",
@@ -50,6 +52,7 @@
           {
             title: '文字',
             content: '文字',
+            titleImage :'/assets/images/256px-Speech_balloon.svg.png',
             images:[
               "/assets/images/1.gif",
               "/assets/images/128px-Speech_balloon.svg.png",
@@ -66,7 +69,6 @@
               "/assets/images/speachBolloon-1.svg"
             ]
           }
-
         ];
       }
     })

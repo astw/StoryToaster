@@ -56,6 +56,7 @@ var Core = function(options) {
       };
 
       // Sidebar Left Collapse Entire Menu event
+     $('.sidebar-toggle-mini').unbind('click');
       $('.sidebar-toggle-mini').on('click', function(e) {
          e.preventDefault();
 
@@ -127,8 +128,12 @@ var Core = function(options) {
       };
 
       // Functions Calls
-      sbOnLoadCheck();
+      sbOnLoadCheck()
+
+     $("#toggle_sidemenu_l").unbind('click');
       $("#toggle_sidemenu_l").on('click', sidebarLeftToggle);
+
+     $("#toggle_sidemenu_r").unbind('click');
       $("#toggle_sidemenu_r").on('click', sidebarRightToggle);
 
       // Attach debounced resize handler
@@ -145,7 +150,8 @@ var Core = function(options) {
       // Author Widget selector
       var authorWidget = $('#sidebar_left .author-widget');
 
-      // Toggle open the user menu
+      // Toggle open the user
+     $('.sidebar-menu-toggle').unbind('click');
       $('.sidebar-menu-toggle').on('click', function(e) {
          e.preventDefault();
 
@@ -159,6 +165,7 @@ var Core = function(options) {
       });
 
       // 3. LEFT MENU LINKS TOGGLE
+     $('.sidebar-menu li a.accordion-toggle').unbind('click');
       $('.sidebar-menu li a.accordion-toggle').on('click', function(e) {
 
          // Any menu item with the accordion class is a dropdown submenu. Thus we prevent default actions

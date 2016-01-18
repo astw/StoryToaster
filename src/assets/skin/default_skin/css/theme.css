@@ -18902,7 +18902,7 @@ body.tray-rescale .tray-right:hover {
   clear: both;
   display: none;
   width: 220px;
-  height:320px;   /*auto; */
+  height:420px;   /*auto; */
   overflow-y: auto;
 }
 .sidebar-menu li > a.menu-open + ul {

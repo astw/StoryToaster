@@ -75,47 +75,44 @@
     <ul class="nav sidebar-menu">
       <li class="sidebar-label pt10">新书素材</li>
 
-      <!--<li material-section title-image="/assets/images/IMG_2298.JPG" sg = "groups[0]"  >-->
-        <!--<div >-->
-          <!--<button style="margin-left: auto; margin-right:auto;}">更多背景素材</button>-->
-        <!--</div>-->
-      <!--</li>-->
-
-      <!--<li material-section title-image="/assets/images/IMG_2298.JPG" sg = "groups[0]"  >-->
-        <!--<div >-->
-          <!--<button style="margin-left: auto; margin-right:auto;}">更多故事素材</button>-->
-        <!--</div>-->
-      <!--</li>-->
-
-      <!--<li material-section-->
-          <!--title-image="/assets/images/IMG_2298.JPG"-->
-          <!--sg = "groups[2]"  >-->
-        <!--<div >-->
-          <!--<button style="margin-left: auto; margin-right:auto;}">更多文字素材</button>-->
-        <!--</div>-->
-      <!--</li>-->
-
-
-      <li ng-repeat="group in groups">
-        <a class="accordion-toggle" href="#">
-          <div class="accordion-heading">
-            <image src="/assets/images/IMG_2298.jpg" class="sidebar-menu-images" />
-            <span class="sidebar-title">{{group.title}}</span>
-            <span class="caret"></span>
-          </div>
-        </a>
-        <ul class="nav sub-nav" >
-          <li>
-            <div class="left_panel">
-              <image class="carton_image"
-                     ng-repeat="img in group.images"
-                     src="{{img}}"
-                     ng-click="main.addImage(img)"
-                />
-            </div>
-          </li>
-        </ul>
+      <li material-section sg = "groups[0]"  >
+        <div >
+          <button style="margin-left: auto; margin-right:auto;}">更多背景素材</button>
+        </div>
       </li>
+
+      <li material-section sg = "groups[1]"  >
+        <div >
+          <button style="margin-left: auto; margin-right:auto;}">更多故事素材</button>
+        </div>
+      </li>
+      <li material-section sg = "groups[2]"  >
+        <div >
+          <button style="margin-left: auto; margin-right:auto;}">更多文字素材</button>
+        </div>
+      </li>
+
+
+      <!--<li ng-repeat="group in groups">-->
+        <!--<a class="accordion-toggle" href="#">-->
+          <!--<div class="accordion-heading">-->
+            <!--<image src="/assets/images/IMG_2298.jpg" class="sidebar-menu-images" />-->
+            <!--<span class="sidebar-title">{{group.title}}</span>-->
+            <!--<span class="caret"></span>-->
+          <!--</div>-->
+        <!--</a>-->
+        <!--<ul class="nav sub-nav" >-->
+          <!--<li>-->
+            <!--<div class="left_panel">-->
+              <!--<image class="carton_image"-->
+                     <!--ng-repeat="img in group.images"-->
+                     <!--src="{{img}}"-->
+                     <!--ng-click="main.addImage(img)"-->
+                <!--/>-->
+            <!--</div>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</li>-->
 
       <!--<li>-->
         <!--<a class="accordion-toggle" href="#">-->
