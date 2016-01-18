@@ -14,12 +14,8 @@
     vm.creationDate = 1442106873263;
 
     vm.PhotoBook = new PhotoBook();
-    var totalPages = vm.PhotoBook.totalPage;
-
-    vm.PhotoBook.pagesInDesign = 2
-
+    vm.PhotoBook.pagesInDesign = 2;
     vm.contentPageMode = true;
-
     vm.currentPage = vm.PhotoBook.pages[0];
     vm.currentPage.active = true;
 
@@ -37,6 +33,21 @@
 
       args.page.imageData = JSON.stringify(args.canvas);
       args.page.previewImage = args.canvas.toDataURL();
+    });
+
+    $scope.$on('addImage',function(event,args) {
+      console.log(args);
+      var imageUrl = args.imageUrl;
+      var operation = args.operation;
+      if (operation === 'background') {
+        //add for backgroupd
+      }
+      else if (operation === 'props') {
+        vm.addImage(imageUrl);
+      }
+      else {
+        // add for text
+      }
 
     });
 

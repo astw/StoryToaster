@@ -16,7 +16,7 @@
       link: link,
       restrict: 'AE',
       scope: {
-        sg:'='
+        sgroup:'='
       }
     };
     return directive;
@@ -28,7 +28,6 @@
       function documentReady() {
         Core.init();
       }
-
 
     }
   }

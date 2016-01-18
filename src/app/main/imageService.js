@@ -10,6 +10,7 @@
           {
             title: '故事场景',
             content: '故事场景',
+            imageType:'background',
             titleImage :'/assets/images/callout/Blue_background.jpg',
             images:[
               "/assets/images/1.gif",
@@ -31,6 +32,7 @@
           {
             title: '卡通图片 ',
             content: '卡通图片',
+            imageType:'props',
             titleImage :'/assets/images/1.gif',
             images:[
               "/assets/images/callout/Blue_background.jpg",
@@ -52,6 +54,7 @@
           {
             title: '文字',
             content: '文字',
+            imageType:'text',
             titleImage :'/assets/images/256px-Speech_balloon.svg.png',
             images:[
               "/assets/images/1.gif",

@@ -1,8 +1,8 @@
 {{material.titleText}}
 <a class="accordion-toggle" href="#">
   <div class="accordion-heading">
-    <image src="{{material.sg.titleImage}}" class="sidebar-menu-images" />
-    <span class="sidebar-title">{{material.sg.title}}</span>
+    <image src="{{material.sgroup.titleImage}}" class="sidebar-menu-images" />
+    <span class="sidebar-title">{{material.sgroup.title}}</span>
     <span class="caret"></span>
   </div>
 </a>
@@ -11,9 +11,9 @@
     <ng-transclude></ng-transclude>
     <div class="left_panel">
       <image class="carton_image"
-             ng-repeat="img in material.sg.images"
+             ng-repeat="img in material.sgroup.images"
              src="{{img}}"
-             ng-click="material.addImage(img)"
+             ng-click="material.addImage(img, material.sgroup.imageType)"
         />
     </div>
   </li>

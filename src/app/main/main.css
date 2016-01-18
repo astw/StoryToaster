@@ -81,3 +81,13 @@ footer {
   height:40px;
   border:1px solid #021a40;
 }
+
+
+.more_props_div {
+  text-align: center;
+}
+
+.more_props {
+  margin: 5px;
+  background: transparent;
+}
