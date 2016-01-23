@@ -19,6 +19,8 @@
     vm.currentPage = vm.PhotoBook.pages[0];
     vm.currentPage.active = true;
 
+    activate();
+
     $scope.test = 'this is a test ';
 
     var temp = relayService.getKeyValue('_selectedBook_') && relayService.getKeyValue('_selectedBook_').data;
@@ -50,6 +52,21 @@
       }
 
     });
+
+
+    function activate() {
+      imageService.getBackgroundImages()
+        .then(
+        function (data) {
+          $scope.backgroundGroup = data;
+          console.log(data.length);
+        });
+
+      imageService.getPropsImages().then(
+        function (data) {
+          vm.propsGroup = data
+        });
+    }
 
     angular.element(document).ready(documentReady);
 
@@ -150,7 +167,6 @@
     }];
 
     $scope.colour = "";
-
     $scope.groups = imageService.getImages();
 
     vm.readBook = function(book){
@@ -180,7 +196,7 @@
 
     vm.addImage = function (imageUrl) {
       if(vm.PhotoBook.pages.length < 1) return ;
-      if(vm.PhotoBook.leftDesignPage && vm.PhotoBook.leftDesignPage.active)
+      if(vm.PhotoBook.leftDesignPage && vm.PhotoBook.leftDesignPage.activa)
          currentCanvas = vm.left_canvas;
       else if(vm.PhotoBook.rightDesignPage){
         currentCanvas = vm.right_canvas;
