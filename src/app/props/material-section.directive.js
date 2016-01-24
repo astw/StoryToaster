@@ -25,9 +25,8 @@
 
       scope.onResize = function () {
 
-        var h = ($('#bigPagePanel')).height() -120 ;
+        var h = ($('#bigPagePanel')).height() -80 ;
         $('.left_panel').height(h);
-        console.log(h);
       }
 
       $timeout( documentReady );

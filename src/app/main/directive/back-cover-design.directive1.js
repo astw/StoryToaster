@@ -49,8 +49,8 @@
       picture.x = (w - picture.width ) / 2;
       picture.y = (h - picture.height) / 2 -20;
 
-      var canvasWidth = w -14;
-      var canvasHeight = h -14;
+      var canvasWidth = w -10;
+      var canvasHeight = h -10;
 
       canvas = new fabric.Canvas(
         'frontCoverCanvasRight',

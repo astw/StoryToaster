@@ -192,7 +192,7 @@
   float: left;
   background-color: #FFFFDF;
   border:solid;
-  border-width: 8px;
+  border-width: 5px;
   border-color: #c9dbe1;
   margin-right: 10px;
 }
@@ -204,7 +204,7 @@
   /*margin-right:auto;*/
   background-color: white;
   border:solid;
-  border-width: 8px;
+  border-width: 5px;
   border-color: #c9dbe1;
   text-align: center;
   /*align-content: center;*/
@@ -264,7 +264,7 @@
   float: left;
   background-color: ghostwhite;
   border:solid;
-  border-width: 8px;
+  border-width: 5px;
   border-color: #c8dae0;
   border-radius:10px;
 }
@@ -283,7 +283,7 @@
   position: relative;
   background-color: ghostwhite;
   border:solid;
-  border-width: 8px;
+  border-width: 5px;
   border-color: #c9dbe1;
   border-radius:10px;
 }

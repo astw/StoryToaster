@@ -36,8 +36,8 @@
       picture.x = (w - picture.width ) / 2;
       picture.y = (h - picture.height) / 2;
 
-      var canvasWidth = w -14;
-      var canvasHeight = h -14;
+      var canvasWidth = w -10;
+      var canvasHeight = h -10;
 
       scope.main.PhotoBook.frontCover.width = canvasWidth;
       scope.main.PhotoBook.frontCover.height = canvasHeight;
