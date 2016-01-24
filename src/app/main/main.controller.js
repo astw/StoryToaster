@@ -128,6 +128,11 @@
       size:40
     }
 
+    vm.removeBackground = function(){ 
+      currentCanvas.backgroundImage = null;
+      backCurrentDesignData();
+    };
+
     vm.clickBook = function(book){
       relayService.putKeyValue('_selectedBook_',book);
       vm.selectedBook = book;
