@@ -190,12 +190,11 @@
 .page-big  {
   position: relative;
   float: left;
-
   background-color: #FFFFDF;
   border:solid;
   border-width: 8px;
   border-color: #c9dbe1;
-  margin-right: 2px;
+  margin-right: 10px;
 }
 
 .front-cover-left  {
@@ -312,17 +311,15 @@
 
 .left_panel {
   height: 100%;
-  width:110%;
+  width:190px;
   overflow-y:auto;
   background-color: #ffffff;
-  width:100%;
 }
 .carton_image {
   float:left;
   width: 68px;
   height: 51px;
-  margin-top:10px;
-  margin-left: 20px;
+  margin:8px;
 }
 .carton_image:hover{
   background-color: #ff6619;

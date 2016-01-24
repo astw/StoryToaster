@@ -10,8 +10,8 @@
 
     var t = ($('#bigPagePanel')).width();
 
-    var w =  (t - 20) /2      ;
-    w = ($(window).width() - 280 - 30) / 2 - 20;
+    var w =  (t - 50) /2      ;
+    //w = ($(window).width() - 280 - 30) / 2 - 20;
 
     //var w = ($(window).width() - 250 - 30) / 2 - 20;
     var h = w / 1.375;

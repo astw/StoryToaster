@@ -12894,7 +12894,7 @@ a.list-group-item:focus {
   border-radius: 3px;
 }
 .panel-group .panel + .panel {
-  margin-top: 5px;
+  margin-top: 0px;
 }
 .panel-group .panel-heading + .panel-collapse > .panel-body {
   border-top: 0;
@@ -18799,7 +18799,7 @@ body.tray-rescale .tray-right:hover {
   position: absolute;
   top: 0;
   left: 0;
-  width: 220px;
+  width: 200px;
   min-height: 100%;
   padding-top: 60px;
   padding-bottom: 40px;
@@ -19742,7 +19742,7 @@ body.sb-l-m.mobile-view .nano > .nano-pane {
   overflow: hidden;
 }
 .sb-l-o #content_wrapper {
-  margin-left: 220px;
+  margin-left: 200px;
 }
 /*left sidebar closed*/
 .sb-l-c #sidebar_left {
@@ -19801,7 +19801,7 @@ manipulation using an html class aswell */
   #content_wrapper,
   .sb-l-o #content_wrapper {
     margin-left: 0;
-    left: 220px;
+    left: 200px;
   }
   /* Sidebar Left Minified */
   .sb-l-m #content_wrapper {
@@ -20132,7 +20132,7 @@ body.sb-r-o #toggle_sidemenu_r span.glyphicons {
 #content-footer.affix {
   z-index: 1;
   position: fixed;
-  margin-left: 220px;
+  margin-left: 200px;
 }
 /* Match Sidebar States */
 body.sb-l-c #content-footer.affix {

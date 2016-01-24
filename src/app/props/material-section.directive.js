@@ -6,7 +6,7 @@
     .directive('materialSection', materialSection);
 
   /* @ngInject */
-  function materialSection($timeout) {
+  function materialSection($timeout,$window) {
     var directive = {
       templateUrl:'app/props/materials.html',
       bindToController: true,
@@ -23,11 +23,22 @@
 
     function link(scope, element, attrs) {
 
+      scope.onResize = function () {
+
+        var h = ($('#bigPagePanel')).height() -120 ;
+        $('.left_panel').height(h);
+        console.log(h);
+      }
+
       $timeout( documentReady );
 
       function documentReady() {
         Core.init();
       }
+      scope.onResize();
+      angular.element($window).bind('resize', function () {
+        scope.onResize();
+      })
 
     }
   }
