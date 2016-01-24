@@ -43,6 +43,7 @@
       var operation = args.operation;
       if (operation === 'background') {
         //add for backgroupd
+        vm.addImage(imageUrl, true);
       }
       else if (operation === 'props') {
         vm.addImage(imageUrl);
@@ -194,20 +195,31 @@
       vm.PhotoBook.setPageActive(vm.PhotoBook.rightDesignPage);
     };
 
-    vm.addImage = function (imageUrl) {
-      if(vm.PhotoBook.pages.length < 1) return ;
-      if(vm.PhotoBook.leftDesignPage && vm.PhotoBook.leftDesignPage.activa)
-         currentCanvas = vm.left_canvas;
-      else if(vm.PhotoBook.rightDesignPage){
+    vm.addImage = function (imageUrl, isBackground) {
+      if (vm.PhotoBook.pages.length < 1) return;
+      if (vm.PhotoBook.leftDesignPage && vm.PhotoBook.leftDesignPage.active)
+        currentCanvas = vm.left_canvas;
+      else if (vm.PhotoBook.rightDesignPage) {
         currentCanvas = vm.right_canvas;
       }
 
-      imageUrl = "http://localhost:3000" + imageUrl;
-      fabric.Image.fromURL(imageUrl, function (img) {
-        currentCanvas.add(img);
-        //currentCanvas.page.previewImage = currentCanvas.toDataURL();
-        backCurrentDesignData();
-      }, {crossOrigin: 'Anonymous'});
+
+      if (!isBackground) {
+        imageUrl = "http://localhost:3000" + imageUrl;
+
+        fabric.Image.fromURL(imageUrl, function (img) {
+          currentCanvas.add(img);
+          //currentCanvas.page.previewImage = currentCanvas.toDataURL();
+          backCurrentDesignData();
+        }, {crossOrigin: 'Anonymous'})
+      }
+      else {
+          imageUrl = imageUrl + "?size=origin";
+          currentCanvas.setBackgroundImage(imageUrl,
+          currentCanvas.renderAll.bind(currentCanvas), {
+          backgroundImageStretch: true
+        });
+      }
     };
 
     vm.addText = function () {
