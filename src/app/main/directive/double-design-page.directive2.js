@@ -30,10 +30,11 @@
         $(".page-big").css('height', h + "px");
         $(".page-big").css('width', w + "px");
 
-        scope.main.left_canvas = new fabric.Canvas('left_canvas', {select: false, backgroundColor: '#ffffff'});
-        scope.main.right_canvas = new fabric.Canvas('right_canvas', {select: false, backgroundColor: '#ffffff'});
-        scope.main.currentCanvas = scope.main.left_canvas;
-
+        if(!scope.main.left_canvas || !scope.main.right_canvas) {
+          scope.main.left_canvas = new fabric.Canvas('left_canvas', {select: false, backgroundColor: '#ffffff'});
+          scope.main.right_canvas = new fabric.Canvas('right_canvas', {select: false, backgroundColor: '#ffffff'});
+          scope.main.currentCanvas = scope.main.left_canvas;
+        }
         scope.main.restoreToCurrentDesignData();
 
         scope.main.left_canvas.setWidth(canvasWidth);
@@ -41,7 +42,6 @@
 
         scope.main.right_canvas.setWidth(canvasWidth);
         scope.main.right_canvas.setHeight(canvasHeight);
-
       };
       scope.onResize();
 

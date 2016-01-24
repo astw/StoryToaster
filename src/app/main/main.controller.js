@@ -214,11 +214,12 @@
         }, {crossOrigin: 'Anonymous'})
       }
       else {
-          imageUrl = imageUrl + "?size=origin";
-          currentCanvas.setBackgroundImage(imageUrl,
+        imageUrl = imageUrl + "?size=origin";
+        currentCanvas.setBackgroundImage(imageUrl,
           currentCanvas.renderAll.bind(currentCanvas), {
-          backgroundImageStretch: true
-        });
+            backgroundImageStretch: true,
+            crossOrigin: 'Anonymous'
+          });
       }
     };
 
