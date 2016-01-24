@@ -128,7 +128,7 @@
       size:40
     }
 
-    vm.removeBackground = function(){ 
+    vm.removeBackground = function(){
       currentCanvas.backgroundImage = null;
       backCurrentDesignData();
     };
