@@ -353,3 +353,25 @@ textarea
   vertical-align: middle;
   resize: none;
 }
+
+.tool-items {
+  position: absolute;
+  /*background-color: #585f6b;*/
+  background-color: grey;
+  padding: 5px;
+  border-radius: 5px;
+  left:0px;
+  top: 0px;
+  margin-top: 5px;
+}
+
+.toolbar-item {
+  vertical-align: middle;
+  color: #ffffff !important;
+  cursor: pointer;
+  position: relative;
+  margin:2px;
+}
+.toolbar-item:hover {
+  background-color: #ff6619
+}

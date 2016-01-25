@@ -67,8 +67,40 @@
         function (data) {
           vm.propsGroup = data
         });
+
+      fabric.Canvas.prototype.hoverCursor = 'pointer';
+      fabric.Image.prototype.selectionColor = 'red';
+      fabric.Image.prototype.selectionBorderColor = 'red';
+      fabric.Image.prototype.cornerColor = '#ff6619';
+      fabric.Image.prototype.cornerSize = 8;
+      fabric.Image.prototype.transparentCorners = false;
+      fabric.Image.prototype.rotatingPointOffset = 30;
+
+      hookEvents();
     }
 
+    function hideToolItems(){
+      $('.tool-items').css('left',  "0px");
+      $('.tool-items').css('top', "0px");
+    }
+
+    function setToolItems(object, ctx){
+      if(!ctx) ctx = currentCanvas;
+      var loc = ctx.getAbsoluteCoords(object); 
+
+      $('.tool-items').css('left', loc.left + "px");
+      $('.tool-items').css('top', loc.top + "px");
+    }
+
+    vm.clickOnTool = function(event){
+      if(!currentCanvas ) return;
+
+      var obj = currentCanvas.getActiveObject();
+      if(!obj) reutrn ;
+      if(event==='delete'){
+           obj.remove();
+      }
+    }
     angular.element(document).ready(documentReady);
 
     vm.addImageTest = function() {
@@ -90,25 +122,43 @@
       canvas.add(rect);
     }
 
-    var hookEvents = function () {
-      //vm.left_canvas.on('mouse:down', function (options) {
-      //  vm.left_canvas.active = true;
-      //  vm.right_canvas.active = false;
-      //  currentCanvas = vm.left_canvas;
-      //});
-      //
-      //vm.right_canvas.on('mouse:down', function (options) {
-      //  vm.right_canvas.active = true;
-      //  vm.left_canvas.active = false;
-      //  currentCanvas = vm.right_canvas;
-      //});
-      //
-      //vm.left_canvas.on('selection:cleared', function (options) {
-      //  console.log('de-selected');
-      //});
+    function hookEvents () {
+      fabric.Canvas.prototype.getAbsoluteCoords = function(object) {
+        console.log('angle=',object.getAngle());
+        return {
+          left: object.left + this._offset.left,
+          top: object.getTop() + this._offset.top + object.getHeight() // * Math.sin( (90 +object.getAngle()) * Math.PI / 180)
+        };
+      };
+
+      fabric.Canvas.prototype.on('object:selected',function(obj){
+        if(currentCanvas && obj.target) {
+
+          console.log('object:selected');
+          setToolItems(obj.target,this);
+        }
+      });
+
+      fabric.Canvas.prototype.on('onblur',function(){
+        hideToolItems();
+      });
+
+      fabric.Canvas.prototype.on('selection:cleared',function(){
+        hideToolItems();
+      });
+
+      fabric.Image.prototype.on('moving', function(){
+        setToolItems(this);
+      });
+
+      fabric.Image.prototype.on('scaling',function(){
+        setToolItems(this);
+      });
+
+      fabric.Image.prototype.on('rotating',function(){
+      });
     };
 
-    hookEvents();
 
     $scope.customSettings = {
       control: 'brightness',
@@ -191,11 +241,15 @@
     };
 
     vm.selectLeft = function () {
+      if(currentCanvas == vm.left_canvas) return
+      currentCanvas.deactivateAll().renderAll();
       currentCanvas = vm.left_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.leftDesignPage);
     };
 
     vm.selectRight = function () {
+      if(currentCanvas == vm.right_canvas) return;
+      currentCanvas.deactivateAll().renderAll();
       currentCanvas = vm.right_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.rightDesignPage);
     };
@@ -208,17 +262,16 @@
         currentCanvas = vm.right_canvas;
       }
 
-
       if (!isBackground) {
         imageUrl = "http://localhost:3000" + imageUrl;
 
         fabric.Image.fromURL(imageUrl, function (img) {
           currentCanvas.add(img);
-          //currentCanvas.page.previewImage = currentCanvas.toDataURL();
+          currentCanvas.setActiveObject(img);
           backCurrentDesignData();
+
         }, {crossOrigin: 'Anonymous'})
-      }
-      else {
+      } else {
         imageUrl = imageUrl + "?size=origin";
         currentCanvas.setBackgroundImage(imageUrl,
           currentCanvas.renderAll.bind(currentCanvas), {
