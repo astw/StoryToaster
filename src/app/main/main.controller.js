@@ -86,21 +86,39 @@
 
     function setToolItems(object, ctx){
       if(!ctx) ctx = currentCanvas;
-      var loc = ctx.getAbsoluteCoords(object); 
+      var loc = ctx.getAbsoluteCoords(object);
 
       $('.tool-items').css('left', loc.left + "px");
       $('.tool-items').css('top', loc.top + "px");
     }
 
-    vm.clickOnTool = function(event){
-      if(!currentCanvas ) return;
+    vm.clickOnTool = function(event) {
+      if (!currentCanvas) return;
 
-      var obj = currentCanvas.getActiveObject();
-      if(!obj) reutrn ;
-      if(event==='delete'){
-           obj.remove();
+      var activeObj = currentCanvas.getActiveObject();
+      if (!activeObj) reutrn;
+      if (event === 'delete') {
+        activeObj.remove();
+      } else if (event === 'copy') {
+        var object = fabric.util.object.clone(activeObj);
+        object.set("top", activeObj.top + 20);
+        object.set('left', activeObj.left + activeObj.getWidth());
+        currentCanvas.deactivateAll().renderAll();
+        currentCanvas.add(object);
+        currentCanvas.setActiveObject(object);
+        setToolItems(object, currentCanvas);
+
+      } else if (event === 'bringToFront') {
+        activeObj.bringForward();
+      } else if (event === 'sendToBack') {
+        activeObj.sendBackwards();
+
+      } else if (event === 'flip') {
+        currentCanvas.getActiveObject().set("angle", "-180").set('flipY', true);
+        currentCanvas.renderAll();
       }
-    }
+    };
+
     angular.element(document).ready(documentReady);
 
     vm.addImageTest = function() {
@@ -127,7 +145,7 @@
         console.log('angle=',object.getAngle());
         return {
           left: object.left + this._offset.left,
-          top: object.getTop() + this._offset.top + object.getHeight() // * Math.sin( (90 +object.getAngle()) * Math.PI / 180)
+          top: object.getTop() + this._offset.top + object.getHeight() * Math.sin( (90 +object.getAngle()) * Math.PI / 180)
         };
       };
 
