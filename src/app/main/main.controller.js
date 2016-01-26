@@ -157,11 +157,27 @@
         }
       });
 
+      fabric.Canvas.prototype.on('before:selection:cleared',function(obj){
+        if(currentCanvas && obj.target) {
+
+          console.log('before selection cleared ');
+
+          hideToolItems();
+
+        }
+      });
+
       fabric.Canvas.prototype.on('onblur',function(){
         hideToolItems();
       });
+      //
+      //fabric.Canvas.prototype.on('before:selection:cleared',function(){
+      //  console.log('selection:cleared');
+      //  hideToolItems();
+      //});
 
-      fabric.Canvas.prototype.on('selection:cleared',function(){
+      fabric.Image.prototype.on('selection:cleared',function(){
+        console.log('cleared on image');
         hideToolItems();
       });
 
@@ -260,14 +276,14 @@
 
     vm.selectLeft = function () {
       if(currentCanvas == vm.left_canvas) return
-      currentCanvas.deactivateAll().renderAll();
+      currentCanvas.deactivateAllWithDispatch().renderAll();
       currentCanvas = vm.left_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.leftDesignPage);
     };
 
     vm.selectRight = function () {
       if(currentCanvas == vm.right_canvas) return;
-      currentCanvas.deactivateAll().renderAll();
+      currentCanvas.deactivateAllWithDispatch().renderAll();
       currentCanvas = vm.right_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.rightDesignPage);
     };
