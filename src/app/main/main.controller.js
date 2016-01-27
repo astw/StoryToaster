@@ -6,12 +6,20 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, relayService, toastr, $scope, $window, $document, imageService, PhotoBook, bookRepository) {
+  function MainController($timeout,
+                          relayService,
+                          toastr,
+                          $scope,
+                          $window,
+                          $document,
+                          imageService,
+                          PhotoBook,
+                          bookRepository,
+                          fabricJSExt
+  ) {
     console.log('----------- in main controller ---------------');
 
     var vm = this;
-    vm.classAnimation = '';
-    vm.creationDate = 1442106873263;
 
     vm.PhotoBook = new PhotoBook();
     vm.PhotoBook.pagesInDesign = 2;
@@ -19,25 +27,102 @@
     vm.currentPage = vm.PhotoBook.pages[0];
     vm.currentPage.active = true;
 
-    activate();
-
-    $scope.test = 'this is a test ';
-
     var temp = relayService.getKeyValue('_selectedBook_') && relayService.getKeyValue('_selectedBook_').data;
     vm.selectedBook = temp ? JSON.parse(relayService.getKeyValue('_selectedBook_').data) : null;
 
     var currentCanvas = vm.left_canvas;
 
-    $scope.$on('$viewContentLoaded', documentReady );
+    $scope.groups = imageService.getImages();
 
-    $scope.$on('pageChanged',function(event, args){
-      if(!args || !args.canvas) return;
+
+    angular.element(document).ready(documentReady);
+
+
+    //---------------------------------------------------- methods
+    vm.clickOnTool = clickOnTool;
+    vm.addImageTest = addImageTest;
+    vm.removeBackground = removeBackground;
+    vm.clickBook = clickBook;
+    vm.changeTitleFont = changeTitleFont;
+    vm.changeTitleColor = changeTitleColor;
+    vm.changeAuthorFont = changeAuthorFont;
+    vm.changeAuthorColor = changeAuthorColor;
+    vm.changeBackgroundColor = changeBackgroundColor;
+    vm.readBook = readBook;
+    vm.coverImageSelected = coverImageSelected;
+    vm.backCoverImageSelected = backCoverImageSelected;
+    vm.selectLeft = selectLeft;
+    vm.selectRight = selectRight;
+    vm.addImage = addImage;
+    vm.addText = addText;
+    vm.frontCoverClick = frontCoverClick;
+    vm.dedicatedPageClick = dedicatedPageClick;
+    vm.backCoverClick = vm.backCoverClick;
+    vm.previewClick = previewClick;
+    vm.nextPage = nextPage;
+    vm.previousPage = previousPage;
+    vm.backCurrentDesignData = backCurrentDesignData;
+    vm.restoreToCurrentDesignData = restoreToCurrentDesignData;
+    vm.generatePreviewImage = generatePreviewImage;
+    vm.deleteObject = deleteObject;
+    vm.newPage = newPage;
+    vm.copyPage = copyPage;
+    vm.deletePage = deletePage;
+    vm.saveToServe = saveToServe;
+    vm.finishCreateBook = finishCreateBook;
+    vm.nextSaveToImage = nextSaveToImage;
+//---------------------------------------------------- methods end
+
+    activate();
+
+//---------------------------------------------------- test data start
+    $scope.test = 'this is a test ';
+
+    $scope.customSettings = {
+      control: 'brightness',
+      theme: 'bootstrap',
+      position: 'top left'
+    };
+
+    $scope.brightnesssettings = {
+      control: 'brightness'
+    };
+
+// JS
+    $scope.optionsColumn = {
+      columns: 4,
+      roundCorners: true,
+      size: 40
+    };
+
+    $scope.colours = [{
+      name: "Red",
+      hex: "#F21B1B"
+    }, {
+      name: "Blue",
+      hex: "#1B66F2"
+    }, {
+      name: "Green",
+      hex: "#07BA16"
+    }];
+
+    $scope.colour = "";
+
+//------------------------------------------------------ test data ends
+
+
+//------------------------------------------------------ listen events
+
+    $scope.$on('$viewContentLoaded', documentReady);
+
+    $scope.$on('pageChanged', function (event, args) {
+      if (!args || !args.canvas) return;
 
       args.page.imageData = JSON.stringify(args.canvas);
       args.page.previewImage = args.canvas.toDataURL();
     });
 
-    $scope.$on('addImage',function(event,args) {
+    $scope.$on('addImage', function (event, args) {
       console.log(args);
       var imageUrl = args.imageUrl;
       var operation = args.operation;
@@ -51,9 +136,8 @@
       else {
         // add for text
       }
-
     });
-
+//------------------------------------------------------ listen events end
 
     function activate() {
       imageService.getBackgroundImages()
@@ -79,20 +163,22 @@
       hookEvents();
     }
 
-    function hideToolItems(){
-      $('.tool-items').css('left',  "0px");
+
+//------------------------------------------------------ tool items start
+    function hideToolItems() {
+      $('.tool-items').css('left', "0px");
       $('.tool-items').css('top', "0px");
     }
 
-    function setToolItems(object, ctx){
-      if(!ctx) ctx = currentCanvas;
+    function setToolItems(object, ctx) {
+      if (!ctx) ctx = currentCanvas;
       var loc = ctx.getAbsoluteCoords(object);
 
       $('.tool-items').css('left', loc.left + "px");
       $('.tool-items').css('top', loc.top + "px");
     }
 
-    vm.clickOnTool = function(event) {
+    function clickOnTool(event) {
       if (!currentCanvas) return;
 
       var activeObj = currentCanvas.getActiveObject();
@@ -119,9 +205,7 @@
       }
     };
 
-    angular.element(document).ready(documentReady);
-
-    vm.addImageTest = function() {
+    function addImageTest() {
       var imageUrl = "http://localhost:3000/assets/images/1.gif";
       var canvas = new fabric.Canvas('canvas_1');
       fabric.Image.fromURL(imageUrl, function (img) {
@@ -140,155 +224,121 @@
       canvas.add(rect);
     }
 
-    function hookEvents () {
-      fabric.Canvas.prototype.getAbsoluteCoords = function(object) {
-        console.log('angle=',object.getAngle());
-        return {
-          left: object.left + this._offset.left,
-          top: object.getTop() + this._offset.top + object.getHeight() * Math.sin( (90 +object.getAngle()) * Math.PI / 180)
-        };
-      };
+//------------------------------------------------------ tool items start
 
-      fabric.Canvas.prototype.on('object:selected',function(obj){
-        if(currentCanvas && obj.target) {
+    function hookEvents() {
 
-          console.log('object:selected');
-          setToolItems(obj.target,this);
-        }
-      });
+      fabricJSExt.init();
 
-      fabric.Canvas.prototype.on('before:selection:cleared',function(obj){
-        if(currentCanvas && obj.target) {
+      // fabric.Canvas.prototype.getAbsoluteCoords = function (object) {
+      //   console.log('angle=', object.getAngle());
+      //   return {
+      //     left: object.left + this._offset.left,
+      //     top: object.getTop() + this._offset.top + object.getHeight() * Math.sin((90 + object.getAngle()) * Math.PI / 180)
+      //   };
+      // };
 
-          console.log('before selection cleared ');
+      // fabric.Canvas.prototype.on('object:selected', function (obj) {
+      //   if (currentCanvas && obj.target) {
 
-          hideToolItems();
+      //     console.log('object:selected');
+      //     setToolItems(obj.target, this);
+      //   }
+      // });
 
-        }
-      });
+      // fabric.Canvas.prototype.on('before:selection:cleared', function (obj) {
+      //   if (currentCanvas && obj.target) {
 
-      fabric.Canvas.prototype.on('onblur',function(){
-        hideToolItems();
-      });
-      //
-      //fabric.Canvas.prototype.on('before:selection:cleared',function(){
-      //  console.log('selection:cleared');
-      //  hideToolItems();
-      //});
+      //     console.log('before selection cleared ');
+      //     hideToolItems();
+      //   }
 
-      fabric.Image.prototype.on('selection:cleared',function(){
-        console.log('cleared on image');
-        hideToolItems();
-      });
+      // });
 
-      fabric.Image.prototype.on('moving', function(){
-        setToolItems(this);
-      });
+      // fabric.Canvas.prototype.on('onblur', function () {
+      //   hideToolItems();
+      // });
 
-      fabric.Image.prototype.on('scaling',function(){
-        setToolItems(this);
-      });
+      // fabric.Image.prototype.on('selection:cleared', function () {
+      //   console.log('cleared on image');
+      //   hideToolItems();
+      // });
 
-      fabric.Image.prototype.on('rotating',function(){
-      });
+      // fabric.Image.prototype.on('moving', function () {
+      //   setToolItems(this);
+      // });
+
+      // fabric.Image.prototype.on('scaling', function () {
+      //   setToolItems(this);
+      // });
+
+      // fabric.Image.prototype.on('rotating', function () {
+      // });
     };
 
-
-    $scope.customSettings = {
-      control: 'brightness',
-      theme: 'bootstrap',
-      position: 'top left'
-    };
-
-    $scope.brightnesssettings = {
-      control: 'brightness'
-    };
-
-
-// JS
-    $scope.optionsColumn = {
-      columns: 4,
-      roundCorners: true,
-      size:40
-    }
-
-    vm.removeBackground = function(){
+    function removeBackground() {
       currentCanvas.backgroundImage = null;
       backCurrentDesignData();
     };
 
-    vm.clickBook = function(book){
-      relayService.putKeyValue('_selectedBook_',book);
+    function clickBook(book) {
+      relayService.putKeyValue('_selectedBook_', book);
       vm.selectedBook = book;
       console.log(vm.selectedBook);
       console.log('click on book');
     };
 
-    vm.changeTitleFont = function(){
+    function changeTitleFont() {
       console.log('in main controller  change title font ');
     };
 
-    vm.changeTitleColor = function(){
+    function changeTitleColor() {
       console.log('in main controller change title color')
     };
 
-    vm.changeAuthorFont = function(){
+    function changeAuthorFont() {
       console.log('in main controller  change author font ');
     };
 
-    vm.changeAuthorColor = function(){
+    function changeAuthorColor() {
       console.log('in main controller change author color')
     };
 
-    vm.changeBackgroundColor = function(){
+    function changeBackgroundColor() {
       console.log('in main controller change book back color');
       console.log(vm.PhotoBook.backgroundColor);
     };
 
-    $scope.colours = [{
-      name: "Red",
-      hex: "#F21B1B"
-    }, {
-      name: "Blue",
-      hex: "#1B66F2"
-    }, {
-      name: "Green",
-      hex: "#07BA16"
-    }];
-
-    $scope.colour = "";
-    $scope.groups = imageService.getImages();
-
-    vm.readBook = function(book){
+    function readBook(book) {
       console.log('read book');
       console.log(book);
     };
 
-    vm.coverImageSelected = function (item, model){
-      if(item)
-       vm.PhotoBook.frontCoverImageIndex = item.index;
+    function coverImageSelected(item, model) {
+      if (item)
+        vm.PhotoBook.frontCoverImageIndex = item.index;
     };
 
-    vm.backCoverImageSelected = function(item,model){
-      if(item)
-      vm.PhotoBook.backCoverImageIndex = item.index;
+    function backCoverImageSelected(item, model) {
+      if (item)
+        vm.PhotoBook.backCoverImageIndex = item.index;
     };
 
-    vm.selectLeft = function () {
-      if(currentCanvas == vm.left_canvas) return
+    function selectLeft() {
+      if (currentCanvas == vm.left_canvas) return
       currentCanvas.deactivateAllWithDispatch().renderAll();
       currentCanvas = vm.left_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.leftDesignPage);
     };
 
-    vm.selectRight = function () {
-      if(currentCanvas == vm.right_canvas) return;
+    function selectRight() {
+      if (currentCanvas == vm.right_canvas) return;
       currentCanvas.deactivateAllWithDispatch().renderAll();
       currentCanvas = vm.right_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.rightDesignPage);
     };
 
-    vm.addImage = function (imageUrl, isBackground) {
+    function addImage(imageUrl, isBackground) {
       if (vm.PhotoBook.pages.length < 1) return;
       if (vm.PhotoBook.leftDesignPage && vm.PhotoBook.leftDesignPage.active)
         currentCanvas = vm.left_canvas;
@@ -315,7 +365,7 @@
       }
     };
 
-    vm.addText = function () {
+    function addText() {
       var txtBox = new fabric.IText("IText", {
         fontSize: 18,
         //fontFamily: 'Arial',
@@ -326,7 +376,7 @@
       v.add(txtBox);
     };
 
-    vm.frontCoverClick = function(){
+    function frontCoverClick() {
       vm.contentPageMode = false;
       vm.dedicatePageMode = false;
       vm.frontCoverMode = true;
@@ -336,7 +386,7 @@
       vm.PhotoBook.setFrontCoverActive();
     };
 
-    vm.dedicatedPageClick = function(){
+    function dedicatedPageClick() {
       vm.contentPageMode = false;
       vm.dedicatePageMode = true;
       vm.frontCoverMode = false;
@@ -346,7 +396,7 @@
       vm.PhotoBook.setDedicatedPageActive();
     };
 
-    vm.backCoverClick = function(){
+    function backCoverClick() {
       vm.contentPageMode = false;
       vm.dedicatePageMode = false;
       vm.frontCoverMode = false;
@@ -356,7 +406,7 @@
       vm.PhotoBook.setBackCoverActive();
     };
 
-    vm.previewClick = function (page,which) {
+    function previewClick(page, which) {
       vm.contentPageMode = true;
       vm.dedicatePageMode = false;
       vm.frontCoverMode = false;
@@ -369,7 +419,7 @@
         vm.PhotoBook.leftDesignPage = page;
         vm.PhotoBook.rightDesignPage = vm.PhotoBook.getNextPage(page);
       }
-      else if(which == 'right') {
+      else if (which == 'right') {
         currentCanvas = vm.right_canvas;
         vm.PhotoBook.rightDesignPage = page;
       }
@@ -379,35 +429,34 @@
       vm.restoreToCurrentDesignData();
     };
 
-    vm.nextPage = function () {
+    function nextPage() {
       vm.left_canvas.clear();
       vm.right_canvas.clear();
       vm.PhotoBook.MoveToNextPage();
       vm.restoreToCurrentDesignData();
     };
 
-    vm.previousPage = function (currentIndex) {
+    function previousPage(currentIndex) {
       vm.PhotoBook.MoveToPreviousPage();
       vm.restoreToCurrentDesignData();
     };
 
-
-    var backCurrentDesignData = function () {
-      if(!vm.PhotoBook || !vm.PhotoBook || !vm.PhotoBook.leftDesignPage) return ;
+    function backCurrentDesignData() {
+      if (!vm.PhotoBook || !vm.PhotoBook || !vm.PhotoBook.leftDesignPage) return;
       vm.PhotoBook.leftDesignPage.imageData = JSON.stringify(vm.left_canvas);
       if (vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);
       }
 
-      if(vm.frontCoverCanvas)
-      vm.PhotoBook.frontCover.imageData = JSON.stringify(vm.frontCoverCanvas);
+      if (vm.frontCoverCanvas)
+        vm.PhotoBook.frontCover.imageData = JSON.stringify(vm.frontCoverCanvas);
 
       generatePreviewImage();
     };
 
-    vm.restoreToCurrentDesignData = function () {
+    function restoreToCurrentDesignData() {
 
-      if(vm.PhotoBook.leftDesignPage) {
+      if (vm.PhotoBook.leftDesignPage) {
         var leftData = vm.PhotoBook.leftDesignPage.imageData;
         if (leftData)
           vm.left_canvas.loadFromJSON(leftData, vm.left_canvas.renderAll.bind(vm.left_canvas), function () {
@@ -422,47 +471,47 @@
       }
     };
 
-    var generatePreviewImage = function () {
+    function generatePreviewImage() {
       vm.PhotoBook.leftDesignPage.previewImage = vm.left_canvas.toDataURL();
       if (vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.previewImage = vm.right_canvas.toDataURL();
       }
 
-      if(vm.frontCoverCanvas)
-      vm.PhotoBook.frontCover.previewImage = vm.frontCoverCanvas.toDataURL();
+      if (vm.frontCoverCanvas)
+        vm.PhotoBook.frontCover.previewImage = vm.frontCoverCanvas.toDataURL();
     };
 
-    vm.deleteObject = function () {
+    function deleteObject() {
       //if(vm.PhotoBook.leftDesignPage.active)
-          vm.PhotoBook.deletePage(vm.PhotoBook.leftDesignPage);
+      vm.PhotoBook.deletePage(vm.PhotoBook.leftDesignPage);
     };
 
-    vm.newPage = function () {
+    function newPage() {
       vm.PhotoBook.createPage();
     };
 
-    vm.copyPage = function () {
+    function copyPage() {
       backCurrentDesignData();
       vm.PhotoBook.copyPage(vm.currentPage);
       vm.restoreToCurrentDesignData();
     };
 
-    vm.deletePage = function () {
-       vm.left_canvas.clear();
+    function deletePage() {
+      vm.left_canvas.clear();
       vm.right_canvas.clear();
       vm.PhotoBook.deletePage(vm.currentPage);
       vm.restoreToCurrentDesignData();
     };
 
-    vm.saveToServe = function () {
+    function saveToServe() {
       bookRepository.saveToServer(this.PhotoBook);
     };
 
-    vm.finishCreateBook = function(){
-      $window.location.href ="/account/mybooks"
+    function finishCreateBook() {
+      $window.location.href = "/account/mybooks"
     };
 
-    vm.nextSaveToImage = function () {
+    function nextSaveToImage() {
       $scope.preview_image = vm.left_canvas.toDataURL();
       //var preview_image = $document.find('#preview_image');
       //var preview_image =  $document.find('preview_image');  /// $('#preview_image');
@@ -483,12 +532,10 @@
       }
     };
 
-
-    $timeout( documentReady );
+    $timeout(documentReady);
 
     function documentReady() {
       Core.init();
     }
-
   }
 })();
