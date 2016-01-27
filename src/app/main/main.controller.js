@@ -165,24 +165,12 @@
 
 
 //------------------------------------------------------ tool items start
-    function hideToolItems() {
-      $('.tool-items').css('left', "0px");
-      $('.tool-items').css('top', "0px");
-    }
-
-    function setToolItems(object, ctx) {
-      if (!ctx) ctx = currentCanvas;
-      var loc = ctx.getAbsoluteCoords(object);
-
-      $('.tool-items').css('left', loc.left + "px");
-      $('.tool-items').css('top', loc.top + "px");
-    }
 
     function clickOnTool(event) {
       if (!currentCanvas) return;
 
       var activeObj = currentCanvas.getActiveObject();
-      if (!activeObj) reutrn;
+      if (!activeObj) return;
       if (event === 'delete') {
         activeObj.remove();
       } else if (event === 'copy') {
@@ -228,52 +216,7 @@
 
     function hookEvents() {
 
-      fabricJSExt.init();
-
-      // fabric.Canvas.prototype.getAbsoluteCoords = function (object) {
-      //   console.log('angle=', object.getAngle());
-      //   return {
-      //     left: object.left + this._offset.left,
-      //     top: object.getTop() + this._offset.top + object.getHeight() * Math.sin((90 + object.getAngle()) * Math.PI / 180)
-      //   };
-      // };
-
-      // fabric.Canvas.prototype.on('object:selected', function (obj) {
-      //   if (currentCanvas && obj.target) {
-
-      //     console.log('object:selected');
-      //     setToolItems(obj.target, this);
-      //   }
-      // });
-
-      // fabric.Canvas.prototype.on('before:selection:cleared', function (obj) {
-      //   if (currentCanvas && obj.target) {
-
-      //     console.log('before selection cleared ');
-      //     hideToolItems();
-      //   }
-
-      // });
-
-      // fabric.Canvas.prototype.on('onblur', function () {
-      //   hideToolItems();
-      // });
-
-      // fabric.Image.prototype.on('selection:cleared', function () {
-      //   console.log('cleared on image');
-      //   hideToolItems();
-      // });
-
-      // fabric.Image.prototype.on('moving', function () {
-      //   setToolItems(this);
-      // });
-
-      // fabric.Image.prototype.on('scaling', function () {
-      //   setToolItems(this);
-      // });
-
-      // fabric.Image.prototype.on('rotating', function () {
-      // });
+      fabricJSExt.init()
     };
 
     function removeBackground() {
@@ -325,15 +268,19 @@
     };
 
     function selectLeft() {
-      if (currentCanvas == vm.left_canvas) return
-      currentCanvas.deactivateAllWithDispatch().renderAll();
+      if (currentCanvas == vm.left_canvas) return;
+      if(currentCanvas) {
+        currentCanvas.deactivateAllWithDispatch().renderAll();
+      }
       currentCanvas = vm.left_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.leftDesignPage);
     };
 
     function selectRight() {
       if (currentCanvas == vm.right_canvas) return;
-      currentCanvas.deactivateAllWithDispatch().renderAll();
+      if(currentCanvas) {
+        currentCanvas.deactivateAllWithDispatch().renderAll();
+      }
       currentCanvas = vm.right_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.rightDesignPage);
     };

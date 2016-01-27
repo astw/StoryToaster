@@ -16,12 +16,13 @@
 
     function init() {
 
+      $('.tool-items').hide();
+
       fabric.Canvas.prototype.hideToolItems = function (toolboxSelector) {
 
         toolboxSelector = '.tool-items';
-        $(toolboxSelector).css('left', "0px");
-        $(toolboxSelector).css('top', "0px");
-      }
+        $(toolboxSelector).hide();
+      };
 
       fabric.Canvas.prototype.setToolItems = function (object, toolboxSelector) {
 
@@ -29,7 +30,9 @@
         var loc = this.getAbsoluteCoords(object);
         $(toolboxSelector).css('left', loc.left + "px");
         $(toolboxSelector).css('top', loc.top + "px");
-      }
+
+        $(toolboxSelector).show();
+      };
 
       fabric.Canvas.prototype.getAbsoluteCoords = function (object) {
         console.log('angle=', object.getAngle());
@@ -40,8 +43,7 @@
       };
 
       fabric.Canvas.prototype.on('object:selected', function (obj) {
-        if (obj.target) {
-
+        if (obj.target && this._offset.left > 0 && this._offset.top > 0) {
           console.log('object:selected');
           this.setToolItems(obj.target, this);
         }
@@ -65,11 +67,11 @@
       });
 
       fabric.Image.prototype.on('moving', function () {
-        this.setToolItems(this);
+        this.canvas.setToolItems(this, '.tool-items');
       });
 
       fabric.Image.prototype.on('scaling', function () {
-        this.setToolItems(this);
+        this.canvas.setToolItems(this, '.tool-items');
       });
 
       fabric.Image.prototype.on('rotating', function () {
