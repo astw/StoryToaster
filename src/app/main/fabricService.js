@@ -38,7 +38,7 @@
         console.log('angle=', object.getAngle());
         return {
           left: object.left + this._offset.left,
-          top: object.getTop() + this._offset.top + object.getHeight() * Math.sin((90 + object.getAngle()) * Math.PI / 180)
+          top: object.getTop() + this._offset.top + object.getHeight() //* Math.sin((90 + object.getAngle()) * Math.PI / 180)
         };
       };
 
@@ -76,6 +76,21 @@
 
       fabric.Image.prototype.on('rotating', function () {
       });
+
+      fabric.Image.prototype.copy = function(){
+        var object = fabric.util.object.clone(this);
+        object.set("top", this.top + 20);
+        object.set('left', this.left + this.getWidth());
+        this.canvas.deactivateAll().renderAll();
+        this.canvas.add(object);
+        this.canvas.setActiveObject(object);
+        this.canvas.setToolItems(object, '.tool-items');
+      };
+
+      fabric.Image.prototype.flip = function(){
+        this.set("angle", "-180").set('flipY', true);
+        this.canvas.renderAll();
+      }
     }
   }
 

@@ -174,13 +174,14 @@
       if (event === 'delete') {
         activeObj.remove();
       } else if (event === 'copy') {
-        var object = fabric.util.object.clone(activeObj);
-        object.set("top", activeObj.top + 20);
-        object.set('left', activeObj.left + activeObj.getWidth());
-        currentCanvas.deactivateAll().renderAll();
-        currentCanvas.add(object);
-        currentCanvas.setActiveObject(object);
-        setToolItems(object, currentCanvas);
+        activeObj.copy();
+        //var object = fabric.util.object.clone(activeObj);
+        //object.set("top", activeObj.top + 20);
+        //object.set('left', activeObj.left + activeObj.getWidth());
+        //currentCanvas.deactivateAll().renderAll();
+        //currentCanvas.add(object);
+        //currentCanvas.setActiveObject(object);
+        //setToolItems(object, currentCanvas);
 
       } else if (event === 'bringToFront') {
         activeObj.bringForward();
@@ -188,7 +189,7 @@
         activeObj.sendBackwards();
 
       } else if (event === 'flip') {
-        currentCanvas.getActiveObject().set("angle", "-180").set('flipY', true);
+        activeObj.set("angle", "-180").set('flipY', true);
         currentCanvas.renderAll();
       }
     };
