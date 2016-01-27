@@ -46,6 +46,11 @@
         controller:'TestController',
         controllerAs:'test'
       })
+      .when('/test/fabric',{
+        templateUrl :'app/fabric/test.html',
+        controller:'fabricTestController'
+        //controllerAs:'fabric'
+      })
       .otherwise({
         redirectTo: '/home'
       });
