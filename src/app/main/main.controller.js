@@ -188,9 +188,10 @@
       } else if (event === 'sendToBack') {
         activeObj.sendBackwards();
 
-      } else if (event === 'flip') {
-        activeObj.set("angle", "-180").set('flipY', true);
-        currentCanvas.renderAll();
+      } else if (event === 'flipX') {
+         activeObj.flipByX();
+      } else if (event === 'flipY') {
+        activeObj.flipByY();
       }
     };
 

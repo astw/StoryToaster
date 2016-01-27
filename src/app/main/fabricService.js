@@ -87,8 +87,13 @@
         this.canvas.setToolItems(object, '.tool-items');
       };
 
-      fabric.Image.prototype.flip = function(){
-        this.set("angle", "-180").set('flipY', true);
+      fabric.Image.prototype.flipByX = function(){
+        this.flipX = !this.flipX;
+        this.canvas.renderAll();
+      };
+
+      fabric.Image.prototype.flipByY = function(){
+        this.flipY = !this.flipY;
         this.canvas.renderAll();
       }
     }
