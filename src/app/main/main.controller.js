@@ -116,10 +116,11 @@
     $scope.$on('$viewContentLoaded', documentReady);
 
     $scope.$on('pageChanged', function (event, args) {
-      if (!args || !args.canvas) return;
-
-      args.page.imageData = JSON.stringify(args.canvas);
-      args.page.previewImage = args.canvas.toDataURL();
+      backCurrentDesignData();
+      //if (!args || !args.canvas) return;
+      //
+      //args.page.imageData = JSON.stringify(args.canvas);
+      //args.page.previewImage = args.canvas.toDataURL();
     });
 
     $scope.$on('addImage', function (event, args) {
@@ -297,20 +298,9 @@
 
       if (!isBackground) {
         imageUrl = "http://localhost:3000" + imageUrl;
-
-        fabric.Image.fromURL(imageUrl, function (img) {
-          currentCanvas.add(img);
-          currentCanvas.setActiveObject(img);
-          backCurrentDesignData();
-
-        }, {crossOrigin: 'Anonymous'})
+        currentCanvas.addImageObject(imageUrl);
       } else {
-        imageUrl = imageUrl + "?size=origin";
-        currentCanvas.setBackgroundImage(imageUrl,
-          currentCanvas.renderAll.bind(currentCanvas), {
-            backgroundImageStretch: true,
-            crossOrigin: 'Anonymous'
-          });
+        currentCanvas.addBackgroundImage(imageUrl);
       }
     };
 

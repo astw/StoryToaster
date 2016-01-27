@@ -6,7 +6,7 @@
     .factory('fabricJSExt', fabricJSExt);
 
   /* @ngInject */
-  function fabricJSExt( ) {
+  function fabricJSExt($rootScope) {
     var service = {
       init: init
     };
@@ -18,8 +18,28 @@
 
       $('.tool-items').hide();
 
-      fabric.Canvas.prototype.hideToolItems = function (toolboxSelector) {
 
+      fabric.Canvas.prototype.addImageObject = function(imageUrl){
+        var self = this;
+        fabric.Image.fromURL(imageUrl, function (img) {
+          self.add(img);
+          self.renderAll();
+          $rootScope.$broadcast('pageChanged',{canvas:self});
+          self.setActiveObject(img);
+        }, {crossOrigin: 'Anonymous'})
+      };
+
+      fabric.Canvas.prototype.addBackgroundImage = function(imageUrl){
+        imageUrl = imageUrl + "?size=origin";
+        this.setBackgroundImage(imageUrl,
+           this.renderAll.bind(this), {
+            backgroundImageStretch: true,
+            crossOrigin: 'Anonymous'
+          });
+        $rootScope.$broadcast('pageChanged',{canvas:this});
+      };
+
+       fabric.Canvas.prototype.hideToolItems = function (toolboxSelector) {
         toolboxSelector = '.tool-items';
         $(toolboxSelector).hide();
       };
