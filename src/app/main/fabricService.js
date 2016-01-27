@@ -7,16 +7,23 @@
 
   /* @ngInject */
   function fabricJSExt($rootScope) {
-    var service = {
+    return {
       init: init
     };
-    return service;
 
     ////////////////
 
     function init() {
 
       $('.tool-items').hide();
+
+      fabric.Canvas.prototype.hoverCursor = 'pointer';
+      fabric.Image.prototype.selectionColor = 'red';
+      fabric.Image.prototype.selectionBorderColor = 'red';
+      fabric.Image.prototype.cornerColor = '#ff6619';
+      fabric.Image.prototype.cornerSize = 8;
+      fabric.Image.prototype.transparentCorners = false;
+      fabric.Image.prototype.rotatingPointOffset = 30;
 
 
       fabric.Canvas.prototype.addImageObject = function(imageUrl){

@@ -8,15 +8,13 @@
   /** @ngInject */
   function MainController($timeout,
                           relayService,
-                          toastr,
                           $scope,
                           $window,
-                          $document,
                           imageService,
                           PhotoBook,
                           bookRepository,
-                          fabricJSExt
-  ) {
+                          config,
+                          fabricJSExt) {
     console.log('----------- in main controller ---------------');
 
     var vm = this;
@@ -34,13 +32,12 @@
 
     $scope.groups = imageService.getImages();
 
+    activate();
 
     angular.element(document).ready(documentReady);
 
-
     //---------------------------------------------------- methods
     vm.clickOnTool = clickOnTool;
-    vm.addImageTest = addImageTest;
     vm.removeBackground = removeBackground;
     vm.clickBook = clickBook;
     vm.changeTitleFont = changeTitleFont;
@@ -73,7 +70,6 @@
     vm.nextSaveToImage = nextSaveToImage;
 //---------------------------------------------------- methods end
 
-    activate();
 
 //---------------------------------------------------- test data start
     $scope.test = 'this is a test ';
@@ -108,6 +104,18 @@
 
     $scope.colour = "";
 
+    function addText() {
+      var txtBox = new fabric.IText("IText", {
+        fontSize: 18,
+        //fontFamily: 'Arial',
+        textAlign: 'center',
+        width: 120,
+        height: 60
+      });
+      v.add(txtBox);
+    }
+
+
 //------------------------------------------------------ test data ends
 
 
@@ -117,6 +125,7 @@
 
     $scope.$on('pageChanged', function (event, args) {
       backCurrentDesignData();
+
       //if (!args || !args.canvas) return;
       //
       //args.page.imageData = JSON.stringify(args.canvas);
@@ -145,7 +154,6 @@
         .then(
         function (data) {
           $scope.backgroundGroup = data;
-          console.log(data.length);
         });
 
       imageService.getPropsImages().then(
@@ -153,15 +161,7 @@
           vm.propsGroup = data
         });
 
-      fabric.Canvas.prototype.hoverCursor = 'pointer';
-      fabric.Image.prototype.selectionColor = 'red';
-      fabric.Image.prototype.selectionBorderColor = 'red';
-      fabric.Image.prototype.cornerColor = '#ff6619';
-      fabric.Image.prototype.cornerSize = 8;
-      fabric.Image.prototype.transparentCorners = false;
-      fabric.Image.prototype.rotatingPointOffset = 30;
-
-      hookEvents();
+      fabricJSExt.init();
     }
 
 
@@ -176,117 +176,83 @@
         activeObj.remove();
       } else if (event === 'copy') {
         activeObj.copy();
-        //var object = fabric.util.object.clone(activeObj);
-        //object.set("top", activeObj.top + 20);
-        //object.set('left', activeObj.left + activeObj.getWidth());
-        //currentCanvas.deactivateAll().renderAll();
-        //currentCanvas.add(object);
-        //currentCanvas.setActiveObject(object);
-        //setToolItems(object, currentCanvas);
-
       } else if (event === 'bringToFront') {
         activeObj.bringForward();
       } else if (event === 'sendToBack') {
         activeObj.sendBackwards();
-
       } else if (event === 'flipX') {
-         activeObj.flipByX();
+        activeObj.flipByX();
       } else if (event === 'flipY') {
         activeObj.flipByY();
       }
-    };
-
-    function addImageTest() {
-      var imageUrl = "http://localhost:3000/assets/images/1.gif";
-      var canvas = new fabric.Canvas('canvas_1');
-      fabric.Image.fromURL(imageUrl, function (img) {
-
-        canvas.add(img);
-      }, {crossOrigin: 'Anonymous'});
-
-      var rect = new fabric.Rect({
-        left: 100,
-        top: 100,
-        fill: 'red',
-        width: 20,
-        height: 20
-      });
-
-      canvas.add(rect);
     }
 
-//------------------------------------------------------ tool items start
-
-    function hookEvents() {
-
-      fabricJSExt.init()
-    };
+    //------------------------------------------------------ tool items start
 
     function removeBackground() {
       currentCanvas.backgroundImage = null;
       backCurrentDesignData();
-    };
+    }
 
     function clickBook(book) {
       relayService.putKeyValue('_selectedBook_', book);
       vm.selectedBook = book;
-      console.log(vm.selectedBook);
       console.log('click on book');
-    };
+    }
 
     function changeTitleFont() {
       console.log('in main controller  change title font ');
-    };
+    }
 
     function changeTitleColor() {
       console.log('in main controller change title color')
-    };
+    }
 
     function changeAuthorFont() {
       console.log('in main controller  change author font ');
-    };
+    }
 
     function changeAuthorColor() {
       console.log('in main controller change author color')
-    };
+    }
 
     function changeBackgroundColor() {
       console.log('in main controller change book back color');
       console.log(vm.PhotoBook.backgroundColor);
-    };
+    }
 
     function readBook(book) {
       console.log('read book');
       console.log(book);
-    };
+    }
 
     function coverImageSelected(item, model) {
       if (item)
         vm.PhotoBook.frontCoverImageIndex = item.index;
-    };
+    }
 
     function backCoverImageSelected(item, model) {
       if (item)
         vm.PhotoBook.backCoverImageIndex = item.index;
-    };
+    }
 
     function selectLeft() {
       if (currentCanvas == vm.left_canvas) return;
-      if(currentCanvas) {
+      if (currentCanvas) {
         currentCanvas.deactivateAllWithDispatch().renderAll();
       }
       currentCanvas = vm.left_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.leftDesignPage);
-    };
+    }
 
     function selectRight() {
       if (currentCanvas == vm.right_canvas) return;
-      if(currentCanvas) {
+      if (currentCanvas) {
         currentCanvas.deactivateAllWithDispatch().renderAll();
       }
       currentCanvas = vm.right_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.rightDesignPage);
-    };
+    }
 
     function addImage(imageUrl, isBackground) {
       if (vm.PhotoBook.pages.length < 1) return;
@@ -302,18 +268,7 @@
       } else {
         currentCanvas.addBackgroundImage(imageUrl);
       }
-    };
-
-    function addText() {
-      var txtBox = new fabric.IText("IText", {
-        fontSize: 18,
-        //fontFamily: 'Arial',
-        textAlign: 'center',
-        width: 120,
-        height: 60
-      });
-      v.add(txtBox);
-    };
+    }
 
     function frontCoverClick() {
       vm.contentPageMode = false;
@@ -323,7 +278,7 @@
 
       backCurrentDesignData();
       vm.PhotoBook.setFrontCoverActive();
-    };
+    }
 
     function dedicatedPageClick() {
       vm.contentPageMode = false;
@@ -333,7 +288,7 @@
 
       backCurrentDesignData();
       vm.PhotoBook.setDedicatedPageActive();
-    };
+    }
 
     function backCoverClick() {
       vm.contentPageMode = false;
@@ -343,7 +298,7 @@
 
       backCurrentDesignData();
       vm.PhotoBook.setBackCoverActive();
-    };
+    }
 
     function previewClick(page, which) {
       vm.contentPageMode = true;
@@ -357,8 +312,7 @@
         currentCanvas = vm.left_canvas;
         vm.PhotoBook.leftDesignPage = page;
         vm.PhotoBook.rightDesignPage = vm.PhotoBook.getNextPage(page);
-      }
-      else if (which == 'right') {
+      } else if (which == 'right') {
         currentCanvas = vm.right_canvas;
         vm.PhotoBook.rightDesignPage = page;
       }
@@ -366,19 +320,19 @@
       vm.right_canvas.clear();
 
       vm.restoreToCurrentDesignData();
-    };
+    }
 
     function nextPage() {
       vm.left_canvas.clear();
       vm.right_canvas.clear();
       vm.PhotoBook.MoveToNextPage();
       vm.restoreToCurrentDesignData();
-    };
+    }
 
     function previousPage(currentIndex) {
       vm.PhotoBook.MoveToPreviousPage();
       vm.restoreToCurrentDesignData();
-    };
+    }
 
     function backCurrentDesignData() {
       if (!vm.PhotoBook || !vm.PhotoBook || !vm.PhotoBook.leftDesignPage) return;
@@ -391,7 +345,7 @@
         vm.PhotoBook.frontCover.imageData = JSON.stringify(vm.frontCoverCanvas);
 
       generatePreviewImage();
-    };
+    }
 
     function restoreToCurrentDesignData() {
 
@@ -408,7 +362,7 @@
           vm.right_canvas.loadFromJSON(rightData, vm.right_canvas.renderAll.bind(vm.right_canvas), function () {
           })
       }
-    };
+    }
 
     function generatePreviewImage() {
       vm.PhotoBook.leftDesignPage.previewImage = vm.left_canvas.toDataURL();
@@ -418,12 +372,12 @@
 
       if (vm.frontCoverCanvas)
         vm.PhotoBook.frontCover.previewImage = vm.frontCoverCanvas.toDataURL();
-    };
+    }
 
     function deleteObject() {
       //if(vm.PhotoBook.leftDesignPage.active)
       vm.PhotoBook.deletePage(vm.PhotoBook.leftDesignPage);
-    };
+    }
 
     function newPage() {
       vm.PhotoBook.createPage();
@@ -433,32 +387,31 @@
       backCurrentDesignData();
       vm.PhotoBook.copyPage(vm.currentPage);
       vm.restoreToCurrentDesignData();
-    };
+    }
 
     function deletePage() {
       vm.left_canvas.clear();
       vm.right_canvas.clear();
       vm.PhotoBook.deletePage(vm.currentPage);
       vm.restoreToCurrentDesignData();
-    };
+    }
 
     function saveToServe() {
       bookRepository.saveToServer(this.PhotoBook);
-    };
+    }
 
     function finishCreateBook() {
       $window.location.href = "/account/mybooks"
-    };
+    }
 
     function nextSaveToImage() {
       $scope.preview_image = vm.left_canvas.toDataURL();
       //var preview_image = $document.find('#preview_image');
-      //var preview_image =  $document.find('preview_image');  /// $('#preview_image');
       var preview_image = $(event.target).find('#preview_image');
       preview_image = $("#preview_image");
       preview_image.src = image;
       preview_image.attr('src', image);
-    };
+    }
 
     $scope.safeApply = function (fn) {
       var phase = this.$root.$$phase;
@@ -469,7 +422,7 @@
       } else {
         this.$apply(fn);
       }
-    };
+    }
 
     $timeout(documentReady);
 
