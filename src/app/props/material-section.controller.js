@@ -6,7 +6,7 @@
     .controller('MaterialController', MaterialController);
 
   /* @ngInject */
-  function MaterialController($scope) {
+  function MaterialController($scope,imageService) {
     var vm = this;
     vm.title = 'material';
     vm.addImage = addImage;
@@ -16,6 +16,7 @@
     ////////////////
 
     function activate() {
+
     }
 
     function addImage(imageUrl, operation) {

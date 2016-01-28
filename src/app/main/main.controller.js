@@ -30,7 +30,6 @@
 
     var currentCanvas = vm.left_canvas;
 
-    $scope.groups = imageService.getImages();
 
     activate();
 
@@ -140,12 +139,9 @@
         //add for backgroupd
         vm.addImage(imageUrl, true);
       }
-      else if (operation === 'props') {
+      else if (operation === 'props' || operation ==='text') {
         vm.addImage(imageUrl);
-      }
-      else {
-        // add for text
-      }
+      } 
     });
 //------------------------------------------------------ listen events end
 
@@ -158,8 +154,16 @@
 
       imageService.getPropsImages().then(
         function (data) {
-          vm.propsGroup = data
+          $scope.propsGroup = data
         });
+
+      imageService.getTextImages().then(
+        function (data) {
+          $scope.textImages = data
+        });
+
+
+      $scope.groups = imageService.getImages();
 
       fabricJSExt.init();
     }
@@ -263,7 +267,7 @@
       }
 
       if (!isBackground) {
-        imageUrl = "http://localhost:3000" + imageUrl;
+        imageUrl = imageUrl;
         currentCanvas.addImageObject(imageUrl);
       } else {
         currentCanvas.addBackgroundImage(imageUrl);
@@ -336,6 +340,7 @@
 
     function backCurrentDesignData() {
       if (!vm.PhotoBook || !vm.PhotoBook || !vm.PhotoBook.leftDesignPage) return;
+      if(vm.left_canvas.getObjects() < 1 || vm.right_canvas.getObjects() < 1) return;
       vm.PhotoBook.leftDesignPage.imageData = JSON.stringify(vm.left_canvas);
       if (vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);
@@ -365,8 +370,11 @@
     }
 
     function generatePreviewImage() {
-      vm.PhotoBook.leftDesignPage.previewImage = vm.left_canvas.toDataURL();
-      if (vm.PhotoBook.rightDesignPage) {
+      if(vm.left_canvas) {
+        vm.PhotoBook.leftDesignPage.previewImage = vm.left_canvas.toDataURL();
+      }
+
+      if (vm.PhotoBook.rightDesignPage && vm.right_canvas) {
         vm.PhotoBook.rightDesignPage.previewImage = vm.right_canvas.toDataURL();
       }
 

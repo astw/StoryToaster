@@ -24,7 +24,6 @@
     function link(scope, element, attrs) {
 
       scope.onResize = function () {
-
         var h = ($('#bigPagePanel')).height() -80 ;
         $('.left_panel').height(h);
       }
