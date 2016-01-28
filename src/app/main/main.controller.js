@@ -141,7 +141,7 @@
       }
       else if (operation === 'props' || operation ==='text') {
         vm.addImage(imageUrl);
-      } 
+      }
     });
 //------------------------------------------------------ listen events end
 

@@ -1,5 +1,5 @@
 angular.module('storyToaster')
-.factory('PhotoBook',function(bookRepository, authService, $q) {
+.factory('PhotoBook',function(bookRepository, authService, $q, LZString) {
 
     var TOTAL_PAGE = 25;
     var currentUser = authService.currentUser();
@@ -294,6 +294,11 @@ angular.module('storyToaster')
         delete obj.rightDesignPage;
 
         obj.data = JSON.stringify(obj);
+        console.log('----- origin size', obj.data.length);
+
+        var zipped = LZString.compress(obj.data);
+        console.log('----- compressed size', zipped.length);
+
         if (!this.id || this.id < 0) {
           // this is a new book
           // upload to create a new

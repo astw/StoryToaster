@@ -20,7 +20,8 @@
       'minicolors',
       'angularSpectrumColorpicker',
       'ngjsColorPicker',
-      'mgcrea.ngStrap'
+      'mgcrea.ngStrap',
+      'lz-string'
     ]);
 
 })();

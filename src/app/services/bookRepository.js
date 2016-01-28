@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('storyToaster')
-  .service('bookRepository', function ($http, $q, $cookieStore, config, authService) {
+  .service('bookRepository', function ($http, $q, $cookieStore, config, authService,LZString) {
 
     var self = this;
     var API_URL = config.apiRootPath;
@@ -97,7 +97,12 @@ angular.module('storyToaster')
       delete obj.leftDesignPage;
       delete obj.rightDesignPage;
 
-      obj.data = JSON.stringify(obj);
+      obj.data = JSON.stringify(obj)
+
+      console.log('----- origin size', obj.data.length);
+      var zipped = LZString.compress(obj.data);
+      console.log('----- compressed size', zipped.length);
+
       if (!book.id || book.id < 0) {
         // this is a new book
         // upload to create a new
