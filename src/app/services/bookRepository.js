@@ -37,7 +37,11 @@ angular.module('storyToaster')
             books.forEach(function(book) {
               var data = angular.fromJson(book.data);
 
+              //var unzippedData = LZString.decompress(res.data);
+              //res.data = unzippedData;
+              //var fontCoverImageData = LZString.decompressFromBase64(data.frontCover.imageData);
               book.frontCover = data.frontCover;
+              //book.frontCover.imageData = fontCoverImageData;
               book.dedicatedPage = data.dedicatedPage;
               book.backCover = data.backCover;
             });
@@ -55,34 +59,8 @@ angular.module('storyToaster')
       return self.promise;
     };
 
-    this.createOneBook = function(book){
-      var url = API_URL + "books";
-
-      var dfd = $q.defer();
-      $http.post(url,book)
-        .then(function(res){
-          console.log(res);
-          dfd.resolve(res);
-        });
-
-      return dfd.promise;
-    };
-
-    this.updateBook = function (book) {
-      var url = API_URL + "books/" + book.id;
-
-      var dfd = $q.defer();
-      $http.put(url,book)
-        .then(function(res){
-          console.log(res);
-          dfd.resolve(res);
-        });
-
-      return dfd.promise;
-    };
-
     this.saveToServer = function(book){
-      var deferred = $q.defer();
+      //var deferred = $q.defer();
       var dataString = JSON.stringify(book);
       this.author = currentUser ? currentUser.id : -1;
 
@@ -97,39 +75,36 @@ angular.module('storyToaster')
       delete obj.leftDesignPage;
       delete obj.rightDesignPage;
 
-      obj.data = JSON.stringify(obj)
+      //obj.frontCover.imageData = LZString.compressToBase64(obj.frontCover.imageData);
 
-      console.log('----- origin size', obj.data.length);
-      var zipped = LZString.compress(obj.data);
-      console.log('----- compressed size', zipped.length);
+      obj.data = JSON.stringify(obj);
+
+
+      var promise;
 
       if (!book.id || book.id < 0) {
         // this is a new book
-        // upload to create a new
-        this.createOneBook(obj).then(function (res) {
-            book.id  = res.data.id;
-            return deferred.resolve(res.data);
-          },
-          function (err) {
-            console.log(err);
-            return deferred.reject(err);
-
-          })
+        promise = createOneBook(obj);
       }
       else {
         // this is an existing book,
         // upload to update
-        this.updateBook(obj).then(
-          function (res) {
-            console.log(' update book good' + res.data.title);
-            return deferred.resolve(res.data);
-          },
-          function (err) {
-            console.log(err);
-            return deferred.reject(err);
-          })
+        promise = updateBook(obj);
       }
-      return deferred.promise;
+
+      promise
+      .then(function (res) {
+          book.id  = res.data.id;
+          return res.data;
+          //return deferred.resolve(res.data);
+        },
+        function (err) {
+          console.log(err);
+          return null
+          //return deferred.reject(err);
+        })
+
+      //return deferred.promise;
     };
 
     this.deleteBook = function(book){
@@ -143,7 +118,16 @@ angular.module('storyToaster')
         });
 
       return dfd.promise;
+    };
+
+    function updateBook(book) {
+      var url = API_URL + "books/" + book.id;
+      return $http.put(url,book)
     }
 
+    function createOneBook (book){
+      var url = API_URL + "books";
+      return $http.post(url,book);
+    }
   });
 
