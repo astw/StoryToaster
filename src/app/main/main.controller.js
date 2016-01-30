@@ -102,13 +102,19 @@
 
     $scope.colour = "";
 
+
+
+
     function addText(imageUrl) {
-      var  imageIText = new ImageTextbox ('input text here,',{
+     // vm.left_canvas.add(new fabric.Container({label: 'aasdasd', top: 10, left: 10, height: 60, width:200}));
+
+      var  imageIText = new fabric.ImageTextbox ('input text here,',{
         fontSize: 16,
         fontFamily: 'Arial',
         textAlign: 'left',
         src:imageUrl
       });
+
       currentCanvas.add(imageIText);
     }
 

@@ -1,4 +1,7 @@
-var ImageTextbox = fabric.util.createClass(fabric.Textbox, {
+
+fabric.ImageTextbox = fabric.util.createClass(fabric.IText, {
+
+//var ImageTextbox = fabric.util.createClass(fabric.Textbox, {
 ///http://stackoverflow.com/questions/10009080/interactive-text-fields-with-fabric-js
 
 

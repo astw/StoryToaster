@@ -72,8 +72,8 @@ angular.module('storyToaster')
      //   src:'/assets/images/callout/callout_rounded_rectangle_right.svg'
      //});
      //canvas.add(imageIText);
-
-    var  imageIText = new ImageTextbox ('hi ImageITextBox,',{
+    //
+    var  imageIText = new fabric.ImageTextbox ('hi ImageITextBox,',{
           fontSize: 16,
           fontFamily: 'Arial',
           textAlign: 'center',
@@ -82,16 +82,16 @@ angular.module('storyToaster')
       src:'/assets/images/callout/callout_rounded_rectangle_right.svg'
         });
      canvas.add(imageIText);
-
-      var  imageIText = new ImageTextbox ('hi ImageITextBox,',{
-        fontSize: 16,
-        fontFamily: 'Arial',
-        textAlign: 'center',
-        //width: 120,
-        //height: 60,
-        src:'/assets/images/callout/callout_rectangle_right.svg'
-      });
-      canvas.add(imageIText);
+    //
+    //  var  imageIText = new fabric.ImageTextbox ('hi ImageITextBox,',{
+    //    fontSize: 16,
+    //    fontFamily: 'Arial',
+    //    textAlign: 'center',
+    //    //width: 120,
+    //    //height: 60,
+    //    src:'/assets/images/callout/callout_rectangle_right.svg'
+    //  });
+    //  canvas.add(imageIText);
 
     //
     //  var txtBox = new fabric.Textbox("text Box", {
@@ -107,15 +107,15 @@ angular.module('storyToaster')
 
     //canvas.add(txtBox);
 
-    //  var imageIText = new fabric.BolloonTextbox ('hi BolloonTextbox ,',{
-    //    fontSize: 18,
-    //    fontFamily: 'Arial',
-    //    textAlign: 'center',
-    //    //width: 120,
-    //    //height: 60,
-    //    //boxPath:'/assets/images/callout/callout_rectangle_right.svg'
-    //  });
-    //  canvas.add(imageIText);
+      var imageIText = new fabric.BolloonTextbox ('hi BolloonTextbox ,',{
+        fontSize: 18,
+        fontFamily: 'Arial',
+        textAlign: 'center',
+        //width: 120,
+        //height: 60,
+        boxPath:'/assets/images/callout/callout_rectangle_center.svg'
+      });
+      canvas.add(imageIText);
 
   };
 
