@@ -30,7 +30,6 @@
 
     var currentCanvas = vm.left_canvas;
 
-
     activate();
 
     angular.element(document).ready(documentReady);
@@ -103,17 +102,15 @@
 
     $scope.colour = "";
 
-    function addText() {
-      var txtBox = new fabric.IText("IText", {
-        fontSize: 18,
-        //fontFamily: 'Arial',
-        textAlign: 'center',
-        width: 120,
-        height: 60
+    function addText(imageUrl) {
+      var  imageIText = new ImageTextbox ('input text here,',{
+        fontSize: 16,
+        fontFamily: 'Arial',
+        textAlign: 'left',
+        src:imageUrl
       });
-      v.add(txtBox);
+      currentCanvas.add(imageIText);
     }
-
 
 //------------------------------------------------------ test data ends
 
@@ -132,15 +129,24 @@
     });
 
     $scope.$on('addImage', function (event, args) {
-      console.log(args);
+
+      if (vm.PhotoBook.pages.length < 1) return;
+      if (vm.PhotoBook.leftDesignPage && vm.PhotoBook.leftDesignPage.active)
+        currentCanvas = vm.left_canvas;
+      else if (vm.PhotoBook.rightDesignPage) {
+        currentCanvas = vm.right_canvas;
+      }
+
       var imageUrl = args.imageUrl;
       var operation = args.operation;
       if (operation === 'background') {
         //add for backgroupd
         vm.addImage(imageUrl, true);
       }
-      else if (operation === 'props' || operation ==='text') {
+      else if (operation === 'props' ) {
         vm.addImage(imageUrl);
+      } else if(operation  === 'text'){
+        vm.addText(imageUrl);
       }
     });
 //------------------------------------------------------ listen events end
@@ -259,12 +265,6 @@
     }
 
     function addImage(imageUrl, isBackground) {
-      if (vm.PhotoBook.pages.length < 1) return;
-      if (vm.PhotoBook.leftDesignPage && vm.PhotoBook.leftDesignPage.active)
-        currentCanvas = vm.left_canvas;
-      else if (vm.PhotoBook.rightDesignPage) {
-        currentCanvas = vm.right_canvas;
-      }
 
       if (!isBackground) {
         imageUrl = imageUrl;

@@ -1,4 +1,6 @@
 var ImageTextbox = fabric.util.createClass(fabric.Textbox, {
+///http://stackoverflow.com/questions/10009080/interactive-text-fields-with-fabric-js
+
 
   type: 'imageTextbox',
   src:'',
@@ -6,16 +8,21 @@ var ImageTextbox = fabric.util.createClass(fabric.Textbox, {
   initialize: function(text,options) {
     options || (options = { });
 
+    this.left = 20;
+    this.top = 20;
+
     this.callSuper('initialize', text);
     this.fontSize = options.fontSize;
 
     this.image = new Image();
+    this.image.crossOrigin = "Anonymous";
     this.image.src = options.src;
 
     this.image.onload = (function(){
       this.loaded = true;
       this.setCoords();
-      this.fire('image:loaded');
+      this.fire('image:loaded')
+      this.canvas.renderAll();
     }).bind(this);
   },
 
@@ -26,13 +33,11 @@ var ImageTextbox = fabric.util.createClass(fabric.Textbox, {
   },
 
   _render: function(ctx) {
+    console.log('rendering imageTextBox', this.left);
     if(this.loaded)
     {
-      ctx.drawImage(this.image, -this.width / 2 -20, -this.height / 2 -20 , this.width + 100, this.height + 50 );
-      //    //ctx.drawImage(this.image, -150, -50, this.width + 50, this.height + 50 );
+      ctx.drawImage(this.image, -this.width/2 - 20, -this.height /2  -10 , this.width + 40, this.height + 40 );
     }
-
-    console.log("x= " + this.width + " y=" + this.height);
 
     this.callSuper('_render', ctx);
   }

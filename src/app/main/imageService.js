@@ -25,28 +25,6 @@
                 images: links
               }
             });
-
-          //var defer = $q.defer();
-          //var backgroundImageUrl = config.apiRootPath + "mediaServer/image?cat=prop";
-          //
-          //$http.get(backgroundImageUrl)
-          //  .then(function (res) {
-          //    var links = res.data.map(function (image) {
-          //      return image.thumb;
-          //    })
-          //
-          //    var data = {
-          //      title: '故事素材 ',
-          //      content: '故事素材',
-          //      imageType: 'props',
-          //      titleImage: '/assets/images/1.gif',
-          //      images: links
-          //    }
-          //
-          //    defer.resolve(data)
-          //  })
-          //
-          //return defer.promise;
         }
 
         function getBackgroundImages()  {
