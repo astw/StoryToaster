@@ -26,8 +26,9 @@
       this.image.onload = (function () {
         this.loaded = true;
         this.setCoords();
-        this.fire('image:loaded')
-        this.canvas.renderAll();
+        this.fire('image:loaded');
+        if(this.canvas)
+          this.canvas.renderAll();
       }).bind(this);
     },
 

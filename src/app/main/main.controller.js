@@ -346,7 +346,7 @@
 
     function backCurrentDesignData() {
       if (!vm.PhotoBook || !vm.PhotoBook || !vm.PhotoBook.leftDesignPage) return;
-      if(vm.left_canvas.getObjects() < 1 || vm.right_canvas.getObjects() < 1) return;
+      if(!vm.left_canvas && vm.left_canvas.getObjects() < 1 ||  !vm.right_canvas && vm.right_canvas.getObjects() < 1) return;
       vm.PhotoBook.leftDesignPage.imageData = JSON.stringify(vm.left_canvas);
       if (vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);

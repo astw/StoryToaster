@@ -18,6 +18,7 @@
       $('.tool-items').hide();
       objectOptions();
 
+      fabric.Object.prototype.rotationPointBottom = true;
       fabric.Canvas.prototype.addImageObject = function(imageUrl){
         var self = this;
         fabric.Image.fromURL(imageUrl, function (img) {
@@ -63,7 +64,11 @@
         }
         return {
           left: left + object.left + this._offset.left,
-          top: top + object.getTop() + this._offset.top + object.getHeight() //* Math.sin((90 + object.getAngle()) * Math.PI / 180)
+          //top: top + object.getTop() + this._offset.top + object.getHeight() //* Math.sin((90 + object.getAngle()) * Math.PI / 180)
+
+
+          //top: top + object.getTop() + this._offset.top -40 //* Math.sin((90 + object.getAngle()) * Math.PI / 180)
+          top: top + object.getTop() + this._offset.top  -40      // * Math.sin((90 + object.getAngle()) * Math.PI / 180)
         };
       };
 

@@ -120,21 +120,32 @@ angular.module('storyToaster')
   };
 
      $scope.changeBackground = function(){
-      if(current === 'color'){
-        // chnage to image
-         canvas.setBackgroundImage('/assets/test/img_1852.jpg', canvas.renderAll.bind(canvas));
-          fabric.Image.fromURL('/assets/images/callout/callout_circle_right.svg',
-            function(oImage){
-              canvas.add(oImage);
-            });
-
-          current = 'image';
-      }
-      else{
+      //if(current === 'color'){
+      //  // chnage to image
+      //   canvas.setBackgroundImage('/assets/test/img_1852.jpg', canvas.renderAll.bind(canvas));
+      //  //http://localhost:1337/mediaServer/image/5oD?size=origin
+      //    fabric.Image.fromURL('/assets/images/callout/callout_circle_right.svg',
+      //      function(oImage){
+      //        canvas.add(oImage);
+      //      });
+      //
+      //    current = 'image';
+      //}
+      //else{
         current = 'color';
-        canvas.setBackgroundImage('', canvas.renderAll.bind(canvas));
+        var imgUrl ='http://localhost:1337/mediaServer/image/5oD?size=origin';
+        //canvas.setBackgroundImage(imgUrl,canvas.renderAll.bind(canvas));
+        canvas.setBackgroundImage(imgUrl,
+          canvas.renderAll.bind(canvas), {
+            backgroundImageStretch: false,
+            width:canvas.width,
+            height:canvas.height,
+            crossOrigin: 'Anonymous'
+          });
+
+
         //canvas.backgroundColor = 'rgba(0,155,255,0.3)';
-      }
+      //}
     }
 
   });
