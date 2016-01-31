@@ -59,7 +59,7 @@
         var top= 0;
         var left =0;
         if(object instanceof  fabric.IText){
-          top = 10;
+          top = -10;
           left = -20;
         }
         return {
