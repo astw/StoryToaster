@@ -18,23 +18,23 @@
     <!-- End: Topbar -->
 
     <!-- Begin: Content -->
-    <div id="content" >
+    <div id="content">
       <div>
         <div class="tray tray-center">
           <div class="panel" id="bigPagePanel">
             <div class="row" ng-show="main.contentPageMode">
-              <div double-design-page2 />
+              <div double-design-page2/>
             </div>
             <div class="row" ng-show="main.frontCoverMode">
-              <div front-cover-design />
+              <div front-cover-design/>
             </div>
             <div class="row" ng-show="main.dedicatePageMode">
-              <div dedicate-design />
+              <div dedicate-design/>
             </div>
             <div class="row" ng-show="main.backCoverMode">
-              <div back-cover-design1 />
+              <div back-cover-design1/>
             </div>
-            <div class="row" />
+            <div class="row"/>
             <div class="row">
             </div>
           </div>
@@ -45,7 +45,7 @@
     <!-- Begin: Page Footer -->
     <footer id="content-footer" class="affix">
       <div class="row">
-        <div top-bar-command />
+        <div top-bar-command/>
       </div>
     </footer>
     <!-- End: Page Footer -->
@@ -55,7 +55,7 @@
   <!-- Ladda Loading Button JS -->
   <script src="vendor/plugins/ladda/ladda.min.js"></script>
   <script type="text/javascript">
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
 
       // Init Ladda Plugin on buttons
       Ladda.bind('.ladda-button', {
@@ -64,9 +64,9 @@
 
       // Bind progress buttons and simulate loading progress. Note: Button still requires ".ladda-button" class.
       Ladda.bind('.progress-button', {
-        callback: function(instance) {
+        callback: function (instance) {
           var progress = 0;
-          var interval = setInterval(function() {
+          var interval = setInterval(function () {
             progress = Math.min(progress + Math.random() * 0.1, 1);
             instance.setProgress(progress);
 
@@ -82,12 +82,18 @@
   </script>
 
 </div>
+
 <div class="tool-items">
-  <a title="move forward" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i class="fa fa-arrow-up fa-lg"></i></a>
-  <a title="move back" class="toolbar-item" ng-click="main.clickOnTool('sendToBack')"><i class="fa fa-arrow-down  fa-lg"></i></a>
+  <a title="move forward" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i
+    class="fa fa-arrow-up fa-lg"></i></a>
+  <a title="move back" class="toolbar-item" ng-click="main.clickOnTool('sendToBack')"><i
+    class="fa fa-arrow-down  fa-lg"></i></a>
+
   <a title="copy" class="toolbar-item " ng-click="main.clickOnTool('copy')"><i class="fa fa-copy  fa-lg"></i></a>
   <a title="flipX" class="toolbar-item " ng-click="main.clickOnTool('flipX')"><i class="fa fa-arrows-h fa-lg"></i></a>
-  <a title="flipY" class="toolbar-item " ng-click="main.clickOnTool('flipY')"><i class="fa fa-arrows-v fa-lg"></i>
+  <a title="flipY" class="toolbar-item " ng-click="main.clickOnTool('flipY')"><i class="fa fa-arrows-v fa-lg"></i> </a>
   <a title="ungroup" class="toolbar-item " ng-click="" style="display: none;"><i class="fa fa-columns fa-lg"></i></a>
   <a title="delete" class="toolbar-item " ng-click="main.clickOnTool('delete') "><i class="fa fa-trash-o fa-lg"></i></a>
 </div>
+<div text-toolbar  id="gtexttoolbar" ></div>
+

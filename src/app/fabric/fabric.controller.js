@@ -107,15 +107,15 @@ angular.module('storyToaster')
 
     //canvas.add(txtBox);
 
-      var imageIText = new fabric.BolloonTextbox ('hi BolloonTextbox ,',{
-        fontSize: 18,
-        fontFamily: 'Arial',
-        textAlign: 'center',
-        //width: 120,
-        //height: 60,
-        boxPath:'/assets/images/callout/callout_rectangle_center.svg'
-      });
-      canvas.add(imageIText);
+      //var imageIText = new fabric.BolloonTextbox ('hi BolloonTextbox ,',{
+      //  fontSize: 18,
+      //  fontFamily: 'Arial',
+      //  textAlign: 'center',
+      //  //width: 120,
+      //  //height: 60,
+      //  boxPath:'/assets/images/callout/callout_rectangle_center.svg'
+      //});
+      //canvas.add(imageIText);
 
   };
 

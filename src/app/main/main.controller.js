@@ -102,9 +102,6 @@
 
     $scope.colour = "";
 
-
-
-
     function addText(imageUrl) {
      // vm.left_canvas.add(new fabric.Container({label: 'aasdasd', top: 10, left: 10, height: 60, width:200}));
 
@@ -156,6 +153,23 @@
       }
     });
 //------------------------------------------------------ listen events end
+
+   //------------------------------------------------------ font list
+
+    vm.languages =[
+      {
+        name:'Arial',
+        value:'Arial'
+      },
+      {
+        name:'Times New Roman',
+        value:'Times New Roman'
+      }
+    ];
+
+
+   //------------------------------------------------------ font list ends
+
 
     function activate() {
       imageService.getBackgroundImages()
@@ -346,7 +360,7 @@
 
     function backCurrentDesignData() {
       if (!vm.PhotoBook || !vm.PhotoBook || !vm.PhotoBook.leftDesignPage) return;
-      if(!vm.left_canvas && vm.left_canvas.getObjects() < 1 ||  !vm.right_canvas && vm.right_canvas.getObjects() < 1) return;
+      if(vm.left_canvas && vm.left_canvas.getObjects() < 1 ||  vm.right_canvas && vm.right_canvas.getObjects() < 1) return;
       vm.PhotoBook.leftDesignPage.imageData = JSON.stringify(vm.left_canvas);
       if (vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);

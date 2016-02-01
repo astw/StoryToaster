@@ -18,7 +18,6 @@
       $('.tool-items').hide();
       objectOptions();
 
-      fabric.Object.prototype.rotationPointBottom = true;
       fabric.Canvas.prototype.addImageObject = function(imageUrl){
         var self = this;
         fabric.Image.fromURL(imageUrl, function (img) {
@@ -46,12 +45,19 @@
 
       fabric.Canvas.prototype.setToolItems = function (object, toolboxSelector) {
 
-        toolboxSelector = '.tool-items';
+        //toolboxSelector = '.tool-items';
         var loc = this.getAbsoluteCoords(object);
+        //$(toolboxSelector).css('left', loc.left + "px");
+        //$(toolboxSelector).css('top', loc.top + "px");
+        //
+        //$(toolboxSelector).show();
+
+        toolboxSelector ='#gtexttoolbar';
         $(toolboxSelector).css('left', loc.left + "px");
         $(toolboxSelector).css('top', loc.top + "px");
 
         $(toolboxSelector).show();
+
       };
 
       fabric.Canvas.prototype.getAbsoluteCoords = function (object) {
@@ -65,7 +71,6 @@
         return {
           left: left + object.left + this._offset.left,
           //top: top + object.getTop() + this._offset.top + object.getHeight() //* Math.sin((90 + object.getAngle()) * Math.PI / 180)
-
 
           //top: top + object.getTop() + this._offset.top -40 //* Math.sin((90 + object.getAngle()) * Math.PI / 180)
           top: top + object.getTop() + this._offset.top  -40      // * Math.sin((90 + object.getAngle()) * Math.PI / 180)
@@ -125,7 +130,7 @@
       fabric.Image.prototype.flipByY = function(){
         this.flipY = !this.flipY;
         this.canvas.renderAll();
-      }
+      };
 
       //------------------------------------------------------ text
 
@@ -142,23 +147,20 @@
       //------------------------------------------------------
       function objectOptions(){
         fabric.Canvas.prototype.hoverCursor = 'pointer';
+
         fabric.Object.prototype.selectionColor = 'red';
         fabric.Object.prototype.selectionBorderColor = 'red';
         fabric.Object.prototype.cornerColor = '#ff6619';
-        fabric.Object.prototype.cornerSize = 8;
+        fabric.Object.prototype.cornerSize = 6;
         fabric.Object.prototype.transparentCorners = false;
-        fabric.Object.prototype.rotatingPointOffset = 30;
+        fabric.Object.prototype.rotatingPointOffset = 20;
+        fabric.Object.prototype.rotationPointBottom = true;
 
-        fabric.IText.prototype.hasControls = true;
-        fabric.IText.prototype.hasRotatingPoint = false;
+        fabric.IText.prototype.hasRotatingPoint = true;
         fabric.IText.prototype.hasBorders = true;
         fabric.IText.prototype.cornerSize = 6;
-        fabric.IText.prototype.padding = 8;
+        fabric.IText.prototype.padding = 6;
         fabric.IText.prototype.textAlign = 'left';
-
-
-        //fabric.IText.prototype.borderColor = "#ff6619";
-
 
         //ImageIText.prototype.hasControls = false;
       }
