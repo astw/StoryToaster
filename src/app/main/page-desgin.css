@@ -354,7 +354,7 @@ textarea
   resize: none;
 }
 
-.tool-items {
+.tool-items, .text-toolbar {
   position: absolute;
   /*background-color: #585f6b;*/
   background-color: grey;

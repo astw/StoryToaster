@@ -20,6 +20,7 @@
     var vm = this;
 
     vm.PhotoBook = new PhotoBook();
+
     vm.PhotoBook.pagesInDesign = 2;
     vm.contentPageMode = true;
     vm.currentPage = vm.PhotoBook.pages[0];
@@ -31,6 +32,9 @@
     var currentCanvas = vm.left_canvas;
 
     activate();
+
+    //save the book to server and get the book id;
+    saveToServe();
 
     angular.element(document).ready(documentReady);
 
@@ -120,6 +124,16 @@
 
 //------------------------------------------------------ listen events
 
+    $scope.$on('saveBook',function(){
+      saveToServe();
+    });
+
+    $scope.$on("savePage",function(event,args){
+      var page = args;
+      console.log('page info =', page);
+      bookRepository.savePage(vm.PhotoBook.id,page);
+    });
+
     $scope.$on('$viewContentLoaded', documentReady);
 
     $scope.$on('pageChanged', function (event, args) {
@@ -169,8 +183,6 @@
 
 
    //------------------------------------------------------ font list ends
-
-
     function activate() {
       imageService.getBackgroundImages()
         .then(
@@ -361,13 +373,19 @@
     function backCurrentDesignData() {
       if (!vm.PhotoBook || !vm.PhotoBook || !vm.PhotoBook.leftDesignPage) return;
       if(vm.left_canvas && vm.left_canvas.getObjects() < 1 ||  vm.right_canvas && vm.right_canvas.getObjects() < 1) return;
+
       vm.PhotoBook.leftDesignPage.imageData = JSON.stringify(vm.left_canvas);
+      vm.PhotoBook.leftDesignPage.savePage(vm.PhotoBook.leftDesignPage.imageData);
+
       if (vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);
+        vm.PhotoBook.rightDesignPage.savePage(vm.PhotoBook.rightDesignPage.imageData);
       }
 
-      if (vm.frontCoverCanvas)
+      if (vm.frontCoverCanvas){
         vm.PhotoBook.frontCover.imageData = JSON.stringify(vm.frontCoverCanvas);
+        vm.PhotoBook.frontCover.savePage(vm.PhotoBook.frontCover.imageData);
+      }
 
       generatePreviewImage();
     }
@@ -425,7 +443,7 @@
     }
 
     function saveToServe() {
-      bookRepository.saveToServer(this.PhotoBook);
+      bookRepository.saveToServer(vm.PhotoBook);
     }
 
     function finishCreateBook() {

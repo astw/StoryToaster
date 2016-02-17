@@ -10,6 +10,9 @@
     type: 'imageTextbox',
     src: '',
 
+    flipH:false,
+    flipV:false,
+
     initialize: function (text, options) {
       options || (options = {});
 
@@ -42,7 +45,32 @@
     _render: function (ctx) {
       console.log('rendering imageTextBox', this.left);
       if (this.loaded) {
-        ctx.drawImage(this.image, -this.width / 2 - 20, -this.height / 2 - 10, this.width + 40, this.height + 40);
+        //   ctx.drawImage(this.image, -this.width / 2 - 20, -this.height / 2 - 10, this.width + 40, this.height + 40);
+
+        //this.flipH = true;
+        //this.flipV = true;
+        var scaleX = this.flipH ? -1 : 1, // Set horizontal scale to -1 if flip horizontal
+          scaleY = this.flipV ? -1 : 1, // Set verical scale to -1 if flip vertical
+          posX = this.flipH ? this.width * -1 : 0, // Set x position to -100% if flip horizontal
+          posY = this.flipV ? this.height * -1 : 0; // Set y position to -100% if flip vertical
+
+        if (this.flipH) {
+          posX = this.flipH ? this.width / 2 * -1 : 0, // Set x position to -100% if flip horizontal
+            posY = this.flipV ? this.height / 2 * -1 : 0; // Set y position to -100% if flip vertical
+        }
+
+        ctx.save(); // Save the current state
+        ctx.scale(scaleX, scaleY); // Set scale to flip the image
+        if (this.flipH) {
+          ctx.drawImage(this.image, posX - 20, posY - this.height / 2 - 10, this.width + 40, this.height + 40); // draw the image
+        }
+        else {
+          ctx.drawImage(this.image, posX - this.width / 2 - 20, posY - this.height / 2 - 10, this.width + 40, this.height + 40); // draw the image
+        }
+
+        //ctx.drawImage(img, posX -20, posY - 10, this.width + 40, this.height + 40); // draw the image
+        ctx.restore(); // Restore the last saved state
+        //ctx.drawImage(this.image, -this.width / 2 - 20, -this.height / 2 - 10, this.width + 40, this.height + 40);
       }
 
       this.callSuper('_render', ctx);

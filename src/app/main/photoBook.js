@@ -1,5 +1,11 @@
 angular.module('storyToaster')
-.factory('PhotoBook',function(bookRepository, authService, $q, LZString) {
+.factory('PhotoBook',function(
+    bookRepository,
+    authService,
+    $q,
+    LZString,
+    $rootScope
+  ) {
 
     var TOTAL_PAGE = 25;
     var currentUser = authService.currentUser();
@@ -7,10 +13,18 @@ angular.module('storyToaster')
 
     var Page = function () {
       this.imageData = null;
+      this.imageUrl = '';
       this.previewImage = "/assets/images/blank-small.gif";
       this.width = 0.0;
       this.height = 0.0;
+      this.savePage =  savePage
     };
+
+    function savePage(imageData) {
+      // if the book has not been saved, save the whole book first,
+      // from the return value, get the page's image generated.
+      $rootScope.$broadcast('savePage',this);
+    }
 
     var PhotoBook = function () {
       this.title = "this is created on frontend";
@@ -75,7 +89,7 @@ angular.module('storyToaster')
           page = this.rightDesignPage;
         }
 
-        var p = new Page();
+        var p = new Page(this);
         p.active = true;
         p.imageData = page.imageData;
         p.previewImage = page.previewImage;

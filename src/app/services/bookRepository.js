@@ -10,6 +10,8 @@ angular.module('storyToaster')
     var API_URL = config.apiRootPath;
     var currentUser = authService.currentUser();
 
+    this.savePage = savePage;
+
     this.getBooks = function () {
 
       var dfd = $q.defer();
@@ -78,8 +80,6 @@ angular.module('storyToaster')
       //obj.frontCover.imageData = LZString.compressToBase64(obj.frontCover.imageData);
 
       obj.data = JSON.stringify(obj);
-
-
       var promise;
 
       if (!book.id || book.id < 0) {
@@ -100,7 +100,7 @@ angular.module('storyToaster')
         },
         function (err) {
           console.log(err);
-          return null
+          return null;
           //return deferred.reject(err);
         })
 
@@ -129,5 +129,44 @@ angular.module('storyToaster')
       var url = API_URL + "books";
       return $http.post(url,book);
     }
+
+    function savePage(bookId, page) {
+      if (!page.id) {
+        // create a new page;
+        console.log('create a new page');
+        createBookPage(bookId, page.imageData).
+          then(
+          function(res){
+            console.log('page created:', res.data);
+            page.id = res.data.id ;
+          },
+
+          function(err){
+            console.log('create book page fails, error=', err);
+          }
+        )
+      }
+      else {
+        console.log('update the existing page');
+        updateBookPage(bookId, page.Id, page.imageData);
+      }
+    }
+
+    function createBookPage(bookId, pageInfo){
+      var url = API_URL + "books/" + bookId + "/pages";
+      $http.post(pageInfo);
+    }
+
+    function updateBookPage(bookId,pageId, pageInfo){
+      var url = API_URL + "books/" + bookId + "/pages/" + pageId;
+
+      $http.put(pageInfo);
+    }
+
+    function getBookPages(bookId){
+      var url = API_URL + "books/" + bookId;
+      $http.get(url);
+    }
+
   });
 

@@ -1,287 +1,326 @@
 
-<div class="floatingtexttoolbar">
-  <!-- <div id="full-toolbar" class="toolbar"> -->
-  <div class="edittoolbar ql-toolbar ql-snow">
-    <a href="#" title="Move Forward" class="toolbar-item tbmoveforward" onclick=";"><i class="fa fa-arrow-up"></i></a>
-    <a href="#" title="Move Back" class="toolbar-item tbmoveback" onclick=""><i class="fa fa-arrow-down"></i></a>
-    <span class="webfonts" title="Font"><span data-image-src="Font" class="ql-font ql-picker" onclick="">
-      <span class="ql-picker-label" data-value="Noto Sans">
-        <img src="/assets/fonts/font-images/Noto-Sans.png"></span><span class="ql-picker-options"><span data-value="Berkshire Swash"
-                                                                                     class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Berkshire Swash.png"></span><span data-value="Black Ops One" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Black Ops One.png"></span><span data-value="Chewy" class="ql-picker-item"><img src="/assets/fonts/font-images/Chewy.png"></span><span
-      data-value="Cinzel" class="ql-picker-item"><img src="/assets/fonts/font-images/Cinzel.png"></span><span data-value="Courgette"
-                                                                                           class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Courgette.png"></span><span data-value="Creepster" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Creepster.png"></span><span data-value="Graduate" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Graduate.png"></span><span data-value="Kalam" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Kalam.png"></span><span data-value="Lora" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Lora.png"></span><span data-value="Permanent Marker" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Permanent Marker.png"></span><span data-value="Roboto Mono" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Roboto-Mono.png"></span><span data-value="Roboto Condensed" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Roboto-Condensed.png"></span><span data-value="Oregano" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Oregano.png"></span><span data-value="Pacifico" class="ql-picker-item"><img src="/assets/fonts/font-images/Pacifico.png"></span><span
-      data-value="Racing Sans One" class="ql-picker-item"><img src="/assets/fonts/font-images/Racing Sans One.png"></span><span
-      data-value="Roboto" class="ql-picker-item"><img src="/assets/fonts/font-images/Roboto.png"></span><span data-value="Noto Sans"
-                                                                                           class="ql-picker-item ql-selected"><img
-      src="/assets/fonts/font-images/Noto-Sans.png"></span><span data-value="Noto Serif" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Noto-Serif.png"></span><span data-value="Roboto Slab" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Roboto-Slab.png"></span><span data-value="Ultra" class="ql-picker-item"><img
-      src="/assets/fonts/font-images/Ultra.png"></span></span></span><select data-image-src="Font" class="ql-font"
-                                                          onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'font-family']);"
-                                                          style="display: none;">
-      <option data-image-src="/assets/fonts/font-images/Berkshire Swash.png" value="Berkshire Swash"></option>
-      <option data-image-src="/assets/fonts/font-images/Black Ops One.png" value="Black Ops One"></option>
-      <option data-image-src="/assets/fonts/font-images/Chewy.png" value="Chewy"></option>
-      <option data-image-src="/assets/fonts/font-images/Cinzel.png" value="Cinzel"></option>
-      <option data-image-src="/assets/fonts/font-images/Courgette.png" value="Courgette"></option>
-      <option data-image-src="/assets/fonts/font-images/Creepster.png" value="Creepster"></option>
-      <option data-image-src="/assets/fonts/font-images/Graduate.png" value="Graduate"></option>
-      <option data-image-src="/assets/fonts/font-images/Kalam.png" value="Kalam"></option>
-      <option data-image-src="/assets/fonts/font-images/Lora.png" value="Lora"></option>
-      <option data-image-src="/assets/fonts/font-images/Permanent Marker.png" value="Permanent Marker"></option>
-      <option data-image-src="/assets/fonts/font-images/Roboto-Mono.png" value="Roboto Mono"></option>
-      <option data-image-src="/assets/fonts/font-images/Roboto-Condensed.png" value="Roboto Condensed"></option>
-      <option data-image-src="/assets/fonts/font-images/Oregano.png" value="Oregano"></option>
-      <option data-image-src="/assets/fonts/font-images/Pacifico.png" value="Pacifico"></option>
-      <option data-image-src="/assets/fonts/font-images/Racing Sans One.png" value="Racing Sans One"></option>
-      <option data-image-src="/assets/fonts/font-images/Roboto.png" value="Roboto"></option>
-      <!-- workaround for bug in blaze where just adding "selected" does not work. Have do it in the onRendered javascript  -->
-      <option data-image-src="/assets/fonts/font-images/Noto-Sans.png" value="Noto Sans" data-isdefault="yes" selected="selected"></option>
-      <option data-image-src="/assets/fonts/font-images/Noto-Serif.png" value="Noto Serif"></option>
-      <option data-image-src="/assets/fonts/font-images/Roboto-Slab.png" value="Roboto Slab"></option>
-      <option data-image-src="/assets/fonts/font-images/Ultra.png" value="Ultra"></option>
-    </select></span><!--<select title="Font" class="ql-font">-->
-    <!--<option value="sans-serif" selected="">Sans Serif</option>--><!--<option value="serif">Serif</option>-->
-    <!--<option value="monospace">Monospace</option>--><!--</select>--><span title="Size" class="ql-size ql-picker"
-                                                                             onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'font-size']);"><span
-    class="ql-picker-label" data-value="24px">24</span><span class="ql-picker-options"><span data-value="18px"
-                                                                                             class="ql-picker-item">18</span><span
-    data-value="24px" class="ql-picker-item ql-selected">24</span><span data-value="28px"
-                                                                        class="ql-picker-item">28</span><span
-    data-value="32px" class="ql-picker-item">32</span><span data-value="40px" class="ql-picker-item">40</span><span
-    data-value="48px" class="ql-picker-item">48</span><span data-value="72px"
-                                                            class="ql-picker-item">72</span></span></span><select
-    title="Size" class="ql-size" onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'font-size']);"
-    style="display: none;">
-    <!-- Can only have a maximum of 7 choices due to limitations in Document.execCommand('fontSize') and quill -->
-    <option value="18px">18</option>
-    <option value="24px" selected="">24</option>
-    <option value="28px">28</option>
-    <option value="32px">32</option>
-    <option value="40px">40</option>
-    <option value="48px">48</option>
-    <option value="72px">72</option>
-  </select><span title="Text Color" class="toolbar-item ql-color ql-picker ql-color-picker"
-                 onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'font-color']);"><span
-    class="ql-picker-label" data-value="rgb(1, 1, 1)"></span><span class="ql-picker-options"><span
-    data-value="rgb(1, 1, 1)" class="ql-picker-item ql-selected ql-primary-color"
-    style="background-color: rgb(1, 1, 1);"></span><span data-value="rgb(230, 0, 0)"
-                                                         class="ql-picker-item ql-primary-color"
-                                                         style="background-color: rgb(230, 0, 0);"></span><span
-    data-value="rgb(255, 153, 0)" class="ql-picker-item ql-primary-color"
-    style="background-color: rgb(255, 153, 0);"></span><span data-value="rgb(255, 255, 0)"
-                                                             class="ql-picker-item ql-primary-color"
-                                                             style="background-color: rgb(255, 255, 0);"></span><span
-    data-value="rgb(0, 138, 0)" class="ql-picker-item ql-primary-color"
-    style="background-color: rgb(0, 138, 0);"></span><span data-value="rgb(0, 102, 204)"
-                                                           class="ql-picker-item ql-primary-color"
-                                                           style="background-color: rgb(0, 102, 204);"></span><span
-    data-value="rgb(153, 51, 255)" class="ql-picker-item ql-primary-color"
-    style="background-color: rgb(153, 51, 255);"></span><span data-value="rgb(255, 255, 255)" class="ql-picker-item"
-                                                              style="background-color: rgb(255, 255, 255);"></span><span
-    data-value="rgb(250, 204, 204)" class="ql-picker-item" style="background-color: rgb(250, 204, 204);"></span><span
-    data-value="rgb(255, 235, 204)" class="ql-picker-item" style="background-color: rgb(255, 235, 204);"></span><span
-    data-value="rgb(255, 255, 204)" class="ql-picker-item" style="background-color: rgb(255, 255, 204);"></span><span
-    data-value="rgb(204, 232, 204)" class="ql-picker-item" style="background-color: rgb(204, 232, 204);"></span><span
-    data-value="rgb(204, 224, 245)" class="ql-picker-item" style="background-color: rgb(204, 224, 245);"></span><span
-    data-value="rgb(235, 214, 255)" class="ql-picker-item" style="background-color: rgb(235, 214, 255);"></span><span
-    data-value="rgb(187, 187, 187)" class="ql-picker-item" style="background-color: rgb(187, 187, 187);"></span><span
-    data-value="rgb(240, 102, 102)" class="ql-picker-item" style="background-color: rgb(240, 102, 102);"></span><span
-    data-value="rgb(255, 194, 102)" class="ql-picker-item" style="background-color: rgb(255, 194, 102);"></span><span
-    data-value="rgb(255, 255, 102)" class="ql-picker-item" style="background-color: rgb(255, 255, 102);"></span><span
-    data-value="rgb(102, 185, 102)" class="ql-picker-item" style="background-color: rgb(102, 185, 102);"></span><span
-    data-value="rgb(102, 163, 224)" class="ql-picker-item" style="background-color: rgb(102, 163, 224);"></span><span
-    data-value="rgb(194, 133, 255)" class="ql-picker-item" style="background-color: rgb(194, 133, 255);"></span><span
-    data-value="rgb(136, 136, 136)" class="ql-picker-item" style="background-color: rgb(136, 136, 136);"></span><span
-    data-value="rgb(161, 0, 0)" class="ql-picker-item" style="background-color: rgb(161, 0, 0);"></span><span
-    data-value="rgb(178, 107, 0)" class="ql-picker-item" style="background-color: rgb(178, 107, 0);"></span><span
-    data-value="rgb(178, 178, 0)" class="ql-picker-item" style="background-color: rgb(178, 178, 0);"></span><span
-    data-value="rgb(0, 97, 0)" class="ql-picker-item" style="background-color: rgb(0, 97, 0);"></span><span
-    data-value="rgb(0, 71, 178)" class="ql-picker-item" style="background-color: rgb(0, 71, 178);"></span><span
-    data-value="rgb(107, 36, 178)" class="ql-picker-item" style="background-color: rgb(107, 36, 178);"></span><span
-    data-value="rgb(68, 68, 68)" class="ql-picker-item" style="background-color: rgb(68, 68, 68);"></span><span
-    data-value="rgb(92, 0, 0)" class="ql-picker-item" style="background-color: rgb(92, 0, 0);"></span><span
-    data-value="rgb(102, 61, 0)" class="ql-picker-item" style="background-color: rgb(102, 61, 0);"></span><span
-    data-value="rgb(102, 102, 0)" class="ql-picker-item" style="background-color: rgb(102, 102, 0);"></span><span
-    data-value="rgb(0, 55, 0)" class="ql-picker-item" style="background-color: rgb(0, 55, 0);"></span><span
-    data-value="rgb(0, 41, 102)" class="ql-picker-item" style="background-color: rgb(0, 41, 102);"></span><span
-    data-value="rgb(61, 20, 102)" class="ql-picker-item"
-    style="background-color: rgb(61, 20, 102);"></span></span></span><select title="Text Color"
-                                                                             class="toolbar-item ql-color"
-                                                                             onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'font-color']);"
-                                                                             style="display: none;">
-    <option value="rgb(1, 1, 1)" label="rgb(1, 1, 1)" selected=""></option>
-    <!-- Needs to be something other than 0,0,0 since quill assumes that is the default color -->
-    <option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"></option>
-    <option value="rgb(255, 153, 0)" label="rgb(255, 153, 0)"></option>
-    <option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"></option>
-    <option value="rgb(0, 138, 0)" label="rgb(0, 138, 0)"></option>
-    <option value="rgb(0, 102, 204)" label="rgb(0, 102, 204)"></option>
-    <option value="rgb(153, 51, 255)" label="rgb(153, 51, 255)"></option>
-    <option value="rgb(255, 255, 255)" label="rgb(255, 255, 255)"></option>
-    <option value="rgb(250, 204, 204)" label="rgb(250, 204, 204)"></option>
-    <option value="rgb(255, 235, 204)" label="rgb(255, 235, 204)"></option>
-    <option value="rgb(255, 255, 204)" label="rgb(255, 255, 204)"></option>
-    <option value="rgb(204, 232, 204)" label="rgb(204, 232, 204)"></option>
-    <option value="rgb(204, 224, 245)" label="rgb(204, 224, 245)"></option>
-    <option value="rgb(235, 214, 255)" label="rgb(235, 214, 255)"></option>
-    <option value="rgb(187, 187, 187)" label="rgb(187, 187, 187)"></option>
-    <option value="rgb(240, 102, 102)" label="rgb(240, 102, 102)"></option>
-    <option value="rgb(255, 194, 102)" label="rgb(255, 194, 102)"></option>
-    <option value="rgb(255, 255, 102)" label="rgb(255, 255, 102)"></option>
-    <option value="rgb(102, 185, 102)" label="rgb(102, 185, 102)"></option>
-    <option value="rgb(102, 163, 224)" label="rgb(102, 163, 224)"></option>
-    <option value="rgb(194, 133, 255)" label="rgb(194, 133, 255)"></option>
-    <option value="rgb(136, 136, 136)" label="rgb(136, 136, 136)"></option>
-    <option value="rgb(161, 0, 0)" label="rgb(161, 0, 0)"></option>
-    <option value="rgb(178, 107, 0)" label="rgb(178, 107, 0)"></option>
-    <option value="rgb(178, 178, 0)" label="rgb(178, 178, 0)"></option>
-    <option value="rgb(0, 97, 0)" label="rgb(0, 97, 0)"></option>
-    <option value="rgb(0, 71, 178)" label="rgb(0, 71, 178)"></option>
-    <option value="rgb(107, 36, 178)" label="rgb(107, 36, 178)"></option>
-    <option value="rgb(68, 68, 68)" label="rgb(68, 68, 68)"></option>
-    <option value="rgb(92, 0, 0)" label="rgb(92, 0, 0)"></option>
-    <option value="rgb(102, 61, 0)" label="rgb(102, 61, 0)"></option>
-    <option value="rgb(102, 102, 0)" label="rgb(102, 102, 0)"></option>
-    <option value="rgb(0, 55, 0)" label="rgb(0, 55, 0)"></option>
-    <option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"></option>
-    <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"></option>
-  </select><!-- Need to have the class txt-background for quill to convert the rgb values to a picker and not trigger setting the font background --><span
-    title="Fill Color" class="toolbar-item txt-background tbbackground ql-picker ql-color-picker hidden"
-    onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'background-color']);"><span class="ql-picker-label"
-                                                                                              data-value="rgb(255, 255, 255)"></span><span
-    class="ql-picker-options"><span data-value="transparent" class="ql-picker-item ql-primary-color"
-                                    style="background-color: transparent;"></span><span data-value="rgb(1, 1, 1)"
-                                                                                        class="ql-picker-item ql-primary-color"
-                                                                                        style="background-color: rgb(1, 1, 1);"></span><span
-    data-value="rgb(230, 0, 0)" class="ql-picker-item ql-primary-color"
-    style="background-color: rgb(230, 0, 0);"></span><span data-value="rgb(255, 153, 0)"
-                                                           class="ql-picker-item ql-primary-color"
-                                                           style="background-color: rgb(255, 153, 0);"></span><span
-    data-value="rgb(255, 255, 0)" class="ql-picker-item ql-primary-color"
-    style="background-color: rgb(255, 255, 0);"></span><span data-value="rgb(0, 138, 0)"
-                                                             class="ql-picker-item ql-primary-color"
-                                                             style="background-color: rgb(0, 138, 0);"></span><span
-    data-value="rgb(0, 102, 204)" class="ql-picker-item ql-primary-color"
-    style="background-color: rgb(0, 102, 204);"></span><span data-value="rgb(153, 51, 255)" class="ql-picker-item"
-                                                             style="background-color: rgb(153, 51, 255);"></span><span
-    data-value="rgb(255, 255, 255)" class="ql-picker-item ql-selected"
-    style="background-color: rgb(255, 255, 255);"></span><span data-value="rgb(250, 204, 204)" class="ql-picker-item"
-                                                               style="background-color: rgb(250, 204, 204);"></span><span
-    data-value="rgb(255, 235, 204)" class="ql-picker-item" style="background-color: rgb(255, 235, 204);"></span><span
-    data-value="rgb(255, 255, 204)" class="ql-picker-item" style="background-color: rgb(255, 255, 204);"></span><span
-    data-value="rgb(204, 232, 204)" class="ql-picker-item" style="background-color: rgb(204, 232, 204);"></span><span
-    data-value="rgb(204, 224, 245)" class="ql-picker-item" style="background-color: rgb(204, 224, 245);"></span><span
-    data-value="rgb(235, 214, 255)" class="ql-picker-item" style="background-color: rgb(235, 214, 255);"></span><span
-    data-value="rgb(187, 187, 187)" class="ql-picker-item" style="background-color: rgb(187, 187, 187);"></span><span
-    data-value="rgb(240, 102, 102)" class="ql-picker-item" style="background-color: rgb(240, 102, 102);"></span><span
-    data-value="rgb(255, 194, 102)" class="ql-picker-item" style="background-color: rgb(255, 194, 102);"></span><span
-    data-value="rgb(255, 255, 102)" class="ql-picker-item" style="background-color: rgb(255, 255, 102);"></span><span
-    data-value="rgb(102, 185, 102)" class="ql-picker-item" style="background-color: rgb(102, 185, 102);"></span><span
-    data-value="rgb(102, 163, 224)" class="ql-picker-item" style="background-color: rgb(102, 163, 224);"></span><span
-    data-value="rgb(194, 133, 255)" class="ql-picker-item" style="background-color: rgb(194, 133, 255);"></span><span
-    data-value="rgb(136, 136, 136)" class="ql-picker-item" style="background-color: rgb(136, 136, 136);"></span><span
-    data-value="rgb(161, 0, 0)" class="ql-picker-item" style="background-color: rgb(161, 0, 0);"></span><span
-    data-value="rgb(178, 107, 0)" class="ql-picker-item" style="background-color: rgb(178, 107, 0);"></span><span
-    data-value="rgb(178, 178, 0)" class="ql-picker-item" style="background-color: rgb(178, 178, 0);"></span><span
-    data-value="rgb(0, 97, 0)" class="ql-picker-item" style="background-color: rgb(0, 97, 0);"></span><span
-    data-value="rgb(0, 71, 178)" class="ql-picker-item" style="background-color: rgb(0, 71, 178);"></span><span
-    data-value="rgb(107, 36, 178)" class="ql-picker-item" style="background-color: rgb(107, 36, 178);"></span><span
-    data-value="rgb(68, 68, 68)" class="ql-picker-item" style="background-color: rgb(68, 68, 68);"></span><span
-    data-value="rgb(92, 0, 0)" class="ql-picker-item" style="background-color: rgb(92, 0, 0);"></span><span
-    data-value="rgb(102, 61, 0)" class="ql-picker-item" style="background-color: rgb(102, 61, 0);"></span><span
-    data-value="rgb(102, 102, 0)" class="ql-picker-item" style="background-color: rgb(102, 102, 0);"></span><span
-    data-value="rgb(0, 55, 0)" class="ql-picker-item" style="background-color: rgb(0, 55, 0);"></span><span
-    data-value="rgb(0, 41, 102)" class="ql-picker-item" style="background-color: rgb(0, 41, 102);"></span><span
-    data-value="rgb(61, 20, 102)" class="ql-picker-item"
-    style="background-color: rgb(61, 20, 102);"></span></span></span><select title="Fill Color"
-                                                                             class="toolbar-item txt-background tbbackground hidden"
-                                                                             onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'background-color']);"
-                                                                             style="display: none;">
-    <option value="transparent" label="transparent"></option>
-    <option value="rgb(1, 1, 1)" label="rgb(1, 1, 1)"></option>
-    <!-- Set to match the black color above -->
-    <option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"></option>
-    <option value="rgb(255, 153, 0)" label="rgb(255, 153, 0)"></option>
-    <option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"></option>
-    <option value="rgb(0, 138, 0)" label="rgb(0, 138, 0)"></option>
-    <option value="rgb(0, 102, 204)" label="rgb(0, 102, 204)"></option>
-    <option value="rgb(153, 51, 255)" label="rgb(153, 51, 255)"></option>
-    <option value="rgb(255, 255, 255)" label="rgb(255, 255, 255)" selected=""></option>
-    <option value="rgb(250, 204, 204)" label="rgb(250, 204, 204)"></option>
-    <option value="rgb(255, 235, 204)" label="rgb(255, 235, 204)"></option>
-    <option value="rgb(255, 255, 204)" label="rgb(255, 255, 204)"></option>
-    <option value="rgb(204, 232, 204)" label="rgb(204, 232, 204)"></option>
-    <option value="rgb(204, 224, 245)" label="rgb(204, 224, 245)"></option>
-    <option value="rgb(235, 214, 255)" label="rgb(235, 214, 255)"></option>
-    <option value="rgb(187, 187, 187)" label="rgb(187, 187, 187)"></option>
-    <option value="rgb(240, 102, 102)" label="rgb(240, 102, 102)"></option>
-    <option value="rgb(255, 194, 102)" label="rgb(255, 194, 102)"></option>
-    <option value="rgb(255, 255, 102)" label="rgb(255, 255, 102)"></option>
-    <option value="rgb(102, 185, 102)" label="rgb(102, 185, 102)"></option>
-    <option value="rgb(102, 163, 224)" label="rgb(102, 163, 224)"></option>
-    <option value="rgb(194, 133, 255)" label="rgb(194, 133, 255)"></option>
-    <option value="rgb(136, 136, 136)" label="rgb(136, 136, 136)"></option>
-    <option value="rgb(161, 0, 0)" label="rgb(161, 0, 0)"></option>
-    <option value="rgb(178, 107, 0)" label="rgb(178, 107, 0)"></option>
-    <option value="rgb(178, 178, 0)" label="rgb(178, 178, 0)"></option>
-    <option value="rgb(0, 97, 0)" label="rgb(0, 97, 0)"></option>
-    <option value="rgb(0, 71, 178)" label="rgb(0, 71, 178)"></option>
-    <option value="rgb(107, 36, 178)" label="rgb(107, 36, 178)"></option>
-    <option value="rgb(68, 68, 68)" label="rgb(68, 68, 68)"></option>
-    <option value="rgb(92, 0, 0)" label="rgb(92, 0, 0)"></option>
-    <option value="rgb(102, 61, 0)" label="rgb(102, 61, 0)"></option>
-    <option value="rgb(102, 102, 0)" label="rgb(102, 102, 0)"></option>
-    <option value="rgb(0, 55, 0)" label="rgb(0, 55, 0)"></option>
-    <option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"></option>
-    <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"></option>
-  </select><span title="Bold" class="toolbar-item ql-format-button ql-bold"
-                 onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'bold']);"><i
-    class="fa fa-bold"></i></span><span title="Italic" class="toolbar-item ql-format-button ql-italic"
-                                        onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'italic']);"><i
-    class="fa fa-italic"></i></span><span title="Underline" class="toolbar-item ql-format-button ql-underline"
-                                          onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'underline']);"><i
-    class="fa fa-underline"></i></span><span title="Text Alignment" class="toolbar-item ql-align ql-picker"
-                                             onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'align']);"><span
-    class="ql-picker-label" data-value="left"></span><span class="ql-picker-options"><span data-value="left"
-                                                                                           class="ql-picker-item ql-selected"></span><span
-    data-value="center" class="ql-picker-item"></span><span data-value="right" class="ql-picker-item"></span><span
-    data-value="justify" class="ql-picker-item"></span></span></span><select title="Text Alignment"
-                                                                             class="toolbar-item ql-align"
-                                                                             onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'align']);"
-                                                                             style="display: none;">
-    <option value="left" label="Left" selected=""></option>
-    <option value="center" label="Center"></option>
-    <option value="right" label="Right"></option>
-    <option value="justify" label="Justify"></option>
-  </select><span><a href="#" title="Delete" class="toolbar-item tbdelete"
-                    onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'delete']);"><i
-    class="fa fa-trash-o"></i></a></span><!--   <span class="openMore"><i class="fa fa-caret-down"></i></span> -->
-    <!-- more options --><!--        <div class="moreoptions ql-picker">
-            <span class="ql-format-group">
-                <span title="Bold" class="ql-format-button ql-bold"></span>
-                <span title="Italic" class="ql-format-button ql-italic"></span>
-                <span title="Underline" class="ql-format-button ql-underline"></span>
-            </span>
+<a title="字体" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i
+  class="fa fa-font "></i></a>
 
-            <span class="ql-format-group">
-                <select title="Text Alignment" class="ql-align">
-                    <option value="left" label="Left" selected=""></option>
-                    <option value="center" label="Center"></option>
-                    <option value="right" label="Right"></option>
-                    <option value="justify" label="Justify"></option>
-                </select>
-            </span>
-        </div> --><!-- end of moreOptions --></div>
-</div>
+<a title="斜体字" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i
+  class="fa fa-italic "></i></a>
+
+<a title="粗体字" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i
+  class="fa fa-bold "></i></a>
+
+<a title="斜体字" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i
+  class="fa fa-underline "></i></a>
+
+<a title="靠左" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i
+  class="fa fa-align-left "></i></a>
+
+<a title="居中" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i
+  class="fa fa-align-center "></i></a>
+
+<a title="居右" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i
+  class="fa fa-align-right "></i></a>
+
+<a title="字体" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i
+  class="fa fa-bold "></i></a>
+
+<a title="字体大小" class="toolbar-item" ng-click="main.clickOnTool('sendToBack')"><i
+  class="fa fa-arrow-down  "></i></a>
+
+<a title="move forward" class="toolbar-item " ng-click="main.clickOnTool('bringToFront') "><i
+  class="fa fa-arrow-up "></i></a>
+<a title="move back" class="toolbar-item" ng-click="main.clickOnTool('sendToBack')"><i
+  class="fa fa-arrow-down"></i></a>
+
+<a title="flipX" class="toolbar-item " ng-click="main.clickOnTool('flipX')"><i class="fa fa-arrows-h "></i></a>
+<a title="flipY" class="toolbar-item " ng-click="main.clickOnTool('flipY')"><i class="fa fa-arrows-v "></i> </a>
+<a title="ungroup" class="toolbar-item " ng-click="" style="display: none;"><i class="fa fa-columns "></i></a>
+<a title="delete" class="toolbar-item " ng-click="main.clickOnTool('delete') "><i class="fa fa-trash-o "></i></a>
+
+
+<!--<div class="floatingtexttoolbar">-->
+  <!--&lt;!&ndash; <div id="full-toolbar" class="toolbar"> &ndash;&gt;-->
+  <!--<div class="edittoolbar ql-toolbar ql-snow">-->
+    <!--<a href="#" title="Move Forward" class="toolbar-item tbmoveforward" onclick=";"><i class="fa fa-arrow-up"></i></a>-->
+    <!--<a href="#" title="Move Back" class="toolbar-item tbmoveback" onclick=""><i class="fa fa-arrow-down"></i></a>-->
+
+    <!--<span class="webfonts" title="Font"><span data-image-src="Font" class="ql-font ql-picker" onclick="">-->
+      <!--<span class="ql-picker-label" data-value="Noto Sans">-->
+        <!--<img src="/assets/fonts/font-images/Noto-Sans.png"></span><span class="ql-picker-options"><span data-value="Berkshire Swash"-->
+                                                                                     <!--class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Berkshire Swash.png"></span><span data-value="Black Ops One" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Black Ops One.png"></span><span data-value="Chewy" class="ql-picker-item"><img src="/assets/fonts/font-images/Chewy.png"></span><span-->
+      <!--data-value="Cinzel" class="ql-picker-item"><img src="/assets/fonts/font-images/Cinzel.png"></span><span data-value="Courgette"-->
+                                                                                           <!--class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Courgette.png"></span><span data-value="Creepster" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Creepster.png"></span><span data-value="Graduate" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Graduate.png"></span><span data-value="Kalam" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Kalam.png"></span><span data-value="Lora" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Lora.png"></span><span data-value="Permanent Marker" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Permanent Marker.png"></span><span data-value="Roboto Mono" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Roboto-Mono.png"></span><span data-value="Roboto Condensed" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Roboto-Condensed.png"></span><span data-value="Oregano" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Oregano.png"></span><span data-value="Pacifico" class="ql-picker-item"><img src="/assets/fonts/font-images/Pacifico.png"></span><span-->
+      <!--data-value="Racing Sans One" class="ql-picker-item"><img src="/assets/fonts/font-images/Racing Sans One.png"></span><span-->
+      <!--data-value="Roboto" class="ql-picker-item"><img src="/assets/fonts/font-images/Roboto.png"></span><span data-value="Noto Sans"-->
+                                                                                           <!--class="ql-picker-item ql-selected"><img-->
+      <!--src="/assets/fonts/font-images/Noto-Sans.png"></span><span data-value="Noto Serif" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Noto-Serif.png"></span><span data-value="Roboto Slab" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Roboto-Slab.png"></span><span data-value="Ultra" class="ql-picker-item"><img-->
+      <!--src="/assets/fonts/font-images/Ultra.png"></span></span></span><select data-image-src="Font" class="ql-font"-->
+                                                          <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'font-family']);"-->
+                                                          <!--style="display: none;">-->
+      <!--<option data-image-src="/assets/fonts/font-images/Berkshire Swash.png" value="Berkshire Swash"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Black Ops One.png" value="Black Ops One"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Chewy.png" value="Chewy"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Cinzel.png" value="Cinzel"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Courgette.png" value="Courgette"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Creepster.png" value="Creepster"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Graduate.png" value="Graduate"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Kalam.png" value="Kalam"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Lora.png" value="Lora"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Permanent Marker.png" value="Permanent Marker"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Roboto-Mono.png" value="Roboto Mono"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Roboto-Condensed.png" value="Roboto Condensed"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Oregano.png" value="Oregano"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Pacifico.png" value="Pacifico"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Racing Sans One.png" value="Racing Sans One"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Roboto.png" value="Roboto"></option>-->
+      <!--&lt;!&ndash; workaround for bug in blaze where just adding "selected" does not work. Have do it in the onRendered javascript  &ndash;&gt;-->
+      <!--<option data-image-src="/assets/fonts/font-images/Noto-Sans.png" value="Noto Sans" data-isdefault="yes" selected="selected"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Noto-Serif.png" value="Noto Serif"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Roboto-Slab.png" value="Roboto Slab"></option>-->
+      <!--<option data-image-src="/assets/fonts/font-images/Ultra.png" value="Ultra"></option>-->
+    <!--</select></span>&lt;!&ndash;<select title="Font" class="ql-font">&ndash;&gt;-->
+    <!--&lt;!&ndash;<option value="sans-serif" selected="">Sans Serif</option>&ndash;&gt;&lt;!&ndash;<option value="serif">Serif</option>&ndash;&gt;-->
+    <!--&lt;!&ndash;<option value="monospace">Monospace</option>&ndash;&gt;&lt;!&ndash;</select>&ndash;&gt;<span title="Size" class="ql-size ql-picker"-->
+                                                                             <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'font-size']);"><span-->
+    <!--class="ql-picker-label" data-value="24px">24</span><span class="ql-picker-options"><span data-value="18px"-->
+                                                                                             <!--class="ql-picker-item">18</span><span-->
+    <!--data-value="24px" class="ql-picker-item ql-selected">24</span><span data-value="28px"-->
+                                                                        <!--class="ql-picker-item">28</span><span-->
+    <!--data-value="32px" class="ql-picker-item">32</span><span data-value="40px" class="ql-picker-item">40</span><span-->
+    <!--data-value="48px" class="ql-picker-item">48</span><span data-value="72px"-->
+                                                            <!--class="ql-picker-item">72</span></span></span><select-->
+    <!--title="Size" class="ql-size" onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'font-size']);"-->
+    <!--style="display: none;">-->
+    <!--&lt;!&ndash; Can only have a maximum of 7 choices due to limitations in Document.execCommand('fontSize') and quill &ndash;&gt;-->
+    <!--<option value="18px">18</option>-->
+    <!--<option value="24px" selected="">24</option>-->
+    <!--<option value="28px">28</option>-->
+    <!--<option value="32px">32</option>-->
+    <!--<option value="40px">40</option>-->
+    <!--<option value="48px">48</option>-->
+    <!--<option value="72px">72</option>-->
+  <!--</select><span title="Text Color" class="toolbar-item ql-color ql-picker ql-color-picker"-->
+                 <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'font-color']);"><span-->
+    <!--class="ql-picker-label" data-value="rgb(1, 1, 1)"></span><span class="ql-picker-options"><span-->
+    <!--data-value="rgb(1, 1, 1)" class="ql-picker-item ql-selected ql-primary-color"-->
+    <!--style="background-color: rgb(1, 1, 1);"></span><span data-value="rgb(230, 0, 0)"-->
+                                                         <!--class="ql-picker-item ql-primary-color"-->
+                                                         <!--style="background-color: rgb(230, 0, 0);"></span><span-->
+    <!--data-value="rgb(255, 153, 0)" class="ql-picker-item ql-primary-color"-->
+    <!--style="background-color: rgb(255, 153, 0);"></span><span data-value="rgb(255, 255, 0)"-->
+                                                             <!--class="ql-picker-item ql-primary-color"-->
+                                                             <!--style="background-color: rgb(255, 255, 0);"></span><span-->
+    <!--data-value="rgb(0, 138, 0)" class="ql-picker-item ql-primary-color"-->
+    <!--style="background-color: rgb(0, 138, 0);"></span><span data-value="rgb(0, 102, 204)"-->
+                                                           <!--class="ql-picker-item ql-primary-color"-->
+                                                           <!--style="background-color: rgb(0, 102, 204);"></span><span-->
+    <!--data-value="rgb(153, 51, 255)" class="ql-picker-item ql-primary-color"-->
+    <!--style="background-color: rgb(153, 51, 255);"></span><span data-value="rgb(255, 255, 255)" class="ql-picker-item"-->
+                                                              <!--style="background-color: rgb(255, 255, 255);"></span><span-->
+    <!--data-value="rgb(250, 204, 204)" class="ql-picker-item" style="background-color: rgb(250, 204, 204);"></span><span-->
+    <!--data-value="rgb(255, 235, 204)" class="ql-picker-item" style="background-color: rgb(255, 235, 204);"></span><span-->
+    <!--data-value="rgb(255, 255, 204)" class="ql-picker-item" style="background-color: rgb(255, 255, 204);"></span><span-->
+    <!--data-value="rgb(204, 232, 204)" class="ql-picker-item" style="background-color: rgb(204, 232, 204);"></span><span-->
+    <!--data-value="rgb(204, 224, 245)" class="ql-picker-item" style="background-color: rgb(204, 224, 245);"></span><span-->
+    <!--data-value="rgb(235, 214, 255)" class="ql-picker-item" style="background-color: rgb(235, 214, 255);"></span><span-->
+    <!--data-value="rgb(187, 187, 187)" class="ql-picker-item" style="background-color: rgb(187, 187, 187);"></span><span-->
+    <!--data-value="rgb(240, 102, 102)" class="ql-picker-item" style="background-color: rgb(240, 102, 102);"></span><span-->
+    <!--data-value="rgb(255, 194, 102)" class="ql-picker-item" style="background-color: rgb(255, 194, 102);"></span><span-->
+    <!--data-value="rgb(255, 255, 102)" class="ql-picker-item" style="background-color: rgb(255, 255, 102);"></span><span-->
+    <!--data-value="rgb(102, 185, 102)" class="ql-picker-item" style="background-color: rgb(102, 185, 102);"></span><span-->
+    <!--data-value="rgb(102, 163, 224)" class="ql-picker-item" style="background-color: rgb(102, 163, 224);"></span><span-->
+    <!--data-value="rgb(194, 133, 255)" class="ql-picker-item" style="background-color: rgb(194, 133, 255);"></span><span-->
+    <!--data-value="rgb(136, 136, 136)" class="ql-picker-item" style="background-color: rgb(136, 136, 136);"></span><span-->
+    <!--data-value="rgb(161, 0, 0)" class="ql-picker-item" style="background-color: rgb(161, 0, 0);"></span><span-->
+    <!--data-value="rgb(178, 107, 0)" class="ql-picker-item" style="background-color: rgb(178, 107, 0);"></span><span-->
+    <!--data-value="rgb(178, 178, 0)" class="ql-picker-item" style="background-color: rgb(178, 178, 0);"></span><span-->
+    <!--data-value="rgb(0, 97, 0)" class="ql-picker-item" style="background-color: rgb(0, 97, 0);"></span><span-->
+    <!--data-value="rgb(0, 71, 178)" class="ql-picker-item" style="background-color: rgb(0, 71, 178);"></span><span-->
+    <!--data-value="rgb(107, 36, 178)" class="ql-picker-item" style="background-color: rgb(107, 36, 178);"></span><span-->
+    <!--data-value="rgb(68, 68, 68)" class="ql-picker-item" style="background-color: rgb(68, 68, 68);"></span><span-->
+    <!--data-value="rgb(92, 0, 0)" class="ql-picker-item" style="background-color: rgb(92, 0, 0);"></span><span-->
+    <!--data-value="rgb(102, 61, 0)" class="ql-picker-item" style="background-color: rgb(102, 61, 0);"></span><span-->
+    <!--data-value="rgb(102, 102, 0)" class="ql-picker-item" style="background-color: rgb(102, 102, 0);"></span><span-->
+    <!--data-value="rgb(0, 55, 0)" class="ql-picker-item" style="background-color: rgb(0, 55, 0);"></span><span-->
+    <!--data-value="rgb(0, 41, 102)" class="ql-picker-item" style="background-color: rgb(0, 41, 102);"></span><span-->
+    <!--data-value="rgb(61, 20, 102)" class="ql-picker-item"-->
+    <!--style="background-color: rgb(61, 20, 102);"></span></span></span><select title="Text Color"-->
+                                                                             <!--class="toolbar-item ql-color"-->
+                                                                             <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'font-color']);"-->
+                                                                             <!--style="display: none;">-->
+    <!--<option value="rgb(1, 1, 1)" label="rgb(1, 1, 1)" selected=""></option>-->
+    <!--&lt;!&ndash; Needs to be something other than 0,0,0 since quill assumes that is the default color &ndash;&gt;-->
+    <!--<option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"></option>-->
+    <!--<option value="rgb(255, 153, 0)" label="rgb(255, 153, 0)"></option>-->
+    <!--<option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"></option>-->
+    <!--<option value="rgb(0, 138, 0)" label="rgb(0, 138, 0)"></option>-->
+    <!--<option value="rgb(0, 102, 204)" label="rgb(0, 102, 204)"></option>-->
+    <!--<option value="rgb(153, 51, 255)" label="rgb(153, 51, 255)"></option>-->
+    <!--<option value="rgb(255, 255, 255)" label="rgb(255, 255, 255)"></option>-->
+    <!--<option value="rgb(250, 204, 204)" label="rgb(250, 204, 204)"></option>-->
+    <!--<option value="rgb(255, 235, 204)" label="rgb(255, 235, 204)"></option>-->
+    <!--<option value="rgb(255, 255, 204)" label="rgb(255, 255, 204)"></option>-->
+    <!--<option value="rgb(204, 232, 204)" label="rgb(204, 232, 204)"></option>-->
+    <!--<option value="rgb(204, 224, 245)" label="rgb(204, 224, 245)"></option>-->
+    <!--<option value="rgb(235, 214, 255)" label="rgb(235, 214, 255)"></option>-->
+    <!--<option value="rgb(187, 187, 187)" label="rgb(187, 187, 187)"></option>-->
+    <!--<option value="rgb(240, 102, 102)" label="rgb(240, 102, 102)"></option>-->
+    <!--<option value="rgb(255, 194, 102)" label="rgb(255, 194, 102)"></option>-->
+    <!--<option value="rgb(255, 255, 102)" label="rgb(255, 255, 102)"></option>-->
+    <!--<option value="rgb(102, 185, 102)" label="rgb(102, 185, 102)"></option>-->
+    <!--<option value="rgb(102, 163, 224)" label="rgb(102, 163, 224)"></option>-->
+    <!--<option value="rgb(194, 133, 255)" label="rgb(194, 133, 255)"></option>-->
+    <!--<option value="rgb(136, 136, 136)" label="rgb(136, 136, 136)"></option>-->
+    <!--<option value="rgb(161, 0, 0)" label="rgb(161, 0, 0)"></option>-->
+    <!--<option value="rgb(178, 107, 0)" label="rgb(178, 107, 0)"></option>-->
+    <!--<option value="rgb(178, 178, 0)" label="rgb(178, 178, 0)"></option>-->
+    <!--<option value="rgb(0, 97, 0)" label="rgb(0, 97, 0)"></option>-->
+    <!--<option value="rgb(0, 71, 178)" label="rgb(0, 71, 178)"></option>-->
+    <!--<option value="rgb(107, 36, 178)" label="rgb(107, 36, 178)"></option>-->
+    <!--<option value="rgb(68, 68, 68)" label="rgb(68, 68, 68)"></option>-->
+    <!--<option value="rgb(92, 0, 0)" label="rgb(92, 0, 0)"></option>-->
+    <!--<option value="rgb(102, 61, 0)" label="rgb(102, 61, 0)"></option>-->
+    <!--<option value="rgb(102, 102, 0)" label="rgb(102, 102, 0)"></option>-->
+    <!--<option value="rgb(0, 55, 0)" label="rgb(0, 55, 0)"></option>-->
+    <!--<option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"></option>-->
+    <!--<option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"></option>-->
+  <!--</select>&lt;!&ndash; Need to have the class txt-background for quill to convert the rgb values to a picker and not trigger setting the font background &ndash;&gt;<span-->
+    <!--title="Fill Color" class="toolbar-item txt-background tbbackground ql-picker ql-color-picker hidden"-->
+    <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'background-color']);"><span class="ql-picker-label"-->
+                                                                                              <!--data-value="rgb(255, 255, 255)"></span><span-->
+    <!--class="ql-picker-options"><span data-value="transparent" class="ql-picker-item ql-primary-color"-->
+                                    <!--style="background-color: transparent;"></span><span data-value="rgb(1, 1, 1)"-->
+                                                                                        <!--class="ql-picker-item ql-primary-color"-->
+                                                                                        <!--style="background-color: rgb(1, 1, 1);"></span><span-->
+    <!--data-value="rgb(230, 0, 0)" class="ql-picker-item ql-primary-color"-->
+    <!--style="background-color: rgb(230, 0, 0);"></span><span data-value="rgb(255, 153, 0)"-->
+                                                           <!--class="ql-picker-item ql-primary-color"-->
+                                                           <!--style="background-color: rgb(255, 153, 0);"></span><span-->
+    <!--data-value="rgb(255, 255, 0)" class="ql-picker-item ql-primary-color"-->
+    <!--style="background-color: rgb(255, 255, 0);"></span><span data-value="rgb(0, 138, 0)"-->
+                                                             <!--class="ql-picker-item ql-primary-color"-->
+                                                             <!--style="background-color: rgb(0, 138, 0);"></span><span-->
+    <!--data-value="rgb(0, 102, 204)" class="ql-picker-item ql-primary-color"-->
+    <!--style="background-color: rgb(0, 102, 204);"></span><span data-value="rgb(153, 51, 255)" class="ql-picker-item"-->
+                                                             <!--style="background-color: rgb(153, 51, 255);"></span><span-->
+    <!--data-value="rgb(255, 255, 255)" class="ql-picker-item ql-selected"-->
+    <!--style="background-color: rgb(255, 255, 255);"></span><span data-value="rgb(250, 204, 204)" class="ql-picker-item"-->
+                                                               <!--style="background-color: rgb(250, 204, 204);"></span><span-->
+    <!--data-value="rgb(255, 235, 204)" class="ql-picker-item" style="background-color: rgb(255, 235, 204);"></span><span-->
+    <!--data-value="rgb(255, 255, 204)" class="ql-picker-item" style="background-color: rgb(255, 255, 204);"></span><span-->
+    <!--data-value="rgb(204, 232, 204)" class="ql-picker-item" style="background-color: rgb(204, 232, 204);"></span><span-->
+    <!--data-value="rgb(204, 224, 245)" class="ql-picker-item" style="background-color: rgb(204, 224, 245);"></span><span-->
+    <!--data-value="rgb(235, 214, 255)" class="ql-picker-item" style="background-color: rgb(235, 214, 255);"></span><span-->
+    <!--data-value="rgb(187, 187, 187)" class="ql-picker-item" style="background-color: rgb(187, 187, 187);"></span><span-->
+    <!--data-value="rgb(240, 102, 102)" class="ql-picker-item" style="background-color: rgb(240, 102, 102);"></span><span-->
+    <!--data-value="rgb(255, 194, 102)" class="ql-picker-item" style="background-color: rgb(255, 194, 102);"></span><span-->
+    <!--data-value="rgb(255, 255, 102)" class="ql-picker-item" style="background-color: rgb(255, 255, 102);"></span><span-->
+    <!--data-value="rgb(102, 185, 102)" class="ql-picker-item" style="background-color: rgb(102, 185, 102);"></span><span-->
+    <!--data-value="rgb(102, 163, 224)" class="ql-picker-item" style="background-color: rgb(102, 163, 224);"></span><span-->
+    <!--data-value="rgb(194, 133, 255)" class="ql-picker-item" style="background-color: rgb(194, 133, 255);"></span><span-->
+    <!--data-value="rgb(136, 136, 136)" class="ql-picker-item" style="background-color: rgb(136, 136, 136);"></span><span-->
+    <!--data-value="rgb(161, 0, 0)" class="ql-picker-item" style="background-color: rgb(161, 0, 0);"></span><span-->
+    <!--data-value="rgb(178, 107, 0)" class="ql-picker-item" style="background-color: rgb(178, 107, 0);"></span><span-->
+    <!--data-value="rgb(178, 178, 0)" class="ql-picker-item" style="background-color: rgb(178, 178, 0);"></span><span-->
+    <!--data-value="rgb(0, 97, 0)" class="ql-picker-item" style="background-color: rgb(0, 97, 0);"></span><span-->
+    <!--data-value="rgb(0, 71, 178)" class="ql-picker-item" style="background-color: rgb(0, 71, 178);"></span><span-->
+    <!--data-value="rgb(107, 36, 178)" class="ql-picker-item" style="background-color: rgb(107, 36, 178);"></span><span-->
+    <!--data-value="rgb(68, 68, 68)" class="ql-picker-item" style="background-color: rgb(68, 68, 68);"></span><span-->
+    <!--data-value="rgb(92, 0, 0)" class="ql-picker-item" style="background-color: rgb(92, 0, 0);"></span><span-->
+    <!--data-value="rgb(102, 61, 0)" class="ql-picker-item" style="background-color: rgb(102, 61, 0);"></span><span-->
+    <!--data-value="rgb(102, 102, 0)" class="ql-picker-item" style="background-color: rgb(102, 102, 0);"></span><span-->
+    <!--data-value="rgb(0, 55, 0)" class="ql-picker-item" style="background-color: rgb(0, 55, 0);"></span><span-->
+    <!--data-value="rgb(0, 41, 102)" class="ql-picker-item" style="background-color: rgb(0, 41, 102);"></span><span-->
+    <!--data-value="rgb(61, 20, 102)" class="ql-picker-item"-->
+    <!--style="background-color: rgb(61, 20, 102);"></span></span></span><select title="Fill Color"-->
+                                                                             <!--class="toolbar-item txt-background tbbackground hidden"-->
+                                                                             <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'background-color']);"-->
+                                                                             <!--style="display: none;">-->
+    <!--<option value="transparent" label="transparent"></option>-->
+    <!--<option value="rgb(1, 1, 1)" label="rgb(1, 1, 1)"></option>-->
+    <!--&lt;!&ndash; Set to match the black color above &ndash;&gt;-->
+    <!--<option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"></option>-->
+    <!--<option value="rgb(255, 153, 0)" label="rgb(255, 153, 0)"></option>-->
+    <!--<option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"></option>-->
+    <!--<option value="rgb(0, 138, 0)" label="rgb(0, 138, 0)"></option>-->
+    <!--<option value="rgb(0, 102, 204)" label="rgb(0, 102, 204)"></option>-->
+    <!--<option value="rgb(153, 51, 255)" label="rgb(153, 51, 255)"></option>-->
+    <!--<option value="rgb(255, 255, 255)" label="rgb(255, 255, 255)" selected=""></option>-->
+    <!--<option value="rgb(250, 204, 204)" label="rgb(250, 204, 204)"></option>-->
+    <!--<option value="rgb(255, 235, 204)" label="rgb(255, 235, 204)"></option>-->
+    <!--<option value="rgb(255, 255, 204)" label="rgb(255, 255, 204)"></option>-->
+    <!--<option value="rgb(204, 232, 204)" label="rgb(204, 232, 204)"></option>-->
+    <!--<option value="rgb(204, 224, 245)" label="rgb(204, 224, 245)"></option>-->
+    <!--<option value="rgb(235, 214, 255)" label="rgb(235, 214, 255)"></option>-->
+    <!--<option value="rgb(187, 187, 187)" label="rgb(187, 187, 187)"></option>-->
+    <!--<option value="rgb(240, 102, 102)" label="rgb(240, 102, 102)"></option>-->
+    <!--<option value="rgb(255, 194, 102)" label="rgb(255, 194, 102)"></option>-->
+    <!--<option value="rgb(255, 255, 102)" label="rgb(255, 255, 102)"></option>-->
+    <!--<option value="rgb(102, 185, 102)" label="rgb(102, 185, 102)"></option>-->
+    <!--<option value="rgb(102, 163, 224)" label="rgb(102, 163, 224)"></option>-->
+    <!--<option value="rgb(194, 133, 255)" label="rgb(194, 133, 255)"></option>-->
+    <!--<option value="rgb(136, 136, 136)" label="rgb(136, 136, 136)"></option>-->
+    <!--<option value="rgb(161, 0, 0)" label="rgb(161, 0, 0)"></option>-->
+    <!--<option value="rgb(178, 107, 0)" label="rgb(178, 107, 0)"></option>-->
+    <!--<option value="rgb(178, 178, 0)" label="rgb(178, 178, 0)"></option>-->
+    <!--<option value="rgb(0, 97, 0)" label="rgb(0, 97, 0)"></option>-->
+    <!--<option value="rgb(0, 71, 178)" label="rgb(0, 71, 178)"></option>-->
+    <!--<option value="rgb(107, 36, 178)" label="rgb(107, 36, 178)"></option>-->
+    <!--<option value="rgb(68, 68, 68)" label="rgb(68, 68, 68)"></option>-->
+    <!--<option value="rgb(92, 0, 0)" label="rgb(92, 0, 0)"></option>-->
+    <!--<option value="rgb(102, 61, 0)" label="rgb(102, 61, 0)"></option>-->
+    <!--<option value="rgb(102, 102, 0)" label="rgb(102, 102, 0)"></option>-->
+    <!--<option value="rgb(0, 55, 0)" label="rgb(0, 55, 0)"></option>-->
+    <!--<option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"></option>-->
+    <!--<option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"></option>-->
+  <!--</select><span title="Bold" class="toolbar-item ql-format-button ql-bold"-->
+                 <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'bold']);"><i-->
+    <!--class="fa fa-bold"></i></span><span title="Italic" class="toolbar-item ql-format-button ql-italic"-->
+                                        <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'italic']);"><i-->
+    <!--class="fa fa-italic"></i></span><span title="Underline" class="toolbar-item ql-format-button ql-underline"-->
+                                          <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'underline']);"><i-->
+    <!--class="fa fa-underline"></i></span><span title="Text Alignment" class="toolbar-item ql-align ql-picker"-->
+                                             <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'align']);"><span-->
+    <!--class="ql-picker-label" data-value="left"></span><span class="ql-picker-options"><span data-value="left"-->
+                                                                                           <!--class="ql-picker-item ql-selected"></span><span-->
+    <!--data-value="center" class="ql-picker-item"></span><span data-value="right" class="ql-picker-item"></span><span-->
+    <!--data-value="justify" class="ql-picker-item"></span></span></span><select title="Text Alignment"-->
+                                                                             <!--class="toolbar-item ql-align"-->
+                                                                             <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'align']);"-->
+                                                                             <!--style="display: none;">-->
+    <!--<option value="left" label="Left" selected=""></option>-->
+    <!--<option value="center" label="Center"></option>-->
+    <!--<option value="right" label="Right"></option>-->
+    <!--<option value="justify" label="Justify"></option>-->
+  <!--</select><span><a href="#" title="Delete" class="toolbar-item tbdelete"-->
+                    <!--onclick="_gaq.push(['_trackEvent', 'editor', 'toolbar_text', 'delete']);"><i-->
+    <!--class="fa fa-trash-o"></i></a></span>&lt;!&ndash;   <span class="openMore"><i class="fa fa-caret-down"></i></span> &ndash;&gt;-->
+    <!--&lt;!&ndash; more options &ndash;&gt;&lt;!&ndash;        <div class="moreoptions ql-picker">-->
+            <!--<span class="ql-format-group">-->
+                <!--<span title="Bold" class="ql-format-button ql-bold"></span>-->
+                <!--<span title="Italic" class="ql-format-button ql-italic"></span>-->
+                <!--<span title="Underline" class="ql-format-button ql-underline"></span>-->
+            <!--</span>-->
+
+            <!--<span class="ql-format-group">-->
+                <!--<select title="Text Alignment" class="ql-align">-->
+                    <!--<option value="left" label="Left" selected=""></option>-->
+                    <!--<option value="center" label="Center"></option>-->
+                    <!--<option value="right" label="Right"></option>-->
+                    <!--<option value="justify" label="Justify"></option>-->
+                <!--</select>-->
+            <!--</span>-->
+        <!--</div> &ndash;&gt;&lt;!&ndash; end of moreOptions &ndash;&gt;</div>-->
+<!--</div>-->

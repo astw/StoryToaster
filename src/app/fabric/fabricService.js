@@ -39,25 +39,23 @@
       };
 
        fabric.Canvas.prototype.hideToolItems = function (toolboxSelector) {
-        toolboxSelector = '.tool-items';
-        $(toolboxSelector).hide();
-      };
+         toolboxSelector = '.tool-items';
+         $('.tool-items').hide();
+         $('.text-toolbar').hide();
+       };
 
       fabric.Canvas.prototype.setToolItems = function (object, toolboxSelector) {
 
-        //toolboxSelector = '.tool-items';
-        var loc = this.getAbsoluteCoords(object);
-        //$(toolboxSelector).css('left', loc.left + "px");
-        //$(toolboxSelector).css('top', loc.top + "px");
-        //
-        //$(toolboxSelector).show();
+        if(object instanceof fabric.Image){
+          toolboxSelector = '.tool-items';
+        } else if( object instanceof  fabric.IText){
+          toolboxSelector = '.text-toolbar';
+        }
 
-        toolboxSelector ='#gtexttoolbar';
+        var loc = this.getAbsoluteCoords(object);
         $(toolboxSelector).css('left', loc.left + "px");
         $(toolboxSelector).css('top', loc.top + "px");
-
         $(toolboxSelector).show();
-
       };
 
       fabric.Canvas.prototype.getAbsoluteCoords = function (object) {
@@ -129,6 +127,16 @@
 
       fabric.Image.prototype.flipByY = function(){
         this.flipY = !this.flipY;
+        this.canvas.renderAll();
+      };
+
+      fabric.IText.prototype.flipByX = function(){
+        this.flipH = !this.flipH;
+        this.canvas.renderAll();
+      };
+
+      fabric.IText.prototype.flipByY = function(){
+        this.flipV = !this.flipV;
         this.canvas.renderAll();
       };
 
