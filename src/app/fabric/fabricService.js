@@ -46,6 +46,7 @@
 
       fabric.Canvas.prototype.setToolItems = function (object, toolboxSelector) {
 
+        this.hideToolItems();
         if(object instanceof fabric.Image){
           toolboxSelector = '.tool-items';
         } else if( object instanceof  fabric.IText){
@@ -84,7 +85,6 @@
 
       fabric.Canvas.prototype.on('before:selection:cleared', function (obj) {
         if (obj.target) {
-
           console.log('before selection cleared ');
           this.hideToolItems();
         }
@@ -99,7 +99,7 @@
         this.canvas.hideToolItems();
       });
 
-      fabric.Image.prototype.on('moving', function () {
+      fabric.Object.prototype.on('moving', function () {
         this.canvas.setToolItems(this, '.tool-items');
       });
 
