@@ -226,7 +226,33 @@
         activeObj.flipByX();
       } else if (event === 'flipY') {
         activeObj.flipByY();
+      } else if (event === 'font-bold') {
+        if (activeObj.fontWeight === 'bold') {
+          activeObj.fontWeight = 'normal'
+        } else {
+          activeObj.fontWeight = 'bold';
+        }
+      } else if (event === 'font-italic'){
+        console.log(activeObj.fontStyle);
+        if(activeObj.fontStyle ==='italic'){
+          activeObj.fontStyle = 'normal'
+        } else {
+          activeObj.fontStyle = 'italic';
+        }
+      } else if(event === 'align-right'){
+        activeObj.textAlign = 'right';
+      } else if(event === 'align-center'){
+        activeObj.textAlign = 'center'
+      } else if(event === 'align-left'){
+        activeObj.textAlign = 'left'
+      } else if(event === 'font-underline'){
+        if(activeObj.textDecoration == 'underline'){
+          activeObj.textDecoration = 'normal';
+        } else {
+          activeObj.textDecoration = 'underline'
+        }
       }
+      activeObj.canvas.renderAll();
     }
 
     //------------------------------------------------------ tool items start

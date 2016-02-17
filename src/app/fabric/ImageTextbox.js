@@ -59,6 +59,10 @@
             posY = this.flipV ? this.height / 2 * -1 : 0; // Set y position to -100% if flip vertical
         }
 
+        if(this.flipV){
+          posY += this.height/2 + 10;
+        }
+
         ctx.save(); // Save the current state
         ctx.scale(scaleX, scaleY); // Set scale to flip the image
         if (this.flipH) {
