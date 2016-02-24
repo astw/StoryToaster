@@ -34,7 +34,7 @@
     activate();
 
     //save the book to server and get the book id;
-    saveToServe();
+    //saveToServe();
 
     angular.element(document).ready(documentReady);
 
