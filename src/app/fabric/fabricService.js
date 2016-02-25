@@ -28,14 +28,17 @@
         }, {crossOrigin: 'Anonymous'})
       };
 
-      fabric.Canvas.prototype.addBackgroundImage = function(imageUrl){
+      fabric.Canvas.prototype.addBackgroundImage = function(imageUrl) {
         imageUrl = imageUrl + "?size=origin";
-        this.setBackgroundImage(imageUrl,
-           this.renderAll.bind(this), {
+        var self = this;
+        this.setBackgroundImage(imageUrl, function (imge) {
+            self.renderAll(),
+              $rootScope.$broadcast('pageChanged', {canvas: this});
+          },
+          {
             backgroundImageStretch: true,
             crossOrigin: 'Anonymous'
           });
-        $rootScope.$broadcast('pageChanged',{canvas:this});
       };
 
        fabric.Canvas.prototype.hideToolItems = function (toolboxSelector) {

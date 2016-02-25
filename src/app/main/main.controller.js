@@ -137,6 +137,7 @@
     $scope.$on('$viewContentLoaded', documentReady);
 
     $scope.$on('pageChanged', function (event, args) {
+      console.log('in pageChanged event');
       backCurrentDesignData();
 
       //if (!args || !args.canvas) return;
@@ -165,6 +166,8 @@
       } else if(operation  === 'text'){
         vm.addText(imageUrl);
       }
+
+      generatePreviewImage();
     });
 //------------------------------------------------------ listen events end
 
@@ -311,6 +314,7 @@
       }
       currentCanvas = vm.left_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.leftDesignPage);
+      generatePreviewImage();
     }
 
     function selectRight() {
@@ -320,6 +324,7 @@
       }
       currentCanvas = vm.right_canvas;
       vm.PhotoBook.setPageActive(vm.PhotoBook.rightDesignPage);
+      generatePreviewImage();
     }
 
     function addImage(imageUrl, isBackground) {
@@ -398,19 +403,16 @@
 
     function backCurrentDesignData() {
       if (!vm.PhotoBook || !vm.PhotoBook || !vm.PhotoBook.leftDesignPage) return;
-      if(vm.left_canvas && vm.left_canvas.getObjects() < 1 ||  vm.right_canvas && vm.right_canvas.getObjects() < 1) return;
+      //if(vm.left_canvas && vm.left_canvas.getObjects() < 1 ||  vm.right_canvas && vm.right_canvas.getObjects() < 1) return;
 
       vm.PhotoBook.leftDesignPage.imageData = JSON.stringify(vm.left_canvas);
-      vm.PhotoBook.leftDesignPage.savePage(vm.PhotoBook.leftDesignPage.imageData);
 
       if (vm.PhotoBook.rightDesignPage) {
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);
-        vm.PhotoBook.rightDesignPage.savePage(vm.PhotoBook.rightDesignPage.imageData);
       }
 
       if (vm.frontCoverCanvas){
         vm.PhotoBook.frontCover.imageData = JSON.stringify(vm.frontCoverCanvas);
-        vm.PhotoBook.frontCover.savePage(vm.PhotoBook.frontCover.imageData);
       }
 
       generatePreviewImage();
@@ -434,6 +436,8 @@
     }
 
     function generatePreviewImage() {
+      console.log('generatePreviewImage');
+
       if(vm.left_canvas) {
         vm.PhotoBook.leftDesignPage.previewImage = vm.left_canvas.toDataURL();
       }
@@ -453,7 +457,7 @@
 
     function newPage() {
       vm.PhotoBook.createPage();
-    };
+    }
 
     function copyPage() {
       backCurrentDesignData();

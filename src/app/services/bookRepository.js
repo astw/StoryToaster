@@ -80,6 +80,8 @@ angular.module('storyToaster')
       //obj.frontCover.imageData = LZString.compressToBase64(obj.frontCover.imageData);
 
       obj.data = JSON.stringify(obj);
+      console.log('data length=', obj.data.length);
+
       var promise;
 
       if (!book.id || book.id < 0) {
@@ -131,6 +133,8 @@ angular.module('storyToaster')
     }
 
     function savePage(bookId, page) {
+      return;
+
       if (!page.id) {
         // create a new page;
         console.log('create a new page');
