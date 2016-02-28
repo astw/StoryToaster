@@ -10,12 +10,18 @@
                           relayService,
                           $scope,
                           $window,
+                          $routeParams,
                           imageService,
                           PhotoBook,
                           bookRepository,
                           config,
                           fabricJSExt) {
     console.log('----------- in main controller ---------------');
+
+    console.log($routeParams.bookid);
+
+    var bookId = $routeParams.bookid;
+
 
     var vm = this;
 
@@ -31,12 +37,37 @@
 
     var currentCanvas = vm.left_canvas;
 
+    function restorBoook(bookdId) {
+      vm.PhotoBook.id = vm.selectedBook.id;
+      vm.PhotoBook.frontCover = vm.selectedBook.frontCover;
+      vm.PhotoBook.dedicatePage = vm.selectedBook.dedicatePage;
+      vm.PhotoBook.pages = vm.selectedBook.pages;
+      vm.PhotoBook.backCover = vm.selectedBook.backCover;
+      vm.PhotoBook.leftDesignPage = vm.selectedBook.pages[0];
+      vm.PhotoBook.rightDesignPage = vm.selectedBook.pages[1];
+
+      for(var i =0; i<vm.PhotoBook.pages.length; i=i+2) {
+        var p1 = vm.PhotoBook.pages[i];
+        var p2 = null;
+        if ((i + 1) < vm.PhotoBook.pages.length) {
+          p2 = vm.PhotoBook.pages[i + 1];
+        }
+
+        vm.PhotoBook.leftDesignPage = p1;
+        vm.PhotoBook.rightDesignPage = p2;
+        restoreToCurrentDesignData();
+        //generatePreviewImage();
+      }
+
+      //selectLeft();
+    }
+
     activate();
 
     //save the book to server and get the book id;
     //saveToServe();
 
-    angular.element(document).ready(documentReady);
+    //angular.element(document).ready(documentReady);
 
     //---------------------------------------------------- methods
     vm.clickOnTool = clickOnTool;
@@ -124,6 +155,21 @@
 
 //------------------------------------------------------ listen events
 
+    $scope.$on('canvasRenderAfter',function(){
+       console.log('canvas object render finished ');
+       //generatePreviewImage();
+    });
+
+    $scope.$on('onAfterRender',function(){
+      console.log('after render for covers');
+      restorBoook();
+
+    })
+
+    $scope.$on('designCanvasInitialed',function(){
+      //restorBoook();
+    });
+
     $scope.$on('saveBook',function(){
       saveToServe();
     });
@@ -187,6 +233,8 @@
 
    //------------------------------------------------------ font list ends
     function activate() {
+
+
       imageService.getBackgroundImages()
         .then(
         function (data) {
@@ -424,6 +472,9 @@
         var leftData = vm.PhotoBook.leftDesignPage.imageData;
         if (leftData)
           vm.left_canvas.loadFromJSON(leftData, vm.left_canvas.renderAll.bind(vm.left_canvas), function () {
+            console.log('left canvas load finished....');
+            selectLeft();
+            generatePreviewImage();
           });
       }
 
@@ -431,6 +482,9 @@
         var rightData = vm.PhotoBook.rightDesignPage.imageData;
         if (rightData)
           vm.right_canvas.loadFromJSON(rightData, vm.right_canvas.renderAll.bind(vm.right_canvas), function () {
+            console.log('right canvas load finished....');
+            selectRight();
+            generatePreviewImage();
           })
       }
     }

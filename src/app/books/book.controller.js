@@ -31,6 +31,7 @@
 
     vm.createBook = function(){
       console.log('inside book ctrl, create book');
+      relayService.putKeyValue('_selectedBook_',book);
       $window.location.assign('/account/my');
     };
 
@@ -111,6 +112,9 @@
       //)
     };
 
+    vm.editBook = function(book){
+      $window.location.assign('/account/my?bookid=' + book.id)
+    };
 
     $scope.$on('$viewContentLoaded', function(document){
 

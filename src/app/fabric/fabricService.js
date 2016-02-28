@@ -97,6 +97,10 @@
         this.hideToolItems();
       });
 
+      fabric.Canvas.prototype.on('after:render',function(){
+        $rootScope.$broadcast('canvasRenderAfter');
+      });
+
       fabric.Image.prototype.on('selection:cleared', function () {
         console.log('cleared on image');
         this.canvas.hideToolItems();

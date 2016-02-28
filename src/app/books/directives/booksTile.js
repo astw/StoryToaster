@@ -41,7 +41,6 @@
 
       if(data && data.imageData)
         canvas.loadFromJSON(data.imageData, canvas.renderAll.bind(canvas), function () {
-
           scope.book.frontCover.previewImage = canvas.toDataURL();
         });
 

@@ -1,5 +1,5 @@
 <div class="book-panel-small"
-     ng-click="$parent.bookCtrl.clickBook(book)"
+     ng-click="bookTitleCtrl.clickBook(book)"
      ng-mouseenter="$parent.bookCtrl.hoverOnBook(book)"
      ng-mouseleave="$parent.bookCtrl.hoverOnBook(book)"
   >
@@ -35,6 +35,9 @@
     </div>
     <div class="btn btn-primary btn-xs space-5px pull-right" ng-click="$parent.bookCtrl.BuyBook(book)"
          ng-show="book.hover">购买
+    </div>
+    <div class="btn btn-primary btn-xs space-5px pull-right" ng-click="$parent.bookCtrl.editBook(book)"
+         ng-show="book.hover">修改
     </div>
   </div>
 </div>

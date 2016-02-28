@@ -6,7 +6,7 @@
     .directive('doubleDesignPage2', doubleDesignPage);
 
   /* @ngInject */
-  function doubleDesignPage($window) {
+  function doubleDesignPage($window,$rootScope) {
 
     var directive = {
       templateUrl:  'app/main/template/double-design-page.html',
@@ -34,13 +34,15 @@
           scope.main.left_canvas = new fabric.Canvas('left_canvas', {select: false, backgroundColor: '#ffffff'});
           scope.main.right_canvas = new fabric.Canvas('right_canvas', {select: false, backgroundColor: '#ffffff'});
           scope.main.currentCanvas = scope.main.left_canvas;
-        } 
+        }
 
         scope.main.left_canvas.setWidth(canvasWidth);
         scope.main.left_canvas.setHeight(canvasHeight);
 
         scope.main.right_canvas.setWidth(canvasWidth);
         scope.main.right_canvas.setHeight(canvasHeight);
+
+        $rootScope.$broadcast('designCanvasInitialed')
       };
       scope.onResize();
 
