@@ -36,8 +36,8 @@
       picture.x = (w - picture.width ) / 2;
       picture.y = (h - picture.height) / 2;
 
-      var canvasWidth = w -10;
-      var canvasHeight = h -10;
+      var canvasWidth = w - 10;
+      var canvasHeight = h - 10;
 
       scope.main.PhotoBook.frontCover.width = canvasWidth;
       scope.main.PhotoBook.frontCover.height = canvasHeight;
@@ -55,19 +55,25 @@
 
       scope.main.frontCoverCanvas = canvas;
 
-      //set title and attribute
-      var title = addBookTitle(scope);
-      var attribute = addAttribute(scope, picture);
-      picture.url = "http://localhost:3000/assets/images/blank.jpg";
+      console.log('------- in font-conver-design directive ------');
+      console.log('---------- scope.main.PhotoBook.id', scope.main.PhotoBook.id);
+      if (!scope.main.PhotoBook.id) {
 
-      //set image
-      addPicture(scope, picture);
+        //set title and attribute
+        var title = addBookTitle(scope);
+        var attribute = addAttribute(scope, picture);
+        picture.url = "http://localhost:3000/assets/images/blank.jpg";
+
+        //set image
+        addPicture(scope, picture);
+      }
+
 
       //set monitor
-      addMonitors(scope, title, attribute, picture,canvasWidth, canvasHeight);
+      addMonitors(scope, title, attribute, picture, canvasWidth, canvasHeight);
       fireChangeEvent(scope);
 
-      scope.$emit('onAfterRender');
+      scope.$emit('onAfterRenderForFrontCover');
     }
 
     function addAttribute(scope, picture) {

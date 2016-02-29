@@ -68,14 +68,14 @@ angular.module('storyToaster')
 
       var obj = angular.fromJson(dataString);
       obj.pages.forEach(function(page){
-        delete page.previewImage;
+        //delete page.previewImage;
       });
 
-      delete obj.frontCover.previewImage;
-      delete obj.dedicatedPage.previewImage;
-      delete obj.backCover.previewImage;
-      delete obj.leftDesignPage;
-      delete obj.rightDesignPage;
+      //delete obj.frontCover.previewImage;
+      //delete obj.dedicatedPage.previewImage;
+      //delete obj.backCover.previewImage;
+      //delete obj.leftDesignPage;
+      //delete obj.rightDesignPage;
 
       //obj.frontCover.imageData = LZString.compressToBase64(obj.frontCover.imageData);
 

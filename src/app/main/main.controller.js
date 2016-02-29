@@ -46,18 +46,16 @@
       vm.PhotoBook.leftDesignPage = vm.selectedBook.pages[0];
       vm.PhotoBook.rightDesignPage = vm.selectedBook.pages[1];
 
-      for(var i =0; i<vm.PhotoBook.pages.length; i=i+2) {
-        var p1 = vm.PhotoBook.pages[i];
-        var p2 = null;
-        if ((i + 1) < vm.PhotoBook.pages.length) {
-          p2 = vm.PhotoBook.pages[i + 1];
-        }
+      vm.PhotoBook.title = vm.selectedBook.title;
+      vm.PhotoBook.titleColor = vm.selectedBook.titleColor;
+      vm.PhotoBook.backgroundColor = vm.selectedBook.backgroundColor;
+      vm.PhotoBook.attribute = vm.selectedBook.attribute;
+      vm.PhotoBook.attributeColor = vm.selectedBook.attributeColor;
+      vm.PhotoBook.frontCoverImageIndex = vm.selectedBook.frontCoverImageIndex;
 
-        vm.PhotoBook.leftDesignPage = p1;
-        vm.PhotoBook.rightDesignPage = p2;
-        restoreToCurrentDesignData();
-        //generatePreviewImage();
-      }
+      restoreToCurrentDesignData();
+      restoreCoversData();
+      $timeout(generatePreviewImage, 2000);
 
       //selectLeft();
     }
@@ -155,16 +153,21 @@
 
 //------------------------------------------------------ listen events
 
+    $scope.$on('onAfterRenderForFrontCover',function(){
+      console.log('onAfterRenderForFrontCover');
+      restorBoook();
+    });
+
     $scope.$on('canvasRenderAfter',function(){
-       console.log('canvas object render finished ');
+       //console.log('canvas object render finished ');
        //generatePreviewImage();
     });
 
     $scope.$on('onAfterRender',function(){
-      console.log('after render for covers');
-      restorBoook();
+      //console.log('after render for covers');
+      //restorBoook();
 
-    })
+    });
 
     $scope.$on('designCanvasInitialed',function(){
       //restorBoook();
@@ -183,7 +186,7 @@
     $scope.$on('$viewContentLoaded', documentReady);
 
     $scope.$on('pageChanged', function (event, args) {
-      console.log('in pageChanged event');
+      //console.log('in pageChanged event');
       backCurrentDesignData();
 
       //if (!args || !args.canvas) return;
@@ -466,31 +469,42 @@
       generatePreviewImage();
     }
 
+    function restoreCoversData(){
+      var frontCoverData = vm.PhotoBook.frontCover.imageData;
+      restoreCanvasData(vm.frontCoverCanvas,frontCoverData, 'frontCoverCanvas');
+
+     // var backCoverData = vm.PhotoBook.backCover.imageData;
+     // restoreCanvasData(vm.backCoverCanvas,backCoverData);
+
+      //var dedicatePageData = vm.PhotoBook.dedicatePage.imageData;
+      //restoreCanvasData(vm.dedicatePageCanvas,dedicatePageData, 'dedicatePageCanvas');
+    }
+
+    function restoreCanvasData(theCanvas, data, canvasName){
+      if(theCanvas && data){
+        theCanvas.loadFromJSON(data,
+        theCanvas.renderAll.bind(theCanvas),
+          function(){
+            console.log('canvas ' + canvasName + ' load finished');
+          }
+        )
+      }
+    }
+
     function restoreToCurrentDesignData() {
 
       if (vm.PhotoBook.leftDesignPage) {
         var leftData = vm.PhotoBook.leftDesignPage.imageData;
-        if (leftData)
-          vm.left_canvas.loadFromJSON(leftData, vm.left_canvas.renderAll.bind(vm.left_canvas), function () {
-            console.log('left canvas load finished....');
-            selectLeft();
-            generatePreviewImage();
-          });
+        restoreCanvasData(vm.left_canvas,leftData, 'leftCanvas');
       }
 
       if (vm.PhotoBook.rightDesignPage) {
         var rightData = vm.PhotoBook.rightDesignPage.imageData;
-        if (rightData)
-          vm.right_canvas.loadFromJSON(rightData, vm.right_canvas.renderAll.bind(vm.right_canvas), function () {
-            console.log('right canvas load finished....');
-            selectRight();
-            generatePreviewImage();
-          })
+        restoreCanvasData(vm.right_canvas,rightData, 'rightCanvas');
       }
     }
 
     function generatePreviewImage() {
-      console.log('generatePreviewImage');
 
       if(vm.left_canvas) {
         vm.PhotoBook.leftDesignPage.previewImage = vm.left_canvas.toDataURL();
