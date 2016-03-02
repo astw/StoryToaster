@@ -51,11 +51,17 @@
       vm.PhotoBook.backgroundColor = vm.selectedBook.backgroundColor;
       vm.PhotoBook.attribute = vm.selectedBook.attribute;
       vm.PhotoBook.attributeColor = vm.selectedBook.attributeColor;
-      vm.PhotoBook.frontCoverImageIndex = vm.selectedBook.frontCoverImageIndex;
+
+      vm.PhotoBook.frontCoverImageIndex = -1;
+      $timeout(function(){
+        vm.PhotoBook.frontCoverImageIndex = vm.selectedBook.frontCoverImageIndex;
+      },500);
 
       restoreToCurrentDesignData();
       restoreCoversData();
       $timeout(generatePreviewImage, 2000);
+
+
 
       //selectLeft();
     }
@@ -396,6 +402,8 @@
 
       backCurrentDesignData();
       vm.PhotoBook.setFrontCoverActive();
+      vm.PhotoBook.frontCoverImageIndex = -1;
+      vm.PhotoBook.frontCoverImageIndex = vm.selectedBook.frontCoverImageIndex;
     }
 
     function dedicatedPageClick() {
@@ -463,7 +471,7 @@
       }
 
       if (vm.frontCoverCanvas){
-        vm.PhotoBook.frontCover.imageData = JSON.stringify(vm.frontCoverCanvas);
+      //  vm.PhotoBook.frontCover.imageData = JSON.stringify(vm.frontCoverCanvas);
       }
 
       generatePreviewImage();
@@ -486,6 +494,12 @@
         theCanvas.renderAll.bind(theCanvas),
           function(){
             console.log('canvas ' + canvasName + ' load finished');
+
+
+            $timeout(3000,
+              function(){
+
+              })
           }
         )
       }
@@ -514,8 +528,8 @@
         vm.PhotoBook.rightDesignPage.previewImage = vm.right_canvas.toDataURL();
       }
 
-      if (vm.frontCoverCanvas)
-        vm.PhotoBook.frontCover.previewImage = vm.frontCoverCanvas.toDataURL();
+      //if (vm.frontCoverCanvas)
+      //  vm.PhotoBook.frontCover.previewImage = vm.frontCoverCanvas.toDataURL();
     }
 
     function deleteObject() {
