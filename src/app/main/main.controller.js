@@ -20,11 +20,8 @@
 
     console.log($routeParams.bookid);
 
-    var bookId = $routeParams.bookid;
-
-
     var vm = this;
-
+    vm.bookId = $routeParams.bookid;
     vm.PhotoBook = new PhotoBook();
 
     vm.PhotoBook.pagesInDesign = 2;
@@ -37,7 +34,10 @@
 
     var currentCanvas = vm.left_canvas;
 
-    function restorBoook(bookdId) {
+    function restorBoook() {
+      if(!vm.bookId) return ;
+
+
       vm.PhotoBook.id = vm.selectedBook.id;
       vm.PhotoBook.frontCover = vm.selectedBook.frontCover;
       vm.PhotoBook.dedicatePage = vm.selectedBook.dedicatePage;
@@ -55,15 +55,13 @@
       vm.PhotoBook.frontCoverImageIndex = -1;
       $timeout(function(){
         vm.PhotoBook.frontCoverImageIndex = vm.selectedBook.frontCoverImageIndex;
-      },500);
+      },2000);
 
       restoreToCurrentDesignData();
       restoreCoversData();
-      $timeout(generatePreviewImage, 2000);
-
-
-
-      //selectLeft();
+      $timeout(generatePreviewImage, 3000);
+      //
+      selectLeft();
     }
 
     activate();
@@ -481,8 +479,8 @@
       var frontCoverData = vm.PhotoBook.frontCover.imageData;
       restoreCanvasData(vm.frontCoverCanvas,frontCoverData, 'frontCoverCanvas');
 
-     // var backCoverData = vm.PhotoBook.backCover.imageData;
-     // restoreCanvasData(vm.backCoverCanvas,backCoverData);
+      var backCoverData = vm.PhotoBook.backCover.imageData;
+      restoreCanvasData(vm.backCoverCanvas,backCoverData);
 
       //var dedicatePageData = vm.PhotoBook.dedicatePage.imageData;
       //restoreCanvasData(vm.dedicatePageCanvas,dedicatePageData, 'dedicatePageCanvas');
@@ -555,6 +553,7 @@
     }
 
     function saveToServe() {
+      //generatePreviewImage();
       bookRepository.saveToServer(vm.PhotoBook);
     }
 
