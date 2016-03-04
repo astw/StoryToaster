@@ -35,7 +35,7 @@
       $window.location.assign('/account/my');
     };
 
-    vm.deleteBook = function(book,index,event) {
+    vm.deleteBook = function(bookId,index,event) {
       event.stopPropagation();
       //popup a module dialog
 
@@ -54,7 +54,7 @@
         closeOnCancel: false
       }, function(isConfirm){
         if (isConfirm) {
-              bookRepository.deleteBook(book).then(
+              bookRepository.deleteBook(bookId).then(
                   function(res){
                     if(res.data.status == 200){
                       //deleted
@@ -112,8 +112,8 @@
       //)
     };
 
-    vm.editBook = function(book){
-      $window.location.assign('/account/my?bookid=' + book.id)
+    vm.editBook = function(bookId){
+      $window.location.assign('/account/my?bookid=' + bookId)
     };
 
     $scope.$on('$viewContentLoaded', function(document){

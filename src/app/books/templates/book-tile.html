@@ -30,13 +30,13 @@
          ng-click="$parent.bookCtrl.deleteBook(book,index, $event)"
          data-effect="mfp-zoomIn" ng-show="book.hover">删除
     </div>
-    <div class="btn btn-primary btn-xs space-5px pull-right" ng-click="$parent.bookCtrl.shareBook(book)"
+    <div class="btn btn-primary btn-xs space-5px pull-right" ng-click="$parent.bookCtrl.shareBook(book.id)"
          ng-show="book.hover">分享
     </div>
-    <div class="btn btn-primary btn-xs space-5px pull-right" ng-click="$parent.bookCtrl.BuyBook(book)"
+    <div class="btn btn-primary btn-xs space-5px pull-right" ng-click="$parent.bookCtrl.BuyBook(book.id)"
          ng-show="book.hover">购买
     </div>
-    <div class="btn btn-primary btn-xs space-5px pull-right" ng-click="$parent.bookCtrl.editBook(book)"
+    <div class="btn btn-primary btn-xs space-5px pull-right" ng-click="$parent.bookCtrl.editBook(book.id)"
          ng-show="book.hover">修改
     </div>
   </div>

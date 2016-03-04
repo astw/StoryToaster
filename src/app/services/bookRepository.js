@@ -27,6 +27,41 @@ angular.module('storyToaster')
       return self.promise;
     };
 
+    this.getBookById = function(bookId){
+      var dfd = $q.defer();
+      self.promise = dfd.promise;
+
+      var url = API_URL + 'books/' +bookId;
+
+      $http.get(url).then(function (res) {
+          var books = [];
+          if (res.data) {
+            var books = books.concat(res.data);
+            books.forEach(function(book) {
+              var data = angular.fromJson(book.data);
+              book.frontCover = data.frontCover;
+              //book.frontCover.imageData = fontCoverImageData;
+              book.dedicatedPage = data.dedicatedPage;
+              book.backCover = data.backCover;
+            });
+
+            if(books.length > 0)
+              return dfd.resolve(books[0]);
+            else
+              return dfd.reject(null)
+          }
+
+          return dfd.reject(null);
+        },
+        function (err) {
+          return dfd.reject(null);
+        }).catch(function (err) {
+          return dfd.reject(null);
+        });
+
+      return self.promise;
+    };
+
     this.getUserBooks = function() {
       var dfd = $q.defer();
       self.promise = dfd.promise;
@@ -38,10 +73,6 @@ angular.module('storyToaster')
             var books = books.concat(res.data);
             books.forEach(function(book) {
               var data = angular.fromJson(book.data);
-
-              //var unzippedData = LZString.decompress(res.data);
-              //res.data = unzippedData;
-              //var fontCoverImageData = LZString.decompressFromBase64(data.frontCover.imageData);
               book.frontCover = data.frontCover;
               //book.frontCover.imageData = fontCoverImageData;
               book.dedicatedPage = data.dedicatedPage;

@@ -247,8 +247,10 @@
             canvas.setWidth(canvasWidth);
             canvas.setHeight(canvasHeight);
 
-            picture.url = scope.main.PhotoBook.pages[newValue].previewImage;
-            addPicture(scope, picture, canvasWidth, canvasHeight);
+            if(scope.main.PhotoBook.pages.length > newValue) {
+              picture.url = scope.main.PhotoBook.pages[newValue].previewImage;
+              addPicture(scope, picture, canvasWidth, canvasHeight);
+            }
           }
         }
       )
