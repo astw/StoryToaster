@@ -33,6 +33,9 @@ angular.module('storyToaster')
 
       var url = API_URL + 'books/' +bookId;
 
+      //var userId =1 ;
+      //url = API_URL + 'users/' + userId + '/books' ;
+
       $http.get(url).then(function (res) {
           var books = [];
           if (res.data) {
@@ -40,6 +43,9 @@ angular.module('storyToaster')
             books.forEach(function(book) {
               var data = angular.fromJson(book.data);
               book.frontCover = data.frontCover;
+              data.pages.forEach(function(page,index){
+                book.pages[index] = page;
+              });
               //book.frontCover.imageData = fontCoverImageData;
               book.dedicatedPage = data.dedicatedPage;
               book.backCover = data.backCover;
@@ -74,6 +80,7 @@ angular.module('storyToaster')
             books.forEach(function(book) {
               var data = angular.fromJson(book.data);
               book.frontCover = data.frontCover;
+              //book.pages = data.pages;
               //book.frontCover.imageData = fontCoverImageData;
               book.dedicatedPage = data.dedicatedPage;
               book.backCover = data.backCover;
