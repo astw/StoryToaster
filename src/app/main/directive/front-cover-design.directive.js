@@ -232,13 +232,10 @@
 
       scope.$watch(
         function () {
-          console.log('fontCoverImageInde changed,value=',scope.main.PhotoBook.frontCoverImageIndex);
           return scope.main.PhotoBook.frontCoverImageIndex;
         },
 
         function (newValue, oldValue) {
-
-          console.log('fontCoverImageInde changed handler， newValue=', newValue);
 
           if (newValue >= 0) {
             if(canvas.item(2))

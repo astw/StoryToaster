@@ -37,7 +37,7 @@
 
     function restorBoook(bookdId) {
 
-      if(!vm.bookId){
+      if (!vm.bookId) {
         vm.left_canvas.clear();
         vm.right_canvas.clear();
         vm.PhotoBook.fonrtCoverImageIndex = -1;
@@ -45,38 +45,50 @@
       }
 
       bookRepository.getBookById(vm.bookId)
-        .then(function(book){
+        .then(function (book) {
 
-          if(!book){
+          if (!book) {
             vm.left_canvas.clear();
             vm.right_canvas.clear();
             vm.PhotoBook.fonrtCoverImageIndex = -1;
             return;
           }
           vm.selectedBook = book;
-          vm.PhotoBook.id = vm.selectedBook.id;
-          vm.PhotoBook.frontCover = vm.selectedBook.frontCover;
-          vm.PhotoBook.dedicatePage = vm.selectedBook.dedicatePage;
-          vm.PhotoBook.pages = vm.selectedBook.pages;
-          vm.PhotoBook.backCover = vm.selectedBook.backCover;
-          vm.PhotoBook.leftDesignPage = vm.selectedBook.pages[0];
-          vm.PhotoBook.rightDesignPage = vm.selectedBook.pages[1];
 
-          vm.PhotoBook.title = vm.selectedBook.title;
-          vm.PhotoBook.titleColor = vm.selectedBook.titleColor;
-          vm.PhotoBook.backgroundColor = vm.selectedBook.backgroundColor;
-          vm.PhotoBook.attribute = vm.selectedBook.attribute;
-          vm.PhotoBook.attributeColor = vm.selectedBook.attributeColor;
-          vm.PhotoBook.frontCoverImageIndex = -1;
 
-          $timeout(function(){
-            vm.PhotoBook.frontCoverImageIndex = vm.selectedBook.frontCoverImageIndex;
+          Object.getOwnPropertyNames(book).forEach(
+            function(prop){
+              vm.PhotoBook[prop] =book[prop];
+            }
+          );
 
-          },1000);
+          //vm.PhotoBook.id = vm.selectedBook.id;
+          //vm.PhotoBook.frontCover = vm.selectedBook.frontCover;
+          //vm.PhotoBook.dedicatePage = vm.selectedBook.dedicatePage;
+          //vm.PhotoBook.pages = vm.selectedBook.pages;
+          //vm.PhotoBook.backCover = vm.selectedBook.backCover;
+          //vm.PhotoBook.leftDesignPage = vm.selectedBook.pages[0];
+          //vm.PhotoBook.rightDesignPage = vm.selectedBook.pages[1];
+          //
+          //vm.PhotoBook.title = vm.selectedBook.title;
+          //vm.PhotoBook.titleColor = vm.selectedBook.titleColor;
+          //vm.PhotoBook.backgroundColor = vm.selectedBook.backgroundColor;
+          //vm.PhotoBook.attribute = vm.selectedBook.attribute;
+          //vm.PhotoBook.attributeColor = vm.selectedBook.attributeColor;
+          //vm.PhotoBook.frontCoverImageIndex = -1;
 
-          restoreToCurrentDesignData();
-          restoreCoversData();
-          $timeout(generatePreviewImage, 2000);
+          //$timeout(function () {
+          //  vm.PhotoBook.frontCoverImageIndex = vm.selectedBook.frontCoverImageIndex;
+          //  $scope.safeApply();
+          //}, 3000);
+          //
+          //restoreToCurrentDesignData();
+          ////restoreCoversData();
+          //$timeout(
+          //  function () {
+          //    generatePreviewImage();
+          //  }
+          //  , 500);
         })
     }
 
@@ -209,10 +221,14 @@
       //console.log('in pageChanged event');
       backCurrentDesignData();
 
-      //if (!args || !args.canvas) return;
-      //
-      //args.page.imageData = JSON.stringify(args.canvas);
-      //args.page.previewImage = args.canvas.toDataURL();
+      var oldIndex = vm.PhotoBook.frontCoverImageIndex;
+
+      vm.PhotoBook.frontCoverImageIndex = -1;
+      $timeout(function () {
+        vm.PhotoBook.frontCoverImageIndex = oldIndex;
+        $scope.safeApply();
+      }, 1000);
+
     });
 
     $scope.$on('addImage', function (event, args) {
