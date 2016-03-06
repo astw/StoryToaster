@@ -21,7 +21,8 @@
       'angularSpectrumColorpicker',
       'ngjsColorPicker',
       'mgcrea.ngStrap',
-      'lz-string'
+      'lz-string',
+      'angular-lodash'
     ]);
 
 })();

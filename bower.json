@@ -33,11 +33,11 @@
     "angular-strap": "~2.3.6",
     "lz-string": "~1.4.4",
     "angular-lz-string": "~1.0.3",
-    "fabric" : "https://github.com/astw/fabric.js.git#a8246a412437ab23f741e70bb33f7659c0ab9e79"
+    "fabric": "https://github.com/astw/fabric.js.git#a8246a412437ab23f741e70bb33f7659c0ab9e79",
+    "angular-lodash": "~0.1.2"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"
-
   },
   "overrides": {
     "bootstrap": {
