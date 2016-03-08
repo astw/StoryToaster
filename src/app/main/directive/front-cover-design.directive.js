@@ -158,6 +158,7 @@
         canvas.setActiveObject(canvas.item(2));
         canvas.item(2).selectable = false;
         img.bringToFront();
+        canvas.hideToolItems();
 
         fireChangeEvent(scope);
 

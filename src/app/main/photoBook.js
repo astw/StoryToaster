@@ -7,7 +7,7 @@ angular.module('storyToaster')
     $rootScope
   ) {
 
-    var TOTAL_PAGE = 25;
+    var TOTAL_PAGE = 24;
     var currentUser = authService.currentUser();
     var bookId = -1;
 
