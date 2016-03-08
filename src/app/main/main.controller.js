@@ -30,12 +30,9 @@
     vm.currentPage = vm.PhotoBook.pages[0];
     vm.currentPage.active = true;
 
-    //var temp = relayService.getKeyValue('_selectedBook_') && relayService.getKeyValue('_selectedBook_').data;
-    //vm.selectedBook = temp ? JSON.parse(relayService.getKeyValue('_selectedBook_').data) : null;
-
     var currentCanvas = vm.left_canvas;
 
-    function restorBoook(bookdId) {
+    function restoreBoook(bookdId) {
 
       if (!vm.bookId) {
         vm.left_canvas.clear();
@@ -58,44 +55,18 @@
 
           Object.getOwnPropertyNames(book).forEach(
             function(prop){
-              vm.PhotoBook[prop] =book[prop];
+              vm.PhotoBook[prop] =  book[prop] || vm.PhotoBook[prop];
             }
           );
 
-          //vm.PhotoBook.id = vm.selectedBook.id;
-          //vm.PhotoBook.frontCover = vm.selectedBook.frontCover;
-          //vm.PhotoBook.dedicatePage = vm.selectedBook.dedicatePage;
-          //vm.PhotoBook.pages = vm.selectedBook.pages;
-          //vm.PhotoBook.backCover = vm.selectedBook.backCover;
-          //vm.PhotoBook.leftDesignPage = vm.selectedBook.pages[0];
-          //vm.PhotoBook.rightDesignPage = vm.selectedBook.pages[1];
-          //
-          //vm.PhotoBook.title = vm.selectedBook.title;
-          //vm.PhotoBook.titleColor = vm.selectedBook.titleColor;
-          //vm.PhotoBook.backgroundColor = vm.selectedBook.backgroundColor;
-          //vm.PhotoBook.attribute = vm.selectedBook.attribute;
-          //vm.PhotoBook.attributeColor = vm.selectedBook.attributeColor;
-          //vm.PhotoBook.frontCoverImageIndex = -1;
+          vm.PhotoBook.leftDesignPage = vm.selectedBook.pages[0];
+          vm.PhotoBook.rightDesignPage = vm.selectedBook.pages[1];
+          restoreToCurrentDesignData();
 
-          //$timeout(function () {
-          //  vm.PhotoBook.frontCoverImageIndex = vm.selectedBook.frontCoverImageIndex;
-          //  $scope.safeApply();
-          //}, 3000);
-          //
-          //restoreToCurrentDesignData();
-          ////restoreCoversData();
-          //$timeout(
-          //  function () {
-          //    generatePreviewImage();
-          //  }
-          //  , 500);
         })
     }
 
     activate();
-
-    //save the book to server and get the book id;
-    //saveToServe();
 
     //angular.element(document).ready(documentReady);
 
@@ -187,7 +158,7 @@
 
     $scope.$on('onAfterRenderForFrontCover',function(){
       console.log('onAfterRenderForFrontCover');
-      restorBoook();
+      restoreBoook();
     });
 
     $scope.$on('canvasRenderAfter',function(){
@@ -197,12 +168,10 @@
 
     $scope.$on('onAfterRender',function(){
       //console.log('after render for covers');
-      //restorBoook();
 
     });
 
     $scope.$on('designCanvasInitialed',function(){
-      //restorBoook();
     });
 
     $scope.$on('saveBook',function(){
@@ -498,7 +467,7 @@
         vm.PhotoBook.rightDesignPage.imageData = JSON.stringify(vm.right_canvas);
       }
 
-      if (vm.frontCoverCanvas){
+      if (vm.frontCoverCanvas && vm.PhotoBook.frontCover){
         vm.PhotoBook.frontCover.imageData = JSON.stringify(vm.frontCoverCanvas);
       }
 
@@ -550,7 +519,7 @@
         vm.PhotoBook.rightDesignPage.previewImage = vm.right_canvas.toDataURL();
       }
 
-      if (vm.frontCoverCanvas)
+      if (vm.frontCoverCanvas && vm.PhotoBook.frontCover)
         vm.PhotoBook.frontCover.previewImage = vm.frontCoverCanvas.toDataURL();
     }
 

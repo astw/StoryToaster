@@ -237,7 +237,7 @@
 
         function (newValue, oldValue) {
 
-          if (newValue >= 0) {
+          if (newValue && newValue >= 0) {
             if(canvas.item(2))
             canvas.item(2).remove();
 

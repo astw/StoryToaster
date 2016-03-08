@@ -171,7 +171,7 @@
 
         function (newValue) {
 
-          if (newValue >= 0) {
+          if (newValue && newValue >= 0) {
             var backCoverImage = canvas.getItemByName('backCoverImage');
 
             if(backCoverImage)

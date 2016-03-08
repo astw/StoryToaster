@@ -273,6 +273,7 @@ angular.module('storyToaster')
       };
 
       this.setFrontCoverActive = function(){
+        if(!this.dedicatedPage) return ;
         this.dedicatedPage.active = false;
         this.frontCover.active = true;
         this.backCover.active = false;

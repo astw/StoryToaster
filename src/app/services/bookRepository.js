@@ -43,10 +43,10 @@ angular.module('storyToaster')
             books.forEach(function(book) {
               var data = angular.fromJson(book.data);
               book.frontCover = data.frontCover;
-              data.pages.forEach(function(page,index){
+              //data.pages.forEach(function(page,index){
+              data.forEach(function(page,index){
                 book.pages[index] = page;
               });
-              //book.frontCover.imageData = fontCoverImageData;
               book.dedicatedPage = data.dedicatedPage;
               book.backCover = data.backCover;
             });
@@ -79,11 +79,11 @@ angular.module('storyToaster')
             var books = books.concat(res.data);
             books.forEach(function(book) {
               var data = angular.fromJson(book.data);
-              book.frontCover = data.frontCover;
+              //book.frontCover = data.frontCover;
               //book.pages = data.pages;
               //book.frontCover.imageData = fontCoverImageData;
-              book.dedicatedPage = data.dedicatedPage;
-              book.backCover = data.backCover;
+              //book.dedicatedPage = data.dedicatedPage;
+              //book.backCover = data.backCover;
             });
 
             return dfd.resolve(books);
@@ -117,8 +117,8 @@ angular.module('storyToaster')
 
       //obj.frontCover.imageData = LZString.compressToBase64(obj.frontCover.imageData);
 
-      obj.data = JSON.stringify(obj);
-      console.log('data length=', obj.data.length);
+      obj.data = JSON.stringify(obj.pages);
+      console.log('data length=', (obj.data.length/1024)/1024);
 
       var promise;
 
