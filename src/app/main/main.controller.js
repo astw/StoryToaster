@@ -59,22 +59,11 @@
             }
           );
 
-          //var tempIndex = vm.PhotoBook.frontCoverImageIndex;
-          //console.log(tempIndex);
-          //
-          //vm.PhotoBook.frontCoverImageIndex  = -1;
-          //
-          //$timeout(function(){
-          //  vm.PhotoBook.frontCoverImageIndex = tempIndex;
-          //},1000);
-
-          vm.PhotoBook.leftDesignPage = vm.selectedBook.pages[0];
-          vm.PhotoBook.rightDesignPage = vm.selectedBook.pages[1];
-          restoreToCurrentDesignData();
-          //generatePreviewImage();
-          //selectLeft();
-          //selectRight();
-          //selectLeft();
+          var oldIndex = vm.PhotoBook.frontCoverImageIndex;
+          $timeout(function(){
+            vm.PhotoBook.frontCoverImageIndex = oldIndex;
+            frontCoverClick();
+          },1000);
         })
     }
 
@@ -199,15 +188,6 @@
     $scope.$on('$viewContentLoaded', documentReady);
 
     $scope.$on('pageChanged', function (event, args) {
-
-      var oldIndex = vm.PhotoBook.frontCoverImageIndex;
-      vm.PhotoBook.frontCoverImageIndex = -1;
-      $timeout(function () {
-        vm.PhotoBook.frontCoverImageIndex = oldIndex;
-        backCurrentDesignData();
-        $scope.safeApply();
-      }, 2000);
-
     });
 
     $scope.$on('addImage', function (event, args) {
