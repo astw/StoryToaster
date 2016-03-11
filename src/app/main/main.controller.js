@@ -52,17 +52,29 @@
           }
           vm.selectedBook = book;
 
-
+          vm.PhotoBook.pages = book.pages;
           Object.getOwnPropertyNames(book).forEach(
             function(prop){
               vm.PhotoBook[prop] =  book[prop] || vm.PhotoBook[prop];
             }
           );
 
+          //var tempIndex = vm.PhotoBook.frontCoverImageIndex;
+          //console.log(tempIndex);
+          //
+          //vm.PhotoBook.frontCoverImageIndex  = -1;
+          //
+          //$timeout(function(){
+          //  vm.PhotoBook.frontCoverImageIndex = tempIndex;
+          //},1000);
+
           vm.PhotoBook.leftDesignPage = vm.selectedBook.pages[0];
           vm.PhotoBook.rightDesignPage = vm.selectedBook.pages[1];
           restoreToCurrentDesignData();
-
+          //generatePreviewImage();
+          //selectLeft();
+          //selectRight();
+          //selectLeft();
         })
     }
 
@@ -187,16 +199,14 @@
     $scope.$on('$viewContentLoaded', documentReady);
 
     $scope.$on('pageChanged', function (event, args) {
-      //console.log('in pageChanged event');
-      backCurrentDesignData();
 
       var oldIndex = vm.PhotoBook.frontCoverImageIndex;
-
       vm.PhotoBook.frontCoverImageIndex = -1;
       $timeout(function () {
         vm.PhotoBook.frontCoverImageIndex = oldIndex;
+        backCurrentDesignData();
         $scope.safeApply();
-      }, 1000);
+      }, 2000);
 
     });
 
