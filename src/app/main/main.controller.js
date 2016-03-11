@@ -535,6 +535,7 @@
     }
 
     function saveToServe() {
+      generatePreviewImage();
       bookRepository.saveToServer(vm.PhotoBook);
     }
 

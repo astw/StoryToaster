@@ -33,22 +33,15 @@ angular.module('storyToaster')
 
       var url = API_URL + 'books/' +bookId;
 
-      //var userId =1 ;
-      //url = API_URL + 'users/' + userId + '/books' ;
-
       $http.get(url).then(function (res) {
           var books = [];
           if (res.data) {
             var books = books.concat(res.data);
             books.forEach(function(book) {
-              var data = angular.fromJson(book.data);
-              book.frontCover = data.frontCover;
-              //data.pages.forEach(function(page,index){
-              data.forEach(function(page,index){
+              var pages = angular.fromJson(book.data);
+              pages.forEach(function(page,index){
                 book.pages[index] = page;
               });
-              book.dedicatedPage = data.dedicatedPage;
-              book.backCover = data.backCover;
             });
 
             if(books.length > 0)
@@ -76,16 +69,7 @@ angular.module('storyToaster')
       $http.get(API_URL + 'users/' + userId + '/books').then(function (res) {
           var books = [];
           if (res.data) {
-            var books = books.concat(res.data);
-            books.forEach(function(book) {
-              var data = angular.fromJson(book.data);
-              //book.frontCover = data.frontCover;
-              //book.pages = data.pages;
-              //book.frontCover.imageData = fontCoverImageData;
-              //book.dedicatedPage = data.dedicatedPage;
-              //book.backCover = data.backCover;
-            });
-
+            books = books.concat(res.data); 
             return dfd.resolve(books);
           }
           return dfd.resolve(books);
@@ -105,20 +89,8 @@ angular.module('storyToaster')
       this.author = currentUser ? currentUser.id : -1;
 
       var obj = angular.fromJson(dataString);
-      obj.pages.forEach(function(page){
-        //delete page.previewImage;
-      });
-
-      //delete obj.frontCover.previewImage;
-      //delete obj.dedicatedPage.previewImage;
-      //delete obj.backCover.previewImage;
-      //delete obj.leftDesignPage;
-      //delete obj.rightDesignPage;
-
-      //obj.frontCover.imageData = LZString.compressToBase64(obj.frontCover.imageData);
-
+      console.log('frontCover.width=',obj.frontCover.width);
       obj.data = JSON.stringify(obj.pages);
-      console.log('data length=', (obj.data.length/1024)/1024);
 
       var promise;
 
