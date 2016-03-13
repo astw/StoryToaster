@@ -9,13 +9,25 @@
     .controller('ReadbookController', ReadbookController);
 
   /* @ngInject */
-  function ReadbookController($scope, $timeout,relayService) {
-    var vm = this;
-    activate();
+  function ReadbookController(
+    $scope,
+    $timeout,
+    bookRepository,
+    $routeParams,
+    relayService
+    ,bookSelected
 
-    var temp = relayService.getKeyValue('_selectedBook_') && relayService.getKeyValue('_selectedBook_').data;
-    vm.book = temp ? JSON.parse(relayService.getKeyValue('_selectedBook_').data) : null;
+  ) {
+
+    console.log('--------------- resolved book');
+    var vm = this;
+
+    vm.book = bookSelected;
     vm.addImage = addImage;
+
+    $scope.pages = vm.book.pages;
+
+    activate();
 
     var finishedPages = 0 ;
     var finishedOpenBookRender = false;
@@ -26,7 +38,7 @@
       finishedPages = finishedPages + 1;
       console.log('finished pages=' +finishedPages);
 
-      if(finishedOpenBookRender && finishedPages >= vm.book.pages.length + 4 )
+      if(finishedOpenBookRender && vm.book && finishedPages >= vm.book.pages.length + 4 )
         documentReady();
 
     });
@@ -37,13 +49,19 @@
 
       finishedOpenBookRender = true;
 
-      if(finishedOpenBookRender && finishedPages >= vm.book.pages.length + 4 )
+      if(finishedOpenBookRender && vm.book && finishedPages >= vm.book.pages.length + 4 )
       documentReady();
     });
     //angular.element(document).ready(documentReady);
     ////////////////
 
     function activate() {
+
+      var bookId = $routeParams.bookId;
+      bookRepository.getBookById(bookId)
+        .then(function (book) {
+          vm.book = book;
+        })
     }
 
     function addImage(){

@@ -5,7 +5,12 @@
     .module('storyToaster')
     .config(routeConfig);
 
-  function routeConfig($routeProvider,$locationProvider,minicolorsProvider) {
+  function routeConfig(
+    $routeProvider,
+    $locationProvider,
+    minicolorsProvider
+
+  ) {
     $routeProvider
       .when('/home', {
         templateUrl: 'app/home/home.html',
@@ -24,11 +29,18 @@
         controllerAs: 'bookCtrl'
       })
 
-      .when('/account/mybooks/readbook', {
-        templateUrl: 'app/books/readbook.html',
+      .when('/account/mybooks/:bookId/readbook', {
+        //templateUrl: 'app/books/readbook.html',
+        templateUrl:'app/books/templates/steve-jobs.html',
         controller: 'ReadbookController',
         controllerAs: 'readbookCtrl',
-        reloadOnSearch:false
+        reloadOnSearch:false,
+        resolve:{
+          bookSelected :function($route,bookRepository){
+            var bookId = $route.current.params.bookId;
+            return bookRepository.getBookById(bookId);
+          }
+        }
       })
 
      .when('/account/login',{

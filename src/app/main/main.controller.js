@@ -59,11 +59,7 @@
             }
           );
 
-          var oldIndex = vm.PhotoBook.frontCoverImageIndex;
-          $timeout(function(){
-            vm.PhotoBook.frontCoverImageIndex = oldIndex;
-            frontCoverClick();
-          },1000);
+          frontCoverClick();
         })
     }
 

@@ -14,9 +14,9 @@
   function page() {
     var directive = {
       templateUrl: 'app/books/templates/page.html',
-      bindToController: true,
-      controller: 'ReadbookController',
-      controllerAs: 'vm',
+      //bindToController: true,
+      //controller: 'ReadbookController',
+      //controllerAs: 'vm',
       link: link,
       restrict: 'AE',
       scope: {
@@ -27,11 +27,14 @@
     return directive;
 
     function link(scope, element, attrs) {
-      var data = scope.vm.data;
+      //var data = scope.vm.data;
+
+      var data = scope.data;
+      var id = scope.id ;
 
       var canvasEle = element.find('canvas')[0];
       //var id = "canvas_" + scope.vm.data.index;
-      var id = "canvas_" + scope.vm.id ;
+      var id = "canvas_" + id; ;
       canvasEle.id = id;
 
       //set canvasEle size
@@ -42,7 +45,8 @@
         id,
         {select:false,background:'red'}
       );
-      scope.vm.canvas = canvas;
+      //scope.vm.canvas = canvas;
+      scope.canvas = canvas; 
       if(data && data.imageData)
         canvas.loadFromJSON(data.imageData, canvas.renderAll.bind(canvas), function () {
             // make objects unmoveable
@@ -53,7 +57,7 @@
             hasBorders: false,
            */
 
-            
+
             scope.$emit('onPageAfterRender');
       });
       else{

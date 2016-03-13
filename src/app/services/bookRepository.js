@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('storyToaster')
-  .service('bookRepository', function ($http, $q, $cookieStore, config, authService,LZString) {
+  .service('bookRepository', function ($http, $q, $cookieStore, config, authService) {
 
     var self = this;
     var API_URL = config.apiRootPath;
@@ -69,7 +69,7 @@ angular.module('storyToaster')
       $http.get(API_URL + 'users/' + userId + '/books').then(function (res) {
           var books = [];
           if (res.data) {
-            books = books.concat(res.data); 
+            books = books.concat(res.data);
             return dfd.resolve(books);
           }
           return dfd.resolve(books);
