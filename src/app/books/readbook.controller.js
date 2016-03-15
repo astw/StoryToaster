@@ -25,6 +25,7 @@
     vm.book = bookSelected;
     vm.addImage = addImage;
 
+    $scope.book = bookSelected;
     $scope.pages = vm.book.pages;
 
     activate();

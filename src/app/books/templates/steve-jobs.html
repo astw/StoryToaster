@@ -9,37 +9,17 @@
 	<div id="book-zoom">
     <div class="sj-book">
 
-      <div depth="5" class="hard"> <div class="side"></div> </div>
-      <div depth="5" class="hard front-side"> <div class="depth"></div> </div>
+      <!--<page depth="5" class="hard" data="book.frontCover" id='front' />-->
 
-      <div ng-repeat="page in pages">
-        this is page
-        <page data="page" id= page.index />
-      </div>
-      <!-- -->
-      <div class="own-size" style="width: 460px; height: 600px;">this is ownsize page</div>
-      <div class="own-size even" id="p4" style="width: 460px; height: 600px; color: transparent;">
-        this is 怕 平
-      </div>
+      <page depth="5" class="hard front-side" data="book.dedicatedPage" id="dedicatePage" />
 
-      <!--<div class="own-size" id="p5" style="width: 460px; height: 600px; color: transparent;">-->
-        <!--this is p5-->
-      <!--</div>-->
-      <!--&lt;!&ndash; <div class="own-size even" style="background-color:#F00;"></div>  &ndash;&gt;-->
-      <!--<div class="own-size even even p6" style="width: 460px; height: 600px;">-->
-        <!--dddd-->
+      <!--<div class="hard" ng-repeat="page in pages">-->
+        <!--<page data="page" id= page.index />-->
       <!--</div>-->
 
-      <!--<div class="own-size p7" style="width: 460px; height: 600px;">-->
-        <!--dddd-->
-      <!--</div>-->
+      <!--<page depth="5" class="hard front-side" data="book.backCover" id="backCover" />-->
 
-      <!--<div class="own-size even p8" style="width: 460px; height: 600px;">-->
-        <!--dddd-->
-      <!--</div>-->
 
-      <!--<div class="hard fixed back-side p9"> <div class="depth"></div> </div>-->
-      <!--<div class="hard p10"></div>-->
     </div>
 	</div>
 </div>
@@ -58,8 +38,8 @@
 
       flipbook.turn({
         elevation: 50,
-        width:952,
-        height:630,
+        width:1040,
+        height:380,
         acceleration: !isChrome(),
         autoCenter: true,
         gradients: true,
