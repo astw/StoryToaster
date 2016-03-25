@@ -456,6 +456,14 @@
         vm.PhotoBook.frontCover.imageData = JSON.stringify(vm.frontCoverCanvas);
       }
 
+      if (vm.backCoverCanvas && vm.PhotoBook.backCover){
+        vm.PhotoBook.backCover.imageData = JSON.stringify(vm.backCoverCanvas);
+      }
+
+      if (vm.dedicatePageCanvas && vm.PhotoBook.dedicatedPage){
+        vm.PhotoBook.dedicatedPage.imageData = JSON.stringify(vm.dedicatePageCanvas);
+      }
+
       generatePreviewImage();
     }
 
@@ -506,6 +514,13 @@
 
       if (vm.frontCoverCanvas && vm.PhotoBook.frontCover)
         vm.PhotoBook.frontCover.previewImage = vm.frontCoverCanvas.toDataURL();
+
+      if (vm.dedicatePageCanvas && vm.PhotoBook.dedicatedPage)
+        vm.PhotoBook.frontCover.previewImage = vm.frontCoverCanvas.toDataURL();
+
+      if(vm.backCoverCanvas && vm.PhotoBook.backCover){
+        vm.PhotoBook.backCover.previewImage = vm.backCoverCanvas.toDataURL();
+      }
     }
 
     function deleteObject() {

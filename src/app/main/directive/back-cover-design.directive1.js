@@ -62,7 +62,7 @@
       canvas.setWidth(canvasWidth);
       canvas.setHeight(canvasHeight);
 
-      scope.main.frontCoverCanvasRight = canvas;
+      scope.main.backCoverCanvas = canvas;
 
       // add log pic
       var logPic ={};
