@@ -123,6 +123,23 @@
   background-size: cover;
 }
 
+.page-shadow-right {
+  width: 22px;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0px;
+  background-image: url("/js/steve-jobs/pics/page-shadow-right.png");
+}
+
+ .page-shadow-left {
+  width: 22px;
+  height:100%;
+  position:absolute;
+  top:0;
+  right:0px;
+  background-image: url("/js/steve-jobs/pics/page-shadow-left.png");
+}
 
 #flipbook .front-side .depth{
   left: 25px;
@@ -135,13 +152,13 @@
 }
 
 
-#flipbook .page-number{
-  color:#999;
+ .pagenumber{
+  color:#888;
   width:100%;
-  bottom:25px;
+  bottom:5px;
   position:absolute;
   display:block;
   text-align: center;
-  line-height:30px;
+  line-height:20px;
   font-size:11px;
 }

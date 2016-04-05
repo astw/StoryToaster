@@ -9,21 +9,31 @@
 	<div id="book-zoom">
     <div class="sj-book">
 
-      <div depth="5" class="hard"> <div class="side"></div> </div>
-      <page depth="1" class="hard front-side" data="book.frontCover" id='front' />
-      <div depth="2" class="hard even"> <div class="side"></div> </div>
-      <page depth="3" class="hard" data="book.dedicatedPage" id="dedicatePage" />
-      <div depth="2" class="hard"> <div class="side"></div> </div>
+      <!--<div depth="5" class="hard"> <div class="side"></div> </div>-->
+      <page depth="1" class="hard front-side" data="book.frontCover" id='1000' />
+      <div depth="2" class="hard" id="1001"> <div class="page-shadow-left"></div> </div>
 
-      <!--<div depth="5" class="hard front side"> <div class="depth"></div> </div>-->
-      <!--<page depth="5" class="hard front-side" data="book.dedicatedPage" id="dedicatePage" />-->
-
-      <div class="hard" ng-repeat="page in pages">
-        <page data="page" id= page.index />
+      <!--&lt;!&ndash;<div depth="5" class="hard front side"> <div class="depth"></div> </div>&ndash;&gt;-->
+      <div>
+        <page depth="5" class="hard front-side" data="book.dedicatedPage" id="dedicatePage" />
+        <div  class="page-shadow-right"  />
       </div>
 
-      <div depth="5" class="hard back-side"> <div class="side"></div> </div>
-      <page depth="5" class="hard back-side" data="book.backCover" id="backCover" />
+
+      <div ng-class="$index == 0 || $index == 1 ? 'hard':''"  ng-repeat="page in pages">
+        <!--<page data="page"  ng-class="$index == 0 || $index == 1 ? 'hard':''" id= page.index />-->
+        <page data="page"   id= page.index />
+        <div class="pagenumber">
+          {{$index +1}}
+        </div>
+        <!--<div class="pagenumber" style="font-family:Arial,Helvetica,Sans-Serif; font-size: 8px; position: absolute; top: 355px; left:246px;">-->
+          <!--{{$index +1}}-->
+        <!--</div>-->
+        <div  ng-class-even="'page-shadow-right'"  ng-class-odd="'page-shadow-left'" />
+      </div>
+
+      <!--<div depth="5" class="hard back-side"> <div class="side"></div> </div>-->
+      <!--<page depth="5" class="hard back-side" data="book.backCover" id="1002" />-->
 
     </div>
 	</div>
@@ -43,7 +53,7 @@
 
       flipbook.turn({
         elevation: 50,
-        width:1040,
+        width:1060,
         height:380,
         acceleration: !isChrome(),
         autoCenter: true,
