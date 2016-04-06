@@ -21,7 +21,9 @@
       restrict: 'AE',
       scope: {
         'data': '=data',
-        'id':'=id'
+        'id':'=id',
+        'width':'=width',
+        'height':'=height'
       }
     };
     return directive;
@@ -31,6 +33,8 @@
 
       var data = scope.data;
       var id = scope.id ;
+      var width = scope.width;
+      var height = scope.height;
 
       var canvasEle = element.find('canvas')[0];
       //var id = "canvas_" + scope.vm.data.index;
@@ -38,8 +42,8 @@
       canvasEle.id = id;
 
       //set canvasEle size
-      canvasEle.width = 520;
-      canvasEle.height = canvasEle.width /1.375;
+      canvasEle.width = width;
+      canvasEle.height = height     ;//canvasEle.width /1.375;
 
       var canvas = new fabric.Canvas(
         id,

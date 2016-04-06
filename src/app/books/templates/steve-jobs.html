@@ -1,155 +1,155 @@
-
 <script type="text/javascript" src="/js/steve-jobs/extras/jquery.min.1.7.js"></script>
 <script type="text/javascript" src="/js/steve-jobs/extras/jquery-ui-1.8.20.custom.min.js"></script>
 <script type="text/javascript" src="/js/steve-jobs/extras/jquery.mousewheel.min.js"></script>
 <script type="text/javascript" src="/js/steve-jobs/extras/modernizr.2.5.3.min.js"></script>
 <script type="text/javascript" src="/js/steve-jobs/lib/hash.js"></script>
 
-<div id="canvas">
-	<div id="book-zoom">
-    <div class="sj-book">
-
-      <!--<div depth="5" class="hard"> <div class="side"></div> </div>-->
-      <page depth="1" class="hard front-side" data="book.frontCover" id='1000' />
-      <div depth="2" class="hard" id="1001"> <div class="page-shadow-left"></div> </div>
-
-      <!--&lt;!&ndash;<div depth="5" class="hard front side"> <div class="depth"></div> </div>&ndash;&gt;-->
-      <div>
-        <page depth="5" class="hard front-side" data="book.dedicatedPage" id="dedicatePage" />
-        <div  class="page-shadow-right"  />
+<div id="canvas ">
+  <div id="book-zoom">
+    <div class="sj-book  ">
+      <page depth="1" class="hard front-side" data="book.frontCover" id='1000'
+            width="book.frontCover.width" height="book.frontCover.height"
+        />
+      <div class="hard" id="1001">
+        <div class="page-shadow-left"></div>
       </div>
 
+      <div class="depth" >
+        <page class="hard front-side " data="book.dedicatedPage" id="dedicatePage"
+              width="book.frontCover.width" height="book.frontCover.height"
+          />
+        <div class="page-shadow-right"/>
+        <div class="depth" />
+      </div>
 
-      <div ng-class="$index == 0 || $index == 1 ? 'hard':''"  ng-repeat="page in pages">
+      <div ng-class="$index == 0 || $index == 1 ? 'hard':''" ng-repeat="page in pages">
         <!--<page data="page"  ng-class="$index == 0 || $index == 1 ? 'hard':''" id= page.index />-->
-        <page data="page"   id= page.index />
+        <page data="page" id=page.index
+              width="book.frontCover.width" height="book.frontCover.height"
+          />
         <div class="pagenumber">
           {{$index +1}}
         </div>
-        <!--<div class="pagenumber" style="font-family:Arial,Helvetica,Sans-Serif; font-size: 8px; position: absolute; top: 355px; left:246px;">-->
-          <!--{{$index +1}}-->
-        <!--</div>-->
-        <div  ng-class-even="'page-shadow-right'"  ng-class-odd="'page-shadow-left'" />
+        <div ng-class-even="'page-shadow-right'" ng-class-odd="'page-shadow-left'"/>
       </div>
 
-      <!--<div depth="5" class="hard back-side"> <div class="side"></div> </div>-->
-      <!--<page depth="5" class="hard back-side" data="book.backCover" id="1002" />-->
+
+      <!--<div class="hard" id="1003">-->
+      <!--<page depth="5" class="hard" data="book.backCover"   width="book.frontCover.width"-->
+            <!--height="book.frontCover.height" />-->
+        <!--</div>-->
 
     </div>
-	</div>
+  </div>
 </div>
 
 <script type="text/javascript">
 
-    function loadApp() {
+  function loadApp() {
 
-      var flipbook = $('.sj-book');
+    var flipbook = $('.sj-book');
 
-      // Check if the CSS was already loaded
-      if (flipbook.width()==0 || flipbook.height()==0) {
-        setTimeout(loadApp, 10);
-        return;
-      }
-
-      flipbook.turn({
-        elevation: 50,
-        width:1060,
-        height:380,
-        acceleration: !isChrome(),
-        autoCenter: true,
-        gradients: true,
-        duration: 1000,
-        pages: 10,
-        when: {
-          turning: function(e, page, view) {
-
-            var book = $(this),
-              currentPage = book.turn('page'),
-              pages = book.turn('pages');
-
-            if (currentPage>3 && currentPage<pages-3) {
-
-              if (page==1) {
-                book.turn('page', 2).turn('stop').turn('page', page);
-                e.preventDefault();
-                return;
-              } else if (page==pages) {
-                book.turn('page', pages-1).turn('stop').turn('page', page);
-                e.preventDefault();
-                return;
-              }
-            } else if (page>3 && page<pages-3) {
-              if (currentPage==1) {
-                book.turn('page', 2).turn('stop').turn('page', page);
-                e.preventDefault();
-                return;
-              } else if (currentPage==pages) {
-                book.turn('page', pages-1).turn('stop').turn('page', page);
-                e.preventDefault();
-                return;
-              }
-            }
-
-            updateDepth(book, page);
-
-            if (page>=2)
-              $('.sj-book .p2').addClass('fixed');
-            else
-              $('.sj-book .p2').removeClass('fixed');
-
-            if (page<book.turn('pages'))
-              $('.sj-book .p9').addClass('fixed');
-            else
-              $('.sj-book .p9').removeClass('fixed');
-
-          },
-
-          turned: function(e, page, view) {
-
-            var book = $(this);
-
-            if (page==2 || page==3) {
-              book.turn('peel', 'br');
-            }
-
-            updateDepth(book);
-
-            $('#slider').slider('value', getViewNumber(book, page));
-
-            book.turn('center');
-
-          },
-
-          end: function(e, pageObj) {
-
-            var book = $(this);
-
-            updateDepth(book);
-          }
-        }
-      });
-
-
-
-      flipbook.addClass('animated');
-
-      // Show canvas
-      $('#canvas').css({visibility: ''});
+    // Check if the CSS was already loaded
+    if (flipbook.width() == 0 || flipbook.height() == 0) {
+      setTimeout(loadApp, 10);
+      return;
     }
 
-    // Hide canvas
+    flipbook.turn({
+      elevation: 50,
+      width: 643.5 * 2,
+      height: 465.2,
+      acceleration: !isChrome(),
+      autoCenter: true,
+      gradients: true,
+      duration: 1000,
+//        pages: 10,
+      when: {
+        turning: function (e, page, view) {
 
-    $('#canvas').css({visibility: 'hidden'});
+          var book = $(this),
+            currentPage = book.turn('page'),
+            pages = book.turn('pages');
 
-    // Load turn.js
+          if (currentPage > 3 && currentPage < pages - 3) {
 
-    yepnope({
-      test : Modernizr.csstransforms,
-      yep: ['/js/steve-jobs/lib/turn.min.js'],
-      nope: ['/js/steve-jobs/lib/turn.html4.min.js', '/js/steve-jobs/css/jquery.ui.html4.css', '/js/steve-jobs/css/steve-jobs-html4.css'],
-      both: ['js/steve-jobs/js/steve-jobs.js', '/js/steve-jobs/css/jquery.ui.css', '/js/steve-jobs/css/steve-jobs.css'],
-      complete: loadApp
+            if (page == 1) {
+              book.turn('page', 2).turn('stop').turn('page', page);
+              e.preventDefault();
+              return;
+            } else if (page == pages) {
+              book.turn('page', pages - 1).turn('stop').turn('page', page);
+              e.preventDefault();
+              return;
+            }
+          } else if (page > 3 && page < pages - 3) {
+            if (currentPage == 1) {
+              book.turn('page', 2).turn('stop').turn('page', page);
+              e.preventDefault();
+              return;
+            } else if (currentPage == pages) {
+              book.turn('page', pages - 1).turn('stop').turn('page', page);
+              e.preventDefault();
+              return;
+            }
+          }
+
+          updateDepth(book, page);
+
+          if (page >= 2)
+            $('.sj-book .p2').addClass('fixed');
+          else
+            $('.sj-book .p2').removeClass('fixed');
+
+          if (page < book.turn('pages'))
+            $('.sj-book .p9').addClass('fixed');
+          else
+            $('.sj-book .p9').removeClass('fixed');
+
+        },
+
+        turned: function (e, page, view) {
+
+          var book = $(this);
+
+          if (page == 2 || page == 3) {
+            book.turn('peel', 'br');
+          }
+
+          updateDepth(book);
+
+          $('#slider').slider('value', getViewNumber(book, page));
+
+          book.turn('center');
+
+        },
+
+        end: function (e, pageObj) {
+
+          var book = $(this);
+
+          updateDepth(book);
+        }
+      }
     });
 
+    flipbook.addClass('animated');
+    $('#canvas').css({visibility: ''});
+  }
 
-  </script>
+  // Hide canvas
+
+  $('#canvas').css({visibility: 'hidden'});
+
+  // Load turn.js
+
+  yepnope({
+    test: Modernizr.csstransforms,
+    yep: ['/js/steve-jobs/lib/turn.min.js'],
+    nope: ['/js/steve-jobs/lib/turn.html4.min.js', '/js/steve-jobs/css/jquery.ui.html4.css', '/js/steve-jobs/css/steve-jobs-html4.css'],
+    both: ['js/steve-jobs/js/steve-jobs.js', '/js/steve-jobs/css/jquery.ui.css', '/js/steve-jobs/css/steve-jobs.css'],
+    complete: loadApp
+  });
+
+
+</script>
