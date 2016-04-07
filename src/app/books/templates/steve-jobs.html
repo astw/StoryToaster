@@ -10,7 +10,7 @@
       <page depth="1" class="hard front-side" data="book.frontCover" id='1000'
             width="book.frontCover.width" height="book.frontCover.height"
         />
-      <div class="hard" id="1001">
+      <div class="hard cover page odd" page="2" id="1001">
         <div class="page-shadow-left"></div>
       </div>
 
@@ -32,12 +32,13 @@
         </div>
         <div ng-class-even="'page-shadow-right'" ng-class-odd="'page-shadow-left'"/>
       </div>
+      <div class="hard" id="1003">
+      <page depth="5" class="hard" data="book.backCover"   width="book.frontCover.width"
+            height="book.frontCover.height" />
+    </div>
 
-
-      <!--<div class="hard" id="1003">-->
-      <!--<page depth="5" class="hard" data="book.backCover"   width="book.frontCover.width"-->
-            <!--height="book.frontCover.height" />-->
-        <!--</div>-->
+      <div class="hard fixed back-side p{{pageNumber -1}}"> <div class="depth"></div> </div>
+      <div class="hard p{{pageNumber}}"></div>
 
     </div>
   </div>
@@ -55,15 +56,16 @@
       return;
     }
 
+
     flipbook.turn({
       elevation: 50,
-      width: 643.5 * 2,
-      height: 465.2,
+      width: 515 * 2,
+      height: 387,
       acceleration: !isChrome(),
       autoCenter: true,
       gradients: true,
       duration: 1000,
-//        pages: 10,
+      pages: pageNumber,
       when: {
         turning: function (e, page, view) {
 

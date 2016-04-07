@@ -12,10 +12,10 @@
   function ReadbookController(
     $scope,
     $timeout,
+    $window,
     bookRepository,
     $routeParams,
-    relayService
-    ,bookSelected
+    bookSelected
 
   ) {
 
@@ -28,6 +28,8 @@
     $scope.book = bookSelected;
     $scope.pages = vm.book.pages;
 
+    $window.pageNumber = vm.book.pages.length;
+    console.log('----- pageNumber=', $window.pageNumber);
     activate();
 
     var finishedPages = 0 ;
