@@ -6,12 +6,12 @@
 
   angular
     .module('storyToaster')
-    .directive('page', page);
+    .directive('bookPage', bookPage);
 
-  page.$inject = [];
+  bookPage.$inject = [];
 
   /* @ngInject */
-  function page() {
+  function bookPage() {
     var directive = {
       templateUrl: 'app/books/templates/page.html',
       //bindToController: true,
