@@ -36,8 +36,8 @@
       var width = scope.width;
       var height = scope.height;
 
-      width=515;
-      height=387;
+      //width=515;
+      //height=387;
 
       var canvasEle = element.find('canvas')[0];
       //var id = "canvas_" + scope.vm.data.index;
