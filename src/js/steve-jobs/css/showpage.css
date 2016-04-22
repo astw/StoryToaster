@@ -3,13 +3,23 @@
 }
 #showpage {
   position: relative;
+  width:70%;
+  margin:auto;
   margin-top: 50px;
-  min-height: 600px
+  min-height: 600px; 
 }
 .buyPrompt {
   position: absolute;
   top: -50px;
   left: 350px
+}
+
+.book-panel {
+  background-color: #fff;
+  margin: 25px auto;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+
 }
 #book-wrapper {
   position: absolute;
