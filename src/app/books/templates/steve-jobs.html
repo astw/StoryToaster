@@ -37,9 +37,6 @@
 
           <div depth="5" class="hard front-side page odd fixed" style="float: left; width: 515px; height: 387px;">
             <book-page data="book.frontCover" id=1000 width=515 height=387></book-page>
-
-            <!--<div class="cover-spine-top"></div>-->
-            <!--<div class="cover-spine-bottom"></div>-->
             <div class="depth" style="left: 4px; width: 0px;"></div>
           </div>
         </div>
@@ -80,39 +77,33 @@
         </div>
         </div>
       </div>
-
-
       <div class="page-wrapper" ng-repeat="page in book.pages"
-           style="position: absolute; width: 495px; height: 387px; top:0px; left: auto; right: 0px; overflow: visible;
-           "
-        >
+           style="position: absolute; width: 515px; height: 387px; top:0px; left: auto; right: 0px; overflow: visible;">
         <div
-          style="position: absolute; top: 0px; left: 9px; overflow: hidden; background-color: {{book.backgroundColor}};
-           backface-visibility: hidden; width: 515px; height: 387px; top:0px;">
+          style="position: absolute; top: 0px; left: 0px; overflow: hidden; transform-style: preserve-3d;
+           background-color: {{book.backgroundColor}};
+           backface-visibility: hidden; width: 515px; height: 387px; transform-origin: 100% 50% 0px;">
 
-          <div depth="5" class="page"
-                 style="float: left; width: 495px; height: 369px; top: 9px;overflow: hidden;"
+          <div depth="5" class="page "
+                 style="float: left; width: 515px; height: 387px; overflow: hidden;"
                  ng-class-even="'odd; back-side'" ng-class-odd ="'even;front-side'"
             >
             <div class="cover-spine-top"></div>
             <div class="cover-spine-bottom"></div>
 
             <div class="cover-white">
-              <book-page id=$index data=page width=495 height=369 />
+              <book-page id=$index data=page width=495 height=387 />
               <!--style="left: 20px"-->
             </div>
             <div class="depth" style="left: 4px; width: 0px;"></div>
 
-            <!--<book-page id=$index data=page width=495 height=369 style="left: 20px"/>-->
-              <!--<div ng-class-odd="page-shadow-left" ng-class-even="page-shadow-right" ></div>-->
-            <!--<div ng-class="$index == 0 ? depth :''"  style="left: 4px; width: 0px;"></div>-->
           </div>
 
          </div>
       </div>
 
 
-      <div class="page-wrapper" page="23"
+      <div class="page-wrapper"
            style="position: absolute; width: 515px; height: 387px; top: 0px; left: 0px; right: auto; overflow: visible; perspective-origin: 100% 50%; z-index: -1;">
         <div
           style="position: absolute; top: 0px; left: 0px; overflow: hidden; transform-style: preserve-3d; backface-visibility: hidden; width: 515px; height: 387px; transform-origin: 100% 50% 0px; z-index: 17;">

@@ -5,8 +5,8 @@
   position: relative;
   width:70%;
   margin:auto;
-  margin-top: 50px;
-  min-height: 600px; 
+  margin-top: 0px;
+  min-height: 600px;
 }
 .buyPrompt {
   position: absolute;
