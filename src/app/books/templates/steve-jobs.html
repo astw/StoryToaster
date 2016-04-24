@@ -26,7 +26,8 @@
     <div id="bkPicFront" style="display: none;"></div>
     <div id="bkPicBack" style="display: none;"></div>
     <div class="sj-book animated"
-         style="position: relative; width: 1030px; height: 387px; margin-left: 0px; background-position: 482px 0px;">
+         style="
+         position: relative; width: 1030px; height: 387px; margin-left: 0px; background-position: 482px 0px;">
 
       <div class="page-wrapper hard"
            style="position: absolute; width: 515px; height: 387px; top: 0px; left: 0px; right: auto; overflow: visible; z-index: -1;">
@@ -82,18 +83,18 @@
         <div
           style="position: absolute; top: 0px; left: 0px; overflow: hidden; transform-style: preserve-3d;
            background-color: {{book.backgroundColor}};
-           backface-visibility: hidden; width: 515px; height: 387px; transform-origin: 100% 50% 0px;">
+           backface-visibility: hidden; width: 515px; height: 387px;">
 
-          <div depth="5" class="page "
-                 style="float: left; width: 515px; height: 387px; overflow: hidden;"
+          <div depth="5" class="page " style="float: left; width: 515px; height: 387px; overflow: hidden;"
                  ng-class-even="'odd; back-side'" ng-class-odd ="'even;front-side'"
             >
+
             <div class="cover-spine-top"></div>
             <div class="cover-spine-bottom"></div>
 
-            <div class="cover-white">
-              <book-page id=$index data=page width=495 height=387 />
-              <!--style="left: 20px"-->
+            <div class="cover-white page-image-right">
+              <book-page id=$index data=page width=495 height=369 />
+              <book-page data="book.frontCover" id="1003 + $index" width=495 height=387 ></book-page>
             </div>
             <div class="depth" style="left: 4px; width: 0px;"></div>
 
