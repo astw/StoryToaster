@@ -8,7 +8,7 @@ function updateDepth(book, newPage) {
 
 		newPage = newPage || page;
 
-	if (newPage>3)
+	if (newPage>27)
 		$('.sj-book .p2 .depth').css({
 			width: depthWidth,
 			left: 20 - depthWidth
@@ -18,13 +18,13 @@ function updateDepth(book, newPage) {
 
 		depthWidth = 16*Math.min(1, (pages-page)*2/pages);
 
-	if (newPage<pages-3)
-		$('.sj-book .p11 .depth').css({
+	if (newPage<pages-27)
+		$('.sj-book .p29 .depth').css({
 			width: depthWidth,
 			right: 20 - depthWidth
 		});
 	else
-		$('.sj-book .p11 .depth').css({width: 0});
+		$('.sj-book .p29 .depth').css({width: 0});
 
 }
 
@@ -45,7 +45,7 @@ function addPage(page, book) {
 
 		var element = $('<div />',
 			{'class': 'own-size',
-				css: {width: 460, height: 582}
+				css: {width: 495, height: 368}
 			}).
 			html('<div class="loader"></div>');
 

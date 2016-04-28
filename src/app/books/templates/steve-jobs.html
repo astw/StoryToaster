@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <div class="page-wrapper hard" page="2"
+      <div class="page-wrapper hard"
            style="position: absolute; width: 495px; height: 369px;  left: auto; right: 0px; overflow: visible;
             ">
       <div
@@ -94,7 +94,7 @@
 
             <div class="cover-white page-image-right">
               <book-page id=$index data=page width=495 height=369 />
-              <book-page data="book.frontCover" id="1003 + $index" width=495 height=387 ></book-page>
+              <book-page data="book.frontCover" id="1004 + $index" width=495 height=387 ></book-page>
             </div>
             <div class="depth" style="left: 4px; width: 0px;"></div>
 
@@ -103,20 +103,43 @@
          </div>
       </div>
 
-
-      <div class="page-wrapper"
+      <div ng-if=" !evenPageCount "
+        class="page-wrapper hard"
            style="position: absolute; width: 515px; height: 387px; top: 0px; left: 0px; right: auto; overflow: visible; perspective-origin: 100% 50%; z-index: -1;">
         <div
           style="position: absolute; top: 0px; left: 0px; overflow: hidden; transform-style: preserve-3d; backface-visibility: hidden; width: 515px; height: 387px; transform-origin: 100% 50% 0px; z-index: 17;">
-          <div depth="5" class="hard back-side page p23 odd fixed" style="float: left; width: 515px; height: 387px;">
-            <book-page data="book.backCover" id=1005></book-page>
+          <div depth="5" class="hard back-side page odd fixed" style="float: left; width: 515px; height: 387px;">
             <div class="cover-spine-top"></div>
             <div class="cover-spine-bottom"></div>
-            <div class="cover-white page-image-right">cc</div>
+
             <div class="depth" style="right: 4px; width: 0px;"></div>
             <div class="shadow" style="position: absolute; overflow: hidden;
-             background-color: {{book.backgroudColor}};
+             background-color: {{book.backgroundColor}};
              z-index: auto; width: 1030px; height: 387px; top: 0px; left: 0px;"></div>
+
+            <div class="cover-white page-image-right"></div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="page-wrapper hard"
+           style="position: absolute; width: 515px; height: 387px; top: 0px; left: 0px; right: auto; overflow: visible; perspective-origin: 100% 50%; z-index: -1;">
+        <div
+          style="position: absolute; top: 0px; left: 0px; overflow: hidden; width: 515px; height: 387px; z-index: 17;">
+
+          <div depth="5" class="hard back-side fixed" style="float: left; width: 515px; height: 387px;">
+            <div class="cover-spine-top"></div>
+            <div class="cover-spine-bottom"></div>
+            <div class="cover-white page-image-right">CCCONTENT</div>
+            <div class="depth" style="right: 4px; width: 0px;"></div>
+
+            <div class="shadow" style="position: absolute; overflow: hidden;
+             background-color: {{book.backgroundColor}};
+             z-index: auto; width: 1030px; height: 387px; top: 0px; left: 0px;"></div>
+
+            <book-page data="book.backCover" id=3000 width=515 height=387></book-page>
+
           </div>
         </div>
       </div>
@@ -180,11 +203,11 @@ s
       }
     });
     flipbook.turn({
-      elevation: 50,
+      elevation: 20,
       acceleration: !isChrome(),
       autoCenter: true,
       duration: 1500,
-      pages: 4,
+      pages: 28,
       width: 1030,
       height: 387,
       when: {

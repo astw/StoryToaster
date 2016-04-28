@@ -30,6 +30,9 @@
 
     $window.pageNumber = vm.book.pages.length;
     console.log('----- pageNumber=', $window.pageNumber);
+
+    $scope.evenPageCount = vm.book.pages.length % 2 == 0;
+    console.log('page even?', $scope.evenPageCount);
     activate();
 
     var finishedPages = 0 ;
