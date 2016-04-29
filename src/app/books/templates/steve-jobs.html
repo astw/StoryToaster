@@ -30,7 +30,7 @@
          position: relative; width: 1030px; height: 387px; margin-left: 0px; background-position: 482px 0px;">
 
       <!-- begin front cover -->
-      <div class="page-wrapper hard fixed"
+      <div class="page-wrapper hard"
            style="position: absolute; width: 515px; height: 387px; top: 0px; left: 0px; right: auto; overflow: visible; z-index: -1;">
         <div
           style="position: absolute; top: 0px; left: 0px; overflow: hidden; transform-style:
@@ -86,7 +86,7 @@
 
       <!-- end ack of dedication page -->
 
-      <div class="page-wrapper" ng-repeat="page in book.pages"
+      <div class="page-wrapper" ng-repeat="page in book.pages" ng-class=" $last ? 'hard':'' "
            style="position: absolute; width: 515px; height: 387px; top:0px; left: auto; right: 0px; overflow: visible;">
         <div
           style="position: absolute; top: 0px; left: 0px; overflow: hidden; transform-style: preserve-3d;
