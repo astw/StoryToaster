@@ -684,13 +684,33 @@ table {
   z-index: 100000
 }
 .sj-book .cover-white {
-  width: 495px;
+   width: 495px;
+   height: 369px;
+   position: absolute;
+   top: 9px;
+   left: 20px;
+   background-color: #fff
+ }
+
+.page-white-right {
+  width: 515px;
   height: 369px;
   position: absolute;
   top: 9px;
-  left: 20px;
+  left: 0px;
   background-color: #fff
 }
+
+ .page-white-left {
+  width: 515px;
+  height: 369px;
+  position: absolute;
+  top: 9px;
+  /*left: 5px;*/
+  right:0px;
+   background-color: #fff
+}
+
 .sj-book .back-side .cover-white {
   left: 0
 }
