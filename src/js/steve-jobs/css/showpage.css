@@ -693,7 +693,7 @@ table {
  }
 
 .page-white-right {
-  width: 515px;
+  width: 510px;
   height: 369px;
   position: absolute;
   top: 9px;
@@ -795,7 +795,7 @@ table {
 .sj-book .depth {
   background-image: url(/images/pages-depth.png);
   position: absolute;
-  top: 9px;
+  top: 7px;
   width: 16px;
   height: 374px
 }
