@@ -771,8 +771,9 @@ table {
   width: 22px;
   height: 369px;
   position: absolute;
-  top: 0;
-  left: 473px;
+  top: 9px;
+  /*left: 473px;*/
+  right:0px;
   background-image: url(/images/page-shadow-left.png);
   background-repeat: repeat-y;
   z-index: 100000
@@ -781,7 +782,7 @@ table {
   width: 22px;
   height: 369px;
   position: absolute;
-  top: 0;
+  top: 9px;
   left: 0;
   background-image: url(/images/page-shadow-right.png);
   background-repeat: repeat-y;
@@ -794,7 +795,7 @@ table {
 .sj-book .depth {
   background-image: url(/images/pages-depth.png);
   position: absolute;
-  top: 7px;
+  top: 9px;
   width: 16px;
   height: 374px
 }
