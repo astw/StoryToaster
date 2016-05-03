@@ -684,13 +684,20 @@ table {
   z-index: 100000
 }
 .sj-book .cover-white {
-   width: 495px;
+   width: 515px;
    height: 369px;
    position: absolute;
    top: 9px;
    left: 20px;
    background-color: #fff
  }
+
+.float-left {
+  float:left;
+}
+.float-right {
+  float:right;
+}
 
 .page-white-right {
   width: 495px;
@@ -772,8 +779,8 @@ table {
   height: 369px;
   position: absolute;
   top: 9px;
-  /*left: 473px;*/
-  right:0px;
+  left: 473px;
+  /*right:0px;*/
   background-image: url(/images/page-shadow-left.png);
   background-repeat: repeat-y;
   z-index: 100000

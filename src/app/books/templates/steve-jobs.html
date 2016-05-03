@@ -7,7 +7,7 @@
 <link href='/js/steve-jobs/css/showpage.css' rel="stylesheet" type="text/css">
 <audio id="coverturn-audio" preload="">
   <source src="/audio/turncover.mp3" type="audio/mpeg">
-  <source src="/audio/turncover.ogg" type="audio/ogg">
+  <source src=" /audio/turncover.ogg" type="audio/ogg">
   <source src="/audio/turncover.wav" type="audio/wav">
 </audio>
 
@@ -26,8 +26,7 @@
     <div id="bkPicFront" style="display: none;"></div>
     <div id="bkPicBack" style="display: none;"></div>
     <div class="sj-book animated"
-         style="
-         position: relative; width: 1030px; height: 387px; margin-left: 0px; background-position: 482px 0px;">
+         style="  position: relative; width: 1030px; height: 387px; margin-left: 0px; background-position: 482px 0px;">
 
       <!-- begin front cover -->
       <div class="page-wrapper hard"
@@ -43,32 +42,16 @@
           </div>
         </div>
       </div>
-      <!-- end front cover -->
+      <!-- end front cover !-->
 
-      <!-- begin back of front cover -->
-      <!--<div class="page-wrapper hard"-->
-           <!--style="position: absolute; width: 515px; height: 387px; top: 0px; left: 0px; right: auto; overflow: visible">-->
-        <!--<div style="position: absolute; top: 0px; left: 0px; overflow: hidden;width: 515px; height: 387px;-->
-             <!--">-->
-          <!--<div depth="5" class="hard front-side page even fixed" style="float: left; width: 515px; height: 387px;  ">-->
-            <!--<div class="shadow" style="position: absolute; overflow: hidden;-->
-             <!--background-color: {{book.backgroundColor}};-->
-             <!--z-index: auto; width: 1030px; height: 387px; top: 0px; left: 0px;"></div>-->
-            <!--<div class="cover-spine-top"></div>-->
-            <!--<div class="cover-spine-bottom"></div>-->
-            <!--<div class="cover-white page-image-left"></div>-->
-            <!--<div class="depth" style="left: 4px; width: 0px;"></div>-->
-            <!--&lt;!&ndash;<div class="page-shadow-left" ></div>&ndash;&gt;-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
+      <!--begin back of front cover -->
+       <div class="page-wrapper hard "  style="position: absolute;
+         width: 515px; height: 395px;  left: auto; right: 0px; overflow: visible; ">
+        <div style="position: absolute; top: 0px; right: 0px; overflow: hidden;width: 515px; height: 420px;
+           background-color: {{book.backgroundColor}};"
+          >
 
-      <div class="page-wrapper hard"  style="position: absolute; width: 515px; height: 387px;  left: auto; right: 0px; overflow: visible; ">
-        <div style="position: absolute; top: 0px; left: 0px; overflow: hidden;width: 515px; height: 387px;
-           background-color: {{book.backgroundColor}};
-           backface-visibility: hidden; ">
-
-          <div depth="5" class="front-side fixed" style="float: left; width: 495px; height: 387px; overflow: hidden;">
+          <div depth="5" class="front-side" style="float: right; width: 515px; height: 369px; overflow: hidden;">
             <div class="cover-spine-top"></div>
             <div class="cover-spine-bottom"></div>
             <div class="cover-white page-image">
@@ -79,19 +62,16 @@
       <!-- end ack of front cover -->
 
       <!-- begin dedication page  -->
-      <div class="page-wrapper" style="position: absolute; width: 515px; height: 387px; top:0px; left: auto; right: 0px; overflow: visible;" >
-        <div style="position: absolute; top: 0px; left: 0px; overflow: hidden;  width: 515px; height: 387px;
-           background-color: {{book.backgroundColor}};
-           backface-visibility: hidden;">
+      <div class="page-wrapper hard" style="position: absolute; width: 495px; height: 369px;
+           top:0px; left: auto; left: 0px; overflow: visible;" >
+        <div style="position: absolute; top: 0px; left: 0px; overflow: hidden;  width: 495px; height: 387px;" >
 
-          <div depth="5"  class="back-side fixed" style="float: left; width: 515px; height: 387px; overflow: hidden;"   >
-
+          <div depth="5"  class="back-side fixed" style="float: left; width: 495px; height: 387px; overflow: hidden;"   >
             <div class="cover-spine-top"></div>
             <div class="cover-spine-bottom"></div>
             <div class="page-white-right page-image-right">
               <book-page data="book.dedicatedPage" id=1003 width=495 height=369></book-page>
             </div>
-            <div class="depth" style="right: 0px; width: 20px;"></div>
             <div class="page-shadow-right" ></div>
           </div>
         </div>
@@ -99,33 +79,84 @@
 
       <!-- end of dedication page -->
 
-      <div class="page-wrapper" style="position: absolute; width: 515px; height: 387px; top:0px; left: auto; right: 0px; overflow: visible;"
-           ng-repeat="page in book.pages" ng-class=" $last ? 'hard':'' "
+      <!-- start pages  -->
+      <div class="page-wrapper"  style="position: absolute; width: 495px; height: 369px;  left: auto; right: 0px; overflow: visible; "
+           ng-repeat="page in book.pages" ng-class=" $last ? 'hard fixed':'' "
         >
-        <div style="position: absolute; top: 0px; left: 0px; overflow: hidden;  width: 515px; height: 387px;
-           background-color: {{book.backgroundColor}};
-           backface-visibility: hidden;">
+        <div depth="5"
+             ng-if=" $index % 2 == 1 "
+             class="back-side fixed" style="float: left; width: 495px; height: 369px; overflow: hidden;"   >
 
-          <div depth="5" style="float:left;width: 495px; height: 387px; overflow: hidden;"
-                 ng-class-even="'odd; back-side'" ng-class-odd ="'even;front-side'"  >
-
-            <div class="cover-spine-top"></div>
-            <div class="cover-spine-bottom"></div>
-            <div ng-class-odd="'page-white-left page-image-left'" ng-class-even="'page-white-right page-image-right'">
-               <book-page id=$index data=page width=495 height=369 />
-            </div>
-            <div class="depth" style="left: 4px; width: 0px;"></div>
-            <div ng-class-even="'page-shadow-right'"  ng-class-odd="'page-shadow-left'"></div>
+          <div class="cover-spine-top"></div>
+          <div class="cover-spine-bottom"></div>
+          <div class="page-white-right page-image-right">
+            <book-page id=$index data=page width=495 height=369 />
           </div>
-         </div>
+          <div class="page-number">{{$index}} odd </div>
+          <div class="depth" style="right: 0px; width: 0px;"></div>
+          <div class="page-shadow-right" ></div>
+        </div>
+
+
+        <div class="page-wrapper "
+             ng-if=" $index % 2 == 0 "
+             style="position: absolute; width: 495px; height: 369px;  left: auto; right: 0px; overflow: visible; ">
+          <div style="position: absolute; top: 0px; right: 0px; overflow: hidden;width: 495px; height: 369px;
+           backface-visibility: hidden; ">
+
+            <div depth="5" class="front-side fixed" style=" width: 495px; height: 369px; overflow: hidden;">
+              <div class="cover-spine-top"></div>
+              <div class="cover-spine-bottom"></div>
+              <div class="page-white-right page-image-right">
+                <book-page id=$index data=page width=495 height=369 />
+              </div>
+              <div class="page-number">{{$index}} even </div>
+              <div class="depth" style="right: 0px; width: 0px;"></div>
+              <div class="page-shadow-left" ></div>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- end showing pages -->
+
+      <!--<div class="page-wrapper " style="position: absolute; width: 495px;float:right-->
+           <!--height: 387px; top:0px; overflow: visible;"-->
+           <!--ng-repeat="page in book.pages" ng-class=" $last ? 'hard fixed':'' "-->
+        <!-->-->
+
+        <!--&lt;!&ndash;ng-class-odd="'float-right'"&ndash;&gt;-->
+        <!--&lt;!&ndash;ng-class-even ="'float-left'"&ndash;&gt;-->
+
+        <!--<div style="position: absolute; top: 0px; overflow: hidden;  width: 495px; height: 387px;-->
+           <!--backface-visibility: hidden;"-->
+           <!--ng-style="{background: $last ? book.backgroundColor : 'transparent' }"-->
+          <!-->-->
+
+          <!--<div depth="5" style="width: 495px; height: 387px; overflow: hidden;"-->
+               <!--ng-class-odd="'odd; back-side;'"-->
+               <!--ng-class-even ="'even;front-side;'"-->
+            <!-->-->
+
+            <!--<div class="cover-spine-top"></div>-->
+            <!--<div class="cover-spine-bottom"></div>-->
+            <!--<div ng-class-odd="'page-white-left page-image-left'" ng-class-even="'page-white-right page-image-right'">-->
+               <!--<book-page id=$index data=page width=495 height=369 />-->
+            <!--</div>-->
+            <!--<div class="depth" style="left: 4px; width: 0px;"></div>-->
+            <!--<div ng-class-even="'page-shadow-right'"  ng-class-odd="'page-shadow-left'"></div>-->
+          <!--</div>-->
+         <!--</div>-->
+      <!--</div>-->
 
       <div ng-if=" !evenPageCount "
         class="page-wrapper hard"
-           style="position: absolute; width: 515px; height: 387px; top: 0px; left: 0px; right: auto; overflow: visible; perspective-origin: 100% 50%; z-index: -1;">
+           style="position: absolute; width: 515px; height: 387px; top: 0px; left: 0px; right: auto;
+           background-color: {{book.backgroundColor}}
+           overflow: visible;">
         <div
-          style="position: absolute; top: 0px; left: 0px; overflow: hidden; transform-style: preserve-3d; backface-visibility: hidden; width: 515px; height: 387px; transform-origin: 100% 50% 0px; z-index: 17;">
-          <div depth="5" class="hard back-side page odd fixed" style="float: left; width: 515px; height: 387px;">
+          style="position: absolute; top: 0px; left: 0px; overflow: hidden;
+                width: 515px; height: 387px; transform-origin: 100% 50% 0px; z-index: 17;">
+          <div depth="5" class="hard back-side page odd fixed" style="width: 515px; height: 387px;">
             <div class="cover-spine-top"></div>
             <div class="cover-spine-bottom"></div>
 
@@ -141,14 +172,15 @@
 
 
       <div class="page-wrapper hard "
-           style="position: absolute; width: 515px; height: 387px; top: 0px; left: 0px; right: auto; overflow: visible; perspective-origin: 100% 50%; z-index: -1;">
-        <div
-          style="position: absolute; top: 0px; left: 0px; overflow: hidden; width: 515px; height: 387px; z-index: 17;">
+           style="position: absolute; width: 515px; height: 387px; top: 0px; left: 0px; right: auto;
+           overflow: visible; z-index: -1;">
 
-          <div depth="5" class="hard back-side fixed" style="float: left; width: 515px; height: 387px;">
+        <div  style="position: absolute; top: 0px; left: 0px; overflow: hidden; width: 515px; height: 387px;">
+
+          <div depth="5" class="hard back-side fixed" style="width: 515px; height: 387px;">
             <div class="cover-spine-top"></div>
             <div class="cover-spine-bottom"></div>
-            <div class="cover-white page-image-right">CCCONTENT</div>
+            <div class="cover-white page-image-right"></div>
             <div class="depth" style="right: 4px; width: 0px;"></div>
 
             <div class="shadow" style="position: absolute; overflow: hidden;
@@ -224,7 +256,7 @@ s
       acceleration: !isChrome(),
       autoCenter: true,
       duration: 1500,
-      pages: 28,
+      pages: 10,
       width: 1030,
       height: 387,
       when: {
