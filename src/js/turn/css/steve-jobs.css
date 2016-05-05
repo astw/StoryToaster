@@ -225,15 +225,15 @@ body, ul, table, form{
     background-position:-1920px 0 !important;
 }
 
-.sj-book .hard{
-    width:480px;
-    height:600px;
-    background-color:white;
-    -webkit-box-shadow:none;
-    -moz-box-shadow:none;
-    -ms-box-shadow:none;
-    box-shadow:none;
-}
+/*.sj-book .hard{*/
+    /*width:480px;*/
+    /*height:600px;*/
+    /*background-color:white;*/
+    /*-webkit-box-shadow:none;*/
+    /*-moz-box-shadow:none;*/
+    /*-ms-box-shadow:none;*/
+    /*box-shadow:none;*/
+/*}*/
 
 .sj-book .page-wrapper{
     -webkit-perspective:2000px;
