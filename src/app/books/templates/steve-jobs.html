@@ -23,7 +23,7 @@
   <div id="showpage">
 <div id="book-wrapper" class="animated" >
   <div id="book-obj">
-    <div id="bkPicFront" style="display: none;"></div>
+    <div id="bkPicFront" style=";"></div>
     <div id="bkPicBack" style="display: none;"></div>
     <div class="sj-book animated"
          style="  position: relative; width: 1030px; height: 387px; margin-left: 0px; background-position: 482px 0px;">
@@ -43,11 +43,13 @@
       <!-- end front cover !-->
 
       <!--begin back of front cover -->
-       <div class="page-wrapper "  style="position: absolute;
+       <div class="page-wrapper"  style="position: absolute;
          width: 515px; height: 395px;  left: auto; right: 0px; overflow: visible; ">
         <div style="position: absolute; top: 0px; right: 0px; overflow: hidden;width: 515px; height: 387px;
-           background-color: {{book.backgroundColor}};">
-          <div depth="5" class="front-side" style="float: right; width: 515px; height: 369px; overflow: hidden;">
+           ">
+          <div depth="5" class="front-side hard" style="float: right; width: 515px; height: 387px; overflow: hidden;
+           background-color: {{book.backgroundColor}};
+          ">
             <div class="cover-spine-top"></div>
             <div class="cover-spine-bottom"></div>
             <div class="cover-white page-image"></div>
@@ -144,7 +146,7 @@
            ">
 
         <div style="position: absolute; top: 0px; left: 0px; overflow: hidden; width: 515px; height: 387px;
-          z-index: 17;" >
+          z-index: 17;" class="hard" >
 
           <div depth="5" class="hard back-side" style="float: left; width: 495px; height: 387px;">
             <div depth="5" class="hard" style="width: 515px; height: 387px;">
@@ -212,8 +214,19 @@ s
           break;
       }
     });
+
+//    flipbook.bind('start',
+//      function (event, pageObject, corner)
+//      {
+//        if (corner == 'tl' || corner == 'tr' || corner == 'bl' || corner == 'br')
+//        {
+//          event.preventDefault();
+//        }
+//      }
+//    );
+
     flipbook.turn({
-      elevation: 20,
+      elevation: 10,
       acceleration: !isChrome(),
       autoCenter: true,
       duration: 1500,
