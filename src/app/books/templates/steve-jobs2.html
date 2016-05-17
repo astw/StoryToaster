@@ -1,0 +1,364 @@
+<script type="text/javascript" src="/js/steve-jobs/extras/jquery.min.1.7.js"></script>
+<script type="text/javascript" src="/js/steve-jobs/extras/jquery-ui-1.8.20.custom.min.js"></script>
+<script type="text/javascript" src="/js/steve-jobs/extras/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="/js/steve-jobs/extras/modernizr.2.5.3.min.js"></script>
+<script type="text/javascript" src="/js/steve-jobs/lib/hash.js"></script>
+
+<link href='/js/steve-jobs/css/showpage.css' rel="stylesheet" type="text/css">
+<audio id="coverturn-audio" preload="">
+  <source src="/audio/turncover.mp3" type="audio/mpeg">
+  <source src=" /audio/turncover.ogg" type="audio/ogg">
+  <source src="/audio/turncover.wav" type="audio/wav">
+</audio>
+
+<audio id="pageturn-audio" preload="">
+  <source src="/audio/turn3.mp3" type="audio/mpeg">
+  <source src="/audio/turn3.ogg" type="audio/ogg">
+  <source src="/audio/turn3.wav" type="audio/wav">
+</audio>
+
+<br/><br/><br/>
+
+<div class="book-panel" style="padding: 10px 20px; margin-top: 0px; width: 100%;">
+  <div id="showpage">
+    <div id="book-wrapper" class="animated" >
+      <div id="book-obj">
+        <div id="bkPicFront" style=";"></div>
+        <div id="bkPicBack" style="display: none;"></div>
+        <DIV id="book-zoom">
+          <DIV class="sj-book">
+
+            <DIV class="hard " depth="5"  style="background-color: #005fb3">
+              <DIV class="side" >  </DIV>
+            </DIV>
+
+            <DIV class="hard front-side fixed" depth="5">
+              <DIV class="fname" style="background-color: yellow;width:515px; height: 387px;">Harrison  Ford  </DIV> d
+            </DIV>
+
+
+            <DIV class="own-size" style="background-color: white;width:419px; height: 365px;"> 1 </DIV>
+
+            <DIV class="own-size" style="background-color: white;width:419px; height: 365px;"> 2 </DIV>
+
+
+            <DIV class="hard fixed" depth="5"  style="background-color: #005fb3">
+              <DIV class="side" style="background-color: yellow;width:515px; height: 387px;" >  </DIV>
+            </DIV>
+
+            <DIV class="hard " depth="5"   style="background-color: yellow;width:515px; height: 387px;" >
+              <DIV class="side"   >  </DIV>
+            </DIV>
+
+          </DIV>
+        </DIV>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+  $(function () {
+    var pgimg = $('.sj-book .coverimg');
+    pgimg.load(function () {
+      var pgdiv = pgimg.closest('.cover');
+      pgdiv.css({
+        "background-image": "none",
+        "background-color": "white"
+      });
+    }).each(function () {
+      if (this.complete) {
+        $(this).trigger('load');
+      }
+    });
+  });
+
+  function loadApp() {
+    var flipbook = $('.sj-book');
+    var turnstarttime = 0;
+    var opencount = 0;
+    if (flipbook.width() == 0 || flipbook.height() == 0) {
+      setTimeout(loadApp, 10);
+      return;
+    }
+    Hash.on('^page\/([0-9]*)$', {
+      yep: function (path, parts) {
+        var page = parts[1];
+        if (page !== undefined) {
+          page = parseInt(page, 10) + 2;
+          if ($('.sj-book').turn('is')) $('.sj-book').turn('page', page);
+        }
+      },
+      nop: function (path) {
+        if ($('.sj-book').turn('is')) $('.sj-book').turn('page', 1);
+      }
+    });
+    $(document).keydown(function (e) {
+      var previous = 37,
+        next = 39;
+      if ($(e.target).is("textarea")) return;
+      switch (e.keyCode) {
+        case previous:
+          $('.sj-book').turn('previous');
+          break;
+        case next:
+          $('.sj-book').turn('next');
+          break;
+      }
+    });
+
+    flipbook.bind('start',
+      function (event, pageObject, corner)
+      {
+        if (corner == 'tl' || corner == 'tr' || corner == 'bl' || corner == 'br')
+        {
+          event.preventDefault();
+        }
+      }
+    );
+
+    flipbook.turn({
+      elevation: 10,
+      acceleration: !isChrome(),
+      autoCenter: true,
+      duration: 1500,
+      pages: 10,
+      width: 1030,
+      height: 387,
+      when: {
+        turning: function (e, page, view) {
+          var book = $(this),
+            currentPage = book.turn('page'),
+            pages = book.turn('pages');
+          turnstarttime = new Date().getTime();
+          var pageturnSound = document.getElementById("pageturn-audio"),
+            coverturnSound = document.getElementById("coverturn-audio");
+          if (typeof(pageturnSound.load) === 'undefined') {
+            pageturnSound.load = pageturnSound.pause = pageturnSound.play = function () {
+            };
+            coverturnSound.load = coverturnSound.pause = coverturnSound.play = function () {
+            };
+          }
+          if (pageturnSound.readyState !== 4) pageturnSound.load();
+          if (coverturnSound.readyState !== 4) coverturnSound.load();
+          if (currentPage === 1 || currentPage === pages || page === 1 || page === pages) {
+            coverturnSound.pause();
+            pageturnSound.pause();
+            if (coverturnSound.readyState === 4) {
+              coverturnSound.currentTime = 0;
+              coverturnSound.play();
+            }
+          } else {
+            coverturnSound.pause();
+            pageturnSound.pause();
+            if (pageturnSound.readyState === 4) {
+              pageturnSound.currentTime = 0;
+              pageturnSound.play();
+            }
+          }
+          if (page == 2 && currentPage == 1) {
+          }
+          if (page === 1) {
+            $('#book-wrapper').css('margin-left', '-258px').css('clip', '');
+            $('#bkPicFront').show();
+            $('#bkPicBack, #navigation').hide();
+            if (typeof pageOneTurn == 'function') pageOneTurn(book, page, pages);
+          } else if (page === pages) {
+            $('#book-wrapper').css('margin-left', '-234px');
+            setTimeout(function () {
+              var pg = book.turn('page');
+              if (pg === pages) {
+                $('#book-wrapper').css('clip', 'rect(-20px,773px,417px,0)');
+              }
+            }, 400);
+            $('#bkPicBack').show();
+            $('#bkPicFront, #navigation').hide();
+            if (typeof pageLastTurn == 'function') pageLastTurn(book, page, pages);
+          } else {
+            $('#book-wrapper').css('margin-left', '0').css('clip', '');
+            setTimeout(function () {
+              var pg = book.turn('page');
+              if (pg !== 1 && pg !== pages) {
+                $('#navigation').show();
+              }
+            }, 400);
+            $('#bkPicBack, #bkPicFront').hide();
+            if (typeof pageOtherTurn == 'function') pageOtherTurn(book, page, pages);
+          }
+          if (currentPage > 3 && currentPage < pages - 3) {
+            if (page == 1) {
+              book.turn('page', 2).turn('stop').turn('page', page);
+              e.preventDefault();
+              return;
+            } else if (page == pages) {
+              book.turn('page', pages - 1).turn('stop').turn('page', page);
+              e.preventDefault();
+              return;
+            }
+          } else if (page > 3 && page < pages - 3) {
+            if (currentPage == 1) {
+              book.turn('page', 2).turn('stop').turn('page', page);
+              e.preventDefault();
+              return;
+            } else if (currentPage == pages) {
+              book.turn('page', pages - 1).turn('stop').turn('page', page);
+              e.preventDefault();
+              return;
+            }
+          }
+          updateDepth(book, page);
+          if (page >= 2) $('.sj-book .p2').addClass('fixed');
+          else
+            $('.sj-book .p2').removeClass('fixed');
+          if (page < pages) $('.sj-book .p7').addClass('fixed');
+          else
+            $('.sj-book .p7').removeClass('fixed');
+          if (page < 2) Hash.go('').update();
+          else if (page == 2) Hash.go('page/1').update();
+          else
+            Hash.go('page/'.concat(page - 2)).update();
+          if (page == 1) book.css({
+            backgroundPosition: '525px 0'
+          });
+          else if (page == pages) book.css({
+            backgroundPosition: '510px 0'
+          });
+          else
+            book.css({
+              backgroundPosition: '505px 0'
+            });
+        },
+        turned: function (e, page, view) {
+          var book = $(this),
+            pages = book.turn('pages');
+          updateDepth(book);
+          if (page == 2 || page == 3) {
+            book.turn('peel', 'br');
+          }
+          book.turn('center');
+        },
+        start: function (e, pageObj, corner) {
+          var book = $(this);
+          console.log('starting turn .....')
+          console.log(corner);
+          if (pageObj.page == 2) book.css({
+            backgroundPosition: '482px 0'
+          });
+          else if (pageObj.page == book.turn('pages') - 1) book.css({
+            backgroundPosition: '472px 0'
+          });
+        },
+        end: function (e, pageObj) {
+          var book = $(this);
+          updateDepth(book);
+        },
+        missing: function (e, pages) {
+          for (var i = 0; i < pages.length; i++) addPage(pages[i], $(this));
+        }
+      }
+    });
+    flipbook.addClass('animated');
+    $('#book-obj').click(function (event) {
+      var $clickedElement = $(event.target);
+      var $page = $clickedElement.closest('.page-wrapper');
+      var deltatime = new Date().getTime() - turnstarttime;
+      if ($page && deltatime > 100) {
+        var pg = parseInt($page.attr("page"), 10),
+          currentPage = flipbook.turn("page"),
+          pages = flipbook.turn("pages");
+        var pWidth = flipbook.innerWidth();
+        var pOffset = flipbook.offset();
+        var x = event.pageX - pOffset.left;
+        var reverse = ($('#book-obj').css('direction') === 'rtl');
+        if (currentPage == 1) {
+          if (x > pWidth / 2) flipbook.turn(reverse ? "previous" : "next");
+        } else if (currentPage == pages) {
+          if (x < pWidth / 2) flipbook.turn(reverse ? "next" : "previous");
+        } else if (x > pWidth / 2) {
+          flipbook.turn(reverse ? "previous" : "next");
+        } else {
+          flipbook.turn(reverse ? "next" : "previous");
+        }
+      }
+    });
+  }
+  $(function () {
+    $('#nav-start').click(function (obj) {
+      var reverse = ($('#book-obj').css('direction') === 'rtl');
+      _gaq.push(['_trackEvent', 'page', 'jump', 'beginning']);
+      if (reverse) {
+        var pg = $('.sj-book').turn("pages");
+        $('.sj-book').turn("page", pg - 1).turn('stop').turn("page", pg);
+      } else {
+        $('.sj-book').turn("page", 2).turn('stop').turn("page", 1);
+      }
+    });
+    $('#nav-end').click(function (obj) {
+      var reverse = ($('#book-obj').css('direction') === 'rtl');
+      _gaq.push(['_trackEvent', 'page', 'jump', 'end']);
+      if (reverse) {
+        $('.sj-book').turn("page", 2).turn('stop').turn("page", 1);
+      } else {
+        var pg = $('.sj-book').turn("pages");
+        $('.sj-book').turn("page", pg - 1).turn('stop').turn("page", pg);
+      }
+    });
+  });
+
+  function loadPage(page, element) {
+    var flipbook = $('.sj-book');
+    var pages = flipbook.turn('pages');
+    var image = '';
+    var lr = "left";
+    if (page % 2 == 1) {
+      lr = "right";
+    }
+    var offset = 3;
+    if (page == 1) {
+      image = $('<img src="https://images2.storyjumper.com/transcoder.jpg?v=3&coverid=498c37f0806cf889a43eff3af36ba9a9&coverpage=front&width=510" style="width:495px; height:369px;"/>');
+    } else if (page == 2) {
+      image = $('<img src="/images/whiteBG.gif" style="width:495px; height:369px;"/>');
+    } else if (page == 3) {
+      image = $('#pagearraydiv').children().eq(0);
+      image.replaceWith(image.clone());
+    } else if (page >= pages) {
+      image = $('<img src="https://images2.storyjumper.com/transcoder.jpg?v=3&coverid=498c37f0806cf889a43eff3af36ba9a9&coverpage=back&width=510" style="width:495px; height:369px;"/>');
+    } else {
+      image = $('#pagearraydiv').children().eq(page - offset);
+      image.replaceWith(image.clone());
+    }
+    element.empty();
+    var bookcontents = $('<div class="book-content"/>');
+    var pageimageholder = $('<div class="page-image-holder page-image-' + lr + '"/>');
+    image.append($('<div class="page-shadow-' + lr + '"/>'));
+    pageimageholder.append(image);
+    bookcontents.append(pageimageholder);
+    element.append(bookcontents);
+    var pgimg = element.find('img');
+    pgimg.load(function () {
+      var pgdiv = element.find('.page-image-holder');
+      pgdiv.css({
+        "background-image": "none",
+        "background-color": "transparent"
+      });
+    }).each(function () {
+      if (this.complete) {
+        $(this).trigger('load');
+      }
+    });
+  }
+
+  yepnope({
+    test: Modernizr.csstransforms,
+    yep: ['/js/steve-jobs/lib/turn.min.js'],
+    nope: ['/js/steve-jobs/lib/turn.html4.min.js', '/js/steve-jobs/css/jquery.ui.html4.css', '/js/steve-jobs/css/steve-jobs-html4.css'],
+    both: ['js/steve-jobs/js/steve-jobs.js', '/js/steve-jobs/css/jquery.ui.css', '/js/steve-jobs/css/steve-jobs.css'],
+    complete: loadApp
+  });
+
+
+</script>
+
