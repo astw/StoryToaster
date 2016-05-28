@@ -687,7 +687,7 @@ table {
    width: 515px;
    height: 369px;
    position: absolute;
-   top: 9px;
+   top: 7px;
    left: 20px;
    background-color: #fff
  }
@@ -703,7 +703,7 @@ table {
   width: 495px;
   height: 369px;
   position: absolute;
-  top: 9px;
+  top: 7px;
   left: 0px;
   background-color: #fff
 }
@@ -712,7 +712,7 @@ table {
   width: 495px;
   height: 369px;
   position: absolute;
-  top: 9px;
+  top: 7px;
   /*left: 5px;*/
   right:0px;
    background-color: #fff

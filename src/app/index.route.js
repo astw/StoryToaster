@@ -31,7 +31,8 @@
 
       .when('/account/mybooks/:bookId/readbook', {
         //templateUrl: 'app/books/readbook.html',
-        templateUrl:'app/books/templates/steve-jobs.html',
+        //templateUrl:'app/books/templates/steve-jobs.html',
+        templateUrl:'app/books/templates/steve-jobs3.html',
         controller: 'ReadbookController',
         controllerAs: 'readbookCtrl',
         reloadOnSearch:false,

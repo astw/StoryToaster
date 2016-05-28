@@ -29,25 +29,46 @@
           <DIV class="sj-book">
 
             <DIV class="hard " depth="5"  style="background-color: #005fb3">
-              <DIV class="side" >  </DIV>
+              <div depth="5" class="hard front-side page odd fixed" style="float: left; width: 495px; height: 387px;">
+                <book-page data="book.frontCover" id=1000 width=515 height=387></book-page>
+                <div class="depth" style="left: 4px; width: 0px;"></div>
+              </div>
             </DIV>
 
-            <DIV class="hard front-side fixed" depth="5">
-              <DIV class="fname" style="background-color: yellow;width:515px; height: 387px;">Harrison  Ford  </DIV> d
+            <!--begin back of front cover -->
+            <DIV class="hard front-side" depth="5">
+              <div depth="5" class="front-side hard" style="float: right; width: 515px; height: 387px; overflow: hidden;
+           background-color: {{book.backgroundColor}};
+          ">
+                <div class="cover-spine-top"></div>
+                <div class="cover-spine-bottom"></div>
+                <div class="cover-white page-image"></div>
+              </div>
             </DIV>
 
-
-            <DIV class="own-size" style="background-color: white;width:419px; height: 365px;"> 1 </DIV>
-
-            <DIV class="own-size" style="background-color: white;width:419px; height: 365px;"> 2 </DIV>
-
-
-            <DIV class="hard fixed" depth="5"  style="background-color: #005fb3">
-              <DIV class="side" style="background-color: yellow;width:515px; height: 387px;" >  </DIV>
+            <!-- begin dedication page  -->
+            <DIV class="own-size" style="background-color: white;width:515px; height: 365px;"> dedication
             </DIV>
 
-            <DIV class="hard " depth="5"   style="background-color: yellow;width:515px; height: 387px;" >
-              <DIV class="side"   >  </DIV>
+            <DIV class="own-size" style="background-color: white;width:515px; height: 365px;"> 1 </DIV>
+            <DIV class="own-size" style="background-color: white;width:515px; height: 365px;"> 1.1
+            </DIV>
+
+            <DIV class="own-size" style="background-color: white;width:515px; height: 365px;"> 2 </DIV>
+            <DIV class="own-size" style="background-color: white;width:515px; height: 365px;"> 2.2
+            </DIV>
+
+            <DIV class="own-size" style="background-color: white;width:515px; height: 365px;"> 3 </DIV>
+
+            <DIV class="hard fixed"  depth="5"  style="float: right; width: 515px; height: 387px; overflow: hidden;
+                              background-color: {{book.backgroundColor}};" >
+              <DIV class="side" style="background-color: yellow;width:515px; height: 387px;" > 4</DIV>
+            </DIV>
+
+            <DIV class="hard " depth="5"   style="background-color: red;width:515px; height: 387px;" >
+              <DIV class="side"   >
+                <book-page data="book.backCover" id=3000 width=515 height=387></book-page>
+              </DIV>
             </DIV>
 
           </DIV>
